@@ -1,0 +1,19 @@
+{
+  "all_games": {
+    "margin_bias": null,
+    "margin_mae": null,
+    "n": 0,
+    "su_accuracy": null,
+    "total_mae": null
+  },
+  "ats_graded": 0,
+  "established_teams": {
+    "margin_bias": null,
+    "margin_mae": null,
+    "n": 0,
+    "su_accuracy": null,
+    "total_mae": null
+  },
+  "over_under_graded": 0,
+  "status": "PROSPECTIVE_FROZEN_RESEARCH_ONLY"
+}

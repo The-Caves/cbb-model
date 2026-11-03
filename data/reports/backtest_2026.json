@@ -1,0 +1,39 @@
+{
+  "all_games": {
+    "margin_bias": 3.26,
+    "margin_mae": 12.627,
+    "n": 6150,
+    "su_accuracy": 0.6767,
+    "total_mae": 14.177
+  },
+  "ats_graded": 0,
+  "baseline_definition": "Home by 3 (neutral tie), total 145; intentionally naive not optimized",
+  "caveat": "Scores retrospectively acquired; point-in-time score-only replay, not verified pregame source snapshots.",
+  "cold_start": {
+    "margin_bias": -7.329,
+    "margin_mae": 16.915,
+    "n": 1243,
+    "su_accuracy": 0.8479,
+    "total_mae": 15.299
+  },
+  "established_teams": {
+    "margin_bias": 5.942,
+    "margin_mae": 11.541,
+    "n": 4907,
+    "su_accuracy": 0.6334,
+    "total_mae": 13.892
+  },
+  "games_with_final_scores": 6300,
+  "historical_odds_available": false,
+  "model": "CBB_SCORE_RIDGE_V0_2",
+  "over_under_graded": 0,
+  "simple_baseline": {
+    "margin_bias": -5.071,
+    "margin_mae": 13.583,
+    "n": 6150,
+    "su_accuracy": 0.6405,
+    "total_mae": 15.832
+  },
+  "status": "RETROSPECTIVE_WALK_FORWARD_RESEARCH_ONLY",
+  "test_season": 2026
+}

@@ -1,0 +1,7 @@
+{
+  "requested_date": "2024-11-24",
+  "observed_utc": "2026-11-03T23:35:22Z",
+  "games": 54,
+  "sha256": "560f3f267e2b887802333d7b7a93732d9d55917fcecb5c8df0b2f31419dfacf8",
+  "api": "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
+}
