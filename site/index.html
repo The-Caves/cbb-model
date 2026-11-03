@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="College basketball model projections, real pre-tip forecast history and performance tracking.">
+  <title>CBB Intelligence | Model Game Board</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#games" aria-label="CBB Intelligence home">
+      <span class="brand-logo" aria-hidden="true"><svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="14.5" stroke="currentColor" stroke-width="2"/><path d="M18 3v30M3 18h30M7.8 7.8c11.1 5.8 11.1 14.6 0 20.4M28.2 7.8c-11.1 5.8-11.1 14.6 0 20.4" stroke="currentColor" stroke-width="1.7"/></svg></span>
+      <span><strong>CBB<span class="brand-accent">INTEL</span></strong><small>COLLEGE BASKETBALL MODEL</small></span>
+    </a>
+    <div class="header-right"><span id="syncLabel" class="sync-text">Awaiting data sync</span><span class="status-indicator" aria-label="Research model"><i></i> v0.2 Research</span></div>
+  </div>
+</header>
+<div class="page-shell">
+  <nav class="tabs" aria-label="Main navigation">
+    <button class="tab active" data-tab="games" aria-current="page"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg> Games</button>
+    <button class="tab" data-tab="performance"><svg viewBox="0 0 24 24"><path d="M3 21V3M3 21h18M7 15l4-5 4 3 5-8"/></svg> Performance</button>
+    <button class="tab" data-tab="teams"><svg viewBox="0 0 24 24"><path d="M7 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16M3 21h18M10 7h4M10 11h4M10 15h4"/></svg> Teams</button>
+    <button class="tab" data-tab="model"><svg viewBox="0 0 24 24"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="5"/></svg> Model</button>
+  </nav>
+
+  <main>
+    <section id="view-games" class="view">
+      <section class="hero">
+        <div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot"></span> SEASON <span id="seasonLabel">2026–27</span> <span class="eyebrow-divider">/</span> MEN'S DIVISION I</div>
+          <h1>Every matchup.<br><span>One model view.</span></h1>
+          <p>Live game board, model-projected scores, and a transparent record of every prediction made before tipoff.</p>
+          <div class="hero-meta"><span><span class="meta-dot"></span> Model-generated only</span><span class="meta-divider"></span><span>No paid data feeds</span></div>
+        </div>
+        <div class="hero-metric">
+          <span>UPCOMING PROJECTIONS</span><strong id="heroCount">—</strong><div class="hero-metric-sub"><span id="heroCoverage">Waiting for first sync</span><svg viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"><path d="M0 24L13 18 25 23 39 11 50 16 63 8 74 14 85 3 100 9" fill="none" stroke="currentColor" stroke-width="2.5"/></svg></div>
+        </div>
+      </section>
+      <section class="kpi-strip" aria-label="Model status">
+        <div class="kpi"><small>GAME COVERAGE</small><strong id="kpiGames">—</strong><span>Current board</span></div>
+        <div class="kpi"><small>PREGAME FORECASTS</small><strong id="kpiForecasts">—</strong><span>Source-verified captures</span></div>
+        <div class="kpi"><small>GRADED PREDICTIONS</small><strong id="kpiGraded">—</strong><span>Pre-tip results only</span></div>
+        <div class="kpi"><small>MARKET DATA</small><strong class="kpi-muted">Pending</strong><span>No invented lines</span></div>
+      </section>
+      <div class="section-top"><div><div class="section-kicker">MATCHUP CENTER</div><h2>Game board <span class="soft-count" id="gameCount"></span></h2></div><span class="date-stamp" id="dayStamp">All dates</span></div>
+      <div class="toolbar">
+        <div class="date-controls"><button id="prevDay" class="arrow-btn" title="Previous date" aria-label="Previous date">‹</button><div class="date-pills" id="datePills"></div><button id="nextDay" class="arrow-btn" title="Next date" aria-label="Next date">›</button></div>
+        <div class="filters"><label class="searchbox"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg><input id="gameSearch" placeholder="Search team or matchup" aria-label="Search team or matchup" autocomplete="off"></label>
+          <select id="gameFilter" aria-label="Filter games"><option value="all">All games</option><option value="predicted">With projection</option><option value="upcoming">Upcoming</option><option value="completed">Final</option></select>
+        </div>
+      </div>
+      <div id="dataAlert" class="data-alert" role="status" hidden></div>
+      <div id="gameCards" class="cards-grid" aria-live="polite"></div>
+      <div class="disclaimer">Projections represent an experimental model, not verified betting edges. No ATS or O/U pick is shown without a real sportsbook line. Forecast timestamps are recorded before tipoff.</div>
+    </section>
+
+    <section id="view-performance" class="view" hidden>
+      <div class="section-kicker">MODEL ACCOUNTABILITY</div><h1 class="view-title">Performance <span>tracker</span></h1><p class="view-intro">No cherry-picked results. The performance ledger only grades forecasts captured before the game starts, with historical backtests shown separately.</p>
+      <div id="performanceContent"></div>
+    </section>
+    <section id="view-teams" class="view" hidden>
+      <div class="section-kicker">TEAM INTELLIGENCE</div><h1 class="view-title">Team <span>scouting</span></h1><p class="view-intro">Actual current-season scores and records. Possession-level ratings, rotation analysis, and verified injuries will be added in future model milestones.</p>
+      <label class="searchbox team-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg><input id="teamSearch" placeholder="Find a school" aria-label="Find a school" autocomplete="off"></label><div id="teamList" class="team-grid"></div>
+    </section>
+    <section id="view-model" class="view" hidden>
+      <div class="section-kicker">THE METHOD</div><h1 class="view-title">Built on <span>evidence</span></h1><p class="view-intro">This project uses open data, a reproducible Python model, and date-aware evaluation. It's intentionally transparent about what's available and what's not.</p>
+      <div class="method-grid"><article class="method-card"><span class="method-number">01</span><h3>Opponent-adjusted scores</h3><p>Ridge regression estimates team-specific scoring strengths and weaknesses, controlling for opponents and home court. We are not claiming possession-based efficiency yet.</p></article><article class="method-card"><span class="method-number">02</span><h3>Pregame-only freezing</h3><p>Game projections are loaded from a time-stamped ledger. If a prediction wasn't recorded before tipoff, no historic model pick is displayed afterward.</p></article><article class="method-card"><span class="method-number">03</span><h3>Walk-forward tests</h3><p>Historical evaluation simulates each day using only prior completed game scores. Captured historical data was collected retrospectively, so those tests are kept separate from live accuracy.</p></article><article class="method-card"><span class="method-number">04</span><h3>Open data, no bills</h3><p>Public scoreboards, standard Python dependencies, GitHub Actions, and GitHub Pages. No paid sportsbook APIs, servers, or premium runners.</p></article></div>
+      <div class="roadmap"><h3>What's next</h3><div class="roadmap-step"><span class="rd-dot done"></span><div><strong>v0.2 — Score-model foundation</strong><small>Historical replay, matchup forecasts, frozen results</small></div></div><div class="roadmap-step"><span class="rd-dot current"></span><div><strong>v0.3 — Advanced basketball features</strong><small>Pace, possession-based efficiency, Four Factors</small></div></div><div class="roadmap-step"><span class="rd-dot"></span><div><strong>v0.4 — Player intelligence</strong><small>Roster changes, minutes, availability, transfers</small></div></div><div class="roadmap-step"><span class="rd-dot"></span><div><strong>v0.5 — Verified market lines</strong><small>Timestamp-safe ATS/O-U and monitored performance</small></div></div></div>
+      <p class="repo-line">Source repository: <a target="_blank" rel="noopener noreferrer" href="https://github.com/The-Caves/cbb-model">The-Caves/cbb-model ↗</a></p>
+    </section>
+  </main>
+  <footer><div><strong>CBB<span class="brand-accent">INTEL</span></strong><span>Independently tracked. Always experimental.</span></div><div><span id="footerSync">Awaiting synchronization</span><span>Built on free, public data.</span></div></footer>
+</div>
+<script src="app.js" defer></script>
+</body>
+</html>

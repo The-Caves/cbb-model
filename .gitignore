@@ -1,0 +1,7 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+.venv/
+.DS_Store
+# Store historical source manifests; skip heavy raw gzip files in Git history.
+data/raw/**/*.json.gz
