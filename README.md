@@ -13,13 +13,18 @@ A free-only, open-source college basketball prediction research model and respon
 - Any missing projection is **shown as missing**, not reconstructed after the result.
 - There are **no ATS or total bets** while authenticated sportsbook lines are absent.
 
-## Launch on GitHub Pages (free public repo)
+## Deployment status (November 3, 2026)
 
-1. Enable the GitHub app's installation access to the `The-Caves/cbb-model` repository (under GitHub → Settings → Applications → Installed GitHub Apps → Configure → Repository access). Selecting a repository in the GitHub account alone does **not** grant the connector write access.
-2. Commit all files from this package to the `main` branch, preserving `.github/workflows/cbb.yml` and `site/` paths.
-3. Go to repository **Settings → Pages → Build and deployment → Source = GitHub Actions**.
-4. Trigger **Actions → CBB free model and website → Run workflow** or wait for the initial push. It runs Python tests, backfills 2024–25/2025–26 game scores, performs chronological score-only research backtesting, refreshes 2026–27 games, archives genuine pre-tip model outputs, exports `site/data.json`, and publishes the `site/` directory.
-5. After the `deploy` job succeeds, check `https://the-caves.github.io/cbb-model/` (expected URL, **NOT VERIFIED LIVE** until deployment succeeds).
+**Model pipeline live, Pages publication blocked by one repository setting.** In the first [GitHub Actions run](https://github.com/The-Caves/cbb-model/actions/runs/41740261197), the tests, historical ingestion, walk-forward baseline, current-season intake, frozen prediction archive, JSON website exporter, snapshot commit, and Pages artifact upload **all succeeded**. The deploy job returned HTTP 404 with an explicit instruction to enable GitHub Pages.
+
+**Required one-time action by repository owner:** [Settings → Pages](https://github.com/The-Caves/cbb-model/settings/pages) → **Build and deployment → Source: GitHub Actions** → Save. Then use the Actions page above to **Re-run failed jobs** (or manually dispatch the workflow). Once the deployment job succeeds, the expected website is https://the-caves.github.io/cbb-model/ . That URL must not be claimed live until deployment succeeds.
+
+## Initial verified model outputs
+
+- Retrospective, day-forward **2025–26** score-only replay: **6,150 evaluated games**, straight-up accuracy **67.67%**, projected margin MAE **12.627** points, projected total MAE **14.177** points. Naive baseline across the same 6,150 games scored **64.05%** SU.
+- Subset after each team has played 5 current-season games: **4,907 games**, straight-up accuracy **63.34%**. The sample is not prospectively validated and this is not evidence of profitable bets.
+- At initial current-season refresh: **376 displayed games**, **112 verified pre-tip projections** and **0 prospectively graded finals**. All initial projections are **PASS_LOW_SAMPLE**, not qualified betting recommendations.
+- View [actual archived model output](site/data.json) and [historical backtest metrics](data/reports/backtest_2026.json).
 
 No special environment variables, API keys, tokens, or cloud account billing is needed. The workflow checks `github.event.repository.private == false` and will not execute on private repositories; the publication source is GitHub Pages. Workflow uses standard Linux runners and free public scoreboard endpoint, never a paid sportsbook or compute service.
 
@@ -35,7 +40,7 @@ python -m http.server 8000 --directory site
 # http://localhost:8000/
 ```
 
-The site works before data ingestion but intentionally shows an empty state with no invented games. After real data is collected, `site/data.json` is updated by the exporter.
+The model successfully ingested historical scores and published current-season site data. It never reconstructs an after-tip pick for a game lacking a frozen pre-tip prediction.
 
 ## Data and methodology safeguards
 
@@ -49,4 +54,4 @@ The site works before data ingestion but intentionally shows an empty state with
 
 ## Current limitation
 
-The source and website are packaged for publication, but the **GitHub app integration currently authorizes `cfb-model` only**. Until access to `cbb-model` is granted, we cannot commit the package or verify a live GitHub Pages URL. The model has not ingested historical data or published real picks in this packaging environment.
+The site’s publication is awaiting the owner's one-time Pages source selection. The underlying GitHub model and data jobs have passed. Prediction quality remains research-only, and market odds, opponent-adjusted possessions, player impact, and calibrated probabilities are future milestones.
