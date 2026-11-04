@@ -1,32 +1,35 @@
 {
   "all_games": {
-    "margin_bias": 3.26,
-    "margin_mae": 12.627,
+    "margin_bias": -1.675,
+    "margin_mae": 10.462,
     "n": 6150,
-    "su_accuracy": 0.6767,
-    "total_mae": 14.177
+    "su_accuracy": 0.7237,
+    "total_mae": 14.234
   },
   "ats_graded": 0,
   "baseline_definition": "Home by 3 (neutral tie), total 145; intentionally naive not optimized",
   "caveat": "Scores retrospectively acquired; point-in-time score-only replay, not verified pregame source snapshots.",
   "cold_start": {
-    "margin_bias": -7.329,
-    "margin_mae": 16.915,
+    "margin_bias": -8.744,
+    "margin_mae": 14.285,
     "n": 1243,
-    "su_accuracy": 0.8479,
-    "total_mae": 15.299
+    "su_accuracy": 0.8471,
+    "total_mae": 15.378
   },
   "established_teams": {
-    "margin_bias": 5.942,
-    "margin_mae": 11.541,
+    "margin_bias": 0.116,
+    "margin_mae": 9.494,
     "n": 4907,
-    "su_accuracy": 0.6334,
-    "total_mae": 13.892
+    "su_accuracy": 0.6925,
+    "total_mae": 13.944
   },
   "games_with_final_scores": 6300,
   "historical_odds_available": false,
-  "model": "CBB_SCORE_RIDGE_V0_2",
+  "home_court_points": 3.5,
+  "model": "CBB_SCORE_RIDGE_V0_3",
   "over_under_graded": 0,
+  "previous_season_weight": 0.6,
+  "ridge_alpha": 3.0,
   "simple_baseline": {
     "margin_bias": -5.071,
     "margin_mae": 13.583,
