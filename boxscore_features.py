@@ -259,7 +259,7 @@ def run(root="data", max_games=42, delay=1.2, opener=None, now=None):
         "warning":"Retrospective observation is not historical availability. Features are not used in active model picks."
     }
     (advanced/"boxscore_coverage.json").write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")
-    (advanced/"team_profiles_"+str(year)+".json").write_text(json.dumps(prof,indent=2)+"\n",encoding="utf-8")
+    (advanced/("team_profiles_"+str(year)+".json")).write_text(json.dumps(prof,indent=2)+"\n",encoding="utf-8")
     return report
 
 
