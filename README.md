@@ -16,6 +16,14 @@ Audit after the first deployment found home-favorite margin clustering (112 froz
 - Game board **defaults to the viewer's local today**, centers that date in the horizontal date strip, displays *all* games including in-progress games, and on initial load scrolls to the **next not-yet-started game**. Earlier/in-progress games are still accessible by scrolling upward. If no future game exists today, there is no automatic jump. Date navigation and search remain available.
 - In-progress games can show authentic in-progress scores from the latest ESPN snapshot. Otherwise, displayed score numbers are visibly marked **PROJ**, not mistaken for live scores. New version labeling and historical-model-comparison labels are explicit.
 
+## Possession/Four Factors collector — first verified run (November 3, 2026)
+
+- [Cloud workflow 41765137313](https://github.com/The-Caves/cbb-model/actions/runs/41765137313) **passed**: 27 Python tests, 2 JavaScript board tests, 36/36 genuine ESPN two-sided game summaries accepted and 0 rejected. Result saved in [coverage report](data/advanced/boxscore_coverage.json).
+- Research-only postgame source captures contain estimated possessions, effective field goal %, turnover %, offensive rebound %, free throw and 3-point attempt rates, and points/100 estimated possessions; game and team IDs, final scores, capture time, and source hashes are checked.
+- All 36 current-season Division-I profile entries are **INSUFFICIENT** until they have at least five matched D-I vs D-I box scores. The active score model is still **v0.3**; the new features have **not** been used to adjust picks or imply betting edge.
+- Free ESPN game-summary API with 1.2-second request pacing, maximum 36 games per scheduled research pass; missing/contradictory stats are explicitly rejected. A research-source failure is visible but will not take down the active site.
+- See [possession research milestone](docs/POSSESSION_DATA.md). Next: expand authenticated historical efficiency coverage, build chronological opponent-adjusted pace/efficiency challenger, conduct out-of-sample comparisons before promotion.
+
 ## Automated training and data integrity
 
 Workflow: [CBB free model and website](.github/workflows/cbb.yml) — twice daily in-season and manually dispatchable. It tests first; on initial run it downloads historical 2024–25 and 2025–26 finals, then runs chronological 2025–26 replay. On code pushes it recalculates the revised model's backtest against the same historical dataset, writes an immutable copy of the v0.2 summary if present, refreshes 2026–27 scores, captures new pre-tip forecasts, grades completed original forecasts, exports `site/data.json`, and publishes GitHub Pages.
