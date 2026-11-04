@@ -97,3 +97,17 @@ def test_disputed_final_excluded_but_reported_separately():
     assert result["by_season"]["2026"]["disputed_source_score_games"]==1
     assert result["by_season"]["2026"]["eligible_d1_final_games"]==0
     assert select_games([g],set(),NOW,max_games=2,d1_ids={"1","2"})==[]
+
+
+def test_valid_non_division_one_game_excluded_from_d1_metric_not_quarantined():
+    d1={"1","2"}
+    g=game(901,h="1",a="9999")
+    report=audit([g],{"901":archived(g)},NOW,d1)
+    assert report["status"]=="AUDITED_PARTIAL_COVERAGE"
+    assert report["eligible_verified_d1_boxscores"]==0
+    assert report["archived_valid_non_d1_game_boxscores"]==1
+    assert report["quarantined_rows"]==0
+    bad=archived(g)
+    bad["away_id"]="wrong"
+    report=audit([g],{"901":bad},NOW,d1)
+    assert report["status"]=="QUARANTINED_SOURCE_MISMATCHES"

@@ -81,6 +81,7 @@ def audit(rows, accepted, now, d1_ids):
     current = now.year + int(now.month >= 7)
     seasons = (current - 2, current - 1, current)
     eligible = {}
+    raw_by_id = {str(g["game_id"]):g for g in rows}
     other, disputed, disputed_ids = Counter(), Counter(), set()
     for g in rows:
         if int(g["season"]) not in seasons:
@@ -100,6 +101,7 @@ def audit(rows, accepted, now, d1_ids):
             other[int(g["season"])] += 1
     valid, rejected = {}, []
     disputed_archives = 0
+    non_d1_archives = 0
     team_games = defaultdict(Counter)
     for key, rec in accepted.items():
         gid = str(key)
@@ -107,6 +109,13 @@ def audit(rows, accepted, now, d1_ids):
             disputed_archives += 1
             continue  # Already quarantined at source; never count as verified.
         g = eligible.get(gid)
+        outside_d1 = False
+        if g is None:
+            candidate = raw_by_id.get(gid)
+            if candidate is not None and complete_before(candidate,now) and (
+                    str(candidate["home_id"]) not in d1 or str(candidate["away_id"]) not in d1):
+                g = candidate
+                outside_d1 = True
         problems = []
         if g is None:
             problems.append("no matching eligible D-I final")
@@ -131,6 +140,8 @@ def audit(rows, accepted, now, d1_ids):
                 problems.append("incomplete evidence")
         if problems:
             rejected.append({"game_id":gid,"reason":"; ".join(problems)})
+        elif outside_d1:
+            non_d1_archives += 1  # Valid source evidence, deliberately excluded from D-I coverage.
         elif gid in valid:
             rejected.append({"game_id":gid,"reason":"duplicate accepted game"})
         else:
@@ -169,6 +180,7 @@ def audit(rows, accepted, now, d1_ids):
         "quarantined_rows":len(rejected),"quarantine_sample":rejected[:20],
         "disputed_source_score_games":len(disputed_ids),
         "disputed_archived_boxscores":disputed_archives,
+        "archived_valid_non_d1_game_boxscores":non_d1_archives,
         "by_season":by_season,
         "historical_available_as_of":False,
         "active_model_changed":False,
