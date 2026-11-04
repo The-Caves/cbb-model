@@ -77,3 +77,33 @@ def test_discard_non_72h_capture(tmp_path):
     g=game()
     stale={**prediction(),'captured_utc':(TIP-timedelta(hours=73)).isoformat().replace('+00:00','Z')}
     assert not valid_frozen(stale,g)
+
+
+def test_original_v02_forecast_survives_model_update(tmp_path):
+    ledger=tmp_path/'ledger.jsonl'
+    legacy={**prediction(),'model':'CBB_SCORE_RIDGE_V0_2'}
+    ledger.write_text(json.dumps(legacy)+'\n')
+    out=export_payload([game()],ledger,NOW,directory={'1':'Verified Home Owls','2':'Verified Away Bears'})
+    assert out['games'][0]['projection']['model']=='CBB_SCORE_RIDGE_V0_2'
+    assert out['games'][0]['home']=='Verified Home Owls'
+    assert out['games'][0]['away']=='Verified Away Bears'
+    assert out['games'][0]['projection']['home']==80
+    assert len(out['teams'])==2
+
+
+def test_unverified_opponent_kept_on_board_not_in_d1_scouting(tmp_path):
+    ledger=tmp_path/'ledger.jsonl'
+    out=export_payload([game()],ledger,NOW,directory={'1':'Verified Home Owls'})
+    assert len(out['games'])==1
+    assert out['games'][0]['away_division']=='OTHER_OR_UNVERIFIED'
+    assert out['games'][0]['away']=='Away College'
+    assert [x['id'] for x in out['teams']]==['1']
+    assert out['directory']['unverified_opponents_on_board']==1
+
+
+def test_new_model_freeze_uses_stable_team_ids(tmp_path):
+    raw={**prediction(), 'home_id':'1','away_id':'2','home':'Old University Name',
+         'away':'Previous source away label'}
+    assert valid_frozen(raw, game())
+    assert not valid_frozen({**raw,'home_id':'99'}, game())
+    assert not valid_frozen({**raw,'away_id':'99'}, game())

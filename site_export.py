@@ -11,6 +11,9 @@ from datetime import timedelta
 from pathlib import Path
 
 from cbb import dt, utcnow, iso, read_csv, eligible, metrics, VERSION
+from team_directory import clean_label, load_directory
+
+ALLOWED_MODEL_VERSIONS = {'CBB_SCORE_RIDGE_V0_2', VERSION}  # keep all authentic historic freezes
 
 
 def load_json(path):
@@ -27,9 +30,12 @@ def valid_frozen(raw, game):
             return False
         if raw.get('tip_utc') != game.get('tip_utc'):
             return False
-        if raw.get('home') != game.get('home') or raw.get('away') != game.get('away'):
+        if raw.get('home_id') is not None and raw.get('away_id') is not None:
+            if (str(raw['home_id']),str(raw['away_id'])) != (str(game['home_id']),str(game['away_id'])):
+                return False
+        elif raw.get('home') != game.get('home') or raw.get('away') != game.get('away'):
             return False
-        if raw.get('model') != VERSION:
+        if raw.get('model') not in ALLOWED_MODEL_VERSIONS:
             return False
         if not dt(raw['captured_utc']) < dt(game['tip_utc']):
             return False
@@ -78,11 +84,16 @@ def _intscore(v):
     return int(round(float(v)))
 
 
-def export_payload(rows, ledger, now=None, historical=None):
+def export_payload(rows, ledger, now=None, historical=None, directory=None, historical_v02=None):
     now = now or utcnow()
     season_year = now.year + int(now.month >= 7)
     by_id = {str(g['game_id']):g for g in rows}
     frozen = forecasts(ledger, by_id)
+    directory = directory or {}
+    def display(team_id, raw_name):
+        return directory.get(str(team_id)) or clean_label(raw_name)
+    def division(team_id):
+        return 'D1' if str(team_id) in directory else ('OTHER_OR_UNVERIFIED' if directory else 'UNKNOWN')
     games = []
     team_rows = defaultdict(list)
     # Game list limited by calendar range to keep Pages small and quick to load.
@@ -99,9 +110,15 @@ def export_payload(rows, ledger, now=None, historical=None):
         ats = _intscore(g.get('away_score')) if completed else None
         pred = frozen.get(str(g['game_id']))
         rec = {'id':str(g['game_id']), 'tip_utc':g['tip_utc'],
-            'home':g['home'], 'away':g['away'], 'home_id':str(g['home_id']),
+            'home':display(g['home_id'], g['home']), 'away':display(g['away_id'],g['away']),
+            'home_division':division(g['home_id']), 'away_division':division(g['away_id']),
+            'home_id':str(g['home_id']),
             'away_id':str(g['away_id']), 'neutral':str(g['neutral']) in ('1','True','true'),
             'completed':completed, 'home_score':hs,'away_score':ats,
+            'game_state':g.get('game_state') or ('post' if completed else 'pre'),
+            'home_live_score':_intscore(g.get('live_home_score')) if g.get('live_home_score') not in ('',None) else None,
+            'away_live_score':_intscore(g.get('live_away_score')) if g.get('live_away_score') not in ('',None) else None,
+            'game_clock':g.get('game_clock') or '',
             'projection':None, 'market_spread':None,'market_total':None}
         if pred:
             # Literal model output, not invented; pretip provenance preserved.
@@ -122,8 +139,12 @@ def export_payload(rows, ledger, now=None, historical=None):
     latest_names = {}
     for g in rows:
         if int(g['season']) == season_year:
-            latest_names[g['home_id']] = g['home']
-            latest_names[g['away_id']] = g['away']
+            for side in ('home','away'):
+                team_id = str(g[side+'_id'])
+                # Only source-listed Division I teams enter the scouting list.
+                # Games against other opponents still appear on the game board.
+                if not directory or team_id in directory:
+                    latest_names[team_id] = display(team_id, g[side])
     current_rows = defaultdict(list)
     for g in rows:
         if int(g['season']) != season_year or str(g['completed']) not in ('1','True','true'):
@@ -173,17 +194,22 @@ def export_payload(rows, ledger, now=None, historical=None):
     return {
         'schema':1,'generated_at':iso(now), 'season':f'{season_year-1}–{str(season_year)[-2:]}',
         'model':VERSION, 'validation':'PASS_UNVALIDATED',
+        'directory':{'verified_d1_teams':len(directory),
+            'source':'ESPN team directory' if directory else 'UNAVAILABLE',
+            'unverified_opponents_on_board':sum(g['home_division'] != 'D1' for g in games)+sum(g['away_division'] != 'D1' for g in games)},
         'source':'ESPN public scoreboard; independently stored pre-tip model ledger',
         'games':games, 'teams':teams, 'recent_frozen_results':recent,
         'performance':{'prospective':prospective,
             'retrospective_2025_26':historical,
+            'retrospective_v02':historical_v02,
             'frozen_games_in_window':sum(g['projection'] is not None for g in games),
             'historical_odds_available':False},
         'notes':[
             'Only genuine pre-tip model captures appear as projected scores.',
             'ATS/O-U recommendations unavailable until timestamped market lines exist.',
             'Low-sample games are PASS, not validated betting recommendations.',
-            'Model win probabilities are not calibrated.'
+            'Model win probabilities are not calibrated.',
+            'Lower-division opponents remain on the game board but are not listed as verified Division I schools.'
         ]}
 
 
@@ -191,7 +217,10 @@ def export_site(root='data', site='site', now=None):
     root=Path(root);site=Path(site);site.mkdir(parents=True,exist_ok=True)
     rows=read_csv(root/'games.csv')
     historic=load_json(root/'reports/backtest_2026.json')
-    payload=export_payload(rows,root/'forecast_ledger.jsonl',now=now,historical=historic)
+    directory=load_directory(root/'team_directory.json')
+    legacy=load_json(root/'reports/backtest_2026_v02.json')
+    payload=export_payload(rows,root/'forecast_ledger.jsonl',now=now,historical=historic,
+        directory=directory,historical_v02=legacy)
     destination=site/'data.json'
     tmp=destination.with_suffix('.json.tmp')
     tmp.write_text(json.dumps(payload,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')

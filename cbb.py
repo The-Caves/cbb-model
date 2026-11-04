@@ -22,11 +22,18 @@ from scipy.sparse import coo_matrix, diags, vstack
 from scipy.sparse.linalg import lsqr
 from scipy.stats import norm
 
+from team_directory import update_directory
+
 API = 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard'
-VERSION = 'CBB_SCORE_RIDGE_V0_2'
+VERSION = 'CBB_SCORE_RIDGE_V0_3'
+# Basketball venue advantage must not be inferred from a schedule full of
+# stronger Division I hosts playing lower-division visiting opponents.
+# A modest fixed baseline is safer until venue effects can be identified
+# from balanced, strictly historical schedules.
+HOME_COURT_POINTS = 3.5
 FIELDS = ('game_id', 'tip_utc', 'season', 'home_id', 'away_id', 'home', 'away',
           'neutral', 'home_score', 'away_score', 'completed', 'first_final_observed_utc',
-          'last_observed_utc')
+          'last_observed_utc', 'game_state', 'live_home_score', 'live_away_score', 'game_clock')
 UTC = timezone.utc
 
 
@@ -66,7 +73,12 @@ def rows_from_payload(payload, observed):
         h, a = sides['home'], sides['away']
         home, away = h.get('team', {}), a.get('team', {})
         tip = dt(event.get('date') or comp['date'])
-        completed = bool((event.get('status') or {}).get('type', {}).get('completed'))
+        status = event.get('status') or comp.get('status') or {}
+        status_type = status.get('type') or {}
+        completed = bool(status_type.get('completed'))
+        state = 'post' if completed else status_type.get('state', 'pre')
+        if state not in ('pre','in','post'):
+            state = 'pre'
         def score(v):
             if isinstance(v, dict):
                 v = v.get('value') if v.get('value') is not None else v.get('displayValue')
@@ -82,7 +94,9 @@ def rows_from_payload(payload, observed):
             away=away.get('displayName') or away.get('name') or str(away['id']),
             neutral=int(bool(comp.get('neutralSite'))), home_score=hs if completed else '',
             away_score=ats if completed else '', completed=int(completed),
-            first_final_observed_utc=observed if completed else '', last_observed_utc=observed))
+            first_final_observed_utc=observed if completed else '', last_observed_utc=observed,
+            game_state=state, live_home_score=hs if state=='in' else '',
+            live_away_score=ats if state=='in' else '', game_clock=str(status.get('displayClock') or '')))
     return output
 
 
@@ -117,7 +131,8 @@ def merge_rows(old, new):
                 if str(g['completed']) == '1' and (float(g['home_score']), float(g['away_score'])) != (float(prior['home_score']), float(prior['away_score'])):
                     raise ValueError('Score revision requires manual reconciliation: ' + g['game_id'])
                 g.update(home_score=prior['home_score'], away_score=prior['away_score'],
-                    completed=1, first_final_observed_utc=prior['first_final_observed_utc'])
+                    completed=1, first_final_observed_utc=prior['first_final_observed_utc'],
+                    game_state='post', live_home_score='', live_away_score='')
         byid[g['game_id']] = g
     return sorted(byid.values(), key=lambda r: (r['tip_utc'], r['game_id']))
 
@@ -185,7 +200,7 @@ def eligible(g, cutoff, retrospective):
     return retrospective or bool(g['first_final_observed_utc'] and dt(g['first_final_observed_utc']) <= cutoff)
 
 
-def fit(rows, cutoff, test_season=None, retrospective=False, alpha=15.0, prior_weight=0.12):
+def fit(rows, cutoff, test_season=None, retrospective=False, alpha=3.0, prior_weight=0.60, home_court_points=HOME_COURT_POINTS):
     target = test_season or season(cutoff)
     used = []
     counts = Counter()
@@ -215,20 +230,25 @@ def fit(rows, cutoff, test_season=None, retrospective=False, alpha=15.0, prior_w
         for score, team_o, team_d, sign in ((hs,h,a,1),(ats,a,h,-1)):
             r = len(y)
             scale = math.sqrt(weight)
-            for col, val in ((0,1), (1, sign*int(non_neutral)/2), (2+team_o,1), (2+n+team_d,-1)):
+            # The venue feature is fixed rather than freely estimated. A free
+            # home term was severely confounded by guarantee-game schedules.
+            for col, val in ((0,1), (2+team_o,1), (2+n+team_d,-1)):
                 if val:
                     I.append(r); J.append(col); V.append(scale*val)
-            y.append(scale*score)
+            y.append(scale*(score - sign*int(non_neutral)*home_court_points/2))
     X = coo_matrix((V, (I,J)), shape=(len(y), 2+2*n)).tocsr()
-    reg = np.array([1e-7, 6] + [alpha]*(2*n))
+    reg = np.array([1e-7, 1.0] + [alpha]*(2*n))
     augmented = vstack([X,diags(np.sqrt(reg))],format='csr')
     beta = lsqr(augmented, np.r_[y, np.zeros(2+2*n)], atol=1e-7, btol=1e-7, iter_lim=800)[0]
     residuals = np.asarray(y) - X @ beta
+    beta[1] = float(home_court_points)
     pair = residuals.reshape(-1,2)
     margin_sd = max(8.0, float(np.std(pair[:,0]-pair[:,1])))
     return {'beta': beta, 'idx': index, 'counts': counts, 'n_games': len(used),
             'margin_sd': margin_sd, 'cutoff': iso(cutoff), 'season': target,
-            'training_latest_tip': max(g['tip_utc'] for g, _, _, _ in used)}
+            'training_latest_tip': max(g['tip_utc'] for g, _, _, _ in used),
+            'home_court_points': float(home_court_points),
+            'previous_season_weight': prior_weight, 'ridge_alpha': alpha}
 
 
 def predict(model, g, min_current=5):
@@ -243,13 +263,15 @@ def predict(model, g, min_current=5):
     margin = hs-ats
     hc, ac = model['counts'][h], model['counts'][a]
     return {'game_id': g['game_id'], 'home': g['home'], 'away': g['away'],
+            'home_id':str(h), 'away_id':str(a),
             'tip_utc':g['tip_utc'], 'model': VERSION, 'neutral':str(g['neutral']) == '1',
             'home_current_games': hc, 'away_current_games': ac,
             'status':'RESEARCH_ONLY' if min(hc,ac)>=min_current else 'PASS_LOW_SAMPLE',
             'pred_home':round(hs,2), 'pred_away':round(ats,2),
             'pred_margin':round(margin,2), 'pred_total':round(hs+ats,2),
             'home_win_probability_uncalibrated':round(float(norm.cdf(margin/model['margin_sd'])),4),
-            'training_games':model['n_games'], 'training_latest_tip':model['training_latest_tip']}
+            'training_games':model['n_games'], 'training_latest_tip':model['training_latest_tip'],
+            'home_court_points':model['home_court_points']}
 
 
 def metrics(preds):
@@ -301,6 +323,7 @@ def backtest(rows, test_season=2026, minimum_games=5):
         'cold_start':metrics([p for p in predictions if p['cold_start']]),
         'simple_baseline':metrics(home_baseline),
         'baseline_definition':'Home by 3 (neutral tie), total 145; intentionally naive not optimized',
+        'home_court_points': HOME_COURT_POINTS, 'ridge_alpha':3.0, 'previous_season_weight':0.60,
         'historical_odds_available':False,'ats_graded':0,'over_under_graded':0,
         'caveat':'Scores retrospectively acquired; point-in-time score-only replay, not verified pregame source snapshots.'},
         'predictions':predictions}
@@ -333,7 +356,8 @@ def append_pregame(rows, ledger, now=None):
         for prediction in captured:
             f.write(json.dumps(prediction,sort_keys=True)+'\n')
     return {'status':'CAPTURED_RESEARCH_ONLY','captured':len(captured),
-            'current_season_training_games':sum(model['counts'].values())//2}
+            'current_season_training_games':sum(model['counts'].values())//2,
+            'home_court_points':model['home_court_points']}
 
 
 def grade(rows, ledger, now=None):
@@ -348,7 +372,11 @@ def grade(rows, ledger, now=None):
             continue
         if rec['tip_utc'] != g['tip_utc'] or not dt(rec['captured_utc'])<dt(g['tip_utc']):
             continue
-        if rec['home'] != g['home'] or rec['away'] != g['away']:
+        # Version 0.3 freezes stable team IDs; legacy 0.2 freezes raw names.
+        if rec.get('home_id') is not None and rec.get('away_id') is not None:
+            if (str(rec['home_id']),str(rec['away_id'])) != (str(g['home_id']),str(g['away_id'])):
+                continue
+        elif rec['home'] != g['home'] or rec['away'] != g['away']:
             continue
         prior=last.get(rec['game_id'])
         if prior is None or prior['captured_utc']<rec['captured_utc']:
@@ -388,6 +416,11 @@ def main():
             if date.fromisoformat(start)>date.fromisoformat(end):
                 continue
             report.append(sync(date.fromisoformat(start),date.fromisoformat(end),root,historical=True))
+        try:
+            directory = update_directory(root/'team_directory.json', iso(utcnow()))
+            print('Verified ESPN Division I directory:', directory['team_count'])
+        except (OSError, ValueError, KeyError) as exc:
+            print('WARNING: team directory unavailable; no new Division I status will be inferred:', exc)
         rows=read_csv(root/'games.csv')
         result=backtest(rows,2026)
         report_file(root/'reports/backtest_2026.json',result['report'])
@@ -398,6 +431,11 @@ def main():
     elif args.command=='daily':
         today=date.today()
         ingested=sync(today-timedelta(days=7),today+timedelta(days=3),root)
+        try:
+            directory = update_directory(root/'team_directory.json', iso(utcnow()))
+            print('Verified ESPN Division I directory:', directory['team_count'])
+        except (OSError, ValueError, KeyError) as exc:
+            print('WARNING: team directory unavailable; retaining only an earlier verified directory:', exc)
         rows=read_csv(root/'games.csv')
         result={'sync':ingested, 'forecast':append_pregame(rows,root/'forecast_ledger.jsonl'),
                 'prospective':grade(rows,root/'forecast_ledger.jsonl')}
@@ -406,6 +444,9 @@ def main():
     else:
         result=backtest(read_csv(root/'games.csv'),args.season)
         report_file(root/f'reports/backtest_{args.season}.json',result['report'])
+        write_csv(root/f'reports/backtest_{args.season}_games.csv',result['predictions'],
+                  ('game_id','tip_utc','home','away','cutoff_utc','training_games','training_latest_tip',
+                   'status','pred_margin','actual_margin','pred_total','actual_total','correct'))
         print(json.dumps(result['report'],indent=2))
 
 

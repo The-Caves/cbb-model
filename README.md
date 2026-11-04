@@ -1,57 +1,48 @@
 # CBB Intelligence | 2026–27 NCAA Men's Basketball
 
-A free-only, open-source college basketball prediction research model and responsive website.
+**Live site:** https://the-caves.github.io/cbb-model/
 
-**Status: Research / `PASS_UNVALIDATED` — no published betting edge.** Projections are printed only when an actual pre-tip forecast snapshot exists. The score-model foundation is v0.2; future milestones add pace, Four Factors, roster and verified sportsbook data. No paid data API, AWS service, premium runner, hosting plan or payment method is configured.
+Separate college-basketball model. **No paid services**: public ESPN endpoints (unofficial, no API key), Python/numpy/scipy, standard GitHub Actions on a **public** repository, and free GitHub Pages. If the repo becomes private, the workflow is disabled. **Research / `PASS_UNVALIDATED`.** No verified profitable betting strategy, sportsbook prices or player props are published.
 
-## Website
+## v0.3 corrective release — November 3, 2026
 
-- Mobile-friendly **Games** board with chronological matchups, score projections, model-side indicator, opponent records, search, day tabs and status filters
-- **Performance** view with real frozen pre-tip forecast tracking, last 30 completed predictions, and a **separate** retrospective 2025–26 historical replay
-- **Teams** view with real season win/loss and points scored/allowed summaries
-- **Model** view with methodology, roadmap and clear uncertainty flags
-- Any missing projection is **shown as missing**, not reconstructed after the result.
-- There are **no ATS or total bets** while authenticated sportsbook lines are absent.
+Audit after the first deployment found home-favorite margin clustering (112 frozen v0.2 games, average model home margin ~12.45 points, median 12.61) and misleading school classifications. The prior model estimated a venue parameter from scores in a slate dominated by Division-I home games against much weaker visiting opponents. It carried that spurious venue advantage forward while heavily shrinking team strengths.
 
-## Deployment status (November 3, 2026)
+**Fixes:**
 
-**Model pipeline live, Pages publication blocked by one repository setting.** In the first [GitHub Actions run](https://github.com/The-Caves/cbb-model/actions/runs/41740261197), the tests, historical ingestion, walk-forward baseline, current-season intake, frozen prediction archive, JSON website exporter, snapshot commit, and Pages artifact upload **all succeeded**. The deploy job returned HTTP 404 with an explicit instruction to enable GitHub Pages.
+- Replace freely estimated, confounded home-court value with a **fixed 3.5-point research assumption** for non-neutral sites (zero at neutral sites). Reduce excessive score-strength shrinkage (ridge alpha 15 to 3), and increase prior-season weighting for early-season context (0.12 to 0.60). **These are candidate modeling choices, not optimized betting parameters.** The push workflow replays 2025–26 walk-forward results and preserves the original v0.2 report for comparison. The live site must not present a new-version accuracy number until that replay succeeds.
+- Pull an independent **ESPN men's college basketball team directory** (`/teams?limit=500`) and verify its team count before accepting it. Canonical school labels are mapped by **stable ESPN team ID**, never guessed by name. Games against non-listed (non-D-I or unverified) opponents remain on the game board with explicit *Other/unverified opponent* labels, but only directory-listed Division-I teams enter the scouting directory. An invalid directory is rejected, preserving the last verified cache.
+- Preserve old **genuine v0.2 pre-tip freezes** in the ledger; new v0.3 predictions get new identifiers, and prior forecasts are never silently rewritten to look like v0.3 predictions. All versions must be pre-tip, model-version allowed, and internally consistent to appear on the board. New records freeze team IDs and tip times.
+- Game board **defaults to the viewer's local today**, centers that date in the horizontal date strip, displays *all* games including in-progress games, and on initial load scrolls to the **next not-yet-started game**. Earlier/in-progress games are still accessible by scrolling upward. If no future game exists today, there is no automatic jump. Date navigation and search remain available.
+- In-progress games can show authentic in-progress scores from the latest ESPN snapshot. Otherwise, displayed score numbers are visibly marked **PROJ**, not mistaken for live scores. New version labeling and historical-model-comparison labels are explicit.
 
-**Required one-time action by repository owner:** [Settings → Pages](https://github.com/The-Caves/cbb-model/settings/pages) → **Build and deployment → Source: GitHub Actions** → Save. Then use the Actions page above to **Re-run failed jobs** (or manually dispatch the workflow). Once the deployment job succeeds, the expected website is https://the-caves.github.io/cbb-model/ . That URL must not be claimed live until deployment succeeds.
+## Automated training and data integrity
 
-## Initial verified model outputs
+Workflow: [CBB free model and website](.github/workflows/cbb.yml) — twice daily in-season and manually dispatchable. It tests first; on initial run it downloads historical 2024–25 and 2025–26 finals, then runs chronological 2025–26 replay. On code pushes it recalculates the revised model's backtest against the same historical dataset, writes an immutable copy of the v0.2 summary if present, refreshes 2026–27 scores, captures new pre-tip forecasts, grades completed original forecasts, exports `site/data.json`, and publishes GitHub Pages.
 
-- Retrospective, day-forward **2025–26** score-only replay: **6,150 evaluated games**, straight-up accuracy **67.67%**, projected margin MAE **12.627** points, projected total MAE **14.177** points. Naive baseline across the same 6,150 games scored **64.05%** SU.
-- Subset after each team has played 5 current-season games: **4,907 games**, straight-up accuracy **63.34%**. The sample is not prospectively validated and this is not evidence of profitable bets.
-- At initial current-season refresh: **376 displayed games**, **112 verified pre-tip projections** and **0 prospectively graded finals**. All initial projections are **PASS_LOW_SAMPLE**, not qualified betting recommendations.
-- View [actual archived model output](site/data.json) and [historical backtest metrics](data/reports/backtest_2026.json).
+**No synthetic predictions are displayed as actual model picks.** The website only publishes archived forecast records captured *strictly before tip* and no more than 72 hours earlier. Historic data was acquired retrospectively, so the 2025–26 replay is a **score-only reconstruction**, not an independently time-stamped pregame wager simulation. Historic sportsbook ATS and O/U records are unavailable; model margin and total **are not bookmaker spreads or totals**.
 
-No special environment variables, API keys, tokens, or cloud account billing is needed. The workflow checks `github.event.repository.private == false` and will not execute on private repositories; the publication source is GitHub Pages. Workflow uses standard Linux runners and free public scoreboard endpoint, never a paid sportsbook or compute service.
+Retrospective version tracking is required: the initial **v0.2** evaluation replayed 6,150 games with 67.67% overall straight-up winner accuracy, but the mature-team subset was only 63.34%. Do not extrapolate that number to v0.3 or live wagering. See [`data/reports`](data/reports) and the site's performance page after the latest Actions run.
 
-### Local run
+## Reproduce locally
 
 ```bash
 python -m pip install -r requirements.txt pytest
 python -m pytest -q
-python cbb.py bootstrap  # one time historic public data; requires internet
-python cbb.py daily      # daily live ingestion and pretip freeze
+node --test tests/test_board.cjs
+python cbb.py bootstrap   # first-time historical ingestion; requires network
+python cbb.py backtest --season 2026
+python cbb.py daily       # capture today's source and pre-tip predictions
 python site_export.py --root data --site site
 python -m http.server 8000 --directory site
-# http://localhost:8000/
 ```
 
-The model successfully ingested historical scores and published current-season site data. It never reconstructs an after-tip pick for a game lacking a frozen pre-tip prediction.
+## Next milestones (not finished)
 
-## Data and methodology safeguards
+1. **Opponent-adjusted possession efficiency:** pace and possessions, eFG%, rebounds, turnovers and free-throw factors using verified, timestamp-safe box scores; correct for non-D-I opponents and remaining schedule strength.
+2. **Individual-player context:** returning production, transfers, lineup minutes, roster changes and verifiable availability; no unsupported starter claims.
+3. **Model competition:** chronological ablations, season-transition calibration, neutral/home splits and prospective performance; prohibit in-sample-only promotion.
+4. **Market evidence:** independently sourced timestamped real spreads/totals and prices; then true ATS and O/U grading, never invented sportsbook lines.
+5. **Website polish:** incremental game-state refreshes and richer team scouting, with model metadata and clear data-source warnings.
 
-- The baseline (`cbb.py`) uses regularized, opponent-adjusted points scored and allowed, a modeled home-court effect and downweighted prior-season score results. It is **not** possession-normalized yet.
-- A game's model record is shown only if the append-only ledger contains a matching ID, teams, scheduled tip, model version, consistent score arithmetic and a snapshot time **strictly before tip** and no more than 72 hours earlier.
-- Results are graded only after an observed final score and a qualifying archived forecast. Prospective grading is separate from retrospective historical replay.
-- Historic 2025–26 game outcomes are re-evaluated chronologically, but the ESPN data source was acquired after those games: avoid interpreting that evaluation as a historically captured live forecast.
-- Basketball lines are not fabricated: `market_spread` and `market_total` are `null` until a real timestamped source is implemented.
-- Model win probabilities from the underlying score regression are not calibrated.
-- `data/raw/**/` gzipped provider snapshots are excluded from Git commits; small manifest files, full scoreboard CSV and prediction ledger remain in Git source control. Do not treat Git alone as tamperproof records.
-
-## Current limitation
-
-The site’s publication is awaiting the owner's one-time Pages source selection. The underlying GitHub model and data jobs have passed. Prediction quality remains research-only, and market odds, opponent-adjusted possessions, player impact, and calibrated probabilities are future milestones.
+Do not let work on [`The-Caves/cbb-model`](https://github.com/The-Caves/cbb-model) spill into the separate [`The-Caves/cfb-model`](https://github.com/The-Caves/cfb-model) repository; always confirm the repository name and current `main` before writing.

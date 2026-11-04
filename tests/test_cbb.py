@@ -91,3 +91,47 @@ def test_neutral_home_advantage():
     h=predict(model,g)
     n=predict(model,{**g,'neutral':1})
     assert abs((h['pred_margin']-n['pred_margin'])-model['beta'][1])<0.05
+
+
+def test_venue_bias_does_not_inherit_guarantee_game_spread():
+    """Unbalanced home schedules must not inflate the home-court parameter."""
+    base=datetime(2025,11,3,18,tzinfo=UTC)
+    rows=[]
+    for i in range(32):
+        rows.append(game(100+i,base+timedelta(days=i),home='1',away=str(i+10),hs=90,ats=61))
+    from cbb import HOME_COURT_POINTS
+    model=fit(rows,datetime(2026,1,15,tzinfo=UTC),alpha=3.0)
+    assert model['home_court_points']==HOME_COURT_POINTS==3.5
+    assert model['beta'][1]==3.5
+    candidate=game('future',datetime(2026,1,18,tzinfo=UTC),home='1',away='10',completed=False)
+    home=predict(model,candidate)
+    neutral=predict(model,{**candidate,'neutral':1})
+    assert home['pred_margin']-neutral['pred_margin']==pytest.approx(3.5,abs=0.02)
+
+
+def test_strong_and_weak_team_matchups_are_not_forced_to_one_spread():
+    base=datetime(2025,11,3,18,tzinfo=UTC)
+    rows=[]
+    for i in range(60):
+        h,a=('1','2') if i%2 else ('2','1')
+        hs,ats=(92,60) if h=='1' else (60,92)
+        rows.append(game(200+i,base+timedelta(days=i),home=h,away=a,hs=hs,ats=ats))
+    model=fit(rows,datetime(2026,2,20,tzinfo=UTC))
+    future=datetime(2026,2,23,tzinfo=UTC)
+    strong=predict(model,game(900,future,home='1',away='2',completed=False))
+    weak=predict(model,game(901,future,home='2',away='1',completed=False))
+    assert strong['pred_margin']>15
+    assert weak['pred_margin'] < -15
+    assert strong['model'] == 'CBB_SCORE_RIDGE_V0_3'
+
+
+def test_in_progress_scores_are_not_final_scores():
+    payload={'events':[{'id':'live','date':'2026-11-04T01:00:00Z',
+        'status':{'type':{'completed':False,'state':'in'},'displayClock':'11:42'},
+        'competitions':[{'neutralSite':False,'competitors':[
+            {'homeAway':'home','team':{'id':'1','displayName':'Home College'},'score':'22'},
+            {'homeAway':'away','team':{'id':'2','displayName':'Away College'},'score':'20'}]}]}]}
+    g=rows_from_payload(payload,'2026-11-04T01:30:00Z')[0]
+    assert g['completed']==0 and g['home_score']=='' and g['away_score']==''
+    assert g['game_state']=='in' and g['live_home_score']==22 and g['live_away_score']==20
+    assert g['game_clock']=='11:42'
