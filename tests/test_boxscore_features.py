@@ -114,7 +114,8 @@ def test_long_backfill_uses_historical_quota():
     games=[]
     for i in range(100):
         for year in (2025,2026,2027):
-            day=datetime(year-1,11,1,18,tzinfo=UTC)+timedelta(days=i)
+            day=(datetime(2026,11,1,18,tzinfo=UTC)+timedelta(minutes=i) if year==2027
+                 else datetime(year-1,11,1,18,tzinfo=UTC)+timedelta(days=i))
             games.append({"game_id":str(year*1000+i),"tip_utc":day.strftime('%Y-%m-%dT%H:%M:%SZ'),
                           "season":year,"home_id":"1","away_id":"2",
                           "completed":1,"home_score":83,"away_score":68})
