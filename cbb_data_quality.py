@@ -35,6 +35,8 @@ def select_games(rows, accepted_ids, now, max_games=48,
     """
     if max_games < 1 or previous_quota < 0 or prior_quota < 0:
         raise ValueError("invalid request budget")
+    if previous_quota + prior_quota > max_games:
+        raise ValueError("historical quotas cannot exceed request budget")
     ids = None if d1_ids is None else {str(x) for x in d1_ids}
     if ids is not None and not ids:
         return []

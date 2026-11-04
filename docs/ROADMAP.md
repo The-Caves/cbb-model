@@ -38,3 +38,9 @@ This milestone adds:
 ## Live-data safeguard added during Milestone 1
 
 A scheduled refresh encountered a revision to a previously archived ESPN final score (game ID 401921808). The existing ingestion stopped rather than overwriting history. Milestone 1 now keeps the original score plus the separately observed revised score and SHA256 under `data/quarantine/score_revisions.json`, marks that game as disputed, and excludes it from all training, historical evaluation and prospective grading. Duplicate observations do not multiply evidence entries; the disputed status does not silently clear if the provider later returns its prior number. Other verified matchups can still update normally. Site JSON exposes `score_source_under_review` for affected games. Resolving the conflict to one authoritative score remains a manual review milestone.
+
+## M1 acceleration — 2026-11-04
+
+Before this change the collector captured only 48 games per scheduled run. That rate would take many weeks to cover two seasons. The verified research collector now selects 80 games per chunk across current season / 2025–26 / 2024–25 with approximately 15% / 55% / 30% quotas, calls the free ESPN summary endpoint no faster than one request every 1.2 seconds, and retries only transient network/server failures with bounded delay. A workflow makes up to three bounded chunks (240 maximum game-summary requests) and commits each completed chunk so a later failure does not discard earlier archived evidence. `[skip ci]` commits avoid starting more jobs. Existing source/team/score/hash checks and the separate data quarantine remain mandatory. No advanced model is promoted by collecting these records.
+
+Research data may increase substantially, but **M1 does not meet exit criteria until sufficient verified historical *D-I vs D-I* coverage exists across full chronological periods**. Quarantined scores and historical source-capture timestamps must stay explicit.

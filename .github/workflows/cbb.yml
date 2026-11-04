@@ -51,11 +51,25 @@ jobs:
           python cbb.py backtest --season 2026
       - name: Refresh source, freeze actual pre-tip picks, grade results
         run: python cbb.py daily
-      - name: Collect free postgame possession and Four Factors evidence (research only)
-        # Nonblocking until provider schema/coverage is verified on real games.
-        # This step never changes active predictions and requires no API key.
+      - name: Collect and persist three free historical boxscore batches (research only)
+        # Up to 240 source requests per run; strict 1.2s pacing and bounded retries.
+        # Commit each 80-game chunk to preserve progress if a later chunk fails.
+        # No premium runners, paid API keys, or billing credentials.
         continue-on-error: true
-        run: python boxscore_features.py --root data --max-games 48 --delay 1.2
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for chunk in 1 2 3; do
+            echo "Collecting historical research chunk $chunk / 3"
+            python boxscore_features.py --root data --max-games 80 --delay 1.2
+            git add data/
+            if ! git diff --cached --quiet; then
+              git commit -m "Record CBB source-observed research batch $chunk [skip ci]"
+              git pull --rebase origin main
+              git push origin HEAD:main
+            fi
+          done
       - name: Report independently observed scoreboard score revisions
         shell: bash
         run: |

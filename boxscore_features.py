@@ -152,22 +152,39 @@ def load_accepted(path):
     return accepted
 
 
-def choose_games(games, seen, now, max_games=48, previous_share=28,
-                 d1_ids=None, prior_share=8):
+def choose_games(games, seen, now, max_games=80, previous_share=None,
+                 d1_ids=None, prior_share=None):
     """Backward-compatible public entrypoint to quota-based source selection."""
     from cbb_data_quality import select_games
+    if previous_share is None:
+        previous_share = int(round(max_games * 0.55))
+    if prior_share is None:
+        prior_share = int(round(max_games * 0.30))
     return select_games(games, seen, now, max_games=max_games,
                         d1_ids=d1_ids, previous_quota=previous_share,
                         prior_quota=prior_share)
 
 
 def fetch_summary(game_id, opener=None):
+    """Retry rate-limits / transient failures with bounded backoff; fail closed."""
     opener = opener or urllib.request.urlopen
     req = urllib.request.Request(SUMMARY_API+str(game_id),
-          headers={"Accept":"application/json","User-Agent":"cbb-public-research/0.4"})
-    with opener(req, timeout=25) as response:
-        raw = response.read()
-    return json.loads(raw), raw
+          headers={"Accept":"application/json","User-Agent":"cbb-public-research/0.5"})
+    for attempt in range(3):
+        try:
+            with opener(req, timeout=25) as response:
+                raw = response.read()
+            return json.loads(raw), raw
+        except urllib.error.HTTPError as exc:
+            if exc.code not in (429,500,502,503,504) or attempt == 2:
+                raise
+            retry = exc.headers.get("Retry-After") if exc.headers else None
+            delay = min(30.0,max(2.0*2**attempt,float(retry))) if retry and str(retry).replace('.','',1).isdigit() else 2.0*2**attempt
+            time.sleep(delay)
+        except (urllib.error.URLError,TimeoutError,OSError,json.JSONDecodeError):
+            if attempt == 2:
+                raise
+            time.sleep(2.0*2**attempt)
 
 
 def profiles(accepted, year, d1_ids=None):
@@ -194,7 +211,7 @@ def profiles(accepted, year, d1_ids=None):
     return out
 
 
-def run(root="data", max_games=42, delay=1.2, opener=None, now=None):
+def run(root="data", max_games=80, delay=1.2, opener=None, now=None):
     now=now or utcnow()
     root=Path(root)
     advanced=root/"advanced"
@@ -233,12 +250,12 @@ def run(root="data", max_games=42, delay=1.2, opener=None, now=None):
         snapshot.parent.mkdir(parents=True,exist_ok=True)
         with gzip.open(snapshot,"wt",encoding="utf-8") as handle:
             json.dump(preview,handle,separators=(",",":"))
+        # Close each appended record before moving to the next request.
+        # Workflow commits each bounded chunk so interruptions retain prior chunks.
+        with ledger.open("a",encoding="utf-8") as handle:
+            handle.write(json.dumps(record,sort_keys=True)+"\n")
         good.append(record)
         accepted[gid]=record
-    if good:
-        with ledger.open("a",encoding="utf-8") as handle:
-            for record in good:
-                handle.write(json.dumps(record,sort_keys=True)+"\n")
     year=now.year+int(now.month>=7)
     prof=profiles(accepted,year,d1.keys())
     from cbb_data_quality import audit
@@ -265,11 +282,11 @@ def run(root="data", max_games=42, delay=1.2, opener=None, now=None):
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--root",default="data")
-    ap.add_argument("--max-games",type=int,default=42)
+    ap.add_argument("--max-games",type=int,default=80)
     ap.add_argument("--delay",type=float,default=1.2)
     args=ap.parse_args()
-    if not 1<=args.max_games<=100 or not 1.0<=args.delay<=10:
-        ap.error("Free-source guardrails require 1..100 games and at least one second between requests.")
+    if not 1<=args.max_games<=120 or not 1.2<=args.delay<=10:
+        ap.error("Free-source guardrails: 1..120 games per chunk, >=1.2s between calls.")
     result=run(args.root,args.max_games,args.delay)
     print(json.dumps(result,indent=2))
     if result["attempted"]>=10 and result["accepted_this_run"]==0:

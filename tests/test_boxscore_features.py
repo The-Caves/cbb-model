@@ -106,3 +106,57 @@ def test_collector_idempotence_and_rejection(tmp_path):
     assert second["attempted"]==0
     assert first["model_unchanged"] is True
     assert (root/"advanced/raw_team_boxscores/2027/44.json.gz").exists()
+
+
+def test_long_backfill_uses_historical_quota():
+    from cbb_data_quality import select_games
+    now=datetime(2026,11,4,18,tzinfo=UTC)
+    games=[]
+    for i in range(100):
+        for year in (2025,2026,2027):
+            day=datetime(year-1,11,1,18,tzinfo=UTC)+timedelta(days=i)
+            games.append({"game_id":str(year*1000+i),"tip_utc":day.strftime('%Y-%m-%dT%H:%M:%SZ'),
+                          "season":year,"home_id":"1","away_id":"2",
+                          "completed":1,"home_score":83,"away_score":68})
+    selected=choose_games(games,set(),now,max_games=80,d1_ids={"1","2"})
+    sizes={yr:sum(int(g["season"])==yr for g in selected) for yr in (2025,2026,2027)}
+    assert sizes=={2025:24,2026:44,2027:12}
+    assert len(selected)==len({g["game_id"] for g in selected})==80
+
+def test_retry_only_on_transient_error(monkeypatch):
+    import io, urllib.error
+    from boxscore_features import fetch_summary
+    attempts=[]
+    def fake_opener(req, timeout):
+        attempts.append(1)
+        if len(attempts)==1:
+            raise urllib.error.HTTPError(req.full_url,503,"Service Unavailable",{},None)
+        return io.BytesIO(b'{"header":{}}')
+    monkeypatch.setattr('boxscore_features.time.sleep',lambda _:None)
+    response,raw=fetch_summary("44",opener=fake_opener)
+    assert len(attempts)==2 and response=={"header":{}} and raw
+
+def test_commit_checkpoint_does_not_duplicate_across_runs(tmp_path):
+    from cbb import write_csv
+    from boxscore_features import load_accepted
+    from test_boxscore_features import source
+    import io
+    root=tmp_path/"data";root.mkdir()
+    start=datetime(2026,11,2,19,tzinfo=UTC)
+    records=[game(gid=str(i),tip=start.strftime('%Y-%m-%dT%H:%M:%SZ')) for i in ("44","45")]
+    write_csv(root/"games.csv",records)
+    (root/"team_directory.json").write_text(json.dumps(
+        {"teams":{str(i):"Fixture "+str(i) for i in range(1,301)}}))
+    calls=[]
+    def fake_opener(req,timeout):
+        gid=req.full_url.split("=")[-1]
+        calls.append(gid)
+        p=source()
+        p["header"]["id"]=gid
+        return io.BytesIO(json.dumps(p).encode())
+    now=datetime(2026,11,4,18,tzinfo=UTC)
+    first=run(root,max_games=1,delay=0,opener=fake_opener,now=now)
+    second=run(root,max_games=1,delay=0,opener=fake_opener,now=now)
+    assert len(calls)==2 and set(calls)=={"44","45"}
+    assert first["accepted_this_run"]==second["accepted_this_run"]==1
+    assert len(load_accepted(root/"advanced/boxscore_team_games.jsonl"))==2
