@@ -135,3 +135,31 @@ def test_in_progress_scores_are_not_final_scores():
     assert g['completed']==0 and g['home_score']=='' and g['away_score']==''
     assert g['game_state']=='in' and g['live_home_score']==22 and g['live_away_score']==20
     assert g['game_clock']=='11:42'
+
+
+def test_score_conflict_quarantine_blocks_train_and_grade(tmp_path):
+    from cbb import merge_with_score_quarantine, eligible, read_csv, write_csv
+    from datetime import datetime, timezone, timedelta
+    day=datetime(2025,11,3,18,tzinfo=timezone.utc)
+    original=game(900,day,home="1",away="2",hs=77,ats=65)
+    changed={**original,"home_score":81,"away_score":65}
+    merged,n=merge_with_score_quarantine(
+        [original],[changed],"2026-11-04T15:30:00Z",tmp_path,"a"*64)
+    assert n == 1
+    assert merged[0]["home_score"] == 77
+    assert str(merged[0]["score_conflict"]) == "1"
+    assert not eligible(merged[0],day+timedelta(days=2),retrospective=True)
+    assert not eligible(merged[0],day+timedelta(days=2),retrospective=False)
+    evidence=json.loads((tmp_path/"quarantine/score_revisions.json").read_text())
+    assert evidence["900"]["evidence"][0]["archived_score"] == [77,65]
+    assert evidence["900"]["evidence"][0]["new_source_score"] == [81,65]
+    # Same conflicting source cannot multiply duplicate revisions.
+    merged,n=merge_with_score_quarantine(
+        merged,[changed],"2026-11-04T15:40:00Z",tmp_path,"a"*64)
+    assert n == 1
+    assert len(json.loads((tmp_path/"quarantine/score_revisions.json").read_text())["900"]["evidence"]) == 1
+    # Even if source returns the old result again, quarantine remains.
+    merged,n=merge_with_score_quarantine(
+        merged,[original.copy()],"2026-11-04T15:50:00Z",tmp_path,"b"*64)
+    assert n == 0
+    assert str(merged[0]["score_conflict"]) == "1"

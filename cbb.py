@@ -33,7 +33,7 @@ VERSION = 'CBB_SCORE_RIDGE_V0_3'
 HOME_COURT_POINTS = 3.5
 FIELDS = ('game_id', 'tip_utc', 'season', 'home_id', 'away_id', 'home', 'away',
           'neutral', 'home_score', 'away_score', 'completed', 'first_final_observed_utc',
-          'last_observed_utc', 'game_state', 'live_home_score', 'live_away_score', 'game_clock')
+          'last_observed_utc', 'score_conflict', 'game_state', 'live_home_score', 'live_away_score', 'game_clock')
 UTC = timezone.utc
 
 
@@ -133,9 +133,59 @@ def merge_rows(old, new):
                 g.update(home_score=prior['home_score'], away_score=prior['away_score'],
                     completed=1, first_final_observed_utc=prior['first_final_observed_utc'],
                     game_state='post', live_home_score='', live_away_score='')
+        if prior and str(prior.get('score_conflict', '0')) in ('1','True','true'):
+            g['score_conflict'] = 1
         byid[g['game_id']] = g
     return sorted(byid.values(), key=lambda r: (r['tip_utc'], r['game_id']))
 
+
+
+def merge_with_score_quarantine(existing, new, observed, root, raw_sha):
+    """Continue a daily sync without ever silently overwriting a revised final.
+
+    An unresolved score conflict is a model/grade exclusion, never a
+    retroactively accepted truth. Store raw conflicting evidence separately.
+    Only a reviewed manual reconciliation can clear the persistent flag.
+    """
+    conflicts = []
+    by_id = {str(g['game_id']): g for g in existing}
+    for g in new:
+        try:
+            existing = merge_rows(existing, [g])
+            by_id[str(g['game_id'])] = next(r for r in existing if r['game_id'] == g['game_id'])
+        except ValueError as exc:
+            if not str(exc).startswith('Score revision requires manual reconciliation: '):
+                raise
+            prior = by_id.get(str(g['game_id']))
+            if prior is None:
+                raise
+            prior['score_conflict'] = 1
+            conflicts.append({
+                'game_id': str(g['game_id']), 'tip_utc':g['tip_utc'],
+                'home_id':str(g['home_id']), 'away_id':str(g['away_id']),
+                'archived_score':[float(prior['home_score']),float(prior['away_score'])],
+                'new_source_score':[float(g['home_score']),float(g['away_score'])],
+                'source_observed_utc':observed, 'source_sha256':raw_sha,
+                'resolution':'UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING'
+            })
+    if conflicts:
+        dest = Path(root)/'quarantine'/'score_revisions.json'
+        dest.parent.mkdir(parents=True,exist_ok=True)
+        saved = json.loads(dest.read_text(encoding='utf-8')) if dest.exists() else {}
+        for event in conflicts:
+            key = event['game_id']
+            if key not in saved:
+                saved[key] = {'first_observed_utc':observed, 'evidence':[]}
+            known = {(tuple(x['archived_score']),tuple(x['new_source_score']))
+                     for x in saved[key]['evidence']}
+            fingerprint = (tuple(event['archived_score']),tuple(event['new_source_score']))
+            if fingerprint not in known:
+                saved[key]['evidence'].append(event)
+            saved[key]['last_seen_utc']=observed
+        temp = dest.with_suffix('.json.tmp')
+        temp.write_text(json.dumps(saved,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+        temp.replace(dest)
+    return existing, len(conflicts)
 
 def fetch_day(day):
     url = API + '?' + urllib.parse.urlencode({'dates': day.strftime('%Y%m%d'), 'groups': '50', 'limit': 500})
@@ -160,6 +210,7 @@ def sync(start, end, root='data', historical=False):
     dates = 0
     obs = 0
     skipped = 0
+    quarantined = 0
     day = start
     while day <= end:
         rawdir = root / 'raw' / day.isoformat()
@@ -180,7 +231,9 @@ def sync(start, end, root='data', historical=False):
         (rawdir / (key + '.manifest.json')).write_text(json.dumps({
             'requested_date': day.isoformat(), 'observed_utc': observed,
             'games': len(records), 'sha256': hashlib.sha256(raw).hexdigest(), 'api': API}, indent=2))
-        existing = merge_rows(existing, records)
+        existing, new_conflicts = merge_with_score_quarantine(
+            existing, records, observed, root, hashlib.sha256(raw).hexdigest())
+        quarantined += new_conflicts
         # Checkpoint before next request; interruption never silently loses all progress.
         write_csv(path, existing)
         dates += 1
@@ -188,11 +241,14 @@ def sync(start, end, root='data', historical=False):
         day += timedelta(days=1)
         time.sleep(0.6)
     return {'downloaded_dates': dates, 'cached_dates': skipped, 'observed_games': obs,
-            'unique_games': len(existing), 'source': 'ESPN unofficial public scoreboard',
+            'unique_games': len(existing), 'score_revision_conflicts':quarantined,
+            'source': 'ESPN unofficial public scoreboard',
             'source_verified': bool(dates)}
 
 
 def eligible(g, cutoff, retrospective):
+    if str(g.get('score_conflict', '0')) in ('1','True','true'):
+        return False
     if str(g['completed']) not in ('1', 'True', 'true') or g['home_score'] == '' or g['away_score'] == '':
         return False
     if dt(g['tip_utc']) + timedelta(hours=4) > cutoff:
@@ -287,7 +343,8 @@ def metrics(preds):
 def backtest(rows, test_season=2026, minimum_games=5):
     """Day-by-day historical score-only replay; source acquisition is retrospective."""
     finals = [g for g in rows if int(g['season']) == test_season and str(g['completed'])=='1'
-              and g['home_score']!='' and g['away_score']!='']
+              and g['home_score']!='' and g['away_score']!=''
+              and str(g.get('score_conflict','0')) not in ('1','True','true')]
     groups = defaultdict(list)
     for g in finals:
         groups[g['tip_utc'][:10]].append(g)

@@ -116,6 +116,7 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
             'away_id':str(g['away_id']), 'neutral':str(g['neutral']) in ('1','True','true'),
             'completed':completed, 'home_score':hs,'away_score':ats,
             'game_state':g.get('game_state') or ('post' if completed else 'pre'),
+            'score_source_under_review':str(g.get('score_conflict','0')) in ('1','True','true'),
             'home_live_score':_intscore(g.get('live_home_score')) if g.get('live_home_score') not in ('',None) else None,
             'away_live_score':_intscore(g.get('live_away_score')) if g.get('live_away_score') not in ('',None) else None,
             'game_clock':g.get('game_clock') or '',

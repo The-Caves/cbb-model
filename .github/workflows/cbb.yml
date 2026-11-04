@@ -56,6 +56,12 @@ jobs:
         # This step never changes active predictions and requires no API key.
         continue-on-error: true
         run: python boxscore_features.py --root data --max-games 48 --delay 1.2
+      - name: Report independently observed scoreboard score revisions
+        shell: bash
+        run: |
+          if [ -s data/quarantine/score_revisions.json ]; then
+            python -c 'import json; d=json.load(open("data/quarantine/score_revisions.json")); print(f"Unresolved source revisions: {len(d)}; excluded from predictions and grading")'
+          fi
       - name: Verify multi-season boxscore coverage and as-of data quality
         run: python cbb_data_quality.py --root data
       - name: Generate real website data (no invented odds)

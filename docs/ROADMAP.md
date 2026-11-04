@@ -34,3 +34,7 @@ This milestone adds:
 - eFG%, offensive rebound%, turnover% and free-throw rate depend on source-provided team-level statistics; reports reject missing or contradictory values.
 - A game's archived boxscore can be used for a chronological historical replay only after its actual final score, but retroactively downloaded source contents are not evidence of their original publication timestamp.
 - Current model v0.3 score predictions and all historical freezes remain immutable and research-only.
+
+## Live-data safeguard added during Milestone 1
+
+A scheduled refresh encountered a revision to a previously archived ESPN final score (game ID 401921808). The existing ingestion stopped rather than overwriting history. Milestone 1 now keeps the original score plus the separately observed revised score and SHA256 under `data/quarantine/score_revisions.json`, marks that game as disputed, and excludes it from all training, historical evaluation and prospective grading. Duplicate observations do not multiply evidence entries; the disputed status does not silently clear if the provider later returns its prior number. Other verified matchups can still update normally. Site JSON exposes `score_source_under_review` for affected games. Resolving the conflict to one authoritative score remains a manual review milestone.
