@@ -244,7 +244,7 @@ def run(root="data", max_games=42, delay=1.2, opener=None, now=None):
     from cbb_data_quality import audit
     source_audit=audit(games,accepted,now,d1.keys())
     (advanced/"coverage_audit.json").write_text(
-        json.dumps(source_audit,indent=2,sort_keys=True)+"\\n",encoding="utf-8")
+        json.dumps(source_audit,indent=2,sort_keys=True)+"\n",encoding="utf-8")
     report={
         "status":"RESEARCH_ONLY" if good else "NO_NEW_ACCEPTED_BOX_SCORES",
         "model_unchanged":True,"source":"ESPN public game summary",
