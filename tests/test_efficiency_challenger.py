@@ -1,6 +1,7 @@
 """Guardrail tests: no fabricated team features, no future scores, no promotion."""
 from datetime import datetime,timezone,timedelta
 import pytest
+from cbb import iso
 from efficiency_challenger import usable,fit_efficiency,predict,backtest
 
 UTC=timezone.utc
