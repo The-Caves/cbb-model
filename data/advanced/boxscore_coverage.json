@@ -6,22 +6,22 @@
   "audit_by_season": {
     "2025": {
       "eligible_d1_final_games": 5644,
-      "verified_boxscores": 232,
-      "missing_boxscores": 5412,
-      "coverage_fraction": 0.0411,
+      "verified_boxscores": 254,
+      "missing_boxscores": 5390,
+      "coverage_fraction": 0.045,
       "other_or_unverified_final_games": 648,
       "disputed_source_score_games": 0,
       "d1_teams_with_5plus_games": 0,
-      "teams_with_any_verified_games": 323
+      "teams_with_any_verified_games": 334
     },
     "2026": {
       "eligible_d1_final_games": 5633,
-      "verified_boxscores": 490,
-      "missing_boxscores": 5143,
-      "coverage_fraction": 0.087,
+      "verified_boxscores": 546,
+      "missing_boxscores": 5087,
+      "coverage_fraction": 0.0969,
       "other_or_unverified_final_games": 667,
       "disputed_source_score_games": 0,
-      "d1_teams_with_5plus_games": 7,
+      "d1_teams_with_5plus_games": 15,
       "teams_with_any_verified_games": 359
     },
     "2027": {
@@ -36,11 +36,11 @@
     }
   },
   "quarantined_archive_rows": 0,
-  "as_of_utc": "2026-11-04T22:53:56Z",
+  "as_of_utc": "2026-11-04T22:55:55Z",
   "attempted": 80,
   "accepted_this_run": 78,
   "rejected_this_run": 2,
-  "accepted_total": 868,
+  "accepted_total": 946,
   "profile_teams": 270,
   "profile_teams_5plus": 0,
   "rejections": [
