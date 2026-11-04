@@ -210,7 +210,7 @@ def run(root="data", max_games=42, delay=1.2, opener=None, now=None):
     except (ValueError,OSError):
         d1={}
     candidates=choose_games(games,accepted,now,max_games,
-                            d1_ids=d1.keys() if d1 else None)
+                            d1_ids=d1.keys())
     good, failures=[],[]
     for i,g in enumerate(candidates):
         if i and delay:

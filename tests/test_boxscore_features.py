@@ -91,6 +91,8 @@ def test_collector_idempotence_and_rejection(tmp_path):
     root.mkdir()
     old=game()
     write_csv(root/"games.csv",[old])
+    # Synthetic verified-directory fixture; production does not infer divisions.
+    (root/"team_directory.json").write_text(json.dumps({"teams":{str(i):"Synthetic test school "+str(i) for i in range(1,301)}}))
     def opener(req,timeout=None):
         class Response:
             def __enter__(self):return self

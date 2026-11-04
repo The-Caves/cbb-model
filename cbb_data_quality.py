@@ -15,7 +15,8 @@ from team_directory import load_directory
 
 def complete_before(g, now):
     try:
-        return (str(g.get("completed")) in ("1", "True", "true")
+        return (str(g.get("score_conflict","0")) not in ("1","True","true")
+                and str(g.get("completed")) in ("1", "True", "true")
                 and g.get("home_score") not in ("", None)
                 and g.get("away_score") not in ("", None)
                 and dt(g["tip_utc"]) + timedelta(hours=4) <= now
@@ -80,11 +81,17 @@ def audit(rows, accepted, now, d1_ids):
     current = now.year + int(now.month >= 7)
     seasons = (current - 2, current - 1, current)
     eligible = {}
-    other = Counter()
+    other, disputed, disputed_ids = Counter(), Counter(), set()
     for g in rows:
-        if int(g["season"]) not in seasons or not complete_before(g, now):
+        if int(g["season"]) not in seasons:
             continue
         gid = str(g["game_id"])
+        if str(g.get("score_conflict","0")) in ("1","True","true"):
+            disputed[int(g["season"])] += 1
+            disputed_ids.add(gid)
+            continue
+        if not complete_before(g, now):
+            continue
         if str(g["home_id"]) in d1 and str(g["away_id"]) in d1:
             if gid in eligible:
                 raise ValueError("duplicate scoreboard ID " + gid)
@@ -92,9 +99,13 @@ def audit(rows, accepted, now, d1_ids):
         else:
             other[int(g["season"])] += 1
     valid, rejected = {}, []
+    disputed_archives = 0
     team_games = defaultdict(Counter)
     for key, rec in accepted.items():
         gid = str(key)
+        if gid in disputed_ids:
+            disputed_archives += 1
+            continue  # Already quarantined at source; never count as verified.
         g = eligible.get(gid)
         problems = []
         if g is None:
@@ -137,6 +148,7 @@ def audit(rows, accepted, now, d1_ids):
             "missing_boxscores":possible - captured,
             "coverage_fraction":round(captured/possible,4) if possible else None,
             "other_or_unverified_final_games":other[year],
+            "disputed_source_score_games":disputed[year],
             "d1_teams_with_5plus_games":sum(v>=5 for v in count.values()),
             "teams_with_any_verified_games":len(count),
         }
@@ -144,6 +156,8 @@ def audit(rows, accepted, now, d1_ids):
         state = "BLOCKED_NO_VERIFIED_TEAM_DIRECTORY"
     elif rejected:
         state = "QUARANTINED_SOURCE_MISMATCHES"
+    elif disputed_ids:
+        state = "AUDITED_WITH_QUARANTINED_SCORE_REVISIONS"
     else:
         state = "AUDITED_PARTIAL_COVERAGE"
     return {
@@ -153,6 +167,8 @@ def audit(rows, accepted, now, d1_ids):
         "accepted_rows_in_archive":len(accepted),
         "eligible_verified_d1_boxscores":len(valid),
         "quarantined_rows":len(rejected),"quarantine_sample":rejected[:20],
+        "disputed_source_score_games":len(disputed_ids),
+        "disputed_archived_boxscores":disputed_archives,
         "by_season":by_season,
         "historical_available_as_of":False,
         "active_model_changed":False,

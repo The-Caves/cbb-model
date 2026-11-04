@@ -84,3 +84,16 @@ def test_directory_missing_does_not_infer_team_divisions():
     assert report["status"]=="BLOCKED_NO_VERIFIED_TEAM_DIRECTORY"
     assert report["verified_d1_directory_count"]==0
     assert report["eligible_verified_d1_boxscores"]==0
+
+
+def test_disputed_final_excluded_but_reported_separately():
+    g=game(55)
+    g["score_conflict"]=1
+    result=audit([g],{"55":archived(g)},NOW,{"1","2"})
+    assert result["status"]=="AUDITED_WITH_QUARANTINED_SCORE_REVISIONS"
+    assert result["disputed_source_score_games"]==1
+    assert result["disputed_archived_boxscores"]==1
+    assert result["quarantined_rows"]==0
+    assert result["by_season"]["2026"]["disputed_source_score_games"]==1
+    assert result["by_season"]["2026"]["eligible_d1_final_games"]==0
+    assert select_games([g],set(),NOW,max_games=2,d1_ids={"1","2"})==[]
