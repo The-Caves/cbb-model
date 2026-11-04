@@ -1,0 +1,14 @@
+{
+  "status": "RESEARCH_ONLY",
+  "model_unchanged": true,
+  "source": "ESPN public game summary",
+  "as_of_utc": "2026-11-04T03:08:24Z",
+  "attempted": 36,
+  "accepted_this_run": 36,
+  "rejected_this_run": 0,
+  "accepted_total": 36,
+  "profile_teams": 36,
+  "profile_teams_5plus": 0,
+  "rejections": [],
+  "warning": "Retrospective observation is not historical availability. Features are not used in active model picks."
+}
