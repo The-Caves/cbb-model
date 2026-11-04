@@ -58,7 +58,7 @@ def test_unfinished_future_and_non_d1_have_no_training_evidence():
     row=game(1,2027,day=10)
     assert not complete_before(row,NOW)
     assert not complete_before(game(2,done=False),NOW)
-    q=audit([row,game(2,done=False),game(3,h="1",a="500")],{},NOW,{"1","2"})
+    q=audit([row,game(2,done=False),game(3,season=2027,h="1",a="500")],{},NOW,{"1","2"})
     assert q["by_season"]["2027"]["eligible_d1_final_games"]==0
     assert q["by_season"]["2027"]["other_or_unverified_final_games"]==1
 
