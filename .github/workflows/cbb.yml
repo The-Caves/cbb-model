@@ -41,6 +41,9 @@ jobs:
           else
             echo 'Historical baseline found; reusing previously evaluated observations.'
           fi
+      - name: Compare previous-season weights on identical early-season matchups
+        if: github.event_name == 'push'
+        run: python prior_sensitivity.py --root data --season 2026
       - name: Compare revised historical score model without mixing model versions
         if: github.event_name == 'push'
         shell: bash
