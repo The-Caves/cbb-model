@@ -1,0 +1,25 @@
+{
+  "401921808": {
+    "evidence": [
+      {
+        "archived_score": [
+          99.0,
+          56.0
+        ],
+        "away_id": "2443",
+        "game_id": "401921808",
+        "home_id": "99",
+        "new_source_score": [
+          100.0,
+          57.0
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_observed_utc": "2026-11-04T15:19:05Z",
+        "source_sha256": "84c9dcbcb410bfe6b639f0ca854a496cd701a0352f8163f251e20e9342ac7b3d",
+        "tip_utc": "2026-11-04T01:00:00Z"
+      }
+    ],
+    "first_observed_utc": "2026-11-04T15:19:05Z",
+    "last_seen_utc": "2026-11-04T15:19:05Z"
+  }
+}
