@@ -1,0 +1,86 @@
+{
+  "active_model_unchanged": true,
+  "end": "2025-12-20",
+  "historical_source_time_authenticated": false,
+  "matched_games": 1887,
+  "season": 2026,
+  "start": "2025-11-01",
+  "status": "RETROSPECTIVE_SENSITIVITY_NO_PROMOTION",
+  "variants": {
+    "lighter_10pct": {
+      "all": {
+        "margin_bias": -3.485,
+        "margin_mae": 10.826,
+        "n": 1887,
+        "su_accuracy": 0.7652,
+        "total_mae": 14.079
+      },
+      "cold_start": {
+        "margin_bias": -5.394,
+        "margin_mae": 11.631,
+        "n": 840,
+        "su_accuracy": 0.7988,
+        "total_mae": 14.617
+      },
+      "established_teams": {
+        "margin_bias": -1.953,
+        "margin_mae": 10.179,
+        "n": 1047,
+        "su_accuracy": 0.7383,
+        "total_mae": 13.647
+      },
+      "prior_season_per_game_weight": 0.1
+    },
+    "lighter_30pct": {
+      "all": {
+        "margin_bias": -2.888,
+        "margin_mae": 10.598,
+        "n": 1887,
+        "su_accuracy": 0.7583,
+        "total_mae": 14.35
+      },
+      "cold_start": {
+        "margin_bias": -4.355,
+        "margin_mae": 11.056,
+        "n": 840,
+        "su_accuracy": 0.7976,
+        "total_mae": 15.039
+      },
+      "established_teams": {
+        "margin_bias": -1.711,
+        "margin_mae": 10.23,
+        "n": 1047,
+        "su_accuracy": 0.7268,
+        "total_mae": 13.796
+      },
+      "prior_season_per_game_weight": 0.3
+    },
+    "v03_60pct_per_game": {
+      "all": {
+        "margin_bias": -2.389,
+        "margin_mae": 10.577,
+        "n": 1887,
+        "su_accuracy": 0.7462,
+        "total_mae": 14.76
+      },
+      "cold_start": {
+        "margin_bias": -3.52,
+        "margin_mae": 10.777,
+        "n": 840,
+        "su_accuracy": 0.7821,
+        "total_mae": 15.45
+      },
+      "established_teams": {
+        "margin_bias": -1.482,
+        "margin_mae": 10.417,
+        "n": 1047,
+        "su_accuracy": 0.7173,
+        "total_mae": 14.205
+      },
+      "prior_season_per_game_weight": 0.6
+    }
+  },
+  "verified_d1_teams": 362,
+  "warning": "No roster-continuity information in this experiment. Do not tune and promote on the same retrospective season.",
+  "weight_explanation": "Per previous-season game, NOT share of total effective weight"
+}
