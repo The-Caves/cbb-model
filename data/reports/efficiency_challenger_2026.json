@@ -1,0 +1,25 @@
+{
+  "candidate": {
+    "margin_bias": null,
+    "margin_mae": null,
+    "n": 0,
+    "su_accuracy": null,
+    "total_mae": null
+  },
+  "challenger_promoted": false,
+  "fit_days": 9,
+  "games_evaluated": 0,
+  "historical_boxscores_acquired_retrospectively": true,
+  "minimum_training_games": 250,
+  "model": "CBB_PACE_EFF_CHALLENGER_V0_1",
+  "required_games": 100,
+  "status": "INSUFFICIENT_MATCHED_HISTORICAL_EVALUATIONS",
+  "v03_same_games": {
+    "margin_bias": null,
+    "margin_mae": null,
+    "n": 0,
+    "su_accuracy": null,
+    "total_mae": null
+  },
+  "warning": "No inference of validated picks, profitable wagering or verified historical data availability."
+}
