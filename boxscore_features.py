@@ -229,7 +229,7 @@ def run(root="data", max_games=42, delay=1.2, opener=None, now=None):
         # Preserve a minimal original-statistics evidence excerpt, not massive player PBP.
         preview={"header":{"id":payload["header"]["id"],
                   "competitions":payload["header"]["competitions"]},
-                 "boxscore":{"teams":payload["boxscore"]["teams"]]},
+                 "boxscore":{"teams":payload["boxscore"]["teams"]},
                  "captured_utc":captured,"raw_sha256":digest}
         snapshot=advanced/"raw_team_boxscores"/str(g["season"])/(gid+".json.gz")
         snapshot.parent.mkdir(parents=True,exist_ok=True)
