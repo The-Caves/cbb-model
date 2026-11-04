@@ -6,42 +6,42 @@
   "audit_by_season": {
     "2025": {
       "eligible_d1_final_games": 5644,
-      "verified_boxscores": 8,
-      "missing_boxscores": 5636,
-      "coverage_fraction": 0.0014,
+      "verified_boxscores": 32,
+      "missing_boxscores": 5612,
+      "coverage_fraction": 0.0057,
       "other_or_unverified_final_games": 648,
       "disputed_source_score_games": 0,
       "d1_teams_with_5plus_games": 0,
-      "teams_with_any_verified_games": 16
+      "teams_with_any_verified_games": 64
     },
     "2026": {
       "eligible_d1_final_games": 5633,
-      "verified_boxscores": 36,
-      "missing_boxscores": 5597,
-      "coverage_fraction": 0.0064,
+      "verified_boxscores": 80,
+      "missing_boxscores": 5553,
+      "coverage_fraction": 0.0142,
       "other_or_unverified_final_games": 667,
       "disputed_source_score_games": 0,
       "d1_teams_with_5plus_games": 0,
-      "teams_with_any_verified_games": 66
+      "teams_with_any_verified_games": 152
     },
     "2027": {
       "eligible_d1_final_games": 136,
-      "verified_boxscores": 30,
-      "missing_boxscores": 106,
-      "coverage_fraction": 0.2206,
+      "verified_boxscores": 42,
+      "missing_boxscores": 94,
+      "coverage_fraction": 0.3088,
       "other_or_unverified_final_games": 75,
       "disputed_source_score_games": 1,
       "d1_teams_with_5plus_games": 0,
-      "teams_with_any_verified_games": 60
+      "teams_with_any_verified_games": 84
     }
   },
   "quarantined_archive_rows": 0,
-  "as_of_utc": "2026-11-04T15:19:12Z",
-  "attempted": 48,
-  "accepted_this_run": 48,
+  "as_of_utc": "2026-11-04T18:27:11Z",
+  "attempted": 80,
+  "accepted_this_run": 80,
   "rejected_this_run": 0,
-  "accepted_total": 84,
-  "profile_teams": 60,
+  "accepted_total": 164,
+  "profile_teams": 84,
   "profile_teams_5plus": 0,
   "rejections": [],
   "warning": "Retrospective observation is not historical availability. Features are not used in active model picks."
