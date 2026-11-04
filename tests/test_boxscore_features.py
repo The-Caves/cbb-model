@@ -27,7 +27,7 @@ def source():
     return {"header":{"id":"44","competitions":[{"competitors":[
           {"id":"1","score":"81"},{"id":"2","score":"72"}]}]},
       "boxscore":{"teams":[{"team":{"id":"1"},**stats()},
-                             {"team":{"id":"2"},**stats(fg="25-59",three="8-23",ft="14-17",orb="9",drb="24",to="11")}]}}}
+                             {"team":{"id":"2"},**stats(fg="25-59",three="8-23",ft="14-17",orb="9",drb="24",to="11")}]}}
 
 
 def test_genuine_boxscore_metrics():
