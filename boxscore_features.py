@@ -152,25 +152,13 @@ def load_accepted(path):
     return accepted
 
 
-def choose_games(games, seen, now, max_games=42, previous_share=8):
-    valid = [
-        g for g in games if str(g.get("completed")) in ("1","True","true")
-        and g.get("home_score") not in (None,"")
-        and g.get("away_score") not in (None,"")
-        and str(g["game_id"]) not in seen
-        and dt(g["tip_utc"]) + timedelta(hours=4) <= now
-    ]
-    current = now.year + int(now.month >= 7)
-    live = sorted((g for g in valid if int(g["season"])==current),
-                  key=lambda x:(x["tip_utc"],x["game_id"]),reverse=True)
-    historical = sorted((g for g in valid if int(g["season"])==current-1),
-                  key=lambda x:(x["tip_utc"],x["game_id"]),reverse=True)
-    previous_share = min(previous_share,max_games)
-    chosen = live[:max_games-previous_share]
-    chosen += historical[:max_games-len(chosen)]
-    if len(chosen)<max_games:
-        chosen += live[len(chosen):len(chosen)+max_games-len(chosen)]
-    return chosen
+def choose_games(games, seen, now, max_games=48, previous_share=28,
+                 d1_ids=None, prior_share=8):
+    """Backward-compatible public entrypoint to quota-based source selection."""
+    from cbb_data_quality import select_games
+    return select_games(games, seen, now, max_games=max_games,
+                        d1_ids=d1_ids, previous_quota=previous_share,
+                        prior_quota=prior_share)
 
 
 def fetch_summary(game_id, opener=None):
@@ -184,6 +172,8 @@ def fetch_summary(game_id, opener=None):
 
 def profiles(accepted, year, d1_ids=None):
     d1_ids = set(str(x) for x in (d1_ids or []))
+    if not d1_ids:
+        return {}  # Never label unverified teams as D-I research profiles.
     teams = defaultdict(list)
     for r in accepted.values():
         if r["season"] != year:
@@ -212,7 +202,15 @@ def run(root="data", max_games=42, delay=1.2, opener=None, now=None):
     ledger=advanced/"boxscore_team_games.jsonl"
     accepted=load_accepted(ledger)
     games=read_csv(root/"games.csv")
-    candidates=choose_games(games,accepted,now,max_games)
+    # Optional directory for verified D-I-only historical backfill. A missing
+    # directory is visible in the audit; it is not proof of D-I membership.
+    try:
+        from team_directory import load_directory
+        d1=load_directory(root/"team_directory.json")
+    except (ValueError,OSError):
+        d1={}
+    candidates=choose_games(games,accepted,now,max_games,
+                            d1_ids=d1.keys() if d1 else None)
     good, failures=[],[]
     for i,g in enumerate(candidates):
         if i and delay:
@@ -242,15 +240,16 @@ def run(root="data", max_games=42, delay=1.2, opener=None, now=None):
             for record in good:
                 handle.write(json.dumps(record,sort_keys=True)+"\n")
     year=now.year+int(now.month>=7)
-    try:
-        from team_directory import load_directory
-        d1=load_directory(root/"team_directory.json")
-    except (ValueError,OSError):
-        d1={}
     prof=profiles(accepted,year,d1.keys())
+    from cbb_data_quality import audit
+    source_audit=audit(games,accepted,now,d1.keys())
+    (advanced/"coverage_audit.json").write_text(
+        json.dumps(source_audit,indent=2,sort_keys=True)+"\\n",encoding="utf-8")
     report={
         "status":"RESEARCH_ONLY" if good else "NO_NEW_ACCEPTED_BOX_SCORES",
         "model_unchanged":True,"source":"ESPN public game summary",
+        "audit_status":source_audit["status"],"audit_by_season":source_audit["by_season"],
+        "quarantined_archive_rows":source_audit["quarantined_rows"],
         "as_of_utc":iso(now),"attempted":len(candidates),
         "accepted_this_run":len(good),"rejected_this_run":len(failures),
         "accepted_total":len(accepted),"profile_teams":len(prof),

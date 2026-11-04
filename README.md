@@ -24,6 +24,10 @@ Audit after the first deployment found home-favorite margin clustering (112 froz
 - Free ESPN game-summary API with 1.2-second request pacing, maximum 36 games per scheduled research pass; missing/contradictory stats are explicitly rejected. A research-source failure is visible but will not take down the active site.
 - See [possession research milestone](docs/POSSESSION_DATA.md). Next: expand authenticated historical efficiency coverage, build chronological opponent-adjusted pace/efficiency challenger, conduct out-of-sample comparisons before promotion.
 
+## Development roadmap
+
+[Full eight-milestone plan, exit gates, and Milestone 1 progress](docs/ROADMAP.md). The first milestone expands verified historical boxscore coverage and reports source gaps and quarantined records. It does **not** alter active v0.3 picks.
+
 ## Automated training and data integrity
 
 Workflow: [CBB free model and website](.github/workflows/cbb.yml) — twice daily in-season and manually dispatchable. It tests first; on initial run it downloads historical 2024–25 and 2025–26 finals, then runs chronological 2025–26 replay. On code pushes it recalculates the revised model's backtest against the same historical dataset, writes an immutable copy of the v0.2 summary if present, refreshes 2026–27 scores, captures new pre-tip forecasts, grades completed original forecasts, exports `site/data.json`, and publishes GitHub Pages.
