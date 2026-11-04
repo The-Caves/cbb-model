@@ -78,6 +78,9 @@ jobs:
           fi
       - name: Verify multi-season boxscore coverage and as-of data quality
         run: python cbb_data_quality.py --root data
+      - name: Score-only versus possession challenger (no model promotion)
+        # Deliberate PASS on thin historical data, never invent metrics.
+        run: python efficiency_challenger.py --root data --season 2026
       - name: Generate real website data (no invented odds)
         run: python site_export.py --root data --site site
       - name: Persist public research evidence and site snapshot
