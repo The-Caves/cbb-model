@@ -51,6 +51,11 @@ jobs:
           python cbb.py backtest --season 2026
       - name: Refresh source, freeze actual pre-tip picks, grade results
         run: python cbb.py daily
+      - name: Collect free postgame possession and Four Factors evidence (research only)
+        # Nonblocking until provider schema/coverage is verified on real games.
+        # This step never changes active predictions and requires no API key.
+        continue-on-error: true
+        run: python boxscore_features.py --root data --max-games 36 --delay 1.2
       - name: Generate real website data (no invented odds)
         run: python site_export.py --root data --site site
       - name: Persist public research evidence and site snapshot
