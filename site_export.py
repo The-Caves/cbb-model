@@ -69,7 +69,7 @@ def forecasts(ledger, by_id):
         except json.JSONDecodeError:
             raise ValueError('Corrupt frozen ledger: cannot publish incomplete data')
         game = by_id.get(str(raw.get('game_id')))
-        if not game or not valid_frozen(raw, game):
+        if not game or str(game.get('identity_conflict','0')) in ('1','True','true') or not valid_frozen(raw, game):
             continue
         key = raw['game_id']
         prev = latest.get(key)
@@ -110,7 +110,7 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
         ats = _intscore(g.get('away_score')) if completed else None
         original_forecast = frozen.get(str(g['game_id']))
         qualified_d1 = division(g['home_id']) == 'D1' and division(g['away_id']) == 'D1'
-        disputed = str(g.get('score_conflict','0')) in ('1','True','true')
+        disputed = str(g.get('score_conflict','0')) in ('1','True','true') or str(g.get('identity_conflict','0')) in ('1','True','true')
         # Keep original pre-tip ledger immutable; do not publish non-D-I
         # forecasts as qualified Division-I model predictions.
         pred = original_forecast if qualified_d1 and not disputed else None
@@ -122,6 +122,7 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
             'completed':completed, 'home_score':hs,'away_score':ats,
             'game_state':g.get('game_state') or ('post' if completed else 'pre'),
             'score_source_under_review':str(g.get('score_conflict','0')) in ('1','True','true'),
+            'identity_source_under_review':str(g.get('identity_conflict','0')) in ('1','True','true'),
             'home_live_score':_intscore(g.get('live_home_score')) if g.get('live_home_score') not in ('',None) else None,
             'away_live_score':_intscore(g.get('live_away_score')) if g.get('live_away_score') not in ('',None) else None,
             'game_clock':g.get('game_clock') or '',
