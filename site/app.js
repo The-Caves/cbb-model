@@ -35,14 +35,14 @@ function gameCard(g){
   const awayDivision=g.away_division==='OTHER_OR_UNVERIFIED'?' · OTHER / UNVERIFIED OPPONENT':'';
   const homeDivision=g.home_division==='OTHER_OR_UNVERIFIED'?' · OTHER / UNVERIFIED OPPONENT':'';
   const cardStatus=real?'FINAL':live?'LIVE':new Date(g.tip_utc).getTime()<=Date.now()?'STARTED / PENDING':'UPCOMING';
-  const condition=p?(p.status==='PASS_LOW_SAMPLE'?'LOW SAMPLE':'PROJECTION STORED'):'NO VERIFIED PICK';
+  const condition=p?(p.status==='PASS_LOW_SAMPLE'?'LOW SAMPLE · PASS':'RESEARCH PROJECTION'):'NO VERIFIED PICK';
   const when=dateFmt.format(new Date(g.tip_utc));
   const outcome=real && p && p.margin!==0?((g.home_score-g.away_score>0)===(p.margin>0)?' · WINNER HIT':' · WINNER MISS'):'';
   const predictionHtml=p?`
   <div class="proj-head"><small>MODEL PROJECTION · ${esc(p.model||'VERSION UNKNOWN')}</small><span class="proj-tag ${p.status==='RESEARCH_ONLY'?'has':''}">${esc(condition)}</span></div>
   <div class="proj-row">
     <div class="proj-val"><small>PROJECTED WINNER</small><strong class="accent" title="${side}">${side}</strong></div>
-    <div class="proj-val"><small>MODEL MARGIN</small><strong>${p.margin===0?'EVEN':`${num(Math.abs(p.margin),1)} pts`}</strong></div>
+    <div class="proj-val"><small>MODEL MARGIN · NOT A BOOK LINE</small><strong>${p.margin===0?'EVEN':`${num(Math.abs(p.margin),1)} pts`}</strong></div>
     <div class="proj-val"><small>MODEL TOTAL</small><strong>${num(p.total,1)}</strong></div>
   </div>`:`<div class="proj-head"><small>MODEL PROJECTION</small><span class="proj-tag">NO CAPTURE</span></div><div class="no-proj">${!isD1(g)?'Other or unverified opponent: no qualified Division I projection. ESPN lists the game; FanDuel listing is not verified.':real?'No archived pre-tip prediction for this game.': 'Waiting for a valid model snapshot before tipoff.'}</div>`;
   const awayShown=real?num(g.away_score):live?num(g.away_live_score):p?num(p.away,1):'—';
