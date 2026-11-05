@@ -1,8 +1,8 @@
 {
-  "observed_utc": "2026-11-04T22:53:55Z",
+  "observed_utc": "2026-11-05T16:55:39Z",
   "sha256": "4b00b319e56f6791f3d45ed26cf2434c4937a4f14dc6b6351536aa2cc4753d3c",
   "source": "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams?limit=500",
-  "team_count": 362,
+  "team_count": 363,
   "teams": {
     "103": "Boston College Eagles",
     "104": "Boston University Terriers",
@@ -198,6 +198,7 @@
     "2507": "Providence Friars",
     "2509": "Purdue Boilermakers",
     "251": "Texas Longhorns",
+    "2511": "Queens University Royals",
     "2514": "Quinnipiac Bobcats",
     "2515": "Radford Highlanders",
     "252": "BYU Cougars",

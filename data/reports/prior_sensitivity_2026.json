@@ -2,85 +2,85 @@
   "active_model_unchanged": true,
   "end": "2025-12-20",
   "historical_source_time_authenticated": false,
-  "matched_games": 1887,
+  "matched_games": 1898,
   "season": 2026,
   "start": "2025-11-01",
   "status": "RETROSPECTIVE_SENSITIVITY_NO_PROMOTION",
   "variants": {
     "lighter_10pct": {
       "all": {
-        "margin_bias": -3.485,
-        "margin_mae": 10.826,
-        "n": 1887,
-        "su_accuracy": 0.7652,
-        "total_mae": 14.079
+        "margin_bias": -3.521,
+        "margin_mae": 10.823,
+        "n": 1898,
+        "su_accuracy": 0.7666,
+        "total_mae": 14.107
       },
       "cold_start": {
-        "margin_bias": -5.394,
-        "margin_mae": 11.631,
-        "n": 840,
-        "su_accuracy": 0.7988,
-        "total_mae": 14.617
+        "margin_bias": -5.397,
+        "margin_mae": 11.605,
+        "n": 845,
+        "su_accuracy": 0.8,
+        "total_mae": 14.646
       },
       "established_teams": {
-        "margin_bias": -1.953,
-        "margin_mae": 10.179,
-        "n": 1047,
-        "su_accuracy": 0.7383,
-        "total_mae": 13.647
+        "margin_bias": -2.016,
+        "margin_mae": 10.195,
+        "n": 1053,
+        "su_accuracy": 0.7398,
+        "total_mae": 13.675
       },
       "prior_season_per_game_weight": 0.1
     },
     "lighter_30pct": {
       "all": {
-        "margin_bias": -2.888,
-        "margin_mae": 10.598,
-        "n": 1887,
-        "su_accuracy": 0.7583,
-        "total_mae": 14.35
+        "margin_bias": -2.931,
+        "margin_mae": 10.597,
+        "n": 1898,
+        "su_accuracy": 0.7597,
+        "total_mae": 14.393
       },
       "cold_start": {
-        "margin_bias": -4.355,
-        "margin_mae": 11.056,
-        "n": 840,
-        "su_accuracy": 0.7976,
-        "total_mae": 15.039
+        "margin_bias": -4.362,
+        "margin_mae": 11.027,
+        "n": 845,
+        "su_accuracy": 0.7988,
+        "total_mae": 15.08
       },
       "established_teams": {
-        "margin_bias": -1.711,
-        "margin_mae": 10.23,
-        "n": 1047,
-        "su_accuracy": 0.7268,
-        "total_mae": 13.796
+        "margin_bias": -1.783,
+        "margin_mae": 10.253,
+        "n": 1053,
+        "su_accuracy": 0.7284,
+        "total_mae": 13.842
       },
       "prior_season_per_game_weight": 0.3
     },
     "v03_60pct_per_game": {
       "all": {
-        "margin_bias": -2.389,
-        "margin_mae": 10.577,
-        "n": 1887,
-        "su_accuracy": 0.7462,
-        "total_mae": 14.76
+        "margin_bias": -2.438,
+        "margin_mae": 10.579,
+        "n": 1898,
+        "su_accuracy": 0.7476,
+        "total_mae": 14.811
       },
       "cold_start": {
-        "margin_bias": -3.52,
-        "margin_mae": 10.777,
-        "n": 840,
-        "su_accuracy": 0.7821,
-        "total_mae": 15.45
+        "margin_bias": -3.531,
+        "margin_mae": 10.747,
+        "n": 845,
+        "su_accuracy": 0.7834,
+        "total_mae": 15.495
       },
       "established_teams": {
-        "margin_bias": -1.482,
-        "margin_mae": 10.417,
-        "n": 1047,
-        "su_accuracy": 0.7173,
-        "total_mae": 14.205
+        "margin_bias": -1.56,
+        "margin_mae": 10.444,
+        "n": 1053,
+        "su_accuracy": 0.7189,
+        "total_mae": 14.262
       },
       "prior_season_per_game_weight": 0.6
     }
   },
-  "verified_d1_teams": 362,
+  "verified_d1_teams": 363,
   "warning": "No roster-continuity information in this experiment. Do not tune and promote on the same retrospective season.",
   "weight_explanation": "Per previous-season game, NOT share of total effective weight"
 }

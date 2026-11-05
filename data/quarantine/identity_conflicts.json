@@ -1,0 +1,46 @@
+{
+  "401919732": {
+    "evidence": [
+      {
+        "game_id": "401919732",
+        "new_identity": [
+          "2916",
+          "2130",
+          "2026-11-06T00:00:00Z"
+        ],
+        "observed_utc": "2026-11-05T16:55:35Z",
+        "original_identity": [
+          "2916",
+          "2130",
+          "2026-11-05T23:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "70d006fa5adeacf146f0a8d544da6ef100bf50860e973fcdfd1fdd1df019cccd"
+      }
+    ],
+    "first_observed_utc": "2026-11-05T16:55:35Z",
+    "last_seen_utc": "2026-11-05T16:55:35Z"
+  },
+  "401929438": {
+    "evidence": [
+      {
+        "game_id": "401929438",
+        "new_identity": [
+          "2026",
+          "111180",
+          "2026-11-05T00:30:00Z"
+        ],
+        "observed_utc": "2026-11-05T16:55:34Z",
+        "original_identity": [
+          "2026",
+          "111180",
+          "2026-11-05T00:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "7ed6051581a885dc099f64a891a6f03fe347aaa0d483f242c1f769cf2f0a2afa"
+      }
+    ],
+    "first_observed_utc": "2026-11-05T16:55:34Z",
+    "last_seen_utc": "2026-11-05T16:55:34Z"
+  }
+}
