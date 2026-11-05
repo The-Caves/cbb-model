@@ -13,6 +13,17 @@ TEAM_API = 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-colleg
 MIN_D1_TEAMS = 300
 MAX_D1_TEAMS = 425
 
+# NCAA-confirmed D-I program missing from ESPN's generic list.
+# https://web3.ncaa.org/directory/orgDetail?id=11504
+# ESPN mens CBB team ID 2511 identifies Queens University Royals.
+OFFICIAL_D1_OVERRIDES = {'2511':'Queens University Royals'}
+
+def verified_teams(entries):
+    result = dict(entries)
+    result.update(OFFICIAL_D1_OVERRIDES)
+    return result
+
+
 
 def clean_label(value):
     name = ' '.join(str(value or '').split()).strip()
@@ -53,7 +64,7 @@ def update_directory(path, observed_utc, opener=None):
     request = urllib.request.Request(TEAM_API, headers={'User-Agent':'cbb-free-research/0.3','Accept':'application/json'})
     with opener(request, timeout=25) as response:
         raw = response.read()
-    names = parse_directory(json.loads(raw))
+    names = verified_teams(parse_directory(json.loads(raw)))
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     doc = {'source':TEAM_API,'observed_utc':observed_utc,
@@ -74,4 +85,4 @@ def load_directory(path):
     entries={str(k):clean_label(v) for k,v in doc['teams'].items()}
     if not MIN_D1_TEAMS <= len(entries) <= MAX_D1_TEAMS:
         raise ValueError('Unsafe Division I directory coverage')
-    return entries
+    return verified_teams(entries)

@@ -107,3 +107,19 @@ def test_new_model_freeze_uses_stable_team_ids(tmp_path):
     assert valid_frozen(raw, game())
     assert not valid_frozen({**raw,'home_id':'99'}, game())
     assert not valid_frozen({**raw,'away_id':'99'}, game())
+
+def test_non_d1_prediction_hidden_on_board_without_erasing_ledger(tmp_path):
+    first=game()
+    other={**game(),'game_id':'101','away_id':'999','away':'Warren Wilson Owls'}
+    raw=prediction()
+    ledger=tmp_path/'ledger.jsonl'
+    ledger.write_text(json.dumps(raw)+'\n'+json.dumps({
+        **raw,'game_id':'101','away_id':'999','away':'Warren Wilson Owls'})+'\n')
+    out=export_payload([first,other],ledger,NOW,
+        directory={'1':'Verified Home','2':'Verified Away'})
+    by={g['id']:g for g in out['games']}
+    assert by['100']['verified_d1_matchup'] and by['100']['projection']
+    assert not by['101']['verified_d1_matchup']
+    assert by['101']['projection'] is None
+    assert by['101']['hidden_unqualified_projection']
+    assert out['performance']['frozen_games_in_window']==1

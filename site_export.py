@@ -108,7 +108,12 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
         completed = str(g.get('completed')) in ('1', 'True', 'true')
         hs = _intscore(g.get('home_score')) if completed else None
         ats = _intscore(g.get('away_score')) if completed else None
-        pred = frozen.get(str(g['game_id']))
+        original_forecast = frozen.get(str(g['game_id']))
+        qualified_d1 = division(g['home_id']) == 'D1' and division(g['away_id']) == 'D1'
+        disputed = str(g.get('score_conflict','0')) in ('1','True','true')
+        # Keep original pre-tip ledger immutable; do not publish non-D-I
+        # forecasts as qualified Division-I model predictions.
+        pred = original_forecast if qualified_d1 and not disputed else None
         rec = {'id':str(g['game_id']), 'tip_utc':g['tip_utc'],
             'home':display(g['home_id'], g['home']), 'away':display(g['away_id'],g['away']),
             'home_division':division(g['home_id']), 'away_division':division(g['away_id']),
@@ -120,6 +125,8 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
             'home_live_score':_intscore(g.get('live_home_score')) if g.get('live_home_score') not in ('',None) else None,
             'away_live_score':_intscore(g.get('live_away_score')) if g.get('live_away_score') not in ('',None) else None,
             'game_clock':g.get('game_clock') or '',
+            'verified_d1_matchup':qualified_d1,
+            'hidden_unqualified_projection':bool(original_forecast and not qualified_d1),
             'projection':None, 'market_spread':None,'market_total':None}
         if pred:
             # Literal model output, not invented; pretip provenance preserved.
@@ -163,7 +170,7 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
             'losses':sum(x[0]<x[1] for x in teamgames),
             'points_for':round(sum(x[0] for x in teamgames)/n,1) if n else None,
             'points_against':round(sum(x[1] for x in teamgames)/n,1) if n else None})
-    completed_with_preds = [g for g in games if g['completed'] and g['projection'] and g['home_score'] is not None and eligible(by_id[g['id']], now, retrospective=False)]
+    completed_with_preds = [g for g in games if g['verified_d1_matchup'] and g['completed'] and g['projection'] and g['home_score'] is not None and eligible(by_id[g['id']], now, retrospective=False)]
     recent = []
     for g in completed_with_preds:
         margin = g['home_score']-g['away_score']
@@ -178,18 +185,27 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
     # Grade the exact vetted archive records, not arbitrary ledger text. Final
     # scores must have been observed by the evaluation time.
     graded = []
+    graded_d1 = []
+    graded_other = []
     for game_id, pred in frozen.items():
         g = by_id[game_id]
         if not eligible(g, now, retrospective=False):
             continue
         margin = float(g['home_score']) - float(g['away_score'])
         total = float(g['home_score']) + float(g['away_score'])
-        graded.append({**pred, 'actual_margin':margin, 'actual_total':total,
-            'correct':int((pred['pred_margin'] > 0) == (margin > 0))})
+        obs = {**pred,'actual_margin':margin,'actual_total':total,
+               'correct':int((pred['pred_margin']>0)==(margin>0))}
+        graded.append(obs)
+        if division(g['home_id'])=='D1' and division(g['away_id'])=='D1':
+            graded_d1.append(obs)
+        else:
+            graded_other.append(obs)
     prospective = {
         'status':'PROSPECTIVE_FROZEN_RESEARCH_ONLY',
         'all_games':metrics(graded),
-        'established_teams':metrics([x for x in graded if x['status']=='RESEARCH_ONLY']),
+        'verified_d1_matchups':metrics(graded_d1),
+        'other_or_unverified_matchups':metrics(graded_other),
+        'established_teams':metrics([x for x in graded_d1 if x['status']=='RESEARCH_ONLY']),
         'ats_graded':0,'over_under_graded':0
     }
     return {
@@ -210,7 +226,8 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
             'ATS/O-U recommendations unavailable until timestamped market lines exist.',
             'Low-sample games are PASS, not validated betting recommendations.',
             'Model win probabilities are not calibrated.',
-            'Lower-division opponents remain on the game board but are not listed as verified Division I schools.'
+            'Non-Division-I and unverified opponents remain available in an optional board filter; their forecasts are not presented as verified D-I projections.',
+            'No sportsbook market listing can be inferred from an ESPN schedule entry.'
         ]}
 
 

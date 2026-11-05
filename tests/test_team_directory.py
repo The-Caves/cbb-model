@@ -32,7 +32,8 @@ def test_source_snapshot_persisted_only_if_complete(tmp_path):
         def __exit__(self,*args):return False
         def read(self):return json.dumps(fake_payload()).encode()
     doc=update_directory(path,'2026-11-03T20:00:00Z',opener=lambda *args,**kwargs:Response())
-    assert doc['team_count']==355
+    assert doc['team_count']==356
+    assert load_directory(path)['2511']=='Queens University Royals'
     assert load_directory(path)['15']=='College 15 Bears'
     with pytest.raises(ValueError):
         update_directory(path,'2026-11-03T21:00:00Z',opener=lambda *args,**kwargs:BadResponse())
