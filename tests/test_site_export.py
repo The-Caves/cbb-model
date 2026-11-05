@@ -49,7 +49,7 @@ def test_only_original_pre_tip_capture_can_publish(tmp_path):
     ledger.write_text('\n'.join(json.dumps(x) for x in (late,mismatched,wrong_model,bad_score,good))+'\n')
     found=forecasts(ledger,{'100':game()})
     assert found['100']['pred_margin']==10
-    out=export_payload([game()],ledger,NOW)
+    out=export_payload([game()],ledger,NOW,directory={'1':'Verified Home','2':'Verified Away'})
     assert out['games'][0]['projection']['home']==80
     assert out['games'][0]['projection']['status']=='PASS_LOW_SAMPLE'
     assert out['performance']['frozen_games_in_window']==1
@@ -57,11 +57,11 @@ def test_only_original_pre_tip_capture_can_publish(tmp_path):
 def test_no_hindsight_grades(tmp_path):
     ledger=tmp_path/'predictions.jsonl'
     ledger.write_text(json.dumps(prediction())+'\n')
-    graded=export_payload([game(completed=True)],ledger,TIP+timedelta(days=1))
+    graded=export_payload([game(completed=True)],ledger,TIP+timedelta(days=1),directory={'1':'Verified Home','2':'Verified Away'})
     assert graded['performance']['prospective']['all_games']['n']==1
     posttip={**prediction(),'captured_utc':(TIP+timedelta(minutes=1)).isoformat().replace('+00:00','Z')}
     ledger.write_text(json.dumps(posttip)+'\n')
-    not_graded=export_payload([game(completed=True)],ledger,TIP+timedelta(days=1))
+    not_graded=export_payload([game(completed=True)],ledger,TIP+timedelta(days=1),directory={'1':'Verified Home','2':'Verified Away'})
     assert not_graded['performance']['prospective']['all_games']['n']==0
     assert not_graded['games'][0]['projection'] is None
 
