@@ -163,3 +163,25 @@ def test_score_conflict_quarantine_blocks_train_and_grade(tmp_path):
         merged,[original.copy()],"2026-11-04T15:50:00Z",tmp_path,"b"*64)
     assert n == 0
     assert str(merged[0]["score_conflict"]) == "1"
+
+def test_identity_change_is_quarantined_and_other_games_continue(tmp_path):
+    from cbb import merge_with_score_quarantine, eligible
+    dt0=datetime(2026,11,4,19,tzinfo=UTC)
+    original=game(914,dt0,home='1',away='2',hs=73,ats=68)
+    changed={**original,'away_id':'999'}
+    other=game(915,dt0,home='3',away='4',hs=80,ats=65)
+    merged,n=merge_with_score_quarantine([original],[changed,other],
+        '2026-11-05T15:00:00Z',tmp_path,'a'*64)
+    assert n==1
+    by={g['game_id']:g for g in merged}
+    assert by['914']['away_id']=='2'
+    assert by['914']['identity_conflict']==1
+    assert not eligible(by['914'],dt0+timedelta(days=2),True)
+    assert '915' in by and eligible(by['915'],dt0+timedelta(days=2),True)
+    events=json.loads((tmp_path/'quarantine/identity_conflicts.json').read_text())
+    assert events['914']['evidence'][0]['new_identity'][1]=='999'
+    merged,n=merge_with_score_quarantine(merged,[changed],
+        '2026-11-05T16:00:00Z',tmp_path,'b'*64)
+    assert n==1
+    events=json.loads((tmp_path/'quarantine/identity_conflicts.json').read_text())
+    assert len(events['914']['evidence'])==1
