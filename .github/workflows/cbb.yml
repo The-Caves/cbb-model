@@ -8,7 +8,8 @@ on:
   workflow_dispatch:
   schedule:
     # Basketball season only. UTC; approximately 8 AM and 7 PM ET.
-    - cron: '17 13,0 * 11,12,1,2,3,4 *'
+    - cron: '17 11 * 11,12,1,2,3,4 *'
+    - cron: '17 5,17,23 * 11,12,1,2,3,4 *'
 permissions:
   contents: read
 concurrency:
@@ -55,6 +56,7 @@ jobs:
       - name: Refresh source, freeze actual pre-tip picks, grade results
         run: python cbb.py daily
       - name: Collect and persist three free historical boxscore batches (research only)
+        if: github.event_name != 'schedule' || github.event.schedule == '17 11 * 11,12,1,2,3,4 *'
         # Up to 240 source requests per run; strict 1.2s pacing and bounded retries.
         # Commit each 80-game chunk to preserve progress if a later chunk fails.
         # No premium runners, paid API keys, or billing credentials.
@@ -73,6 +75,11 @@ jobs:
               git push origin HEAD:main
             fi
           done
+      - name: Report independently observed scoreboard identity changes
+        run: |
+          if [ -s data/quarantine/identity_conflicts.json ]; then
+            python -c 'import json; d=json.load(open("data/quarantine/identity_conflicts.json")); print(f"Identity disputes: {len(d)}; excluded from forecasts, training and grading")'
+          fi
       - name: Report independently observed scoreboard score revisions
         shell: bash
         run: |
