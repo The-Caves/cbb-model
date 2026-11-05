@@ -20,7 +20,7 @@ const nextUnstartedGame=(games, now=Date.now())=>games
   .sort((a,b)=>a.tip_utc.localeCompare(b.tip_utc))[0]||null;
 const teamShort=s=>{const chunks=String(s||'').split(/\s+/);const acronym=chunks.length>1?chunks.slice(-2).map(x=>x.slice(0,1)).join(''):chunks[0]?.slice(0,3);return acronym?.toUpperCase()||'—'};
 const allGames=()=>dataset?.games||[];
-const isD1=g=>g.home_division==='D1'&&g.away_division==='D1';
+const isD1=g=>g.verified_d1_matchup===false?false:(g.home_division==='D1'&&g.away_division==='D1');
 const byScope=(games,scope='d1')=>games.filter(g=>
   scope==='all'||(scope==='other'?!isD1(g):isD1(g)));
 const findTeam=id=>(dataset?.teams||[]).find(t=>t.id===id);
@@ -44,7 +44,7 @@ function gameCard(g){
     <div class="proj-val"><small>PROJECTED WINNER</small><strong class="accent" title="${side}">${side}</strong></div>
     <div class="proj-val"><small>MODEL MARGIN · NOT A BOOK LINE</small><strong>${p.margin===0?'EVEN':`${num(Math.abs(p.margin),1)} pts`}</strong></div>
     <div class="proj-val"><small>MODEL TOTAL</small><strong>${num(p.total,1)}</strong></div>
-  </div>`:`<div class="proj-head"><small>MODEL PROJECTION</small><span class="proj-tag">NO CAPTURE</span></div><div class="no-proj">${!isD1(g)?'Other or unverified opponent: no qualified Division I projection. ESPN lists the game; FanDuel listing is not verified.':real?'No archived pre-tip prediction for this game.': 'Waiting for a valid model snapshot before tipoff.'}</div>`;
+  </div>`:`<div class="proj-head"><small>MODEL PROJECTION</small><span class="proj-tag">NO CAPTURE</span></div><div class="no-proj">${(g.identity_source_under_review||g.score_source_under_review)?'Source identity or final score under review: this matchup is excluded from model training and grading.':!isD1(g)?'Other or unverified opponent: no qualified Division I projection. ESPN lists the game; FanDuel listing is not verified.':real?'No archived pre-tip prediction for this game.': 'Waiting for a valid model snapshot before tipoff.'}</div>`;
   const awayShown=real?num(g.away_score):live?num(g.away_live_score):p?num(p.away,1):'—';
   const homeShown=real?num(g.home_score):live?num(g.home_live_score):p?num(p.home,1):'—';
   const scoreKind=real?'FINAL':live?'LIVE':p?'PROJ':'';
