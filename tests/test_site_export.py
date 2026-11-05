@@ -123,3 +123,15 @@ def test_non_d1_prediction_hidden_on_board_without_erasing_ledger(tmp_path):
     assert by['101']['projection'] is None
     assert by['101']['hidden_unqualified_projection']
     assert out['performance']['frozen_games_in_window']==1
+
+def test_quarantined_identity_is_not_a_valid_d1_game_or_graded(tmp_path):
+    candidate={**game(completed=True), 'identity_conflict':1}
+    ledger=tmp_path/'ledger.jsonl'
+    ledger.write_text(json.dumps(prediction())+'\n')
+    out=export_payload([candidate],ledger,TIP+timedelta(days=1),
+        directory={'1':'Verified Home','2':'Verified Away'})
+    g=out['games'][0]
+    assert g['identity_source_under_review']
+    assert not g['verified_d1_matchup']
+    assert g['projection'] is None
+    assert out['performance']['prospective']['verified_d1_matchups']['n']==0
