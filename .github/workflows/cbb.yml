@@ -7,7 +7,7 @@ on:
       - 'site/data.json'
   workflow_dispatch:
   schedule:
-    # Basketball season only. UTC; approximately 8 AM and 7 PM ET.
+    # Basketball season only. UTC times correspond roughly to midnight, 6 AM, noon and 6 PM Eastern in standard time.
     - cron: '17 11 * 11,12,1,2,3,4 *'
     - cron: '17 5,17,23 * 11,12,1,2,3,4 *'
 permissions:
@@ -15,7 +15,7 @@ permissions:
 jobs:
   build:
     concurrency:
-      group: cbb-live-website-build
+      group: cbb-safe-cbb-data-writer
       cancel-in-progress: false
     if: github.event.repository.private == false
     runs-on: ubuntu-latest
@@ -113,7 +113,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 50
     concurrency:
-      group: cbb-research-historical
+      group: cbb-safe-cbb-data-writer
       cancel-in-progress: false
     permissions:
       contents: write
