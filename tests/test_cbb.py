@@ -185,3 +185,15 @@ def test_identity_change_is_quarantined_and_other_games_continue(tmp_path):
     assert n==1
     events=json.loads((tmp_path/'quarantine/identity_conflicts.json').read_text())
     assert len(events['914']['evidence'])==1
+
+def test_pregame_only_freezes_verified_d1_opponents(tmp_path):
+    data=records()
+    day=datetime(2025,12,20,18,tzinfo=UTC)
+    data.append(game(811,day,home='1',away='2',completed=False))
+    data.append(game(812,day,home='1',away='999',completed=False))
+    ledger=tmp_path/'frozen.jsonl'
+    output=append_pregame(data,ledger,datetime(2025,12,19,0,tzinfo=UTC),
+                            verified_ids={'1','2'})
+    assert output['captured']==1
+    entries=[json.loads(v) for v in ledger.read_text().splitlines()]
+    assert [e['game_id'] for e in entries]==['811']
