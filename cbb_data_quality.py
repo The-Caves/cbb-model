@@ -15,7 +15,8 @@ from team_directory import load_directory
 
 def complete_before(g, now):
     try:
-        return (str(g.get("score_conflict","0")) not in ("1","True","true")
+        return (str(g.get("identity_conflict","0")) not in ("1","True","true")
+                and str(g.get("score_conflict","0")) not in ("1","True","true")
                 and str(g.get("completed")) in ("1", "True", "true")
                 and g.get("home_score") not in ("", None)
                 and g.get("away_score") not in ("", None)
@@ -87,7 +88,7 @@ def audit(rows, accepted, now, d1_ids):
         if int(g["season"]) not in seasons:
             continue
         gid = str(g["game_id"])
-        if str(g.get("score_conflict","0")) in ("1","True","true"):
+        if str(g.get("score_conflict","0")) in ("1","True","true") or str(g.get("identity_conflict","0")) in ("1","True","true"):
             disputed[int(g["season"])] += 1
             disputed_ids.add(gid)
             continue
