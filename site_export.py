@@ -126,8 +126,8 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
             'home_live_score':_intscore(g.get('live_home_score')) if g.get('live_home_score') not in ('',None) else None,
             'away_live_score':_intscore(g.get('live_away_score')) if g.get('live_away_score') not in ('',None) else None,
             'game_clock':g.get('game_clock') or '',
-            'verified_d1_matchup':qualified_d1,
-            'hidden_unqualified_projection':bool(original_forecast and not qualified_d1),
+            'verified_d1_matchup':qualified_d1 and not disputed,
+            'hidden_unqualified_projection':bool(original_forecast and (not qualified_d1 or disputed)),
             'projection':None, 'market_spread':None,'market_total':None}
         if pred:
             # Literal model output, not invented; pretip provenance preserved.
