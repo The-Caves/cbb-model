@@ -417,7 +417,15 @@ def backtest(rows, test_season=2026, minimum_games=5):
         'predictions':predictions}
 
 
-def append_pregame(rows, ledger, now=None):
+def load_verified_d1_ids(path):
+    from team_directory import load_directory
+    try:
+        names=load_directory(path)
+    except (OSError,ValueError):
+        names={}
+    return names.keys()  # Empty directory => do not infer membership.
+
+def append_pregame(rows, ledger, now=None, verified_ids=None):
     now=now or utcnow()
     try:
         model=fit(rows,now,retrospective=False)
@@ -428,9 +436,14 @@ def append_pregame(rows, ledger, now=None):
     if p.exists():
         existing=[json.loads(s) for s in p.read_text().splitlines() if s.strip()]
     captured=[]
+    verified={str(t) for t in verified_ids} if verified_ids is not None else None
     seen={(x['game_id'],x['captured_utc'],x['model']) for x in existing}
     for g in rows:
         tip=dt(g['tip_utc'])
+        if str(g.get('score_conflict','0')) in ('1','True','true') or str(g.get('identity_conflict','0')) in ('1','True','true'):
+            continue
+        if verified is not None and (str(g['home_id']) not in verified or str(g['away_id']) not in verified):
+            continue
         if not now < tip <= now + timedelta(hours=72):
             continue
         result=predict(model,g)
@@ -525,7 +538,7 @@ def main():
         except (OSError, ValueError, KeyError) as exc:
             print('WARNING: team directory unavailable; retaining only an earlier verified directory:', exc)
         rows=read_csv(root/'games.csv')
-        result={'sync':ingested, 'forecast':append_pregame(rows,root/'forecast_ledger.jsonl'),
+        result={'sync':ingested, 'forecast':append_pregame(rows,root/'forecast_ledger.jsonl',verified_ids=load_verified_d1_ids(root/'team_directory.json')),
                 'prospective':grade(rows,root/'forecast_ledger.jsonl')}
         report_file(root/'reports/prospective.json',result['prospective'])
         print(json.dumps(result,indent=2))
