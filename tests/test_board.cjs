@@ -23,3 +23,15 @@ test('next upcoming start excludes completed and already-started games',()=>{
   assert.equal(games.length,4); // Past and in-progress cards remain available
   assert.equal(nextUnstartedGame(games,Date.parse('2026-11-04T00:00:00Z')),null);
 });
+
+test('Division I matchup default excludes unverified opponents while All restores them',()=>{
+ const {isD1,byScope}=require('../site/app.js');
+ const gs=[
+   {id:'division1',home_division:'D1',away_division:'D1'},
+   {id:'small',home_division:'D1',away_division:'OTHER_OR_UNVERIFIED'}
+ ];
+ assert.equal(isD1(gs[0]),true);
+ assert.deepEqual(byScope(gs).map(x=>x.id),['division1']);
+ assert.deepEqual(byScope(gs,'all').map(x=>x.id),['division1','small']);
+ assert.deepEqual(byScope(gs,'other').map(x=>x.id),['small']);
+});
