@@ -32,7 +32,7 @@
     <section id="view-games" class="view">
       <section class="hero">
         <div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot"></span> SEASON <span id="seasonLabel">2026–27</span> <span class="eyebrow-divider">/</span> MEN'S DIVISION I</div>
-          <h1>Every matchup.<br><span>One model view.</span></h1>
+          <h1>Division I matchups.<br><span>One model view.</span></h1>
           <p>Live game board, model-projected scores, and a transparent record of every prediction made before tipoff.</p>
           <div class="hero-meta"><span><span class="meta-dot"></span> Model-generated only</span><span class="meta-divider"></span><span>No paid data feeds</span></div>
         </div>
@@ -43,16 +43,17 @@
       <section class="kpi-strip" aria-label="Model status">
         <div class="kpi"><small>GAME COVERAGE</small><strong id="kpiGames">—</strong><span>Current board</span></div>
         <div class="kpi"><small>PREGAME FORECASTS</small><strong id="kpiForecasts">—</strong><span>Source-verified captures</span></div>
-        <div class="kpi"><small>GRADED PREDICTIONS</small><strong id="kpiGraded">—</strong><span>Pre-tip results only</span></div>
+        <div class="kpi"><small>D-I PICKS GRADED</small><strong id="kpiGraded">—</strong><span>Pre-tip results only</span></div>
         <div class="kpi"><small>MARKET DATA</small><strong class="kpi-muted">Pending</strong><span>No invented lines</span></div>
       </section>
       <div class="section-top"><div><div class="section-kicker">MATCHUP CENTER</div><h2>Game board <span class="soft-count" id="gameCount"></span></h2></div><span class="date-stamp" id="dayStamp">All dates</span></div>
       <div class="toolbar">
         <div class="date-controls"><button id="prevDay" class="arrow-btn" title="Previous date" aria-label="Previous date">‹</button><div class="date-pills" id="datePills"></div><button id="nextDay" class="arrow-btn" title="Next date" aria-label="Next date">›</button></div>
         <div class="filters"><label class="searchbox"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg><input id="gameSearch" placeholder="Search team or matchup" aria-label="Search team or matchup" autocomplete="off"></label>
-          <select id="gameFilter" aria-label="Filter games"><option value="all">All games</option><option value="predicted">With projection</option><option value="upcoming">Upcoming</option><option value="completed">Final</option></select>
+          <select id="gameFilter" aria-label="Filter games"><option value="all">All games</option><option value="predicted">With projection</option><option value="upcoming">Upcoming</option><option value="completed">Final</option></select><select id="matchupScope" aria-label="Matchup classification"><option value="d1">D-I vs D-I</option><option value="all">All opponents</option><option value="other">Other / unverified</option></select>
         </div>
       </div>
+      <p class="scope-explain" style="color:var(--muted);font-size:12px;margin:0 0 16px">Showing verified D-I matchups by default. Choose <b>All opponents</b> to include smaller schools and other source-listed games. ESPN listing does not guarantee FanDuel availability.</p>
       <div id="dataAlert" class="data-alert" role="status" hidden></div>
       <div id="gameCards" class="cards-grid" aria-live="polite"></div>
       <div class="disclaimer">Projections represent an experimental model, not verified betting edges. No ATS or O/U pick is shown without a real sportsbook line. Forecast timestamps are recorded before tipoff.</div>
