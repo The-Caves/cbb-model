@@ -19,7 +19,29 @@
       }
     ],
     "first_observed_utc": "2026-11-05T16:55:35Z",
-    "last_seen_utc": "2026-11-05T22:41:13Z"
+    "last_seen_utc": "2026-11-06T03:27:02Z"
+  },
+  "401929352": {
+    "evidence": [
+      {
+        "game_id": "401929352",
+        "new_identity": [
+          "2638",
+          "2916",
+          "2026-11-09T00:00:00Z"
+        ],
+        "observed_utc": "2026-11-06T03:27:05Z",
+        "original_identity": [
+          "2638",
+          "2916",
+          "2026-11-08T23:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "63cf8f12dded8baaaa2b51442dac5a6eb73671658f52bc9516516afe893f79c5"
+      }
+    ],
+    "first_observed_utc": "2026-11-06T03:27:05Z",
+    "last_seen_utc": "2026-11-06T03:27:05Z"
   },
   "401929438": {
     "evidence": [
@@ -41,6 +63,6 @@
       }
     ],
     "first_observed_utc": "2026-11-05T16:55:34Z",
-    "last_seen_utc": "2026-11-05T22:41:12Z"
+    "last_seen_utc": "2026-11-06T03:27:01Z"
   }
 }
