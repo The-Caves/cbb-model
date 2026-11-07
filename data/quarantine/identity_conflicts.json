@@ -19,7 +19,51 @@
       }
     ],
     "first_observed_utc": "2026-11-05T16:55:35Z",
-    "last_seen_utc": "2026-11-06T22:07:56Z"
+    "last_seen_utc": "2026-11-07T02:49:49Z"
+  },
+  "401920952": {
+    "evidence": [
+      {
+        "game_id": "401920952",
+        "new_identity": [
+          "140",
+          "79",
+          "2026-11-07T02:15:00Z"
+        ],
+        "observed_utc": "2026-11-07T02:49:51Z",
+        "original_identity": [
+          "140",
+          "79",
+          "2026-11-07T01:30:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "7c38a42f5c2f5413f090d09434337841724b7e0f833a908b450e00bf0cf267d7"
+      }
+    ],
+    "first_observed_utc": "2026-11-07T02:49:51Z",
+    "last_seen_utc": "2026-11-07T02:49:51Z"
+  },
+  "401922249": {
+    "evidence": [
+      {
+        "game_id": "401922249",
+        "new_identity": [
+          "2697",
+          "132013",
+          "2026-11-10T00:00:00Z"
+        ],
+        "observed_utc": "2026-11-07T02:49:54Z",
+        "original_identity": [
+          "2697",
+          "132013",
+          "2026-11-09T23:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "76c489d40acf93df7f5b14f20da42932b477ec6f5fc7872700ff0caf11fd8452"
+      }
+    ],
+    "first_observed_utc": "2026-11-07T02:49:54Z",
+    "last_seen_utc": "2026-11-07T02:49:54Z"
   },
   "401929352": {
     "evidence": [
@@ -41,7 +85,7 @@
       }
     ],
     "first_observed_utc": "2026-11-06T03:27:05Z",
-    "last_seen_utc": "2026-11-06T22:07:59Z"
+    "last_seen_utc": "2026-11-07T02:49:53Z"
   },
   "401929356": {
     "evidence": [
@@ -63,7 +107,7 @@
       }
     ],
     "first_observed_utc": "2026-11-06T12:58:27Z",
-    "last_seen_utc": "2026-11-06T22:07:57Z"
+    "last_seen_utc": "2026-11-07T02:49:51Z"
   },
   "401929438": {
     "evidence": [
@@ -85,6 +129,6 @@
       }
     ],
     "first_observed_utc": "2026-11-05T16:55:34Z",
-    "last_seen_utc": "2026-11-06T22:07:55Z"
+    "last_seen_utc": "2026-11-07T02:49:48Z"
   }
 }
