@@ -1,8 +1,8 @@
 {
-  "observed_utc": "2026-11-07T20:54:31Z",
-  "sha256": "4b00b319e56f6791f3d45ed26cf2434c4937a4f14dc6b6351536aa2cc4753d3c",
+  "observed_utc": "2026-11-08T11:57:07Z",
+  "sha256": "66578a939c004f36b39057c1bcf90d5a6445f2632f28f7013ec6fba442510591",
   "source": "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams?limit=500",
-  "team_count": 363,
+  "team_count": 365,
   "teams": {
     "103": "Boston College Eagles",
     "104": "Boston University Terriers",
@@ -284,6 +284,7 @@
     "279": "Pacific Tigers",
     "28": "UC San Diego Tritons",
     "2803": "Bryant Bulldogs",
+    "2815": "Lindenwood Lions",
     "282": "Indiana State Sycamores",
     "2837": "East Texas A&M Lions",
     "284": "Stonehill Skyhawks",
@@ -359,6 +360,7 @@
     "84": "Indiana Hoosiers",
     "85": "IU Indianapolis Jaguars",
     "87": "Notre Dame Fighting Irish",
+    "88": "Southern Indiana Screaming Eagles",
     "9": "Arizona State Sun Devils",
     "91": "Bellarmine Knights",
     "93": "Murray State Racers",

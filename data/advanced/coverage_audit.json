@@ -2,35 +2,35 @@
   "accepted_rows_in_archive": 1726,
   "active_model_changed": false,
   "archived_valid_non_d1_game_boxscores": 10,
-  "as_of_utc": "2026-11-08T02:30:27Z",
+  "as_of_utc": "2026-11-08T11:57:08Z",
   "by_season": {
     "2025": {
-      "coverage_fraction": 0.0835,
+      "coverage_fraction": 0.0827,
       "d1_teams_with_5plus_games": 2,
       "disputed_source_score_games": 0,
-      "eligible_d1_final_games": 5677,
-      "missing_boxscores": 5203,
-      "other_or_unverified_final_games": 615,
+      "eligible_d1_final_games": 5733,
+      "missing_boxscores": 5259,
+      "other_or_unverified_final_games": 559,
       "teams_with_any_verified_games": 360,
       "verified_boxscores": 474
     },
     "2026": {
-      "coverage_fraction": 0.1805,
+      "coverage_fraction": 0.1788,
       "d1_teams_with_5plus_games": 307,
       "disputed_source_score_games": 0,
-      "eligible_d1_final_games": 5667,
-      "missing_boxscores": 4644,
-      "other_or_unverified_final_games": 633,
+      "eligible_d1_final_games": 5723,
+      "missing_boxscores": 4700,
+      "other_or_unverified_final_games": 577,
       "teams_with_any_verified_games": 362,
       "verified_boxscores": 1023
     },
     "2027": {
-      "coverage_fraction": 0.7993,
+      "coverage_fraction": 0.7399,
       "d1_teams_with_5plus_games": 0,
       "disputed_source_score_games": 7,
-      "eligible_d1_final_games": 274,
-      "missing_boxscores": 55,
-      "other_or_unverified_final_games": 133,
+      "eligible_d1_final_games": 296,
+      "missing_boxscores": 77,
+      "other_or_unverified_final_games": 136,
       "teams_with_any_verified_games": 317,
       "verified_boxscores": 219
     }
@@ -44,6 +44,6 @@
   "schema": 1,
   "source": "ESPN scoreboard + ESPN game summary + independent ESPN team directory",
   "status": "AUDITED_WITH_QUARANTINED_SCORE_REVISIONS",
-  "verified_d1_directory_count": 363,
+  "verified_d1_directory_count": 365,
   "warning": "Retrospective statistics cannot be treated as if acquired before past games. No unsupported odds or player availability."
 }
