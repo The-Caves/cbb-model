@@ -5,43 +5,43 @@
   "audit_status": "AUDITED_WITH_QUARANTINED_SCORE_REVISIONS",
   "audit_by_season": {
     "2025": {
-      "eligible_d1_final_games": 5677,
-      "verified_boxscores": 474,
-      "missing_boxscores": 5203,
-      "coverage_fraction": 0.0835,
-      "other_or_unverified_final_games": 615,
+      "eligible_d1_final_games": 5733,
+      "verified_boxscores": 496,
+      "missing_boxscores": 5237,
+      "coverage_fraction": 0.0865,
+      "other_or_unverified_final_games": 559,
       "disputed_source_score_games": 0,
       "d1_teams_with_5plus_games": 2,
-      "teams_with_any_verified_games": 360
-    },
-    "2026": {
-      "eligible_d1_final_games": 5667,
-      "verified_boxscores": 1023,
-      "missing_boxscores": 4644,
-      "coverage_fraction": 0.1805,
-      "other_or_unverified_final_games": 633,
-      "disputed_source_score_games": 0,
-      "d1_teams_with_5plus_games": 307,
       "teams_with_any_verified_games": 362
     },
+    "2026": {
+      "eligible_d1_final_games": 5723,
+      "verified_boxscores": 1067,
+      "missing_boxscores": 4656,
+      "coverage_fraction": 0.1864,
+      "other_or_unverified_final_games": 577,
+      "disputed_source_score_games": 0,
+      "d1_teams_with_5plus_games": 320,
+      "teams_with_any_verified_games": 364
+    },
     "2027": {
-      "eligible_d1_final_games": 246,
-      "verified_boxscores": 219,
-      "missing_boxscores": 27,
-      "coverage_fraction": 0.8902,
-      "other_or_unverified_final_games": 125,
-      "disputed_source_score_games": 7,
+      "eligible_d1_final_games": 296,
+      "verified_boxscores": 231,
+      "missing_boxscores": 65,
+      "coverage_fraction": 0.7804,
+      "other_or_unverified_final_games": 136,
+      "disputed_source_score_games": 8,
       "d1_teams_with_5plus_games": 0,
-      "teams_with_any_verified_games": 317
+      "teams_with_any_verified_games": 328
     }
   },
   "quarantined_archive_rows": 0,
-  "as_of_utc": "2026-11-07T16:57:52Z",
+  "as_of_utc": "2026-11-08T17:08:06Z",
   "attempted": 80,
   "accepted_this_run": 78,
   "rejected_this_run": 2,
-  "accepted_total": 1726,
-  "profile_teams": 317,
+  "accepted_total": 1804,
+  "profile_teams": 328,
   "profile_teams_5plus": 0,
   "rejections": [
     {
