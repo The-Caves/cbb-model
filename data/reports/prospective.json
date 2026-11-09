@@ -1,10 +1,10 @@
 {
   "all_games": {
-    "margin_bias": -9.696,
-    "margin_mae": 15.185,
-    "n": 247,
-    "su_accuracy": 0.8178,
-    "total_mae": 13.818
+    "margin_bias": -9.737,
+    "margin_mae": 15.176,
+    "n": 250,
+    "su_accuracy": 0.816,
+    "total_mae": 13.827
   },
   "ats_graded": 0,
   "established_teams": {
