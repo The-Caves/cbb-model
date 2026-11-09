@@ -286,12 +286,15 @@ def eligible(g, cutoff, retrospective):
     return retrospective or bool(g['first_final_observed_utc'] and dt(g['first_final_observed_utc']) <= cutoff)
 
 
-def fit(rows, cutoff, test_season=None, retrospective=False, alpha=3.0, prior_weight=0.60, home_court_points=HOME_COURT_POINTS):
+def fit(rows, cutoff, test_season=None, retrospective=False, alpha=3.0, prior_weight=0.60, home_court_points=HOME_COURT_POINTS, verified_ids=None):
     target = test_season or season(cutoff)
     used = []
     counts = Counter()
+    verified = {str(team_id) for team_id in verified_ids} if verified_ids is not None else None
     for g in rows:
         if int(g['season']) not in (target, target-1) or not eligible(g, cutoff, retrospective):
+            continue
+        if verified is not None and (str(g['home_id']) not in verified or str(g['away_id']) not in verified):
             continue
         try:
             hs, ats = float(g['home_score']), float(g['away_score'])
@@ -334,7 +337,8 @@ def fit(rows, cutoff, test_season=None, retrospective=False, alpha=3.0, prior_we
             'margin_sd': margin_sd, 'cutoff': iso(cutoff), 'season': target,
             'training_latest_tip': max(g['tip_utc'] for g, _, _, _ in used),
             'home_court_points': float(home_court_points),
-            'previous_season_weight': prior_weight, 'ridge_alpha': alpha}
+            'previous_season_weight': prior_weight, 'ridge_alpha': alpha,
+            'verified_d1_training_only':verified is not None}
 
 
 def predict(model, g, min_current=5):
