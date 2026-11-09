@@ -201,6 +201,29 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
             graded_d1.append(obs)
         else:
             graded_other.append(obs)
+    # Evaluation statistics are as-of *site export time*, not a retroactive
+    # adjustment to the independently frozen pre-tip score predictions.
+    d1_graded_reference = metrics(graded_d1)
+    for presented in games:
+        frozen_projection = presented['projection']
+        if frozen_projection is None:
+            continue
+        sample = min(int(frozen_projection['home_games']),
+                     int(frozen_projection['away_games']))
+        frozen_projection['reliability'] = {
+            'status': 'PASS_LOW_CURRENT_SAMPLE' if sample < 5 else 'PASS_NO_VERIFIED_MARKET',
+            'current_season_min_games': sample,
+            'margin_mae_points': d1_graded_reference['margin_mae']
+                if d1_graded_reference['n'] >= 30 else None,
+            'total_mae_points': d1_graded_reference['total_mae']
+                if d1_graded_reference['n'] >= 30 else None,
+            'historical_comparison_games': d1_graded_reference['n'],
+            'reference_as_of_utc': iso(now),
+            'market_spread_verified': False,
+            'ats_edge_validated': False,
+            'lineup_availability_verified': False,
+            'warning': 'Error averages are descriptive of previously graded D-I games; not a confidence interval or a betting edge.'
+        }
     prospective = {
         'status':'PROSPECTIVE_FROZEN_RESEARCH_ONLY',
         'all_games':metrics(graded),

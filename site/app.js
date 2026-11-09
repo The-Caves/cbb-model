@@ -35,7 +35,7 @@ function gameCard(g){
   const awayDivision=g.away_division==='OTHER_OR_UNVERIFIED'?' · OTHER / UNVERIFIED OPPONENT':'';
   const homeDivision=g.home_division==='OTHER_OR_UNVERIFIED'?' · OTHER / UNVERIFIED OPPONENT':'';
   const cardStatus=real?'FINAL':live?'LIVE':new Date(g.tip_utc).getTime()<=Date.now()?'STARTED / PENDING':'UPCOMING';
-  const condition=p?(p.status==='PASS_LOW_SAMPLE'?'LOW SAMPLE · PASS':'RESEARCH PROJECTION'):'NO VERIFIED PICK';
+  const condition=p?(p.reliability?.status==='PASS_LOW_CURRENT_SAMPLE'?'PASS · LOW SAMPLE':p.reliability?.status==='PASS_NO_VERIFIED_MARKET'?'PASS · NO BOOK LINE':p.status==='PASS_LOW_SAMPLE'?'PASS · LOW SAMPLE':'RESEARCH PROJECTION'):'NO VERIFIED PICK';
   const when=dateFmt.format(new Date(g.tip_utc));
   const outcome=real && p && p.margin!==0?((g.home_score-g.away_score>0)===(p.margin>0)?' · WINNER HIT':' · WINNER MISS'):'';
   const predictionHtml=p?`
@@ -44,6 +44,11 @@ function gameCard(g){
     <div class="proj-val"><small>PROJECTED WINNER</small><strong class="accent" title="${side}">${side}</strong></div>
     <div class="proj-val"><small>MODEL MARGIN · NOT A BOOK LINE</small><strong>${p.margin===0?'EVEN':`${num(Math.abs(p.margin),1)} pts`}</strong></div>
     <div class="proj-val"><small>MODEL TOTAL</small><strong>${num(p.total,1)}</strong></div>
+  </div>
+  <div class="data-note" style="font-size:11px;line-height:1.4;margin-top:10px;color:var(--muted)">
+    Margin and total are research projections, not betting lines.
+    ${p.reliability?.margin_mae_points!=null?`Historical D-I average margin error: ${num(p.reliability.margin_mae_points,1)} pts over ${num(p.reliability.historical_comparison_games)} graded games.`:''}
+    <strong>PASS: no verified ATS edge or player availability check.</strong>
   </div>`:`<div class="proj-head"><small>MODEL PROJECTION</small><span class="proj-tag">NO CAPTURE</span></div><div class="no-proj">${(g.identity_source_under_review||g.score_source_under_review)?'Source identity or final score under review: this matchup is excluded from model training and grading.':!isD1(g)?'Other or unverified opponent: no qualified Division I projection. ESPN lists the game; FanDuel listing is not verified.':real?'No archived pre-tip prediction for this game.': 'Waiting for a valid model snapshot before tipoff.'}</div>`;
   const awayShown=real?num(g.away_score):live?num(g.away_live_score):p?num(p.away,1):'—';
   const homeShown=real?num(g.home_score):live?num(g.home_live_score):p?num(p.home,1):'—';

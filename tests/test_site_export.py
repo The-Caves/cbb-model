@@ -135,3 +135,18 @@ def test_quarantined_identity_is_not_a_valid_d1_game_or_graded(tmp_path):
     assert not g['verified_d1_matchup']
     assert g['projection'] is None
     assert out['performance']['prospective']['verified_d1_matchups']['n']==0
+
+def test_reliability_overlay_does_not_rewrite_frozen_forecast(tmp_path):
+    known={'1':'Verified Home','2':'Verified Away'}
+    ledger=tmp_path/'frozen.jsonl'
+    original=prediction()
+    ledger.write_text(json.dumps(original)+'\n')
+    payload=export_payload([game()],ledger,NOW,directory=known)
+    p=payload['games'][0]['projection']
+    assert p['margin']==10
+    assert p['reliability']['status']=='PASS_LOW_CURRENT_SAMPLE'
+    assert p['reliability']['current_season_min_games']==2
+    assert p['reliability']['margin_mae_points'] is None
+    assert p['reliability']['ats_edge_validated'] is False
+    assert p['reliability']['lineup_availability_verified'] is False
+    assert json.loads(ledger.read_text())==original
