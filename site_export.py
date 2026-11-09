@@ -14,6 +14,31 @@ from cbb import dt, utcnow, iso, read_csv, eligible, metrics, VERSION
 from team_directory import clean_label, load_directory
 
 ALLOWED_MODEL_VERSIONS = {'CBB_SCORE_RIDGE_V0_2', VERSION}  # keep all authentic historic freezes
+from shadow_predictions import SHADOW_VERSION
+
+def shadow_forecasts(ledger, by_id):
+    latest={}
+    ledger=Path(ledger)
+    if not ledger.exists(): return latest
+    for line in ledger.read_text(encoding='utf-8').splitlines():
+        if not line.strip():continue
+        raw=json.loads(line)
+        g=by_id.get(str(raw.get('game_id')))
+        if (g is None or raw.get('model')!=SHADOW_VERSION or
+            raw.get('validation')!='SHADOW_UNVALIDATED' or
+            raw.get('live_champion_changed') is not False or
+            str(g.get('identity_conflict','0')) in ('1','True','true') or
+            str(g.get('score_conflict','0')) in ('1','True','true')):
+            continue
+        # Reuse original strict pre-tip and score arithmetic checks, but
+        # demand a separate shadow identifier and never treat as champion.
+        test={**raw,'model':VERSION,'validation':'PASS_UNVALIDATED'}
+        if not valid_frozen(test,g):continue
+        prior=latest.get(raw['game_id'])
+        if prior is None or dt(prior['captured_utc'])<dt(raw['captured_utc']):
+            latest[raw['game_id']]=raw
+    return latest
+
 
 
 def load_json(path):
@@ -84,11 +109,12 @@ def _intscore(v):
     return int(round(float(v)))
 
 
-def export_payload(rows, ledger, now=None, historical=None, directory=None, historical_v02=None):
+def export_payload(rows, ledger, now=None, historical=None, directory=None, historical_v02=None, shadow_ledger=None):
     now = now or utcnow()
     season_year = now.year + int(now.month >= 7)
     by_id = {str(g['game_id']):g for g in rows}
     frozen = forecasts(ledger, by_id)
+    shadows = shadow_forecasts(shadow_ledger,by_id) if shadow_ledger is not None else {}
     directory = directory or {}
     def display(team_id, raw_name):
         return directory.get(str(team_id)) or clean_label(raw_name)
@@ -114,6 +140,7 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
         # Keep original pre-tip ledger immutable; do not publish non-D-I
         # forecasts as qualified Division-I model predictions.
         pred = original_forecast if qualified_d1 and not disputed else None
+        shadow = shadows.get(str(g['game_id'])) if pred is not None and qualified_d1 and not disputed else None
         rec = {'id':str(g['game_id']), 'tip_utc':g['tip_utc'],
             'home':display(g['home_id'], g['home']), 'away':display(g['away_id'],g['away']),
             'home_division':division(g['home_id']), 'away_division':division(g['away_id']),
@@ -128,7 +155,16 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
             'game_clock':g.get('game_clock') or '',
             'verified_d1_matchup':qualified_d1 and not disputed,
             'hidden_unqualified_projection':bool(original_forecast and (not qualified_d1 or disputed)),
-            'projection':None, 'market_spread':None,'market_total':None}
+            'projection':None, 'shadow_projection':None, 'market_spread':None,'market_total':None}
+        if shadow:
+            shadow_margin=float(shadow['pred_margin'])
+            champion_margin=float(pred['pred_margin'])
+            rec['shadow_projection']={
+                'model':SHADOW_VERSION,'captured_utc':shadow['captured_utc'],
+                'margin':shadow_margin,'total':float(shadow['pred_total']),
+                'experimental_only':True,'never_betting_advice':True,
+                'winner_disagrees':(shadow_margin>0)!=(champion_margin>0)
+            }
         if pred:
             # Literal model output, not invented; pretip provenance preserved.
             rec['projection'] = {
@@ -262,7 +298,7 @@ def export_site(root='data', site='site', now=None):
     directory=load_directory(root/'team_directory.json')
     legacy=load_json(root/'reports/backtest_2026_v02.json')
     payload=export_payload(rows,root/'forecast_ledger.jsonl',now=now,historical=historic,
-        directory=directory,historical_v02=legacy)
+        directory=directory,historical_v02=legacy,shadow_ledger=root/'shadow_ledger.jsonl')
     destination=site/'data.json'
     tmp=destination.with_suffix('.json.tmp')
     tmp.write_text(json.dumps(payload,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')

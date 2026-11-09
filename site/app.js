@@ -50,6 +50,8 @@ function gameCard(g){
     ${p.reliability?.margin_mae_points!=null?`Historical D-I average margin error: ${num(p.reliability.margin_mae_points,1)} pts over ${num(p.reliability.historical_comparison_games)} graded games.`:''}
     <strong>PASS: no verified ATS edge or player availability check.</strong>
   </div>`:`<div class="proj-head"><small>MODEL PROJECTION</small><span class="proj-tag">NO CAPTURE</span></div><div class="no-proj">${(g.identity_source_under_review||g.score_source_under_review)?'Source identity or final score under review: this matchup is excluded from model training and grading.':!isD1(g)?'Other or unverified opponent: no qualified Division I projection. ESPN lists the game; FanDuel listing is not verified.':real?'No archived pre-tip prediction for this game.': 'Waiting for a valid model snapshot before tipoff.'}</div>`;
+  const shadow=g.shadow_projection;
+  const shadowDetails=shadow?`<p><strong>Experimental D-I-only second opinion:</strong> ${esc(shadow.margin>0?g.home:g.away)} by ${num(Math.abs(shadow.margin),1)}; projected total ${num(shadow.total,1)}. ${shadow.winner_disagrees?'<strong>MODELS DISAGREE — PASS.</strong>':''} This unvalidated challenger uses a lighter previous-season weight and is not a sportsbook recommendation. Captured ${esc(new Date(shadow.captured_utc).toLocaleString())} before tipoff.</p>`:'';
   const awayShown=real?num(g.away_score):live?num(g.away_live_score):p?num(p.away,1):'—';
   const homeShown=real?num(g.home_score):live?num(g.home_live_score):p?num(p.home,1):'—';
   const scoreKind=real?'FINAL':live?'LIVE':p?'PROJ':'';
@@ -63,6 +65,7 @@ function gameCard(g){
     <div class="card-footer"><span>${p?`Frozen ${esc(new Date(p.captured_utc).toLocaleString(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}))}`:'Spread and total: not sourced'}</span><span>${esc(outcome.replace(/^ · /,''))||'No verified market odds'}</span></div>
     <details><summary>Matchup details</summary><div class="details-body">
       ${p?`<p><strong>Projected score:</strong> ${esc(g.away)} ${num(p.away,1)} – ${esc(g.home)} ${num(p.home,1)}</p><p><strong>Season sample:</strong> ${num(p.away_games)} away games / ${num(p.home_games)} home games. Model trained on ${num(p.training_games)} historical/current games.</p><p><strong>Forecast recorded:</strong> ${esc(new Date(p.captured_utc).toLocaleString())}, strictly before tipoff. Win probabilities are not yet calibrated.</p>`:'<p>No pre-tip model capture is stored. A game without one is deliberately not given a projected winner.</p>'}
+      ${shadowDetails}
       <p><strong>ATS / Over-under:</strong> Unavailable until genuine timestamped sportsbook lines are captured. No odds or bet recommendation invented.</p>
     </div></details>
    </article>`;

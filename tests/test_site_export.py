@@ -150,3 +150,23 @@ def test_reliability_overlay_does_not_rewrite_frozen_forecast(tmp_path):
     assert p['reliability']['ats_edge_validated'] is False
     assert p['reliability']['lineup_availability_verified'] is False
     assert json.loads(ledger.read_text())==original
+
+def test_pregame_shadow_is_separate_not_promoted(tmp_path):
+    main=tmp_path/'main.jsonl'
+    main.write_text(json.dumps(prediction())+'\n')
+    candidate={**prediction(),'model':'CBB_D1_PRIOR30_SHADOW_0_1',
+               'validation':'SHADOW_UNVALIDATED',
+               'live_champion_changed':False,'pred_home':71.0,
+               'pred_away':76.0,'pred_margin':-5.0,'pred_total':147.0}
+    shadow=tmp_path/'shadow.jsonl'
+    shadow.write_text(json.dumps(candidate)+'\n')
+    out=export_payload([game()],main,NOW,directory={'1':'H','2':'A'},shadow_ledger=shadow)
+    g=out['games'][0]
+    assert g['projection']['margin']==10
+    assert g['shadow_projection']['margin']==-5
+    assert g['shadow_projection']['winner_disagrees']
+    assert g['shadow_projection']['never_betting_advice']
+    assert json.loads(main.read_text())==prediction()
+    late={**candidate,'captured_utc':(TIP+timedelta(seconds=1)).isoformat().replace('+00:00','Z')}
+    shadow.write_text(json.dumps(late)+'\n')
+    assert export_payload([game()],main,NOW,directory={'1':'H','2':'A'},shadow_ledger=shadow)['games'][0]['shadow_projection'] is None

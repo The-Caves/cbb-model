@@ -66,6 +66,8 @@ jobs:
         run: python d1_training_ablation.py --root data
       - name: Refresh source, freeze actual pre-tip picks, grade results
         run: python cbb.py daily
+      - name: Freeze experimental D-I second opinions strictly before tipoff
+        run: python shadow_predictions.py --root data
       - name: Report independently observed scoreboard identity changes
         run: |
           if [ -s data/quarantine/identity_conflicts.json ]; then
