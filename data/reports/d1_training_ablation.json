@@ -1,0 +1,80 @@
+{
+  "by_window": {
+    "early_season": {
+      "eval_days": 6,
+      "matched_games": 248,
+      "results": {
+        "d1_only_prior30": {
+          "margin_bias": -1.824,
+          "margin_mae": 9.744,
+          "n": 248,
+          "su_accuracy": 0.7702,
+          "total_mae": 15.657
+        },
+        "d1_only_prior60": {
+          "margin_bias": -1.244,
+          "margin_mae": 9.745,
+          "n": 248,
+          "su_accuracy": 0.7581,
+          "total_mae": 16.088
+        },
+        "deployed_v03_all_opponents_prior60": {
+          "margin_bias": -2.511,
+          "margin_mae": 10.149,
+          "n": 248,
+          "su_accuracy": 0.7621,
+          "total_mae": 15.91
+        }
+      }
+    },
+    "mid_season": {
+      "eval_days": 6,
+      "matched_games": 308,
+      "results": {
+        "d1_only_prior30": {
+          "margin_bias": 1.603,
+          "margin_mae": 9.516,
+          "n": 308,
+          "su_accuracy": 0.6916,
+          "total_mae": 13.39
+        },
+        "d1_only_prior60": {
+          "margin_bias": 1.654,
+          "margin_mae": 9.66,
+          "n": 308,
+          "su_accuracy": 0.6656,
+          "total_mae": 13.876
+        },
+        "deployed_v03_all_opponents_prior60": {
+          "margin_bias": 1.671,
+          "margin_mae": 9.701,
+          "n": 308,
+          "su_accuracy": 0.6688,
+          "total_mae": 13.811
+        }
+      }
+    }
+  },
+  "date_windows": {
+    "early_season": [
+      "2025-11-08",
+      "2025-11-10",
+      "2025-11-12",
+      "2025-11-14",
+      "2025-11-16",
+      "2025-11-18"
+    ],
+    "mid_season": [
+      "2026-01-08",
+      "2026-01-10",
+      "2026-01-12",
+      "2026-01-14",
+      "2026-01-16",
+      "2026-01-18"
+    ]
+  },
+  "model_champion_unchanged": "CBB_SCORE_RIDGE_V0_3",
+  "promotion": false,
+  "status": "RETROSPECTIVE_D1_ABLATION_ONLY",
+  "warning": "Retrospective historic score data; no authenticated contemporary rosters, odds, or historical pretip capture. Never auto-promote on these dates."
+}
