@@ -53,6 +53,9 @@ jobs:
             cp data/reports/backtest_2026.json data/reports/backtest_2026_v02.json
           fi
           python cbb.py backtest --season 2026
+      - name: Evaluate D-I-only training challenger on fixed historical dates
+        if: github.event_name == 'push'
+        run: python d1_training_ablation.py --root data
       - name: Refresh source, freeze actual pre-tip picks, grade results
         run: python cbb.py daily
       - name: Report independently observed scoreboard identity changes
