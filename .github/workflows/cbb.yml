@@ -35,6 +35,14 @@ jobs:
         run: |
           python -m pytest -q
           node --test tests/test_board.cjs
+      - name: Fast-forward fresh verified main before data modifications
+        # The previous CBB job may have committed a newer source snapshot
+        # while this queued run was waiting. Refresh before writing data,
+        # instead of trying to rebase conflicting JSON/CSV ledgers afterward.
+        shell: bash
+        run: |
+          git fetch origin main
+          git merge --ff-only origin/main
       - name: Backfill seasons and train baseline on first run
         run: |
           if [ ! -s data/reports/backtest_2026.json ]; then
