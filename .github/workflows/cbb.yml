@@ -64,6 +64,9 @@ jobs:
       - name: Evaluate D-I-only training challenger on fixed historical dates
         if: github.event_name == 'push'
         run: python d1_training_ablation.py --root data
+      - name: Compare D-I margin shrinkage and prior-era weights (research only)
+        if: github.event_name == 'push'
+        run: python margin_shrinkage_ablation.py --root data
       - name: Refresh source, freeze actual pre-tip picks, grade results
         run: python cbb.py daily
       - name: Freeze experimental D-I second opinions strictly before tipoff
