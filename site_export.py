@@ -10,10 +10,10 @@ from collections import Counter, defaultdict
 from datetime import timedelta
 from pathlib import Path
 
-from cbb import dt, utcnow, iso, read_csv, eligible, metrics, VERSION
+from cbb import dt, utcnow, iso, read_csv, eligible, metrics, VERSION, ACTIVE_LIVE_VERSION
 from team_directory import clean_label, load_directory
 
-ALLOWED_MODEL_VERSIONS = {'CBB_SCORE_RIDGE_V0_2', VERSION}  # keep all authentic historic freezes
+ALLOWED_MODEL_VERSIONS = {'CBB_SCORE_RIDGE_V0_2', VERSION, ACTIVE_LIVE_VERSION}  # keep all authentic historic freezes
 from shadow_predictions import SHADOW_VERSION
 
 def shadow_forecasts(ledger, by_id):
@@ -260,17 +260,21 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
             'lineup_availability_verified': False,
             'warning': 'Error averages are descriptive of previously graded D-I games; not a confidence interval or a betting edge.'
         }
+    by_model = defaultdict(list)
+    for finished in graded_d1:
+        by_model[finished.get('model','UNKNOWN')].append(finished)
     prospective = {
         'status':'PROSPECTIVE_FROZEN_RESEARCH_ONLY',
         'all_games':metrics(graded),
         'verified_d1_matchups':metrics(graded_d1),
+        'd1_by_model':{name:metrics(group) for name,group in by_model.items()},
         'other_or_unverified_matchups':metrics(graded_other),
         'established_teams':metrics([x for x in graded_d1 if x['status']=='RESEARCH_ONLY']),
         'ats_graded':0,'over_under_graded':0
     }
     return {
         'schema':1,'generated_at':iso(now), 'season':f'{season_year-1}–{str(season_year)[-2:]}',
-        'model':VERSION, 'validation':'PASS_UNVALIDATED',
+        'model':ACTIVE_LIVE_VERSION, 'validation':'PASS_UNVALIDATED',
         'directory':{'verified_d1_teams':len(directory),
             'source':'ESPN team directory' if directory else 'UNAVAILABLE',
             'unverified_opponents_on_board':sum(g['home_division'] != 'D1' for g in games)+sum(g['away_division'] != 'D1' for g in games)},
@@ -286,6 +290,7 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
             'ATS/O-U recommendations unavailable until timestamped market lines exist.',
             'Low-sample games are PASS, not validated betting recommendations.',
             'Model win probabilities are not calibrated.',
+            'Active v0.4 applies only to new pre-tip snapshots; earlier results remain assigned to their original model versions.',
             'Non-Division-I and unverified opponents remain available in an optional board filter; their forecasts are not presented as verified D-I projections.',
             'No sportsbook market listing can be inferred from an ESPN schedule entry.'
         ]}
