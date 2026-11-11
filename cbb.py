@@ -25,7 +25,8 @@ from scipy.stats import norm
 from team_directory import update_directory
 
 API = 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard'
-VERSION = 'CBB_SCORE_RIDGE_V0_3'
+VERSION = 'CBB_SCORE_RIDGE_V0_3'  # retain for immutable retrospective replay
+ACTIVE_LIVE_VERSION = 'CBB_SCORE_RIDGE_V0_4_D1_PRIOR30_A1_5'
 # Basketball venue advantage must not be inferred from a schedule full of
 # stronger Division I hosts playing lower-division visiting opponents.
 # A modest fixed baseline is safer until venue effects can be identified
@@ -431,8 +432,14 @@ def load_verified_d1_ids(path):
 
 def append_pregame(rows, ledger, now=None, verified_ids=None):
     now=now or utcnow()
+    verified={str(t) for t in verified_ids} if verified_ids is not None else None
+    if verified is not None and not verified:
+        return {'status':'PASS_NO_VERIFIED_D1_DIRECTORY','captured':0}
+    # v0.4 applies only to newly captured, genuinely pretip games.
+    # The v0.3 retrospective code and all prior frozen ledgers stay intact.
     try:
-        model=fit(rows,now,retrospective=False)
+        model=fit(rows,now,retrospective=False,alpha=1.5,
+                  prior_weight=0.30,verified_ids=verified)
     except ValueError:
         return {'status':'PASS_NO_OBSERVED_HISTORY','captured':0}
     existing=[]
@@ -440,7 +447,6 @@ def append_pregame(rows, ledger, now=None, verified_ids=None):
     if p.exists():
         existing=[json.loads(s) for s in p.read_text().splitlines() if s.strip()]
     captured=[]
-    verified={str(t) for t in verified_ids} if verified_ids is not None else None
     seen={(x['game_id'],x['captured_utc'],x['model']) for x in existing}
     for g in rows:
         tip=dt(g['tip_utc'])
@@ -452,7 +458,10 @@ def append_pregame(rows, ledger, now=None, verified_ids=None):
             continue
         result=predict(model,g)
         if result:
-            result.update(captured_utc=iso(now),validation='PASS_UNVALIDATED',market_odds=None)
+            result.update(model=ACTIVE_LIVE_VERSION, captured_utc=iso(now),
+                          validation='PASS_UNVALIDATED',market_odds=None,
+                          model_alpha=1.5,prior_season_game_weight=0.30,
+                          verified_d1_training=verified is not None)
             key=(result['game_id'],result['captured_utc'],result['model'])
             if key not in seen:
                 captured.append(result)
@@ -460,7 +469,8 @@ def append_pregame(rows, ledger, now=None, verified_ids=None):
     with p.open('a',encoding='utf-8') as f:
         for prediction in captured:
             f.write(json.dumps(prediction,sort_keys=True)+'\n')
-    return {'status':'CAPTURED_RESEARCH_ONLY','captured':len(captured),
+    return {'status':'CAPTURED_RESEARCH_ONLY','model':ACTIVE_LIVE_VERSION,
+            'captured':len(captured),
             'current_season_training_games':sum(model['counts'].values())//2,
             'home_court_points':model['home_court_points']}
 
@@ -493,7 +503,11 @@ def grade(rows, ledger, now=None):
         total=float(g['home_score'])+float(g['away_score'])
         scores.append({**pred,'actual_margin':m,'actual_total':total,
                        'correct':int((pred['pred_margin']>0)==(m>0))})
+    by_model=defaultdict(list)
+    for obs in scores:
+        by_model[obs.get('model','UNKNOWN')].append(obs)
     return {'status':'PROSPECTIVE_FROZEN_RESEARCH_ONLY', 'all_games':metrics(scores),
+            'by_model':{version:metrics(v) for version,v in by_model.items()},
             'established_teams':metrics([s for s in scores if s['status']=='RESEARCH_ONLY']),
             'ats_graded':0,'over_under_graded':0}
 
