@@ -19,7 +19,7 @@
       }
     ],
     "first_observed_utc": "2026-11-11T02:48:04Z",
-    "last_seen_utc": "2026-11-11T02:48:04Z"
+    "last_seen_utc": "2026-11-11T12:44:20Z"
   },
   "401911391": {
     "evidence": [
@@ -43,6 +43,28 @@
     "first_observed_utc": "2026-11-08T21:12:06Z",
     "last_seen_utc": "2026-11-11T02:48:06Z"
   },
+  "401917963": {
+    "evidence": [
+      {
+        "game_id": "401917963",
+        "new_identity": [
+          "2000",
+          "2617",
+          "2026-11-12T01:00:00Z"
+        ],
+        "observed_utc": "2026-11-11T12:44:22Z",
+        "original_identity": [
+          "2000",
+          "2617",
+          "2026-11-12T02:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "a57eb9e201f8106f308377b1af7de5d6dbd8eff932cf6e6cdfa43ad347f8ee38"
+      }
+    ],
+    "first_observed_utc": "2026-11-11T12:44:22Z",
+    "last_seen_utc": "2026-11-11T12:44:22Z"
+  },
   "401918053": {
     "evidence": [
       {
@@ -63,7 +85,7 @@
       }
     ],
     "first_observed_utc": "2026-11-09T02:40:29Z",
-    "last_seen_utc": "2026-11-11T02:48:02Z"
+    "last_seen_utc": "2026-11-11T12:44:19Z"
   },
   "401919029": {
     "evidence": [
@@ -85,7 +107,7 @@
       }
     ],
     "first_observed_utc": "2026-11-09T02:40:29Z",
-    "last_seen_utc": "2026-11-11T02:48:02Z"
+    "last_seen_utc": "2026-11-11T12:44:19Z"
   },
   "401919732": {
     "evidence": [
@@ -107,7 +129,7 @@
       }
     ],
     "first_observed_utc": "2026-11-05T16:55:35Z",
-    "last_seen_utc": "2026-11-11T02:47:58Z"
+    "last_seen_utc": "2026-11-11T12:44:16Z"
   },
   "401919733": {
     "evidence": [
@@ -129,7 +151,7 @@
       }
     ],
     "first_observed_utc": "2026-11-08T17:07:41Z",
-    "last_seen_utc": "2026-11-11T02:48:03Z"
+    "last_seen_utc": "2026-11-11T12:44:20Z"
   },
   "401920355": {
     "evidence": [
@@ -151,7 +173,7 @@
       }
     ],
     "first_observed_utc": "2026-11-08T21:12:02Z",
-    "last_seen_utc": "2026-11-11T02:48:02Z"
+    "last_seen_utc": "2026-11-11T12:44:19Z"
   },
   "401920887": {
     "evidence": [
@@ -173,7 +195,7 @@
       }
     ],
     "first_observed_utc": "2026-11-09T02:40:29Z",
-    "last_seen_utc": "2026-11-11T02:48:03Z"
+    "last_seen_utc": "2026-11-11T12:44:20Z"
   },
   "401920952": {
     "evidence": [
@@ -195,7 +217,7 @@
       }
     ],
     "first_observed_utc": "2026-11-07T02:49:51Z",
-    "last_seen_utc": "2026-11-11T02:47:59Z"
+    "last_seen_utc": "2026-11-11T12:44:17Z"
   },
   "401922239": {
     "evidence": [
@@ -217,7 +239,7 @@
       }
     ],
     "first_observed_utc": "2026-11-10T13:29:23Z",
-    "last_seen_utc": "2026-11-11T02:48:07Z"
+    "last_seen_utc": "2026-11-11T12:44:23Z"
   },
   "401922249": {
     "evidence": [
@@ -239,7 +261,29 @@
       }
     ],
     "first_observed_utc": "2026-11-07T02:49:54Z",
-    "last_seen_utc": "2026-11-11T02:48:03Z"
+    "last_seen_utc": "2026-11-11T12:44:20Z"
+  },
+  "401924921": {
+    "evidence": [
+      {
+        "game_id": "401924921",
+        "new_identity": [
+          "2172",
+          "2751",
+          "2026-11-14T20:00:00Z"
+        ],
+        "observed_utc": "2026-11-11T12:44:24Z",
+        "original_identity": [
+          "2172",
+          "2751",
+          "2026-11-14T21:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "02a2296a5b69605dab5b1c8edd63aeb720045e52774ece560069eb93c2b1be9b"
+      }
+    ],
+    "first_observed_utc": "2026-11-11T12:44:24Z",
+    "last_seen_utc": "2026-11-11T12:44:24Z"
   },
   "401925662": {
     "evidence": [
@@ -261,7 +305,29 @@
       }
     ],
     "first_observed_utc": "2026-11-10T00:42:39Z",
-    "last_seen_utc": "2026-11-11T02:48:03Z"
+    "last_seen_utc": "2026-11-11T12:44:20Z"
+  },
+  "401925663": {
+    "evidence": [
+      {
+        "game_id": "401925663",
+        "new_identity": [
+          "2011",
+          "2824",
+          "2026-11-12T00:00:00Z"
+        ],
+        "observed_utc": "2026-11-11T12:44:22Z",
+        "original_identity": [
+          "2011",
+          "2824",
+          "2026-11-11T23:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "a57eb9e201f8106f308377b1af7de5d6dbd8eff932cf6e6cdfa43ad347f8ee38"
+      }
+    ],
+    "first_observed_utc": "2026-11-11T12:44:22Z",
+    "last_seen_utc": "2026-11-11T12:44:22Z"
   },
   "401929002": {
     "evidence": [
@@ -283,7 +349,7 @@
       }
     ],
     "first_observed_utc": "2026-11-09T13:55:35Z",
-    "last_seen_utc": "2026-11-11T02:48:02Z"
+    "last_seen_utc": "2026-11-11T12:44:19Z"
   },
   "401929352": {
     "evidence": [
@@ -305,7 +371,7 @@
       }
     ],
     "first_observed_utc": "2026-11-06T03:27:05Z",
-    "last_seen_utc": "2026-11-11T02:48:02Z"
+    "last_seen_utc": "2026-11-11T12:44:19Z"
   },
   "401929356": {
     "evidence": [
@@ -327,7 +393,7 @@
       }
     ],
     "first_observed_utc": "2026-11-06T12:58:27Z",
-    "last_seen_utc": "2026-11-11T02:47:59Z"
+    "last_seen_utc": "2026-11-11T12:44:17Z"
   },
   "401929357": {
     "evidence": [
@@ -349,7 +415,7 @@
       }
     ],
     "first_observed_utc": "2026-11-09T13:55:36Z",
-    "last_seen_utc": "2026-11-11T02:48:03Z"
+    "last_seen_utc": "2026-11-11T12:44:20Z"
   },
   "401929438": {
     "evidence": [
@@ -371,7 +437,7 @@
       }
     ],
     "first_observed_utc": "2026-11-05T16:55:34Z",
-    "last_seen_utc": "2026-11-11T02:47:57Z"
+    "last_seen_utc": "2026-11-11T12:44:15Z"
   },
   "401930177": {
     "evidence": [
@@ -393,6 +459,6 @@
       }
     ],
     "first_observed_utc": "2026-11-09T02:40:32Z",
-    "last_seen_utc": "2026-11-11T02:48:06Z"
+    "last_seen_utc": "2026-11-11T12:44:22Z"
   }
 }
