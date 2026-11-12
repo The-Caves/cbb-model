@@ -197,3 +197,26 @@ def test_pregame_only_freezes_verified_d1_opponents(tmp_path):
     assert output['captured']==1
     entries=[json.loads(v) for v in ledger.read_text().splitlines()]
     assert [e['game_id'] for e in entries]==['811']
+
+
+def test_future_versioned_model_only_captures_pretip_and_verified_d1(tmp_path):
+    from cbb import ACTIVE_LIVE_VERSION
+    previous=records()
+    now=datetime(2025,12,19,0,tzinfo=UTC)
+    tip=datetime(2025,12,20,18,tzinfo=UTC)
+    previous.extend([
+        game(977,tip,home='1',away='2',completed=False),
+        game(978,tip,home='1',away='999',completed=False),
+        game(979,now-timedelta(minutes=2),home='1',away='2',completed=False),
+    ])
+    ledger=tmp_path/'v04.jsonl'
+    result=append_pregame(previous,ledger,now,verified_ids={'1','2'})
+    captures=[json.loads(row) for row in ledger.read_text().splitlines()]
+    assert result['captured']==1 and result['model']==ACTIVE_LIVE_VERSION
+    assert len(captures)==1 and captures[0]['game_id']=='977'
+    assert captures[0]['model']==ACTIVE_LIVE_VERSION
+    assert captures[0]['model_alpha']==1.5
+    assert captures[0]['prior_season_game_weight']==0.30
+    assert captures[0]['verified_d1_training']
+    assert captures[0]['captured_utc']<captures[0]['tip_utc']
+    assert append_pregame(previous,ledger,now,verified_ids=set())['captured']==0
