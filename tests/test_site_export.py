@@ -195,3 +195,59 @@ def test_v04_published_only_when_frozen_before_tip_and_graded_by_version(tmp_pat
     after=export_payload([game(completed=True)],ledger,TIP+timedelta(days=1),directory={'1':'H','2':'A'})
     assert after['games'][0]['projection']['model']==VERSION
     assert VERSION in after['performance']['prospective']['d1_by_model']
+
+
+def test_pretip_market_quote_visible_only_when_observed_and_strictly_graded(tmp_path):
+    from market_capture import append_pretip
+    g=game()
+    forecast={**prediction(),'home_id':'1','away_id':'2'}
+    frozen=tmp_path/'predictions.jsonl'
+    frozen.write_text(json.dumps(forecast)+'\n')
+    market=tmp_path/'market.jsonl'
+    payload={'events':[{'id':'100','date':g['tip_utc'],'competitions':[{
+        'competitors':[
+            {'homeAway':'home','team':{'id':'1','displayName':'Home University'}},
+            {'homeAway':'away','team':{'id':'2','displayName':'Away College'}}],
+        'odds':[{'provider':{'id':'55','name':'ESPN BET'},'spread':6.5,
+                 'overUnder':140.5,
+                 'homeTeamOdds':{'favorite':True},
+                 'awayTeamOdds':{'favorite':False}}]}]}]}
+    observed=(NOW+timedelta(hours=3)).isoformat().replace('+00:00','Z')
+    assert append_pretip(payload,observed,market)['captured']==1
+    kwargs=dict(directory={'1':'H','2':'A'},market_ledger=market)
+    before=export_payload([g],frozen,NOW+timedelta(hours=2),**kwargs)
+    assert before['games'][0]['market_spread'] is None
+    assert before['performance']['market_as_observed']['overall']['ats']['n']==0
+    after=export_payload([g],frozen,NOW+timedelta(hours=4),**kwargs)
+    assert after['games'][0]['market_provider']=='ESPN BET'
+    assert after['games'][0]['market_spread']==-6.5
+    assert after['games'][0]['market_spread_edge']==3.5
+    assert after['games'][0]['market_total_edge']==9.5
+    graded=export_payload([game(completed=True)],frozen,
+        TIP+timedelta(days=1),**kwargs)
+    assert graded['performance']['market_as_observed']['overall']['ats']['w']==1
+    assert graded['performance']['market_as_observed']['overall']['ou']['w']==1
+    assert graded['performance']['prospective']['ats_graded']==1
+    assert graded['performance']['prospective']['over_under_graded']==1
+    assert graded['performance']['historical_odds_available'] is False
+    assert graded['performance']['pretip_market_observations_available']
+    assert json.loads(frozen.read_text())==forecast
+
+def test_unverified_market_not_displayed_for_unverified_school(tmp_path):
+    from market_capture import append_pretip
+    p={**prediction(),'home_id':'1','away_id':'2'}
+    f=tmp_path/'p.jsonl';f.write_text(json.dumps(p)+'\n')
+    market=tmp_path/'quotes.jsonl'
+    payload={'events':[{'id':'100','date':TIP.isoformat().replace('+00:00','Z'),
+       'competitions':[{'competitors':[
+          {'homeAway':'home','team':{'id':'1'}},
+          {'homeAway':'away','team':{'id':'2'}}],
+       'odds':[{'provider':{'name':'Real Source'},'spread':6.5,'overUnder':145.5,
+                'homeTeamOdds':{'favorite':True},
+                'awayTeamOdds':{'favorite':False}}]}]}]}
+    append_pretip(payload,NOW.isoformat().replace('+00:00','Z'),market)
+    out=export_payload([game()],f,NOW+timedelta(hours=1),
+                       directory={'1':'H'},market_ledger=market)
+    assert out['games'][0]['projection'] is None
+    assert out['games'][0]['market_spread'] is None
+    assert out['performance']['market_as_observed']['matched_games']==0
