@@ -12,6 +12,7 @@ from pathlib import Path
 
 from cbb import dt, utcnow, iso, read_csv, eligible, metrics, VERSION, ACTIVE_LIVE_VERSION
 from team_directory import clean_label, load_directory
+from market_capture import last_pretip_quotes, grade_market
 
 ALLOWED_MODEL_VERSIONS = {'CBB_SCORE_RIDGE_V0_2', VERSION, ACTIVE_LIVE_VERSION}  # keep all authentic historic freezes
 from shadow_predictions import SHADOW_VERSION
@@ -109,12 +110,13 @@ def _intscore(v):
     return int(round(float(v)))
 
 
-def export_payload(rows, ledger, now=None, historical=None, directory=None, historical_v02=None, shadow_ledger=None):
+def export_payload(rows, ledger, now=None, historical=None, directory=None, historical_v02=None, shadow_ledger=None, market_ledger=None):
     now = now or utcnow()
     season_year = now.year + int(now.month >= 7)
     by_id = {str(g['game_id']):g for g in rows}
     frozen = forecasts(ledger, by_id)
     shadows = shadow_forecasts(shadow_ledger,by_id) if shadow_ledger is not None else {}
+    market_quotes = last_pretip_quotes(market_ledger,by_id) if market_ledger is not None else {}
     directory = directory or {}
     def display(team_id, raw_name):
         return directory.get(str(team_id)) or clean_label(raw_name)
@@ -141,6 +143,7 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
         # forecasts as qualified Division-I model predictions.
         pred = original_forecast if qualified_d1 and not disputed else None
         shadow = shadows.get(str(g['game_id'])) if pred is not None and qualified_d1 and not disputed else None
+        market = market_quotes.get(str(g['game_id'])) if pred is not None and qualified_d1 and not disputed else None
         rec = {'id':str(g['game_id']), 'tip_utc':g['tip_utc'],
             'home':display(g['home_id'], g['home']), 'away':display(g['away_id'],g['away']),
             'home_division':division(g['home_id']), 'away_division':division(g['away_id']),
@@ -155,7 +158,21 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
             'game_clock':g.get('game_clock') or '',
             'verified_d1_matchup':qualified_d1 and not disputed,
             'hidden_unqualified_projection':bool(original_forecast and (not qualified_d1 or disputed)),
-            'projection':None, 'shadow_projection':None, 'market_spread':None,'market_total':None}
+            'projection':None, 'shadow_projection':None,
+            'market_spread':None,'market_total':None,
+            'market_provider':None,'market_captured_utc':None,
+            'market_spread_edge':None,'market_total_edge':None}
+        if market:
+            rec['market_spread']=market['home_spread']
+            rec['market_total']=market['total']
+            rec['market_provider']=market['provider']
+            rec['market_captured_utc']=market['captured_utc']
+            if rec['market_spread'] is not None:
+                rec['market_spread_edge']=round(float(pred['pred_margin'])+
+                    float(rec['market_spread']),2)
+            if rec['market_total'] is not None:
+                rec['market_total_edge']=round(float(pred['pred_total'])-
+                    float(rec['market_total']),2)
         if shadow:
             shadow_margin=float(shadow['pred_margin'])
             champion_margin=float(pred['pred_margin'])
@@ -237,6 +254,9 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
             graded_d1.append(obs)
         else:
             graded_other.append(obs)
+    # Pregame-market grading uses only source-observed pretip quotes and
+    # separately frozen predictions. No postgame reconstruction is allowed.
+    market_performance=grade_market(rows,frozen,market_quotes,now,directory)
     # Evaluation statistics are as-of *site export time*, not a retroactive
     # adjustment to the independently frozen pre-tip score predictions.
     d1_graded_reference = metrics(graded_d1)
@@ -255,7 +275,7 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
                 if d1_graded_reference['n'] >= 30 else None,
             'historical_comparison_games': d1_graded_reference['n'],
             'reference_as_of_utc': iso(now),
-            'market_spread_verified': False,
+            'market_spread_verified': presented['market_spread'] is not None,
             'ats_edge_validated': False,
             'lineup_availability_verified': False,
             'warning': 'Error averages are descriptive of previously graded D-I games; not a confidence interval or a betting edge.'
@@ -270,7 +290,8 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
         'd1_by_model':{name:metrics(group) for name,group in by_model.items()},
         'other_or_unverified_matchups':metrics(graded_other),
         'established_teams':metrics([x for x in graded_d1 if x['status']=='RESEARCH_ONLY']),
-        'ats_graded':0,'over_under_graded':0
+        'ats_graded':market_performance['overall']['ats']['n'],
+        'over_under_graded':market_performance['overall']['ou']['n']
     }
     return {
         'schema':1,'generated_at':iso(now), 'season':f'{season_year-1}–{str(season_year)[-2:]}',
@@ -284,10 +305,12 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
             'retrospective_2025_26':historical,
             'retrospective_v02':historical_v02,
             'frozen_games_in_window':sum(g['projection'] is not None for g in games),
-            'historical_odds_available':False},
+            'historical_odds_available':False,
+            'pretip_market_observations_available':bool(market_quotes),
+            'market_as_observed':market_performance},
         'notes':[
             'Only genuine pre-tip model captures appear as projected scores.',
-            'ATS/O-U recommendations unavailable until timestamped market lines exist.',
+            'ATS/O-U recommendations unavailable without calibrated edge performance; any source-observed lines are research-only, not closing or guaranteed FanDuel quotes.',
             'Low-sample games are PASS, not validated betting recommendations.',
             'Model win probabilities are not calibrated.',
             'Active v0.4 applies only to new pre-tip snapshots; earlier results remain assigned to their original model versions.',
@@ -303,7 +326,8 @@ def export_site(root='data', site='site', now=None):
     directory=load_directory(root/'team_directory.json')
     legacy=load_json(root/'reports/backtest_2026_v02.json')
     payload=export_payload(rows,root/'forecast_ledger.jsonl',now=now,historical=historic,
-        directory=directory,historical_v02=legacy,shadow_ledger=root/'shadow_ledger.jsonl')
+        directory=directory,historical_v02=legacy,shadow_ledger=root/'shadow_ledger.jsonl',
+        market_ledger=root/'market'/'pretip_quotes.jsonl')
     destination=site/'data.json'
     tmp=destination.with_suffix('.json.tmp')
     tmp.write_text(json.dumps(payload,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
