@@ -240,6 +240,7 @@ def sync(start, end, root='data', historical=False):
     obs = 0
     skipped = 0
     quarantined = 0
+    market_quotes_captured = 0
     day = start
     while day <= end:
         rawdir = root / 'raw' / day.isoformat()
@@ -260,9 +261,17 @@ def sync(start, end, root='data', historical=False):
         (rawdir / (key + '.manifest.json')).write_text(json.dumps({
             'requested_date': day.isoformat(), 'observed_utc': observed,
             'games': len(records), 'sha256': hashlib.sha256(raw).hexdigest(), 'api': API}, indent=2))
+        source_sha=hashlib.sha256(raw).hexdigest()
         existing, new_conflicts = merge_with_score_quarantine(
-            existing, records, observed, root, hashlib.sha256(raw).hexdigest())
+            existing, records, observed, root, source_sha)
         quarantined += new_conflicts
+        # Reuse the same freely fetched scoreboard response. Only fields the
+        # source actually provides, observed BEFORE tip, may become market data.
+        if not historical:
+            from market_capture import append_pretip
+            market_capture_result=append_pretip(payload,observed,
+                root/'market'/'pretip_quotes.jsonl',source_sha)
+            market_quotes_captured+=market_capture_result['captured']
         # Checkpoint before next request; interruption never silently loses all progress.
         write_csv(path, existing)
         dates += 1
@@ -271,6 +280,7 @@ def sync(start, end, root='data', historical=False):
         time.sleep(0.6)
     return {'downloaded_dates': dates, 'cached_dates': skipped, 'observed_games': obs,
             'unique_games': len(existing), 'score_revision_conflicts':quarantined,
+            'market_quotes_observed_pretip':market_quotes_captured,
             'source': 'ESPN unofficial public scoreboard',
             'source_verified': bool(dates)}
 
