@@ -165,19 +165,30 @@ def grade_market(rows, frozen, quotes, cutoff, directory):
             rec["spread_edge_points"]=round(edge,2)
             # No selection when the model and market exactly agree. A push
             # means the actual score landed on the line, not a no-edge pass.
+            rec["model_margin_abs_error"]=round(abs(float(p["pred_margin"])-home_margin),2)
+            rec["market_margin_abs_error"]=round(abs(-float(q["home_spread"])-home_margin),2)
             if abs(edge)>1e-9:
                 rec["ats"]=outcome(edge,home_margin+float(q["home_spread"]))
         if q.get("total") is not None:
             edge=float(p["pred_total"])-float(q["total"])
             rec["total_edge_points"]=round(edge,2)
+            rec["model_total_abs_error"]=round(abs(float(p["pred_total"])-actual_total),2)
+            rec["market_total_abs_error"]=round(abs(float(q["total"])-actual_total),2)
             if abs(edge)>1e-9:
                 rec["ou"]=outcome(edge,actual_total-float(q["total"]))
         if "ats" not in rec and "ou" not in rec:continue
         rec["game_day_et"]=utc(g["tip_utc"]).astimezone(ZoneInfo("America/New_York")).date().isoformat()
         observed.append(rec)
     def rollup(group):
+        def mean(key):
+            vals=[r[key] for r in group if key in r]
+            return round(sum(vals)/len(vals),3) if vals else None
         return {"ats":counts([v for v in group if "ats" in v],"ats"),
-                "ou":counts([v for v in group if "ou" in v],"ou")}
+                "ou":counts([v for v in group if "ou" in v],"ou"),
+                "model_margin_mae":mean("model_margin_abs_error"),
+                "market_margin_mae":mean("market_margin_abs_error"),
+                "model_total_mae":mean("model_total_abs_error"),
+                "market_total_mae":mean("market_total_abs_error")}
     versions={key:rollup([v for v in observed if v["model"]==key])
               for key in sorted({x["model"] for x in observed})}
     days={day:rollup([v for v in observed if v["game_day_et"]==day])
