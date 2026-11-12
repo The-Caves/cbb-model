@@ -151,9 +151,9 @@ def grade_market(rows, frozen, quotes, cutoff, directory):
         g=by_id.get(gid);p=frozen.get(gid)
         if g is None or p is None:continue
         if str(g["home_id"]) not in verified or str(g["away_id"]) not in verified:continue
-        if not validate_quote(q,g) or not eligible(g,cutoff,retrospective=False):continue
+        if not validate_quote(q,g) or utc(q['captured_utc'])>cutoff or not eligible(g,cutoff,retrospective=False):continue
         if not utc(p["captured_utc"])<utc(g["tip_utc"]):continue
-        if str(p["home_id"])!=str(g["home_id"]) or str(p["away_id"])!=str(g["away_id"]):continue
+        if str(p.get('home_id'))!=str(g['home_id']) or str(p.get('away_id'))!=str(g['away_id']):continue
         home_margin=float(g["home_score"])-float(g["away_score"])
         actual_total=float(g["home_score"])+float(g["away_score"])
         rec={"game_id":gid,"model":p["model"],"provider":q["provider"],
