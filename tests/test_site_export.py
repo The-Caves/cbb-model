@@ -170,3 +170,28 @@ def test_pregame_shadow_is_separate_not_promoted(tmp_path):
     late={**candidate,'captured_utc':(TIP+timedelta(seconds=1)).isoformat().replace('+00:00','Z')}
     shadow.write_text(json.dumps(late)+'\n')
     assert export_payload([game()],main,NOW,directory={'1':'H','2':'A'},shadow_ledger=shadow)['games'][0]['shadow_projection'] is None
+
+
+def test_v04_published_only_when_frozen_before_tip_and_graded_by_version(tmp_path):
+    from cbb import ACTIVE_LIVE_VERSION
+    old=prediction()
+    latest={**old,'model':ACTIVE_LIVE_VERSION,
+            'captured_utc':(NOW+timedelta(hours=2)).isoformat().replace('+00:00','Z'),
+            'pred_home':85,'pred_away':69,'pred_margin':16,'pred_total':154,
+            'home_id':'1','away_id':'2'}
+    ledger=tmp_path/'predictions.jsonl'
+    ledger.write_text(json.dumps(old)+'\n'+json.dumps(latest)+'\n')
+    before=export_payload([game()],ledger,NOW+timedelta(hours=3),directory={'1':'H','2':'A'})
+    assert before['games'][0]['projection']['model']==ACTIVE_LIVE_VERSION
+    assert before['games'][0]['projection']['margin']==16
+    finished=export_payload([game(completed=True)],ledger,TIP+timedelta(days=1),directory={'1':'H','2':'A'})
+    versions=finished['performance']['prospective']['d1_by_model']
+    assert set(versions)=={ACTIVE_LIVE_VERSION}
+    assert versions[ACTIVE_LIVE_VERSION]['n']==1
+    assert ledger.read_text().count('\n')==2
+    # A snapshot first created after tipoff must never supersede earlier predictions.
+    late={**latest,'captured_utc':(TIP+timedelta(seconds=1)).isoformat().replace('+00:00','Z')}
+    ledger.write_text(json.dumps(old)+'\n'+json.dumps(late)+'\n')
+    after=export_payload([game(completed=True)],ledger,TIP+timedelta(days=1),directory={'1':'H','2':'A'})
+    assert after['games'][0]['projection']['model']==VERSION
+    assert VERSION in after['performance']['prospective']['d1_by_model']
