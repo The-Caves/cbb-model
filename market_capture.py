@@ -10,6 +10,7 @@ claimed to be closing lines or the user's available FanDuel price.
 """
 from collections import defaultdict
 from datetime import datetime, timezone, timedelta
+from zoneinfo import ZoneInfo
 from pathlib import Path
 import hashlib
 import json
@@ -159,23 +160,32 @@ def grade_market(rows, frozen, quotes, cutoff, directory):
         rec={"game_id":gid,"model":p["model"],"provider":q["provider"],
              "market_capture_utc":q["captured_utc"],"model_capture_utc":p["captured_utc"]}
         if q.get("home_spread") is not None:
-            rec["ats"]=outcome(float(p["pred_margin"])+float(q["home_spread"]),
-                               home_margin+float(q["home_spread"]))
-            rec["spread_edge_points"]=round(float(p["pred_margin"])+float(q["home_spread"]),2)
+            edge=float(p["pred_margin"])+float(q["home_spread"])
+            rec["spread_edge_points"]=round(edge,2)
+            # No selection when the model and market exactly agree. A push
+            # means the actual score landed on the line, not a no-edge pass.
+            if abs(edge)>1e-9:
+                rec["ats"]=outcome(edge,home_margin+float(q["home_spread"]))
         if q.get("total") is not None:
-            rec["ou"]=outcome(float(p["pred_total"])-float(q["total"]),
-                              actual_total-float(q["total"]))
-            rec["total_edge_points"]=round(float(p["pred_total"])-float(q["total"]),2)
+            edge=float(p["pred_total"])-float(q["total"])
+            rec["total_edge_points"]=round(edge,2)
+            if abs(edge)>1e-9:
+                rec["ou"]=outcome(edge,actual_total-float(q["total"]))
+        if "ats" not in rec and "ou" not in rec:continue
+        rec["game_day_et"]=utc(g["tip_utc"]).astimezone(ZoneInfo("America/New_York")).date().isoformat()
         observed.append(rec)
     def rollup(group):
         return {"ats":counts([v for v in group if "ats" in v],"ats"),
                 "ou":counts([v for v in group if "ou" in v],"ou")}
     versions={key:rollup([v for v in observed if v["model"]==key])
               for key in sorted({x["model"] for x in observed})}
+    days={day:rollup([v for v in observed if v["game_day_et"]==day])
+          for day in sorted({v["game_day_et"] for v in observed})}
     return {"status":"OBSERVED_PRETIP_MARKET_RESEARCH_NOT_CLOSING_ODDS",
             "source":SOURCE,"book_lines_captured_before_tip":True,
             "ats_or_ou_grade_only_when_matching_frozen_model":True,
-            "matched_games":len(observed),"overall":rollup(observed),"by_model":versions,
+            "matched_games":len(observed),"overall":rollup(observed),
+            "by_model":versions,"by_day_et":days,
             "provider_counts":{k:sum(x["provider"]==k for x in observed)
                                for k in sorted({x["provider"] for x in observed})},
             "notes":"No claim that sportsbook prices were actually available to this user. No calibrated probabilities or ROI without odds and full availability evidence."}
