@@ -116,7 +116,7 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
     by_id = {str(g['game_id']):g for g in rows}
     frozen = forecasts(ledger, by_id)
     shadows = shadow_forecasts(shadow_ledger,by_id) if shadow_ledger is not None else {}
-    market_quotes = last_pretip_quotes(market_ledger,by_id) if market_ledger is not None else {}
+    market_quotes = last_pretip_quotes(market_ledger,by_id, now) if market_ledger is not None else {}
     directory = directory or {}
     def display(team_id, raw_name):
         return directory.get(str(team_id)) or clean_label(raw_name)
