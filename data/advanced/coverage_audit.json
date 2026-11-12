@@ -1,43 +1,43 @@
 {
-  "accepted_rows_in_archive": 2740,
+  "accepted_rows_in_archive": 2818,
   "active_model_changed": false,
   "archived_valid_non_d1_game_boxscores": 10,
-  "as_of_utc": "2026-11-12T18:59:34Z",
+  "as_of_utc": "2026-11-12T19:01:23Z",
   "by_season": {
     "2025": {
-      "coverage_fraction": 0.1326,
-      "d1_teams_with_5plus_games": 136,
+      "coverage_fraction": 0.1364,
+      "d1_teams_with_5plus_games": 153,
       "disputed_source_score_games": 0,
       "eligible_d1_final_games": 5733,
-      "missing_boxscores": 4973,
+      "missing_boxscores": 4951,
       "other_or_unverified_final_games": 559,
       "teams_with_any_verified_games": 363,
-      "verified_boxscores": 760
+      "verified_boxscores": 782
     },
     "2026": {
-      "coverage_fraction": 0.2787,
+      "coverage_fraction": 0.2864,
       "d1_teams_with_5plus_games": 364,
       "disputed_source_score_games": 0,
       "eligible_d1_final_games": 5723,
-      "missing_boxscores": 4128,
+      "missing_boxscores": 4084,
       "other_or_unverified_final_games": 577,
       "teams_with_any_verified_games": 364,
-      "verified_boxscores": 1595
+      "verified_boxscores": 1639
     },
     "2027": {
-      "coverage_fraction": 0.8296,
+      "coverage_fraction": 0.8562,
       "d1_teams_with_5plus_games": 1,
       "disputed_source_score_games": 25,
       "eligible_d1_final_games": 452,
-      "missing_boxscores": 77,
+      "missing_boxscores": 65,
       "other_or_unverified_final_games": 185,
-      "teams_with_any_verified_games": 351,
-      "verified_boxscores": 375
+      "teams_with_any_verified_games": 353,
+      "verified_boxscores": 387
     }
   },
   "disputed_archived_boxscores": 0,
   "disputed_source_score_games": 25,
-  "eligible_verified_d1_boxscores": 2730,
+  "eligible_verified_d1_boxscores": 2808,
   "historical_available_as_of": false,
   "quarantine_sample": [],
   "quarantined_rows": 0,
