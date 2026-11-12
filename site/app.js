@@ -137,6 +137,8 @@ function renderPerformance(){
       <div class="metric-row"><div class="metric-item"><small>ATS</small><strong>${marketGrade(mkt.overall?.ats)}</strong></div>
       <div class="metric-item"><small>Over / under</small><strong>${marketGrade(mkt.overall?.ou)}</strong></div>
       <div class="metric-item"><small>Matched games</small><strong>${num(mkt.matched_games)}</strong></div></div>
+      ${mkt.overall?.model_margin_mae!=null?`<p>Margin error on matched games: model ${num(mkt.overall.model_margin_mae,1)} points vs. market ${num(mkt.overall.market_margin_mae,1)} points.</p>`:''}
+      ${mkt.overall?.model_total_mae!=null?`<p>Total error on matched games: model ${num(mkt.overall.model_total_mae,1)} points vs. market ${num(mkt.overall.market_total_mae,1)} points.</p>`:''}
       ${days.map(([day,v])=>`<p><strong>${esc(day)} ET</strong> · ATS ${marketGrade(v.ats)} · O/U ${marketGrade(v.ou)}</p>`).join('')}
       ${!mkt.matched_games?'<p>No pre-tip sportsbook quotes have been verified yet; historical ATS/O-U performance remains ungraded by the automated pipeline.</p>':''}
     </section>`;
