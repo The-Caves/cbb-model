@@ -85,3 +85,19 @@ Early frozen D-I picks after 199 completed games: 77.4% straight-up but 11.91-po
 ## November 9 — shadow candidate only (no v0.3 promotion)
 
 Freeze an opponent-verified D-I-only 0.30-prior *shadow* forecast before tipoff into `data/shadow_ledger.jsonl`, separate from the champion and prospective scoring ledger. The website matchup details show experimental alternate winner, margin and total only when source identities and strict pre-tip capture pass validation; if the champion and challenger disagree on the winner, display **MODELS DISAGREE — PASS**. Prior-season roster turnover remains unverified, so this is not an actionable ATS recommendation. The candidate has favorable retrospective margins in 248-game early and 308-game January matched samples but requires later independent/prospective testing.
+
+## November 11, 2026 — guarded live v0.4 model release
+
+**New model:** `CBB_SCORE_RIDGE_V0_4_D1_PRIOR30_A1_5` (committed and first deployed at 2026-11-12T00:02Z). This is a genuine change in the *future-facing* score model: fit only ESPN-directory-verified D-I vs D-I games, use previous-season game weight 0.30 (was 0.60) and ridge alpha 1.5 (was 3.0). A fixed 3.5-point venue prior and strict observed-final cutoffs remain unchanged. It addresses stale roster-era strength and excessive compression without inventing program talent tiers or sportsbook data.
+
+Before activating v0.4, a predeclared retrospective sensitivity sweep compared five variants on three 2025–26 sets of completed, verified D-I games. Identical matchup denominators per window, training strictly before each game date. Approximate score-margin MAE / straight-up accuracy:
+
+| Held-out by-date window | v0.3 margin MAE | v0.4-choice MAE | v0.3 SU | v0.4-choice SU | Evaluated games |
+|---|---:|---:|---:|---:|---:|
+| November | 10.823 | 10.107 | 78.36% | 78.36% | 171 |
+| January | 9.697 | 9.583 | 67.70% | 69.91% | 226 |
+| February | 9.578 | 9.297 | 65.04% | 67.48% | 246 |
+
+**Research limitation:** These data were collected retrospectively; the selected variants were explored after observing earlier failures. This is not independent proof of positive ATS return or calibrated win probabilities. The model was released conservatively as a fresh live version, but all game cards remain PASS without verified market odds, lineup availability and sufficient current-season sample. No game that started before its new snapshot was generated is rewritten. All old v0.2/v0.3 snapshots remain in the append-only pre-tip ledger and their grades remain assigned to their source versions. The website now displays per-model graded results to allow prospective rollback decisions. A prospective v0.4 sample remains too small for any claim of superiority.
+
+[Research sweep](../data/reports/margin_shrinkage_ablation_2026.json) · [Live site](https://the-caves.github.io/cbb-model/)
