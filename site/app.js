@@ -50,6 +50,16 @@ function gameCard(g){
     ${p.reliability?.margin_mae_points!=null?`Historical D-I average margin error: ${num(p.reliability.margin_mae_points,1)} pts over ${num(p.reliability.historical_comparison_games)} graded games.`:''}
     <strong>PASS: no verified ATS edge or player availability check.</strong>
   </div>`:`<div class="proj-head"><small>MODEL PROJECTION</small><span class="proj-tag">NO CAPTURE</span></div><div class="no-proj">${(g.identity_source_under_review||g.score_source_under_review)?'Source identity or final score under review: this matchup is excluded from model training and grading.':!isD1(g)?'Other or unverified opponent: no qualified Division I projection. ESPN lists the game; FanDuel listing is not verified.':real?'No archived pre-tip prediction for this game.': 'Waiting for a valid model snapshot before tipoff.'}</div>`;
+  const sourceMarket=g.market_provider && (g.market_spread!=null||g.market_total!=null);
+  const marketDetails=sourceMarket?
+    `<div class="data-note" style="font-size:12px;line-height:1.5;margin-top:10px">
+      <strong>Actual observed market · ${esc(g.market_provider)}</strong>
+      ${g.market_spread!=null?` · ${esc(g.home)} ${g.market_spread>0?'+':''}${num(g.market_spread,1)}`:''}
+      ${g.market_total!=null?` · O/U ${num(g.market_total,1)}`:''}
+      ${g.market_spread_edge!=null?`<p>Model vs spread: ${num(Math.abs(g.market_spread_edge),1)}-point difference toward ${esc(g.market_spread_edge>0?g.home:g.away)}.</p>`:''}
+      ${g.market_total_edge!=null?`<p>Model vs total: ${num(Math.abs(g.market_total_edge),1)}-point difference toward ${g.market_total_edge>0?'Over':'Under'}.</p>`:''}
+      Observed ${esc(new Date(g.market_captured_utc).toLocaleString())} before tipoff. Not a verified closing line, FanDuel quote, or calibrated betting recommendation.
+    </div>`:'';
   const shadow=g.shadow_projection;
   const shadowDetails=shadow?`<p><strong>Experimental D-I-only second opinion:</strong> ${esc(shadow.margin>0?g.home:g.away)} by ${num(Math.abs(shadow.margin),1)}; projected total ${num(shadow.total,1)}. ${shadow.winner_disagrees?'<strong>MODELS DISAGREE — PASS.</strong>':''} This unvalidated challenger uses a lighter previous-season weight and is not a sportsbook recommendation. Captured ${esc(new Date(shadow.captured_utc).toLocaleString())} before tipoff.</p>`:'';
   const awayShown=real?num(g.away_score):live?num(g.away_live_score):p?num(p.away,1):'—';
@@ -61,12 +71,12 @@ function gameCard(g){
       <div class="team-line"><span class="team-crest">${esc(teamShort(g.away))}</span><div class="team-label"><strong title="${esc(g.away)}">${esc(g.away)}</strong><small>AWAY · ${esc(recFor(g.away_id))}${esc(awayDivision)}</small></div><div class="team-score ${real?'actual':'live-proj'}">${awayShown}<small class="score-kind">${scoreKind}</small></div></div>
       <div class="team-line"><span class="team-crest">${esc(teamShort(g.home))}</span><div class="team-label"><strong title="${esc(g.home)}">${esc(g.home)}</strong><small>${g.neutral?'NEUTRAL':'HOME'} · ${esc(recFor(g.home_id))}${esc(homeDivision)}</small></div><div class="team-score ${real?'actual':'live-proj'}">${homeShown}<small class="score-kind">${scoreKind}</small></div></div>
     </div>
-    <div class="projection">${predictionHtml}</div>
+    <div class="projection">${predictionHtml}${marketDetails}</div>
     <div class="card-footer"><span>${p?`Frozen ${esc(new Date(p.captured_utc).toLocaleString(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}))}`:'Spread and total: not sourced'}</span><span>${esc(outcome.replace(/^ · /,''))||'No verified market odds'}</span></div>
     <details><summary>Matchup details</summary><div class="details-body">
       ${p?`<p><strong>Projected score:</strong> ${esc(g.away)} ${num(p.away,1)} – ${esc(g.home)} ${num(p.home,1)}</p><p><strong>Season sample:</strong> ${num(p.away_games)} away games / ${num(p.home_games)} home games. Model trained on ${num(p.training_games)} historical/current games.</p><p><strong>Forecast recorded:</strong> ${esc(new Date(p.captured_utc).toLocaleString())}, strictly before tipoff. Win probabilities are not yet calibrated.</p>`:'<p>No pre-tip model capture is stored. A game without one is deliberately not given a projected winner.</p>'}
       ${shadowDetails}
-      <p><strong>ATS / Over-under:</strong> Unavailable until genuine timestamped sportsbook lines are captured. No odds or bet recommendation invented.</p>
+      <p><strong>Market:</strong> ${sourceMarket?'This quote was observed before tipoff from the identified provider; the displayed difference is uncalibrated, not a betting edge.':'No verified pre-tip market quote for this matchup. No odds or bet recommendation invented.'}</p>
     </div></details>
    </article>`;
 }
@@ -118,6 +128,19 @@ function renderPerformance(){
   const modelBreakdown=p.prospective?.d1_by_model||{};
   const versions=Object.entries(modelBreakdown).sort((a,b)=>a[0].localeCompare(b[0]));
   if(versions.length)out+=`<section class="data-panel"><h3>Original model-version records</h3><p>v0.4 applies only to new frozen predictions. Existing v0.3 game picks and grades remain unchanged; do not confuse this with ATS.</p>${versions.map(([version,v])=>`<div style="margin:16px 0"><strong>${esc(version)}</strong>${metricRow(v)}</div>`).join('')}</section>`;
+  const mkt=p.market_as_observed;
+  if(mkt){
+    const marketGrade=(r)=>r?.n?(`${num(r.w)}–${num(r.l)}${r.p?' ('+num(r.p)+' push)':''} · ${nicePct(r.win_rate)}`):'Not available';
+    const days=Object.entries(mkt.by_day_et||{}).sort(([a],[b])=>b.localeCompare(a)).slice(0,7);
+    out+=`<section class="data-panel"><h3>ATS and over/under · actual pre-tip market observations</h3>
+      <p>Only games with both an archived model forecast and an ESPN-reported book line observed before tipoff. These are <strong>not necessarily FanDuel or closing lines</strong>; no ROI or calibrated confidence is implied.</p>
+      <div class="metric-row"><div class="metric-item"><small>ATS</small><strong>${marketGrade(mkt.overall?.ats)}</strong></div>
+      <div class="metric-item"><small>Over / under</small><strong>${marketGrade(mkt.overall?.ou)}</strong></div>
+      <div class="metric-item"><small>Matched games</small><strong>${num(mkt.matched_games)}</strong></div></div>
+      ${days.map(([day,v])=>`<p><strong>${esc(day)} ET</strong> · ATS ${marketGrade(v.ats)} · O/U ${marketGrade(v.ou)}</p>`).join('')}
+      ${!mkt.matched_games?'<p>No pre-tip sportsbook quotes have been verified yet; historical ATS/O-U performance remains ungraded by the automated pipeline.</p>':''}
+    </section>`;
+  }
   if(hist){const h=hist.all_games;const established=hist.established_teams;const prior=p.retrospective_v02;
     out+=`<section class="data-panel"><h3>2025–26 historical walk-forward backtest · ${esc(hist.model||'version unreported')}</h3><p>Uses scores from dates before each game to reconstruct prediction inputs. Historical score data was downloaded retrospectively; this is not the same as pre-tip prospective validation.</p>${metricRow(h)}<div class="metric-row"><div class="metric-item"><small>Established teams · Winner accuracy</small><strong>${nicePct(established?.su_accuracy)}</strong></div><div class="metric-item"><small>Baseline winner accuracy</small><strong>${nicePct(hist.simple_baseline?.su_accuracy)}</strong></div><div class="metric-item"><small>Baseline margin MAE</small><strong>${hist.simple_baseline?.margin_mae==null?'—':num(hist.simple_baseline.margin_mae,1)+' pts'}</strong></div></div>${prior?`<p style="margin-top:14px;color:var(--muted)">Previous v0.2 on same historical replay: ${nicePct(prior.all_games?.su_accuracy)} SU, ${num(prior.all_games?.margin_mae,1)}-point margin MAE. This comparison does not imply a betting edge.</p>`:''}</section>`;
   }else{out+=`<section class="data-panel"><h3>Historical walk-forward backtest</h3><p>Not yet populated. The 2025–26 backtest will be displayed when real completed game scores are downloaded and the historical replay finishes.</p></section>`;}
