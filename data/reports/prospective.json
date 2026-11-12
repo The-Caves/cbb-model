@@ -1,10 +1,10 @@
 {
   "all_games": {
-    "margin_bias": -8.363,
-    "margin_mae": 14.123,
-    "n": 342,
-    "su_accuracy": 0.8216,
-    "total_mae": 14.013
+    "margin_bias": -7.629,
+    "margin_mae": 13.834,
+    "n": 381,
+    "su_accuracy": 0.8163,
+    "total_mae": 13.931
   },
   "ats_graded": 0,
   "by_model": {
@@ -16,11 +16,18 @@
       "total_mae": 11.371
     },
     "CBB_SCORE_RIDGE_V0_3": {
-      "margin_bias": -7.72,
-      "margin_mae": 13.677,
-      "n": 323,
-      "su_accuracy": 0.8142,
-      "total_mae": 14.168
+      "margin_bias": -7.435,
+      "margin_mae": 13.415,
+      "n": 345,
+      "su_accuracy": 0.8145,
+      "total_mae": 14.17
+    },
+    "CBB_SCORE_RIDGE_V0_4_D1_PRIOR30_A1_5": {
+      "margin_bias": 1.472,
+      "margin_mae": 13.537,
+      "n": 17,
+      "su_accuracy": 0.7059,
+      "total_mae": 11.942
     }
   },
   "established_teams": {
