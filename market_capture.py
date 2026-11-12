@@ -112,7 +112,7 @@ def validate_quote(q,g):
         return q.get("home_spread") is not None or q.get("total") is not None
     except (ValueError,KeyError,TypeError,OverflowError):return False
 
-def last_pretip_quotes(path, by_id):
+def last_pretip_quotes(path, by_id, as_of_utc=None):
     path=Path(path)
     if not path.exists():return {}
     out={}
@@ -121,6 +121,7 @@ def last_pretip_quotes(path, by_id):
         rec=json.loads(line)
         g=by_id.get(str(rec.get("game_id")))
         if g is None or not validate_quote(rec,g):continue
+        if as_of_utc is not None and utc(rec['captured_utc'])>utc(as_of_utc):continue
         # FanDuel quotes preferred if source actually identifies FanDuel.
         # Never mislabel DraftKings/ESPN as FD.
         key=str(g["game_id"])
