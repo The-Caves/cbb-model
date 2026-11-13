@@ -172,11 +172,21 @@ def grade(games, verified, champion_ledger, candidate_ledger, now=None,
             if gid not in last or last[gid]["captured_utc"] < r["captured_utc"]:
                 last[gid] = r
     baseline, challengers = [], []
+    skipped_capture_alignment = 0
     for gid, p in last.items():
         g = by_id[gid]
+        # Comparing a challenger captured on Monday with a champion updated
+        # on Wednesday after intervening games is not a fair head-to-head.
+        # Both were pre-tip, but the information sets differ substantially.
+        if abs((dt(champion[gid]["captured_utc"]) -
+                dt(p["captured_utc"])).total_seconds()) > 2 * 3600:
+            skipped_capture_alignment += 1
+            continue
         baseline.append(model_observation(g, champion[gid], 12.0))
         challengers.append(model_observation(g, p, 12.0))
     return {"status": "GENUINE_PRETIP_RESEARCH_ONLY",
+            "capture_alignment_max_hours": 2,
+            "skipped_capture_alignment": skipped_capture_alignment,
             "paired_games": len(baseline), "minimum_for_review": MIN_COMPARISONS_FOR_REVIEW,
             "v04": metrics(baseline), "roster_candidate": metrics(challengers),
             "promotion_gate": ("READY_FOR_REVIEW_NOT_AUTOMATIC_PROMOTION"

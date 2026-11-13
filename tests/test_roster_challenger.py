@@ -1,5 +1,8 @@
 """Roster prior challenger must pass closed and not alter deployed v0.4."""
 from datetime import datetime, timedelta, timezone
+import json
+
+from cbb import ACTIVE_LIVE_VERSION
 
 import pytest
 
@@ -121,3 +124,41 @@ def test_prior_weight_is_scoring_team_specific_not_shared_average():
     # If both sides had used the *average* multiplier (0.7), this would
     # incorrectly produce identical predictions for these two distinct rosters.
     assert abs(variants[0]["pred_total"] - variants[1]["pred_total"]) > 0.05
+
+
+def test_candidate_comparison_requires_equivalent_capture_time(tmp_path):
+    tip=datetime(2026,11,20,19,tzinfo=UTC)
+    now=tip+timedelta(hours=12)
+    final=game("matched",tip,hs=79,ats=70)
+    champion_path=tmp_path/"champion.jsonl"
+    challenger_path=tmp_path/"roster.jsonl"
+    base={
+        "model":ACTIVE_LIVE_VERSION,
+        "game_id":"matched","tip_utc":iso(tip),
+        "home_id":"1","away_id":"2",
+        "captured_utc":iso(tip-timedelta(hours=1)),
+        "pred_home":75,"pred_away":69,"pred_margin":6,
+        "pred_total":144,"home_current_games":3,
+        "away_current_games":3
+    }
+    candidate={
+        **base,"model":VERSION,
+        "training_latest_tip":iso(tip-timedelta(days=1)),
+        "captured_utc":iso(tip-timedelta(hours=4)),
+        "verified_roster_teams":["1","2"],
+        "roster_source_captured_utc":{
+            "1":iso(tip-timedelta(days=2)),
+            "2":iso(tip-timedelta(days=2))
+        }
+    }
+    champion_path.write_text(json.dumps(base)+"\n")
+    challenger_path.write_text(json.dumps(candidate)+"\n")
+    wrong_time=grade([final],{"1","2"},champion_path,challenger_path,now)
+    assert wrong_time["paired_games"]==0
+    assert wrong_time["skipped_capture_alignment"]==1
+    candidate["captured_utc"]=iso(tip-timedelta(hours=1,minutes=20))
+    challenger_path.write_text(json.dumps(candidate)+"\n")
+    matched=grade([final],{"1","2"},champion_path,challenger_path,now)
+    assert matched["paired_games"]==1
+    assert matched["skipped_capture_alignment"]==0
+    assert matched["v04"]["n"]==matched["roster_candidate"]["n"]==1

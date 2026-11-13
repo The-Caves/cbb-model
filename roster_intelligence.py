@@ -332,14 +332,75 @@ def upcoming_teams(games, now, verified):
     return ordered
 
 
-def plan_player_backfill(candidates, existing_players, focus, year, limit):
-    """Prioritize recent prior-season games for teams on the upcoming slate.
+def near_term_matchup_readiness(games, profiles, now, verified):
+    """Count the exact upcoming games that can be used for roster evaluation.
 
-    Only pre-verified source candidates are passed in. Concentrate each
-    bounded batch on reaching five player game samples for actual matchups.
-    Unused capacity falls back to the chronological archive backlog.
+    Diagnose the blocker in each game without guessing player participation or
+    backdating roster evidence. Coverage thresholds mirror the M4.1 research
+    challenger: >=5 source-backed prior games and >=15% prior D-I coverage.
     """
-    by_id = {str(x["game_id"]): x for x in candidates}
+    valid = {str(x) for x in verified}
+    total, two_rosters, two_samples, both_ready, depth30 = 0, 0, 0, 0, 0
+    blockers = defaultdict(int)
+    for g in games:
+        home, away = str(g.get("home_id")), str(g.get("away_id"))
+        if home not in valid or away not in valid or home == away:
+            continue
+        if (str(g.get("score_conflict", "0")) in ("1","True","true") or
+                str(g.get("identity_conflict", "0")) in ("1","True","true")):
+            continue
+        try:
+            tip = dt(g["tip_utc"])
+        except (KeyError,ValueError,TypeError):
+            continue
+        if not now < tip <= now + timedelta(hours=72):
+            continue
+        total += 1
+        h, a = profiles.get(home), profiles.get(away)
+        if h is None or a is None:
+            blockers["missing_roster_snapshot"] += 1
+            continue
+        two_rosters += 1
+        if min(int(h.get("prior_games_verified", 0)),
+               int(a.get("prior_games_verified", 0))) < MIN_PRIOR_GAMES:
+            blockers["insufficient_prior_player_games"] += 1
+            continue
+        two_samples += 1
+        coverages = [h.get("prior_player_game_coverage"),
+                     a.get("prior_player_game_coverage")]
+        if any(v is None or not math.isfinite(float(v)) or float(v) < 0.15
+               for v in coverages):
+            blockers["prior_player_sample_below_15pct"] += 1
+            continue
+        both_ready += 1
+        if all(float(v) >= .30 for v in coverages):
+            depth30 += 1
+    return {
+        "as_of_utc": iso(now),
+        "within_next_hours": 72,
+        "future_verified_d1_games": total,
+        "games_with_both_recent_rosters": two_rosters,
+        "games_with_both_5plus_prior_player_games": two_samples,
+        "games_ready_for_m41_challenger": both_ready,
+        "games_with_both_30pct_player_coverage": depth30,
+        "blocker_counts_by_game": dict(sorted(blockers.items())),
+        "note": ("Readiness is data coverage, not forecast quality or verified "
+                 "availability of a starting lineup."),
+    }
+
+
+def plan_player_backfill(candidates, existing_players, focus, year, limit,
+                         observed_rosters=None, upcoming_pairs=None,
+                         prior_d1_games=None, depth_fraction=0.30):
+    """Spend a bounded archive quota on coverage for actual upcoming matchups.
+
+    Historically five player boxes out of 30+ games were treated as a
+    potentially usable roster sample. Concentrate on *both* roster-observed
+    teams in near-term matchups until each has ~30% verified previous D-I
+    game coverage (usually 9–11 games), then expand breadth. Never invent
+    archived games or roster membership. Earlier callers without matchup
+    evidence retain the legacy five-game planner.
+    """
     counts = defaultdict(set)
     for rec in existing_players:
         try:
@@ -350,7 +411,7 @@ def plan_player_backfill(candidates, existing_players, focus, year, limit):
         except (TypeError, KeyError, ValueError):
             continue
     prior = sorted((g for g in candidates if int(g["season"]) == year - 1),
-                   key=lambda g: g["tip_utc"], reverse=True)
+                   key=lambda g: (g["tip_utc"], str(g["game_id"])), reverse=True)
     selected = []
     seen = set()
     def add(g):
@@ -363,16 +424,39 @@ def plan_player_backfill(candidates, existing_players, focus, year, limit):
             for key in ("home_id", "away_id"):
                 counts[str(g[key])].add(gid)
         return True
-    for team in focus:
+    def fill(team, goal):
+        tid = str(team)
         for g in prior:
-            if len(selected) >= limit or len(counts[str(team)]) >= MIN_PRIOR_GAMES:
+            if len(selected) >= limit or len(counts[tid]) >= goal:
                 break
-            if str(g["home_id"]) == str(team) or str(g["away_id"]) == str(team):
+            if str(g["home_id"]) == tid or str(g["away_id"]) == tid:
                 add(g)
+    rostered = {str(v) for v in (observed_rosters or [])}
+    paired = []
+    for home, away in (upcoming_pairs or []):
+        home, away = str(home), str(away)
+        if home in rostered and away in rostered and home != away:
+            for tid in (home, away):
+                if tid not in paired:
+                    paired.append(tid)
+    # Maximum of four roster-covered near-term teams per batch. This avoids
+    # dividing a 24-request batch across hundreds of upcoming schools.
+    for tid in paired[:4]:
+        denominator = (prior_d1_games or {}).get(tid)
+        if denominator is None or denominator <= 0:
+            continue
+        target = max(MIN_PRIOR_GAMES, math.ceil(depth_fraction * denominator))
+        fill(tid, target)
+    # Once paired depth is satisfied, create five-game entry samples for
+    # roster-observed near-term teams, then use spare quota for other games.
+    for team in focus:
+        if len(selected) >= limit:
+            break
+        if not rostered or str(team) in rostered:
+            fill(team, MIN_PRIOR_GAMES)
     for g in candidates:
         add(g)
     return selected
-
 
 def collect_current_rosters(root="data", max_teams=12, delay=1.2,
                             opener=None, now=None):
@@ -471,8 +555,22 @@ def collect_player_history(root="data", max_games=48, delay=1.2,
                                  focus_order[team]))
     player_history = read_jsonl(target,
                        unique_key=lambda row: str(row["game_id"]))
-    selected = plan_player_backfill(candidates, player_history,
-                                    focus, year, max_games)
+    d1_previous_counts = prior_d1_game_counts(
+        read_csv(root / "games.csv"), as_of, year-1, verified)
+    rostered_pairs = []
+    for game in sorted(read_csv(root / "games.csv"),
+                       key=lambda g: (g["tip_utc"], str(g["game_id"]))):
+        home, away = str(game["home_id"]), str(game["away_id"])
+        if (home in observed_rosters and away in observed_rosters and
+                home in verified and away in verified and
+                str(game.get("score_conflict", "0")) not in ("1", "true", "True") and
+                str(game.get("identity_conflict", "0")) not in ("1", "true", "True") and
+                now < dt(game["tip_utc"]) <= now + timedelta(hours=72)):
+            rostered_pairs.append((home, away))
+    selected = plan_player_backfill(
+        candidates, player_history, focus, year, max_games,
+        observed_rosters=observed_rosters, upcoming_pairs=rostered_pairs,
+        prior_d1_games=d1_previous_counts)
     good, errors = 0, []
     for i, g in enumerate(selected):
         if i and delay:
@@ -500,6 +598,8 @@ def collect_player_history(root="data", max_games=48, delay=1.2,
             "upcoming_focus_teams": len(focus),
             "upcoming_teams_with_recent_rosters": sum(
                 t in observed_rosters for t in focus),
+            "upcoming_games_with_two_observed_rosters": len(rostered_pairs),
+            "depth_target_player_game_fraction": 0.30,
             "attempted": len(selected), "accepted": good,
             "rejections": errors[:20],
             "point_in_time_historical_availability_verified": False}
@@ -529,7 +629,10 @@ def run(root="data", now=None, collect=True, max_teams=12,
                                        as_of, year-1, directory)
     prof = continuity(player_games, rosters, as_of, year, directory,
                       prior_d1_games=prior_counts)
+    readiness = near_term_matchup_readiness(
+        read_csv(root / "games.csv"), prof, as_of, directory)
     report = {"status": "RESEARCH_ONLY", "as_of_utc": iso(as_of),
+              "next72h_matchup_readiness": readiness,
               "live_model_unchanged": True,
               "source": "ESPN current team roster and game-summary player statistics",
               "player_games_total": len(player_games),
@@ -558,7 +661,8 @@ def run(root="data", now=None, collect=True, max_teams=12,
     return {"status": report["status"], "collector": collected,
             "historical_backfill": historical,
             "source_player_games": len(player_games),
-            "coverage_teams": report["teams_with_sample_backed_continuity"]}
+            "coverage_teams": report["teams_with_sample_backed_continuity"],
+            "next72h_matchups_ready": readiness["games_ready_for_m41_challenger"]}
 
 
 if __name__ == "__main__":
