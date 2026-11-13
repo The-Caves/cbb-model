@@ -119,7 +119,8 @@ def adjusted_factors(records, year, previous_game_weight=0.10,
     return output
 
 
-def build(games, accepted, verified_ids, cutoff, year=None, retrospective=False):
+def build(games, accepted, verified_ids, cutoff, year=None, retrospective=False,
+          score_model=None):
     cutoff = dt(cutoff) if isinstance(cutoff, str) else cutoff
     year = year or season_of(cutoff)
     d1 = {str(v) for v in verified_ids}
@@ -127,11 +128,13 @@ def build(games, accepted, verified_ids, cutoff, year=None, retrospective=False)
         return {"status": "BLOCKED_NO_VERIFIED_D1_DIRECTORY", "teams": {}}
     current = eligible_d1(games, cutoff, year, d1, retrospective)
     try:
-        model = score_fit(games, cutoff, test_season=year,
-                          retrospective=retrospective, alpha=1.5,
-                          prior_weight=0.30, verified_ids=d1)
+        model = score_model if score_model is not None else score_fit(
+            games, cutoff, test_season=year, retrospective=retrospective,
+            alpha=1.5, prior_weight=0.30, verified_ids=d1)
     except ValueError:
         return {"status": "BLOCKED_NO_ELIGIBLE_TRAINING", "teams": {}}
+    if model["season"] != year or model["cutoff"] != iso(cutoff) or not model["verified_d1_training_only"]:
+        raise ValueError("incompatible as-of D-I score model supplied")
     idx, beta = model["idx"], model["beta"]
     n = len(idx)
     # From score fit: a team's neutral margin contribution is its
