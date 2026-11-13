@@ -7,7 +7,7 @@ import pytest
 from roster_intelligence import (
     PlayerEvidenceGap, continuity, player_boxscore,
     roster_snapshot, read_jsonl, collect_current_rosters,
-    upcoming_teams, plan_player_backfill
+    upcoming_teams, plan_player_backfill, prior_d1_game_counts
 )
 
 UTC=timezone.utc
@@ -83,14 +83,17 @@ def test_returns_from_observed_prior_minutes_and_marks_unknown_team():
               "player_ids":[str(4100+i) for i in range(2)]+
                             [str(9000+i) for i in range(8)]}]
     result=continuity(games,current,datetime(2026,11,13,18,tzinfo=UTC),
-                      2027,{"1","2"})
+                      2027,{"1","2"},prior_d1_games={"1":25,"2":10})
     a=result["1"]
     assert a["status"] == "RESEARCH_SAMPLE_NOT_FULL_SEASON"
     assert a["retained_minutes_share"] == .6
     assert a["retained_points_share"] == .6
     assert a["transfers_with_prior_verified_minutes"] == 2
     assert a["prior_games_verified"] == 5
+    assert a["prior_d1_games_known"] == 25
+    assert a["prior_player_game_coverage"] == .2
     b=result["2"]
+    assert b["prior_player_game_coverage"] == .5
     assert b["retained_minutes_share"] == .4
     late=continuity(games,current,datetime(2026,11,12,18,tzinfo=UTC),
                     2027,{"1","2"})
@@ -156,3 +159,18 @@ def test_collection_report_uses_actual_post_capture_cutoff(tmp_path,monkeypatch)
     assert report["roster_teams_recent"]==1
     assert report["teams"]["1"]["status"]=="UNKNOWN_INSUFFICIENT_PRIOR_PLAYER_GAMES"
     assert ri.dt(report["as_of_utc"]) >= real_now.replace(microsecond=0)
+
+
+def test_prior_d1_denominator_is_verified_point_in_time():
+    now=datetime(2026,11,13,18,tzinfo=UTC)
+    tip=datetime(2025,11,5,19,tzinfo=UTC)
+    def game_row(gid,home,away,observed):
+        return {"game_id":str(gid),"season":2026,"home_id":home,"away_id":away,
+                "tip_utc":stamp(tip),"home_score":"70","away_score":"66",
+                "completed":"1","score_conflict":"0","identity_conflict":"0",
+                "first_final_observed_utc":stamp(observed)}
+    prior=game_row(1,"1","2",tip+timedelta(hours=4))
+    later=game_row(2,"1","2",now+timedelta(days=1))
+    non_division=game_row(3,"1","999",tip+timedelta(hours=4))
+    seen=prior_d1_game_counts([prior,later,non_division],now,2026,{"1","2"})
+    assert seen == {"1":1,"2":1}
