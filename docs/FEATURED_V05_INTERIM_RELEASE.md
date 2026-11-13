@@ -4,7 +4,7 @@
 
 ## Website behavior
 
-Starting with the date of this release (`2026-11-13T22:39:21Z`), for eligible D-I games that had not started by the release cutoff:
+Starting with the date of this release (`2026-11-13T23:30:00Z`), for eligible D-I games that had not started by the release cutoff:
 
 - Show the **original frozen `CBB_V05_POSSESSION_EVENTS_20261113_BLEND20`** as the **featured score, margin, total and winner** when a correctly matched source-verified pre-tip v0.4 forecast and immutable source-time-authenticated 20% simulator forecast exist. A 512-draw opponent-conditioned 2P/3P/FT/turnover/rebounding approximation contributes 20%, with the stronger lighter previous-season score ridge contributing 80%.
 - If the v0.5 forecast is missing/invalid, **fall back to the original source-validated v0.4-era forecast**. Don't invent a new after-tip pick or backfill results. Never show either forecast for disputed or unverified non-D-I teams.
