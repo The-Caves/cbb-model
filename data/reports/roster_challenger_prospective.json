@@ -1,33 +1,38 @@
 {
-  "as_of_utc": "2026-11-13T20:07:53Z",
-  "collector_player_game_records": 96,
-  "collector_roster_snapshots": 96,
+  "as_of_utc": "2026-11-13T20:37:10Z",
+  "collector_player_game_records": 119,
+  "collector_roster_snapshots": 120,
   "freeze": {
-    "captured": 3,
+    "captured": 5,
     "coverage": {
-      "candidate_games_eligible": 3,
-      "roster_snapshot_teams": 96,
-      "source_backed_multiplier_teams": 10,
+      "candidate_games_eligible": 5,
+      "roster_snapshot_teams": 120,
+      "source_backed_multiplier_teams": 14,
       "source_backed_team_multipliers": {
         "153": 0.96856,
         "2086": 0.96529,
         "221": 0.96246,
         "228": 0.96415,
-        "2453": 0.95817,
+        "2390": 0.91279,
+        "2453": 0.8931,
+        "2633": 0.955,
+        "2634": 0.96154,
         "2803": 0.96966,
         "325": 0.95833,
-        "357": 0.9628,
-        "52": 0.96727,
+        "357": 0.94724,
+        "52": 0.86955,
+        "57": 0.98394,
         "61": 0.97772
       },
-      "teams_with_adequate_player_coverage": 10,
-      "teams_with_prior_sample": 15
+      "teams_with_adequate_player_coverage": 14,
+      "teams_with_prior_sample": 17
     },
     "status": "FROZEN_AS_OF_ROSTER_RESEARCH_ONLY"
   },
   "grade": {
     "active_model_unchanged": true,
     "candidate_version": "CBB_ROSTER_PRIOR_V0_5_M41_RESEARCH",
+    "capture_alignment_max_hours": 2,
     "legacy_roster_candidate_excluded": "CBB_ROSTER_PRIOR_V0_5_RESEARCH",
     "minimum_for_review": 150,
     "paired_games": 0,
@@ -40,6 +45,7 @@
       "su_accuracy": null,
       "total_mae": null
     },
+    "skipped_capture_alignment": 0,
     "status": "GENUINE_PRETIP_RESEARCH_ONLY",
     "v04": {
       "brier": null,
