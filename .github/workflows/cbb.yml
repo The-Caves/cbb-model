@@ -86,6 +86,14 @@ jobs:
           fi
       - name: Verify multi-season boxscore coverage and as-of data quality
         run: python cbb_data_quality.py --root data
+      - name: Collect actual current roster snapshots and verified prior player evidence
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.schedule == '17 11 * 11,12,1,2,3,4 *'
+        run: python roster_intelligence.py --root data --max-teams 24 --player-backfill 24
+      - name: Refresh roster research report without extra public API calls
+        if: github.event_name != 'push' && github.event_name != 'workflow_dispatch' && github.event.schedule != '17 11 * 11,12,1,2,3,4 *'
+        run: python roster_intelligence.py --root data --no-collect
+      - name: Freeze genuine pretip roster-aware v0.5 challenger only when source-backed
+        run: python roster_challenger.py --root data
       - name: Score-only versus possession challenger (no model promotion)
         # Deliberate PASS on thin historical data, never invent metrics.
         run: python efficiency_challenger.py --root data --season 2026
@@ -172,3 +180,12 @@ jobs:
               git push origin HEAD:main
             fi
           done
+          # Bounded archive enrichment: scores and IDs are reverified, original
+          # capture times remain unchanged, missing player rows are not guessed.
+          python roster_intelligence.py --root data --no-collect --player-backfill 48
+          git add data/
+          if ! git diff --cached --quiet; then
+            git commit -m "Archive verified CBB historical player minutes [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi

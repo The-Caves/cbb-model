@@ -297,11 +297,18 @@ def eligible(g, cutoff, retrospective):
     return retrospective or bool(g['first_final_observed_utc'] and dt(g['first_final_observed_utc']) <= cutoff)
 
 
-def fit(rows, cutoff, test_season=None, retrospective=False, alpha=3.0, prior_weight=0.60, home_court_points=HOME_COURT_POINTS, verified_ids=None):
+def fit(rows, cutoff, test_season=None, retrospective=False, alpha=3.0, prior_weight=0.60, home_court_points=HOME_COURT_POINTS, verified_ids=None, prior_team_multipliers=None):
     target = test_season or season(cutoff)
     used = []
     counts = Counter()
     verified = {str(team_id) for team_id in verified_ids} if verified_ids is not None else None
+    prior_team_multipliers = (None if prior_team_multipliers is None else
+                              {str(team): float(value) for team,value in
+                               prior_team_multipliers.items()})
+    if prior_team_multipliers is not None and any(
+            not math.isfinite(value) or not 0.35 <= value <= 1.0
+            for value in prior_team_multipliers.values()):
+        raise ValueError("invalid roster prior multipliers")
     for g in rows:
         if int(g['season']) not in (target, target-1) or not eligible(g, cutoff, retrospective):
             continue
@@ -311,7 +318,17 @@ def fit(rows, cutoff, test_season=None, retrospective=False, alpha=3.0, prior_we
             hs, ats = float(g['home_score']), float(g['away_score'])
             if not (20 <= hs <= 200 and 20 <= ats <= 200):
                 continue
-            weight = 1.0 if int(g['season']) == target else prior_weight
+            if int(g['season']) == target:
+                weight = 1.0
+            else:
+                # Optional researched roster retention can only *reduce*
+                # previous-season influence. Unverified teams retain 1.0.
+                # None preserves byte-for-byte v0.4 training behavior.
+                weight = prior_weight
+                if prior_team_multipliers is not None:
+                    hm = prior_team_multipliers.get(str(g['home_id']), 1.0)
+                    am = prior_team_multipliers.get(str(g['away_id']), 1.0)
+                    weight *= (hm + am) / 2.0
             used.append((g, hs, ats, weight))
             if int(g['season']) == target:
                 counts[g['home_id']] += 1
@@ -349,7 +366,8 @@ def fit(rows, cutoff, test_season=None, retrospective=False, alpha=3.0, prior_we
             'training_latest_tip': max(g['tip_utc'] for g, _, _, _ in used),
             'home_court_points': float(home_court_points),
             'previous_season_weight': prior_weight, 'ridge_alpha': alpha,
-            'verified_d1_training_only':verified is not None}
+            'verified_d1_training_only':verified is not None,
+            'roster_adjusted_prior':prior_team_multipliers is not None}
 
 
 def predict(model, g, min_current=5):
