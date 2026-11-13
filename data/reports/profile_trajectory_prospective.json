@@ -1,0 +1,29 @@
+{
+  "as_of_utc": "2026-11-13T21:14:28Z",
+  "freeze": {
+    "captured": 0,
+    "status": "PASS_NO_ASOF_TRAINING"
+  },
+  "grade": {
+    "active_v04_unchanged": true,
+    "minimum_for_independent_review": 150,
+    "note": "Identical final outcomes; both predictions must be frozen before tip within two hours.",
+    "paired_games": 0,
+    "promotion_gate": "INSUFFICIENT_PAIRED_GAMES",
+    "status": "TRUE_FROZEN_PRETIP_PAIRED_RESEARCH",
+    "v04": {
+      "margin_mae": null,
+      "n": 0,
+      "su_accuracy": null,
+      "total_mae": null
+    },
+    "v05_trajectory": {
+      "margin_mae": null,
+      "n": 0,
+      "su_accuracy": null,
+      "total_mae": null
+    }
+  },
+  "live_v04_unchanged": true,
+  "model": "CBB_PROFILE_TRAJECTORY_V05_RESEARCH"
+}

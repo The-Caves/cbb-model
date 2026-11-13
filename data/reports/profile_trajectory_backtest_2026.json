@@ -1,0 +1,229 @@
+{
+  "active_model_changed": false,
+  "asof_lookback_days": 21,
+  "baseline": "CBB_SCORE_RIDGE_V0_4_D1_PRIOR30_A1_5",
+  "correction_caps_points": {
+    "margin": 6.0,
+    "total": 8.0
+  },
+  "counts": {
+    "heldout": 1361,
+    "train": 1775,
+    "validation": 1517
+  },
+  "coverage": {
+    "day_snapshots_reconstructed": 114,
+    "replay_qualified_games": 4653,
+    "skipped": {
+      "missing_asof_profile_features": 419,
+      "missing_v04_prediction": 1
+    }
+  },
+  "features": [
+    "rating_21d_change_gap",
+    "offensive_21d_change_sum",
+    "defensive_21d_change_sum",
+    "recent_form_vs_rating_gap",
+    "schedule_strength_gap",
+    "current_sample_ratio"
+  ],
+  "frozen_training_coefficients": {
+    "margin": {
+      "indices": [
+        0,
+        1,
+        2,
+        5
+      ],
+      "means": [
+        0.4632756433039448,
+        0.02507484110969996,
+        0.0364231974746435,
+        0.6131830985915472
+      ],
+      "n_train": 1775,
+      "scales": [
+        2.6841779906471186,
+        2.4366405701023837,
+        2.3498276994334923,
+        0.26886460857188405
+      ],
+      "weights": [
+        0.6850084507042266,
+        1.5738178484521246,
+        -0.03311685065318019,
+        -0.06024445964179723,
+        -0.0229384798235069
+      ]
+    },
+    "total": {
+      "indices": [
+        0,
+        1,
+        2,
+        5
+      ],
+      "means": [
+        0.4632756433039448,
+        0.02507484110969996,
+        0.0364231974746435,
+        0.6131830985915472
+      ],
+      "n_train": 1775,
+      "scales": [
+        2.6841779906471186,
+        2.4366405701023837,
+        2.3498276994334923,
+        0.26886460857188405
+      ],
+      "weights": [
+        2.4023774647887373,
+        0.8169782100097426,
+        2.7115100433829253,
+        -0.25648631517181336,
+        -0.3355131165848138
+      ]
+    }
+  },
+  "heldout": {
+    "trajectory_only": {
+      "brier": 0.2042,
+      "margin_bias": 1.08,
+      "margin_mae": 8.893,
+      "n": 1361,
+      "su_accuracy": 0.6826,
+      "total_bias": 1.964,
+      "total_mae": 13.59
+    },
+    "v04": {
+      "brier": 0.2051,
+      "margin_bias": 0.684,
+      "margin_mae": 8.919,
+      "n": 1361,
+      "su_accuracy": 0.6811,
+      "total_bias": 0.215,
+      "total_mae": 13.407
+    }
+  },
+  "heldout_dates": [
+    "2026-02-01",
+    "2026-02-28"
+  ],
+  "heldout_improvement": {
+    "margin_mae_points": 0.026,
+    "su_percentage_points": 0.15,
+    "total_mae_points": -0.183
+  },
+  "heldout_strata": {
+    "early_less_than_6": {
+      "trajectory_only": {
+        "brier": null,
+        "margin_bias": null,
+        "margin_mae": null,
+        "n": 0,
+        "su_accuracy": null,
+        "total_bias": null,
+        "total_mae": null
+      },
+      "v04": {
+        "brier": null,
+        "margin_bias": null,
+        "margin_mae": null,
+        "n": 0,
+        "su_accuracy": null,
+        "total_bias": null,
+        "total_mae": null
+      }
+    },
+    "sos_gap_6plus": {
+      "trajectory_only": {
+        "brier": 0.0644,
+        "margin_bias": 8.528,
+        "margin_mae": 8.528,
+        "n": 3,
+        "su_accuracy": 1.0,
+        "total_bias": -0.804,
+        "total_mae": 11.754
+      },
+      "v04": {
+        "brier": 0.0553,
+        "margin_bias": 8.16,
+        "margin_mae": 8.16,
+        "n": 3,
+        "su_accuracy": 1.0,
+        "total_bias": -2.647,
+        "total_mae": 10.427
+      }
+    },
+    "v04_large_favorite_12plus": {
+      "trajectory_only": {
+        "brier": 0.0748,
+        "margin_bias": 1.102,
+        "margin_mae": 9.321,
+        "n": 162,
+        "su_accuracy": 0.9198,
+        "total_bias": 1.717,
+        "total_mae": 13.024
+      },
+      "v04": {
+        "brier": 0.0744,
+        "margin_bias": 0.558,
+        "margin_mae": 9.233,
+        "n": 162,
+        "su_accuracy": 0.9198,
+        "total_bias": -0.015,
+        "total_mae": 12.889
+      }
+    }
+  },
+  "historical_source_timestamps_authenticated": false,
+  "model": "CBB_PROFILE_TRAJECTORY_V05_RESEARCH",
+  "needs_real_frozen_2026_27_holdout": true,
+  "promoted": false,
+  "ridge_alpha": 180.0,
+  "sample_requirements": {
+    "heldout": 100,
+    "training": 180,
+    "validation": 100
+  },
+  "selection": "trajectory_only",
+  "status": "RETROSPECTIVE_ASOF_REPLAY_COMPLETE",
+  "train_dates": [
+    "2025-11-01",
+    "2025-12-31"
+  ],
+  "validation": {
+    "trajectory_context": {
+      "brier": 0.2063,
+      "margin_bias": 1.567,
+      "margin_mae": 8.97,
+      "n": 1517,
+      "su_accuracy": 0.6889,
+      "total_bias": 1.201,
+      "total_mae": 14.002
+    },
+    "trajectory_only": {
+      "brier": 0.2064,
+      "margin_bias": 1.586,
+      "margin_mae": 8.965,
+      "n": 1517,
+      "su_accuracy": 0.6875,
+      "total_bias": 1.061,
+      "total_mae": 13.971
+    },
+    "v04": {
+      "brier": 0.2061,
+      "margin_bias": 1.206,
+      "margin_mae": 8.938,
+      "n": 1517,
+      "su_accuracy": 0.6955,
+      "total_bias": -0.704,
+      "total_mae": 13.861
+    }
+  },
+  "validation_dates": [
+    "2026-01-01",
+    "2026-01-31"
+  ],
+  "warning": "Reconstructed older v0.4 team ratings use correct game-date cutoffs but ESPN historical final score archives were acquired retrospectively. Not authenticated historical pre-tip features, not sportsbook ATS/OU or an independently prospective result."
+}
