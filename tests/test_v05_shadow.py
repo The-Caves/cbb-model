@@ -75,6 +75,7 @@ def test_tampered_shadow_or_champion_is_not_grading_evidence(tmp_path):
     shadow.write_text(json.dumps(invalid)+"\n")
     report = grade([g], champion, shadow, ["1", "2"], now)
     assert report["paired_games_each_variant_min"] == 0
+    assert report["genuinely_frozen_v05_games_graded_available"] is False
     assert report["variants"]["roster_fade"]["v05"]["n"] == 0
     assert report["promotion_gate"] == "INSUFFICIENT_PROSPECTIVE_HOLDOUT"
 
