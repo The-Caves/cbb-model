@@ -104,9 +104,13 @@ def adjusted_factors(records, year, previous_game_weight=0.10,
                 sums[opp] += w * (v - mean - attack.get(own, 0))
                 weights[opp] += w
             allowed = {t: s / (weights[t] + shrink_games) for t, s in sums.items()}
+        # Do not manufacture a factor for a team without that side of the
+        # observed game statistic. Missing remains missing, not league mean.
         for t in set(attack) | set(allowed):
-            output[t][factor + "_for_adj"] = round(mean + attack.get(t, 0), 5)
-            output[t][factor + "_allowed_adj"] = round(mean + allowed.get(t, 0), 5)
+            if t in attack:
+                output[t][factor + "_for_adj"] = round(mean + attack[t], 5)
+            if t in allowed:
+                output[t][factor + "_allowed_adj"] = round(mean + allowed[t], 5)
     for t, (current, prior) in counts.items():
         output[t]["boxscore_games_current"] = current
         output[t]["boxscore_games_previous"] = prior
