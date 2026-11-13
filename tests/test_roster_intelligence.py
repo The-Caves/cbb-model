@@ -132,3 +132,27 @@ def test_player_backfill_targets_prior_minute_coverage_not_random_archive():
     assert len(plan)==4
     assert all("1" in (x["home_id"],x["away_id"]) for x in plan[:3])
     assert len({x["game_id"] for x in plan})==4
+
+
+def test_collection_report_uses_actual_post_capture_cutoff(tmp_path,monkeypatch):
+    import roster_intelligence as ri
+    real_now=datetime.now(UTC)
+    earlier=real_now-timedelta(minutes=10)
+    monkeypatch.setattr(ri,"load_directory",lambda path: {"1":"Source Team"})
+    def fake_collection(root,max_teams,now):
+        dest=tmp_path/"advanced"/"roster_snapshots.jsonl"
+        dest.parent.mkdir(parents=True,exist_ok=True)
+        dest.write_text(json.dumps({
+            "season":real_now.year+int(real_now.month>=7),
+            "team_id":"1",
+            "source_captured_utc":stamp(real_now),
+            "player_ids":[str(5500+i) for i in range(12)]
+        })+"\n")
+        return {"accepted":1}
+    monkeypatch.setattr(ri,"collect_current_rosters",fake_collection)
+    ri.run(tmp_path, now=earlier, collect=True)
+    report=json.loads((tmp_path/"advanced"/
+                       f"roster_continuity_{real_now.year+int(real_now.month>=7)}.json").read_text())
+    assert report["roster_teams_recent"]==1
+    assert report["teams"]["1"]["status"]=="UNKNOWN_INSUFFICIENT_PRIOR_PLAYER_GAMES"
+    assert ri.dt(report["as_of_utc"]) >= real_now
