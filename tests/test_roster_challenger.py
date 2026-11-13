@@ -97,3 +97,25 @@ def test_roster_weight_is_conservative_under_incomplete_player_coverage():
     assert adjusted["1"] == 0.95
     assert "2" not in adjusted
     assert adjusted["3"] == 0.4
+
+
+def test_prior_weight_is_scoring_team_specific_not_shared_average():
+    # This catches a former pitfall: averaging both teams' roster multipliers
+    # applies the same discount regardless of which team's roster changed.
+    prior_tip=datetime(2025,11,1,20,tzinfo=UTC)
+    current_tip=datetime(2026,11,1,20,tzinfo=UTC)
+    past=[{**game("p"+str(i),prior_tip+timedelta(days=i),
+                  hs=102,ats=53),"season":2026} for i in range(16)]
+    recent=[game("c"+str(i),current_tip+timedelta(days=i),
+                 hs=73,ats=70) for i in range(4)]
+    cutoff=datetime(2026,11,10,0,tzinfo=UTC)
+    variants=[]
+    for multipliers in ({"1":0.4,"2":1.0},{"1":1.0,"2":0.4}):
+        model=fit(past+recent,cutoff,test_season=2027,
+                  retrospective=True,verified_ids={"1","2"},
+                  alpha=1.5,prior_weight=0.30,
+                  prior_team_multipliers=multipliers)
+        variants.append(predict(model,game("next",cutoff,completed=False)))
+    # If both sides had used the *average* multiplier (0.7), this would
+    # incorrectly produce identical predictions for these two distinct rosters.
+    assert abs(variants[0]["pred_total"] - variants[1]["pred_total"]) > 0.05
