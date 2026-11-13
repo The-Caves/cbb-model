@@ -174,3 +174,38 @@ def test_prior_d1_denominator_is_verified_point_in_time():
     non_division=game_row(3,"1","999",tip+timedelta(hours=4))
     seen=prior_d1_game_counts([prior,later,non_division],now,2026,{"1","2"})
     assert seen == {"1":1,"2":1}
+
+
+def test_deep_player_backfill_prioritizes_two_rostered_matchup_teams():
+    def row(i, home, away):
+        return {"game_id": str(i), "season":2026,
+                "home_id":str(home), "away_id":str(away),
+                "tip_utc":f"2026-03-{i:02d}T19:00:00Z"}
+    # Incoming archive order is adversarial: all unrelated rows first.
+    unrelated=[row(i,3,4) for i in range(20,24)]
+    selected_teams=[row(i,1,2) for i in range(1,16)]
+    history=[{"season":2026,"game_id":str(i),"home_id":"1","away_id":"2"}
+             for i in range(1,6)]
+    # The two matchup teams have five observed prior games each, but 30
+    # verified prior season games; building to 9 each takes four requests.
+    inputs=unrelated + selected_teams[5:]
+    plan=plan_player_backfill(
+        inputs,history,["1","2","3","4"],2027,4,
+        observed_rosters={"1","2"},upcoming_pairs=[("1","2")],
+        prior_d1_games={"1":30,"2":30,"3":28,"4":28})
+    assert len(plan)==4
+    assert all({g["home_id"],g["away_id"]}=={"1","2"} for g in plan)
+
+
+def test_sparse_game_depth_is_not_fabricated_without_verified_schedule():
+    def row(i, a,b):
+        return {"game_id":str(i), "season":2026,"home_id":a,"away_id":b,
+                "tip_utc":f"2026-03-{i:02d}T18:00:00Z"}
+    games=[row(1,"1","2"),row(2,"3","4"),row(3,"1","2")]
+    # Missing D-I denominator means no invented 30% coverage target.
+    plan=plan_player_backfill(games,[],["1","2"],2027,2,
+                              observed_rosters={"1","2"},
+                              upcoming_pairs=[("1","2")],
+                              prior_d1_games={})
+    assert len(plan)==2
+    assert plan[0]["game_id"]=="3"
