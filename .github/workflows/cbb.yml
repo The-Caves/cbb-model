@@ -87,6 +87,8 @@ jobs:
       - name: Score-only versus possession challenger (no model promotion)
         # Deliberate PASS on thin historical data, never invent metrics.
         run: python efficiency_challenger.py --root data --season 2026
+      - name: Generate as-of team schedule and Four Factors research profiles
+        run: python team_intelligence.py --root data
       - name: Generate real website data (no invented odds)
         run: python site_export.py --root data --site site
       - name: Persist public research evidence and site snapshot
