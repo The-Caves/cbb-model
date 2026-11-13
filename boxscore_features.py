@@ -218,6 +218,14 @@ def run(root="data", max_games=80, delay=1.2, opener=None, now=None):
     advanced.mkdir(parents=True,exist_ok=True)
     ledger=advanced/"boxscore_team_games.jsonl"
     accepted=load_accepted(ledger)
+    # Source-verified player participation from the same ESPN summaries.
+    # Optional failure must not block team-boxscore evidence.
+    from roster_intelligence import player_boxscore, PlayerEvidenceGap, read_jsonl
+    player_ledger=advanced/"player_boxscore_games.jsonl"
+    player_ids={str(row["game_id"]) for row in read_jsonl(
+        player_ledger,unique_key=lambda row: str(row["game_id"]))}
+    player_accepted=0
+    player_rejections=[]
     games=read_csv(root/"games.csv")
     # Optional directory for verified D-I-only historical backfill. A missing
     # directory is visible in the audit; it is not proof of D-I membership.
@@ -241,7 +249,16 @@ def run(root="data", max_games=80, delay=1.2, opener=None, now=None):
         except (OSError,ValueError,KeyError,TypeError,OverflowError) as exc:
             failures.append({"game_id":gid,"error":type(exc).__name__+": "+str(exc)[:160]})
             continue
-        # Preserve a minimal original-statistics evidence excerpt, not massive player PBP.
+        if gid not in player_ids:
+            try:
+                player_record=player_boxscore(payload,g,captured,digest)
+                with player_ledger.open("a",encoding="utf-8") as pf:
+                    pf.write(json.dumps(player_record,sort_keys=True)+"\n")
+                player_accepted+=1
+                player_ids.add(gid)
+            except (PlayerEvidenceGap,KeyError,TypeError,ValueError) as exc:
+                player_rejections.append({"game_id":gid,"reason":str(exc)[:100]})
+        # Keep the original compact team evidence separate from player records.
         preview={"header":{"id":payload["header"]["id"],
                   "competitions":payload["header"]["competitions"]},
                  "boxscore":{"teams":payload["boxscore"]["teams"]},
@@ -269,7 +286,9 @@ def run(root="data", max_games=80, delay=1.2, opener=None, now=None):
         "quarantined_archive_rows":source_audit["quarantined_rows"],
         "as_of_utc":iso(now),"attempted":len(candidates),
         "accepted_this_run":len(good),"rejected_this_run":len(failures),
-        "accepted_total":len(accepted),"profile_teams":len(prof),
+        "accepted_total":len(accepted),"player_games_captured_this_run":player_accepted,
+        "player_rows_rejected":player_rejections[:15],
+        "profile_teams":len(prof),
         "profile_teams_5plus":sum(x["games"]>=5 for x in prof.values()),
         "rejections":failures[:50],
         "warning":"Retrospective observation is not historical availability. Features are not used in active model picks."
