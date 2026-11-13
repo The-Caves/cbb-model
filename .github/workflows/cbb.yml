@@ -26,6 +26,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: true
+          fetch-depth: 0  # Preserve actual historical as-of profile commits
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -103,8 +104,15 @@ jobs:
       - name: Replay v0.5 carryover and regularization candidates against v0.4
         if: github.event_name == 'push'
         run: python v05_transition_challenger.py --root data --season 2026
+      - name: Train dated team-profile challenger and compare locked historical periods
+        if: github.event_name == 'push'
+        run: python profile_trajectory_challenger.py --root data --historical
+      - name: Freeze genuinely pre-tip dated-profile challenger forecasts
+        run: python profile_trajectory_challenger.py --root data
       - name: Generate as-of team schedule and Four Factors research profiles
         run: python team_intelligence.py --root data
+      - name: Audit genuine older versus current saved team profiles
+        run: python profile_history_audit.py --root data --repo . --season 2027
       - name: Generate real website data (no invented odds)
         run: python site_export.py --root data --site site
       - name: Persist public research evidence and site snapshot
