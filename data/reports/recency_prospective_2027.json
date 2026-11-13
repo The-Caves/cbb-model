@@ -1,10 +1,10 @@
 {
   "active_v04_unchanged": true,
-  "as_of_utc": "2026-11-13T21:36:09Z",
+  "as_of_utc": "2026-11-13T22:02:02Z",
   "experiment": "CBB_V05_OPP_ADJ_RECENCY_RESEARCH_20261113",
   "freeze": {
-    "captured": 441,
-    "games": 147,
+    "captured": 435,
+    "games": 145,
     "status": "GENUINE_PRETIP_RESEARCH_FREEZE"
   },
   "grade": {
