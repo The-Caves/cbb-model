@@ -151,30 +151,30 @@
             "total_mae": 14.965
           }
         },
-        "favorites_12plus": {
+        "v04_favorites_12plus": {
           "less_shrinkage": {
-            "brier": 0.0663,
-            "margin_bias": -0.002,
-            "margin_mae": 9.621,
-            "n": 554,
-            "su_accuracy": 0.9296,
-            "total_mae": 14.102
+            "brier": 0.0628,
+            "margin_bias": -0.065,
+            "margin_mae": 9.664,
+            "n": 527,
+            "su_accuracy": 0.9336,
+            "total_mae": 13.934
           },
           "lighter_carryover": {
-            "brier": 0.0644,
-            "margin_bias": -0.573,
-            "margin_mae": 9.553,
-            "n": 556,
-            "su_accuracy": 0.9317,
-            "total_mae": 13.708
+            "brier": 0.0625,
+            "margin_bias": -0.724,
+            "margin_mae": 9.612,
+            "n": 527,
+            "su_accuracy": 0.9336,
+            "total_mae": 13.573
           },
           "roster_fade": {
-            "brier": 0.0658,
-            "margin_bias": -0.432,
-            "margin_mae": 9.463,
-            "n": 573,
-            "su_accuracy": 0.9302,
-            "total_mae": 13.833
+            "brier": 0.0626,
+            "margin_bias": -0.667,
+            "margin_mae": 9.637,
+            "n": 527,
+            "su_accuracy": 0.9336,
+            "total_mae": 13.552
           },
           "v04": {
             "brier": 0.0625,
@@ -255,30 +255,30 @@
             "total_mae": null
           }
         },
-        "favorites_12plus": {
+        "v04_favorites_12plus": {
           "less_shrinkage": {
-            "brier": 0.0726,
-            "margin_bias": 0.736,
-            "margin_mae": 9.211,
-            "n": 167,
-            "su_accuracy": 0.9222,
-            "total_mae": 12.943
+            "brier": 0.0747,
+            "margin_bias": 0.757,
+            "margin_mae": 9.25,
+            "n": 162,
+            "su_accuracy": 0.9198,
+            "total_mae": 12.908
           },
           "lighter_carryover": {
-            "brier": 0.07,
-            "margin_bias": 0.619,
-            "margin_mae": 9.111,
-            "n": 175,
-            "su_accuracy": 0.9257,
-            "total_mae": 13.058
+            "brier": 0.0752,
+            "margin_bias": 0.666,
+            "margin_mae": 9.139,
+            "n": 162,
+            "su_accuracy": 0.9198,
+            "total_mae": 12.856
           },
           "roster_fade": {
-            "brier": 0.0934,
-            "margin_bias": 1.095,
-            "margin_mae": 9.208,
-            "n": 198,
-            "su_accuracy": 0.899,
-            "total_mae": 13.06
+            "brier": 0.0751,
+            "margin_bias": 0.742,
+            "margin_mae": 9.138,
+            "n": 162,
+            "su_accuracy": 0.9198,
+            "total_mae": 12.864
           },
           "v04": {
             "brier": 0.0744,
@@ -359,30 +359,30 @@
             "total_mae": 15.126
           }
         },
-        "favorites_12plus": {
+        "v04_favorites_12plus": {
           "less_shrinkage": {
-            "brier": 0.0537,
-            "margin_bias": -0.807,
-            "margin_mae": 10.457,
-            "n": 474,
-            "su_accuracy": 0.943,
-            "total_mae": 14.721
+            "brier": 0.0424,
+            "margin_bias": -0.877,
+            "margin_mae": 10.48,
+            "n": 430,
+            "su_accuracy": 0.9558,
+            "total_mae": 14.838
           },
           "lighter_carryover": {
-            "brier": 0.0388,
-            "margin_bias": -3.914,
-            "margin_mae": 10.929,
-            "n": 412,
-            "su_accuracy": 0.9587,
-            "total_mae": 14.116
+            "brier": 0.0414,
+            "margin_bias": -3.741,
+            "margin_mae": 10.877,
+            "n": 430,
+            "su_accuracy": 0.9558,
+            "total_mae": 14.374
           },
           "roster_fade": {
             "brier": 0.0418,
-            "margin_bias": -2.854,
-            "margin_mae": 10.728,
+            "margin_bias": -2.73,
+            "margin_mae": 10.637,
             "n": 430,
             "su_accuracy": 0.9558,
-            "total_mae": 14.437
+            "total_mae": 14.617
           },
           "v04": {
             "brier": 0.042,
