@@ -318,17 +318,12 @@ def fit(rows, cutoff, test_season=None, retrospective=False, alpha=3.0, prior_we
             hs, ats = float(g['home_score']), float(g['away_score'])
             if not (20 <= hs <= 200 and 20 <= ats <= 200):
                 continue
-            if int(g['season']) == target:
-                weight = 1.0
-            else:
-                # Optional researched roster retention can only *reduce*
-                # previous-season influence. Unverified teams retain 1.0.
-                # None preserves byte-for-byte v0.4 training behavior.
-                weight = prior_weight
-                if prior_team_multipliers is not None:
-                    hm = prior_team_multipliers.get(str(g['home_id']), 1.0)
-                    am = prior_team_multipliers.get(str(g['away_id']), 1.0)
-                    weight *= (hm + am) / 2.0
+            # Champion remains exactly the same: current-season records 1.0,
+            # prior-season records carry the configured prior_weight.
+            # Optional verified roster retention is applied PER SCORING TEAM
+            # to each prior scoring observation below, rather than averaging
+            # both teams' retention and changing the opponent's score weight.
+            weight = 1.0 if int(g['season']) == target else prior_weight
             used.append((g, hs, ats, weight))
             if int(g['season']) == target:
                 counts[g['home_id']] += 1
@@ -346,7 +341,11 @@ def fit(rows, cutoff, test_season=None, retrospective=False, alpha=3.0, prior_we
         non_neutral = str(g['neutral']) not in ('1', 'True', 'true')
         for score, team_o, team_d, sign in ((hs,h,a,1),(ats,a,h,-1)):
             r = len(y)
-            scale = math.sqrt(weight)
+            sample_weight = weight
+            if prior_team_multipliers is not None and int(g['season']) != target:
+                offense_team = str(g['home_id'] if sign == 1 else g['away_id'])
+                sample_weight *= prior_team_multipliers.get(offense_team, 1.0)
+            scale = math.sqrt(sample_weight)
             # The venue feature is fixed rather than freely estimated. A free
             # home term was severely confounded by guarantee-game schedules.
             for col, val in ((0,1), (2+team_o,1), (2+n+team_d,-1)):
