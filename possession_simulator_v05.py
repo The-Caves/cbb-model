@@ -29,7 +29,9 @@ from team_intelligence import matched_boxscores
 from v05_transition_challenger import final_game, frozen_v04, metrics, model_observation
 
 VERSION_PREFIX = "CBB_V05_POSSESSION_EVENTS_20261113"
-VARIANTS = ("pure", "blend20", "blend40", "trained_blend")
+# Existing immutable versions do not change: this new variant has its own
+# name and independent pre-tip ledger entries.
+VARIANTS = ("pure", "blend20", "blend40", "trained_blend", "split_total20")
 VERSION = {variant:VERSION_PREFIX+"_"+variant.upper() for variant in VARIANTS}
 LAST_SEASON_SHOTS = 0.08
 SHOOTING_SHRINK = {"two":450.0, "three":375.0, "free":240.0}
@@ -238,7 +240,15 @@ def simulate(game,asof,matchup,draws=DRAWS):
 
 def apply(row,variant,calibration=None):
     p=row["physical"]
-    if variant in BLEND:
+    if variant=="split_total20":
+        # One predeclared ablation: trust the lighter-carryover score ridge
+        # entirely for margin; use only 20% physical possession evidence for
+        # the total. Unlike a trained blend, no fitted coefficients change
+        # between dates or require extra hyperparameter selection.
+        weight=None
+        shift_m=0.0
+        shift_t=0.20*(p["pred_total"]-row["base_total"])
+    elif variant in BLEND:
         weight=BLEND[variant]
         shift_m=shift_t=0.0
     elif variant=="trained_blend":

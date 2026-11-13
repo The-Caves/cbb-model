@@ -35,17 +35,18 @@ function gameCard(g){
   const awayDivision=g.away_division==='OTHER_OR_UNVERIFIED'?' · OTHER / UNVERIFIED OPPONENT':'';
   const homeDivision=g.home_division==='OTHER_OR_UNVERIFIED'?' · OTHER / UNVERIFIED OPPONENT':'';
   const cardStatus=real?'FINAL':live?'LIVE':new Date(g.tip_utc).getTime()<=Date.now()?'STARTED / PENDING':'UPCOMING';
-  const condition=p?(p.reliability?.status==='PASS_LOW_CURRENT_SAMPLE'?'PASS · LOW SAMPLE':p.reliability?.status==='PASS_NO_VERIFIED_MARKET'?'PASS · NO BOOK LINE':p.status==='PASS_LOW_SAMPLE'?'PASS · LOW SAMPLE':'RESEARCH PROJECTION'):'NO VERIFIED PICK';
+  const condition=p?(p.interim_featured_model?'INTERIM v0.5 · UNVALIDATED':p.reliability?.status==='PASS_LOW_CURRENT_SAMPLE'?'PASS · LOW SAMPLE':p.reliability?.status==='PASS_NO_VERIFIED_MARKET'?'PASS · NO BOOK LINE':p.status==='PASS_LOW_SAMPLE'?'PASS · LOW SAMPLE':'v0.4 RESEARCH PROJECTION'):'NO VERIFIED PICK';
   const when=dateFmt.format(new Date(g.tip_utc));
   const outcome=real && p && p.margin!==0?((g.home_score-g.away_score>0)===(p.margin>0)?' · WINNER HIT':' · WINNER MISS'):'';
   const predictionHtml=p?`
-  <div class="proj-head"><small>MODEL PROJECTION · ${esc(p.model||'VERSION UNKNOWN')}</small><span class="proj-tag ${p.status==='RESEARCH_ONLY'?'has':''}">${esc(condition)}</span></div>
+  <div class="proj-head"><small>${p.interim_featured_model?'FEATURED MODEL · v0.5 20% SIM BLEND': 'ORIGINAL MODEL · '+esc(p.model||'VERSION UNKNOWN')}</small><span class="proj-tag ${p.status==='RESEARCH_ONLY'?'has':''}">${esc(condition)}</span></div>
   <div class="proj-row">
     <div class="proj-val"><small>PROJECTED WINNER</small><strong class="accent" title="${side}">${side}</strong></div>
     <div class="proj-val"><small>MODEL MARGIN · NOT A BOOK LINE</small><strong>${p.margin===0?'EVEN':`${num(Math.abs(p.margin),1)} pts`}</strong></div>
     <div class="proj-val"><small>MODEL TOTAL</small><strong>${num(p.total,1)}</strong></div>
   </div>
   <div class="data-note" style="font-size:11px;line-height:1.4;margin-top:10px;color:var(--muted)">
+    ${p.interim_featured_model?'Interim user-selected experimental model. Simulates 512 shot/possession outcomes and blends 20% with lighter previous-season carryover. No proven ATS/O-U advantage.':'Original pre-tip v0.4-era forecast, kept as fallback where no eligible simulation was saved.'}
     Margin and total are research projections, not betting lines.
     ${p.reliability?.margin_mae_points!=null?`Historical D-I average margin error: ${num(p.reliability.margin_mae_points,1)} pts over ${num(p.reliability.historical_comparison_games)} graded games.`:''}
     <strong>PASS: no verified ATS edge or player availability check.</strong>
@@ -64,7 +65,7 @@ function gameCard(g){
   const matchupDetails=matchupResearch.length?`<div class="data-note" style="margin:10px 0;padding:10px;border:1px solid var(--border);border-radius:8px">
     <strong>Experimental v0.5 matchup projections · NOT LIVE PICKS</strong>
     ${matchupResearch.map(m=>`<p><strong>${esc(m.variant)}:</strong> ${esc(g.home)} ${num(m.home,1)} – ${esc(g.away)} ${num(m.away,1)} · total ${num(m.total,1)} · captured ${esc(new Date(m.captured_utc).toLocaleString())} before tipoff.</p>`).join('')}
-    <small>Built on lighter previous-season carryover plus observed opponent-adjusted shooting, pace, turnovers, rebounding and foul-pressure interactions. No validated spread or total betting edge. The official model remains the separate v0.4 projection above.</small>
+    <small>Separate historical research experiment using lighter carryover plus opponent-adjusted Four Factors. The featured site model is the 20% possession blend when pre-tip evidence is available; v0.4 is retained for audit and fallback. No independently validated betting edge.</small>
   </div>`:'';
   const shadow=g.shadow_projection;
   const shadowDetails=shadow?`<p><strong>Experimental D-I-only second opinion:</strong> ${esc(shadow.margin>0?g.home:g.away)} by ${num(Math.abs(shadow.margin),1)}; projected total ${num(shadow.total,1)}. ${shadow.winner_disagrees?'<strong>MODELS DISAGREE — PASS.</strong>':''} This unvalidated challenger uses a lighter previous-season weight and is not a sportsbook recommendation. Captured ${esc(new Date(shadow.captured_utc).toLocaleString())} before tipoff.</p>`:'';
@@ -80,7 +81,7 @@ function gameCard(g){
     <div class="projection">${predictionHtml}${marketDetails}</div>
     <div class="card-footer"><span>${p?`Frozen ${esc(new Date(p.captured_utc).toLocaleString(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}))}`:'Spread and total: not sourced'}</span><span>${esc(outcome.replace(/^ · /,''))||'No verified market odds'}</span></div>
     <details><summary>Matchup details</summary><div class="details-body">
-      ${p?`<p><strong>Projected score:</strong> ${esc(g.away)} ${num(p.away,1)} – ${esc(g.home)} ${num(p.home,1)}</p><p><strong>Season sample:</strong> ${num(p.away_games)} away games / ${num(p.home_games)} home games. Model trained on ${num(p.training_games)} historical/current games.</p><p><strong>Forecast recorded:</strong> ${esc(new Date(p.captured_utc).toLocaleString())}, strictly before tipoff. Win probabilities are not yet calibrated.</p>`:'<p>No pre-tip model capture is stored. A game without one is deliberately not given a projected winner.</p>'}
+      ${p?`<p><strong>Projected score:</strong> ${esc(g.away)} ${num(p.away,1)} – ${esc(g.home)} ${num(p.home,1)}</p>${p.interim_featured_model && g.original_v04_projection?`<p><strong>Original v0.4 forecast (preserved):</strong> ${esc(g.away)} ${num(g.original_v04_projection.away,1)} – ${esc(g.home)} ${num(g.original_v04_projection.home,1)}, total ${num(g.original_v04_projection.total,1)}.</p>`:''}<p><strong>Season sample:</strong> ${num(p.away_games)} away games / ${num(p.home_games)} home games. Model trained on ${num(p.training_games)} historical/current games.</p><p><strong>Forecast recorded:</strong> ${esc(new Date(p.captured_utc).toLocaleString())}, strictly before tipoff. Win probabilities are not yet calibrated.</p>`:'<p>No pre-tip model capture is stored. A game without one is deliberately not given a projected winner.</p>'}
       ${shadowDetails}
       ${matchupDetails}
       <p><strong>Market:</strong> ${sourceMarket?'This quote was observed before tipoff from the identified provider; the displayed difference is uncalibrated, not a betting edge.':'No verified pre-tip market quote for this matchup. No odds or bet recommendation invented.'}</p>
@@ -134,7 +135,19 @@ function renderPerformance(){
   out+=`<section class="data-panel"><h3>2026–27 prospective performance · D-I only</h3><p>Only verified Division I matchups using original pre-tip forecasts. Smaller-school/unverified games are reported separately.</p>${metricRow(live)}${!all?`<p style="margin-top:16px;color:var(--orange)">No qualified completed forecast is available yet. The performance table will populate after authentic pre-tip captures and final scores.</p>`:''}</section>`;
   const modelBreakdown=p.prospective?.d1_by_model||{};
   const versions=Object.entries(modelBreakdown).sort((a,b)=>a[0].localeCompare(b[0]));
-  if(versions.length)out+=`<section class="data-panel"><h3>Original model-version records</h3><p>v0.4 applies only to new frozen predictions. Existing v0.3 game picks and grades remain unchanged; do not confuse this with ATS.</p>${versions.map(([version,v])=>`<div style="margin:16px 0"><strong>${esc(version)}</strong>${metricRow(v)}</div>`).join('')}</section>`;
+  if(versions.length)out+=`<section class="data-panel"><h3>Preserved original v0.4-era model ledger</h3><p>These are historical scores for the preserved original models, <strong>not</strong> results attributed to the newly featured experimental v0.5 blend. The v0.5 simulator starts its own independent pre-tip evaluation.</p>${versions.map(([version,v])=>`<div style="margin:16px 0"><strong>${esc(version)}</strong>${metricRow(v)}</div>`).join('')}</section>`;
+  const featured=p.featured_v05_prospective;
+  if(featured){
+    const f=featured.performance?.results?.blend20;
+    const n=f?.frozen_pairs??0;
+    out+=`<section class="data-panel"><h3>Interim featured v0.5 · 20% possession blend</h3>
+      <p>This is the currently featured forecast where a genuine pre-tip snapshot exists; v0.4 is the fallback. Independent simulation ATS/O-U results are tracked separately and must not be inferred from historical winner accuracy.</p>
+      <div class="metric-row"><div class="metric-item"><small>Paired completed games</small><strong>${num(n)}</strong></div>
+      <div class="metric-item"><small>Observed ATS selections</small><strong>${num(f?.same_quote_simulator?.ats_with_min3pt_model_edge?.n||0)}</strong></div>
+      <div class="metric-item"><small>Observed O/U selections</small><strong>${num(f?.same_quote_simulator?.ou_with_min4pt_model_edge?.n||0)}</strong></div></div>
+      ${n>=30?metricRow(f.simulator):'<p>Insufficient independently graded pre-tip games to report reliable simulation performance.</p>'}
+    </section>`;
+  }
   const mkt=p.market_as_observed;
   if(mkt){
     const marketGrade=(r)=>r?.n?(`${num(r.w)}–${num(r.l)}${r.p?' ('+num(r.p)+' push)':''} · ${nicePct(r.win_rate)}`):'Not available';

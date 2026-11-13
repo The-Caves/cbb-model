@@ -130,3 +130,17 @@ def test_real_pretip_quote_must_precede_both_forecasts(tmp_path):
     shadow.write_text(json.dumps(after)+"\n")
     assert not valid_forecast(after,g,now)
     assert grade([g],{"1","2"},now,base,shadow,books)["results"]["blend20"]["frozen_pairs"]==0
+
+
+def test_split_total20_uses_lighter_margin_and_only_simulated_total():
+    from possession_simulator_v05 import VERSION
+    row={"physical":{"pred_margin":22.,"pred_total":170.},
+         "base_margin":7.,"base_total":146.}
+    v=apply(row,"split_total20")
+    blend=apply(row,"blend20")
+    assert v["margin"]==7.0
+    assert abs(v["total"]-150.8)<1e-8
+    assert blend["margin"]==10.0
+    assert v["total"]==blend["total"]
+    assert VERSION["split_total20"] != VERSION["blend20"]
+    assert VERSION["blend20"]=="CBB_V05_POSSESSION_EVENTS_20261113_BLEND20"

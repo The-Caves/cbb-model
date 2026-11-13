@@ -289,3 +289,84 @@ def test_separate_matchup_research_is_pretip_and_never_replaces_champion(tmp_pat
                           matchup_ledger=research)["games"][0]
     assert absent["projection"] is None
     assert absent["matchup_research"]==[]
+
+
+def test_user_selected_featured_possession_blend_is_pretip_and_keeps_v04_ledger(tmp_path):
+    from cbb import ACTIVE_LIVE_VERSION
+    from possession_simulator_v05 import DRAWS, VERSION
+    from site_export import FEATURED_ROLLOUT_UTC
+    original=tmp_path/"champion.jsonl"
+    sim=tmp_path/"possession.jsonl"
+    g=game()
+    previous={**prediction(),"model":ACTIVE_LIVE_VERSION,
+              "home_id":"1","away_id":"2"}
+    original.write_text(json.dumps(previous)+"\n")
+    candidate={
+        "model":VERSION["blend20"],"variant":"blend20",
+        "champion_version":ACTIVE_LIVE_VERSION,
+        "game_id":"100","home_id":"1","away_id":"2",
+        "tip_utc":g["tip_utc"],"captured_utc":NOW.isoformat().replace("+00:00","Z"),
+        "training_latest_tip":(NOW-timedelta(days=1)).isoformat().replace("+00:00","Z"),
+        "n_simulations":DRAWS,"previous_season_weight":.15,
+        "research_only":True,"home_current_games":3,"away_current_games":4,
+        "pred_home":77.,"pred_away":72.,"pred_margin":5.,"pred_total":149.,
+    }
+    sim.write_text(json.dumps(candidate)+"\n")
+    out=export_payload([g],original,NOW,directory={"1":"Home","2":"Away"},
+                       possession_ledger=sim)
+    row=out["games"][0]
+    assert row["projection"]["model"]==VERSION["blend20"]
+    assert row["projection"]["margin"]==5.
+    assert row["original_v04_projection"]["model"]==ACTIVE_LIVE_VERSION
+    assert row["original_v04_projection"]["margin"]==10.
+    assert row["featured_experimental"] is True
+    assert row["projection"]["not_prospectively_validated"] is True
+    assert out["model"]==VERSION["blend20"]
+    assert out["original_champion_model"]==ACTIVE_LIVE_VERSION
+    assert out["featured_from_utc"]==FEATURED_ROLLOUT_UTC
+    assert original.read_text()==json.dumps(previous)+"\n"
+    # The live release never invents predictions from post-tip snapshots.
+    candidate["captured_utc"]=(TIP+timedelta(seconds=1)).isoformat().replace("+00:00","Z")
+    sim.write_text(json.dumps(candidate)+"\n")
+    fallback=export_payload([g],original,NOW,directory={"1":"Home","2":"Away"},
+                            possession_ledger=sim)["games"][0]
+    assert fallback["featured_experimental"] is False
+    assert fallback["projection"]["model"]==ACTIVE_LIVE_VERSION
+    assert fallback["projection"]["margin"]==10.
+    # Missing original source-validated model cannot be bypassed by research.
+    candidate["captured_utc"]=NOW.isoformat().replace("+00:00","Z")
+    sim.write_text(json.dumps(candidate)+"\n")
+    absent=export_payload([g],tmp_path/"absent.jsonl",NOW,
+                          directory={"1":"Home","2":"Away"},
+                          possession_ledger=sim)["games"][0]
+    assert absent["projection"] is None
+
+
+def test_featured_release_does_not_rewrite_earlier_completed_model_history(tmp_path):
+    from cbb import ACTIVE_LIVE_VERSION
+    from possession_simulator_v05 import DRAWS, VERSION
+    from site_export import FEATURED_ROLLOUT_UTC
+    release=datetime.fromisoformat(FEATURED_ROLLOUT_UTC.replace("Z","+00:00"))
+    old_tip=release-timedelta(minutes=10)
+    g={**game(completed=True), "tip_utc":old_tip.isoformat().replace("+00:00","Z"),
+       "first_final_observed_utc":(release+timedelta(hours=5)).isoformat().replace("+00:00","Z")}
+    old=tmp_path/"original.jsonl"
+    shadow=tmp_path/"sim.jsonl"
+    main={**prediction(),"model":ACTIVE_LIVE_VERSION,
+          "tip_utc":g["tip_utc"],"home_id":"1","away_id":"2",
+          "captured_utc":(release-timedelta(hours=2)).isoformat().replace("+00:00","Z")}
+    old.write_text(json.dumps(main)+"\n")
+    candidate={"model":VERSION["blend20"],"variant":"blend20",
+        "champion_version":ACTIVE_LIVE_VERSION,"game_id":"100",
+        "tip_utc":g["tip_utc"],"home_id":"1","away_id":"2",
+        "captured_utc":(release-timedelta(hours=2)).isoformat().replace("+00:00","Z"),
+        "training_latest_tip":(release-timedelta(days=1)).isoformat().replace("+00:00","Z"),
+        "n_simulations":DRAWS,"previous_season_weight":.15,
+        "research_only":True,"home_current_games":3,"away_current_games":3,
+        "pred_home":78.,"pred_away":72.,"pred_margin":6.,"pred_total":150.}
+    shadow.write_text(json.dumps(candidate)+"\n")
+    out=export_payload([g],old,release+timedelta(hours=6),
+                       directory={"1":"H","2":"A"},possession_ledger=shadow)
+    assert out["games"][0]["projection"]["model"]==ACTIVE_LIVE_VERSION
+    assert out["games"][0]["featured_experimental"] is False
+    assert out["performance"]["prospective"]["d1_by_model"][ACTIVE_LIVE_VERSION]["n"]==1
