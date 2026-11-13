@@ -37,3 +37,13 @@ python profile_trajectory_challenger.py --root data
 ```
 
 **Promotion rule:** Demonstrate robust out-of-sample improvement in margin and/or totals without unacceptable SU or calibration regression on independently frozen games, including early-season and big-strength-gap subsets. Never promote based solely on a reconstructed or already examined February window.
+
+### Legacy raw-profile snapshot comparison
+
+The newer `team_intelligence_2027.json` opponent-adjusted snapshot series started only on November 13, so it does not yet contain a fully day-separated historical comparison at the first checkpoint. A separate, already-existing `team_profiles_2027.json` raw-source series has genuine committed snapshots from November 7 onward.
+
+`profile_history_audit.py` now also compares `team_profiles_2027.json` at two **actual Git commits separated by at least 36 hours**. Unlike `team_intelligence_2027.json`, the legacy raw snapshots do not contain their own `as_of_utc`; the audit therefore reports the **Git commit timestamp**, not an invented original ESPN publication timestamp.
+
+Compare common, valid teams with at least 2 observed games in the old snapshot and at least 3 in the newer one. Track differences in raw offensive rating, estimated pace, eFG%, turnovers, rebounding, free-throw and three-point attempt rates, including biggest movers and mean absolute offensive efficiency change. This describes what the source-based team profile knew at different archive checkpoints; it is not a validated score-model improvement or an opponent-adjusted rating comparison.
+
+The combined report keeps the `raw_saved_profile_history` branch separate from the newer opponent-adjusted `team_intelligence` history, and will fill the latter automatically once genuinely saved dated history is deep enough.
