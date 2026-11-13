@@ -144,14 +144,20 @@ def retrospective(games, verified, year=2026, start="2025-11-01",
                     model_observation(g, pred, models[name]["margin_sd"]))
     results = {}
     for split, data in partitions.items():
+        # A subgroup is defined once by champion predictions, not by each
+        # candidate's changing spread. Otherwise the denominators differ and
+        # the favorite-performance comparison is biased.
+        champion_big_favorite_ids = {
+            x["game_id"] for x in data[V04] if x["big_favorite"]}
         results[split] = {
             "comparison": paired_metrics(data),
             "early_sample_under5": {
                 name: metrics([x for x in data[name]
                                if x["current_games_min"] < 5])
                 for name in (V04, *VARIANTS)},
-            "favorites_12plus": {
-                name: metrics([x for x in data[name] if x["big_favorite"]])
+            "v04_favorites_12plus": {
+                name: metrics([x for x in data[name]
+                               if x["game_id"] in champion_big_favorite_ids])
                 for name in (V04, *VARIANTS)},
         }
     selection = results["december_january_selection"]["comparison"]
