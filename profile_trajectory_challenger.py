@@ -449,8 +449,17 @@ def grade(games, verified, now, research_ledger, base_ledger, year=None):
                 if (p.get("tip_utc")!=g["tip_utc"] or
                     p.get("home_id")!=str(g["home_id"]) or
                     p.get("away_id")!=str(g["away_id"]) or
+                    p.get("champion_version",BASELINE)!=BASELINE or
                     dt(p["captured_utc"])>=dt(g["tip_utc"]) or
+                    dt(p["new_profile_as_of_utc"])!=dt(p["captured_utc"]) or
+                    dt(p["old_profile_as_of_utc"])!=(
+                        dt(p["captured_utc"])-timedelta(days=LOOKBACK_DAYS)) or
                     dt(p["training_latest_tip"])>=dt(p["captured_utc"]) or
+                    dt(p["old_training_latest_tip"])>=dt(p["old_profile_as_of_utc"]) or
+                    abs((float(p["pred_home"])-float(p["pred_away"]))-
+                        float(p["pred_margin"]))>0.05 or
+                    abs((float(p["pred_home"])+float(p["pred_away"]))-
+                        float(p["pred_total"]))>0.05 or
                     abs((dt(p["captured_utc"])-
                          dt(base[g["game_id"]]["captured_utc"])).total_seconds())>7200):
                     continue
