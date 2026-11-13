@@ -1,20 +1,23 @@
 {
-  "as_of_utc": "2026-11-13T19:49:20Z",
-  "collector_player_game_records": 48,
-  "collector_roster_snapshots": 48,
+  "as_of_utc": "2026-11-13T20:03:45Z",
+  "collector_player_game_records": 72,
+  "collector_roster_snapshots": 72,
   "freeze": {
-    "captured": 2,
+    "captured": 1,
     "coverage": {
-      "candidate_games_eligible": 2,
-      "roster_snapshot_teams": 48,
-      "source_backed_multiplier_teams": 5,
+      "candidate_games_eligible": 1,
+      "roster_snapshot_teams": 72,
+      "source_backed_multiplier_teams": 6,
       "source_backed_team_multipliers": {
-        "2390": 0.8968,
-        "2453": 0.85945,
-        "325": 0.85,
-        "357": 0.87055,
-        "52": 0.8704
-      }
+        "2086": 0.96529,
+        "2453": 0.95817,
+        "2803": 0.96966,
+        "325": 0.95833,
+        "357": 0.9628,
+        "52": 0.96727
+      },
+      "teams_with_adequate_player_coverage": 6,
+      "teams_with_prior_sample": 10
     },
     "status": "FROZEN_AS_OF_ROSTER_RESEARCH_ONLY"
   },
