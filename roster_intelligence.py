@@ -310,11 +310,82 @@ def collect_current_rosters(root="data", max_teams=12, delay=1.2,
             "source_historical_availability_verified": False}
 
 
-def run(root="data", now=None, collect=True, max_teams=12):
+def collect_player_history(root="data", max_games=48, delay=1.2,
+                           opener=None, now=None):
+    """Source-verified player history from previously accepted team games.
+
+    Never backdate publication of retrospective ESPN game summaries. Source
+    identity, tip, final score, and stable IDs must still match the scoreboard
+    and independently archived team boxscore before a player record is saved.
+    """
+    from boxscore_features import fetch_summary, parse_summary, load_accepted
+    from cbb import eligible
+    now = now or utcnow()
+    root = Path(root)
+    verified = set(load_directory(root / "team_directory.json"))
+    accepted = load_accepted(root / "advanced" / "boxscore_team_games.jsonl")
+    target = root / "advanced" / "player_boxscore_games.jsonl"
+    already = {str(row["game_id"]) for row in read_jsonl(
+        target, unique_key=lambda row: str(row["game_id"]))}
+    year = now.year + int(now.month >= 7)
+    candidates = []
+    for g in read_csv(root / "games.csv"):
+        gid = str(g["game_id"])
+        if (gid not in accepted or gid in already or
+                int(g["season"]) not in (year, year-1, year-2) or
+                str(g["home_id"]) not in verified or
+                str(g["away_id"]) not in verified or
+                not eligible(g, now, retrospective=False)):
+            continue
+        src = accepted[gid]
+        if (str(src["home_id"]), str(src["away_id"]), str(src["tip_utc"])) != (
+                str(g["home_id"]), str(g["away_id"]), str(g["tip_utc"])):
+            continue
+        candidates.append(g)
+    # Prior season first, latest games first, to spread useful returning
+    # production across teams without extrapolating unobserved seasons.
+    priority = {year-1: 0, year: 1, year-2: 2}
+    candidates.sort(key=lambda g: (
+        priority[int(g["season"])], -dt(g["tip_utc"]).timestamp(), g["game_id"]))
+    selected = candidates[:max_games]
+    good, errors = 0, []
+    for i, g in enumerate(selected):
+        if i and delay:
+            time.sleep(delay)
+        try:
+            payload, raw_hash = fetch_summary(str(g["game_id"]), opener=opener)
+            # Revalidate the current response as a real final for the exact
+            # same game as the archived accepted team-stat record.
+            observed = iso(utcnow())
+            digest = hashlib.sha256(raw_hash).hexdigest()
+            team = parse_summary(payload, g, observed, digest)
+            previous = accepted[str(g["game_id"])]
+            if (team["home"]["points"] != previous["home"]["points"] or
+                    team["away"]["points"] != previous["away"]["points"]):
+                raise PlayerEvidenceGap("source team score changed")
+            player = player_boxscore(payload, g, observed, digest)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            with target.open("a", encoding="utf-8") as out:
+                out.write(json.dumps(player, sort_keys=True) + "\n")
+            good += 1
+        except (OSError, KeyError, ValueError, TypeError, OverflowError) as err:
+            errors.append({"game_id": str(g["game_id"]),
+                           "reason": type(err).__name__ + ": " + str(err)[:80]})
+    return {"status": "RETROSPECTIVE_PLAYER_RESEARCH_ONLY",
+            "attempted": len(selected), "accepted": good,
+            "rejections": errors[:20],
+            "point_in_time_historical_availability_verified": False}
+
+
+def run(root="data", now=None, collect=True, max_teams=12,
+        player_backfill=0):
     now = now or utcnow()
     root = Path(root)
     collected = (collect_current_rosters(root, max_teams=max_teams, now=now)
                  if collect else {"status": "NO_NETWORK_COLLECTION"})
+    historical = (collect_player_history(root, max_games=player_backfill,
+                                         now=now)
+                  if player_backfill else {"status": "NO_HISTORICAL_BACKFILL"})
     directory = load_directory(root / "team_directory.json")
     player_path = root / "advanced" / "player_boxscore_games.jsonl"
     roster_path = root / "advanced" / "roster_snapshots.jsonl"
@@ -332,7 +403,7 @@ def run(root="data", now=None, collect=True, max_teams=12):
               "teams_with_sample_backed_continuity": sum(
                   v["status"] == "RESEARCH_SAMPLE_NOT_FULL_SEASON"
                   for v in prof.values()),
-              "collector": collected,
+              "collector": collected, "historical_backfill": historical,
               "historical_source_capture_retroactive": True,
               "warning": ("No last-season player data may be treated as available "
                           "at a past tip before actual acquisition. Roster membership "
@@ -343,6 +414,7 @@ def run(root="data", now=None, collect=True, max_teams=12):
     target.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n",
                       encoding="utf-8")
     return {"status": report["status"], "collector": collected,
+            "historical_backfill": historical,
             "source_player_games": len(player_games),
             "coverage_teams": report["teams_with_sample_backed_continuity"]}
 
@@ -352,8 +424,12 @@ if __name__ == "__main__":
     ap.add_argument("--root", default="data")
     ap.add_argument("--no-collect", action="store_true")
     ap.add_argument("--max-teams", type=int, default=12)
+    ap.add_argument("--player-backfill", type=int, default=0)
     args = ap.parse_args()
     if not 1 <= args.max_teams <= 24:
         ap.error("limit requests to 1..24 teams")
+    if not 0 <= args.player_backfill <= 48:
+        ap.error("limit research re-fetches to 0..48 games")
     print(json.dumps(run(args.root, collect=not args.no_collect,
-                         max_teams=args.max_teams), indent=2))
+                         max_teams=args.max_teams,
+                         player_backfill=args.player_backfill), indent=2))
