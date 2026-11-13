@@ -7,7 +7,8 @@ import pytest
 from roster_intelligence import (
     PlayerEvidenceGap, continuity, player_boxscore,
     roster_snapshot, read_jsonl, collect_current_rosters,
-    upcoming_teams, plan_player_backfill, prior_d1_game_counts
+    upcoming_teams, plan_player_backfill, prior_d1_game_counts,
+    near_term_matchup_readiness
 )
 
 UTC=timezone.utc
@@ -209,3 +210,32 @@ def test_sparse_game_depth_is_not_fabricated_without_verified_schedule():
                               prior_d1_games={})
     assert len(plan)==2
     assert plan[0]["game_id"]=="3"
+
+
+def test_next72h_matchup_blockers_and_depth_are_disjoint():
+    now=datetime(2026,11,13,18,tzinfo=UTC)
+    def upcoming(gid,h,a,offset):
+        return {"game_id":str(gid),"tip_utc":stamp(now+timedelta(hours=offset)),
+                "home_id":str(h),"away_id":str(a),"score_conflict":"0",
+                "identity_conflict":"0"}
+    def p(games,coverage):
+        return {"prior_games_verified":games,
+                "prior_player_game_coverage":coverage}
+    profiles={"1":p(10,.40),"2":p(9,.31),"3":p(4,.12),
+              "4":p(8,.14),"5":p(8,.20)}
+    games=[upcoming(1,1,2,12),upcoming(2,1,3,15),
+           upcoming(3,1,4,30),upcoming(4,2,5,35),
+           upcoming(5,1,6,48),upcoming(6,1,999,20),
+           upcoming(7,1,2,-2),upcoming(8,1,2,80)]
+    result=near_term_matchup_readiness(
+        games,profiles,now,{"1","2","3","4","5","6"})
+    assert result["future_verified_d1_games"]==5
+    assert result["games_with_both_recent_rosters"]==4
+    assert result["games_with_both_5plus_prior_player_games"]==3
+    assert result["games_ready_for_m41_challenger"]==2
+    assert result["games_with_both_30pct_player_coverage"]==1
+    assert result["blocker_counts_by_game"]=={
+        "insufficient_prior_player_games":1,
+        "missing_roster_snapshot":1,
+        "prior_player_sample_below_15pct":1,
+    }
