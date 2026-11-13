@@ -39,3 +39,5 @@ def test_insufficient_coverage_never_promoted():
     result=backtest(gs,[record(g) for g in gs],{'1','2'},season=2026,min_training=250,min_eval=100)
     assert result['status']=='INSUFFICIENT_MATCHED_HISTORICAL_EVALUATIONS'
     assert result['candidate']['n']==0 and not result['challenger_promoted']
+    assert result['baseline_model']=='CBB_SCORE_RIDGE_V0_4_D1_PRIOR30_A1_5'
+    assert result['v04_same_games']['n']==0

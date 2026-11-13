@@ -103,7 +103,7 @@ def predict(model,g,min_team_games=3):
 
 def backtest(games, boxscores, d1_ids, season=2026,
              min_training=250,min_eval=100):
-    """Score baseline and challenger evaluated on identical games.
+    """Current v0.4 score baseline and challenger evaluated on identical games.
 
     Retrospectively fetched source statistics are NOT timestamped evidence
     that those statistics were originally available before hypothetical tip.
@@ -129,7 +129,8 @@ def backtest(games, boxscores, d1_ids, season=2026,
         cutoff=dt(day+'T00:00:00Z')
         model=fit_efficiency(boxscores,cutoff,season,d1,retrospective=True,min_training=min_training)
         if model is None:continue
-        try:baseline=score_fit(games,cutoff,test_season=season,retrospective=True)
+        try:baseline=score_fit(games,cutoff,test_season=season,retrospective=True,
+                               alpha=1.5,prior_weight=0.30,verified_ids=d1)
         except ValueError:continue
         fit_days+=1
         for game in groups[day]:
@@ -150,7 +151,8 @@ def backtest(games, boxscores, d1_ids, season=2026,
             'challenger_promoted':False,'games_evaluated':len(evaluated),
             'required_games':min_eval,'minimum_training_games':min_training,
             'fit_days':fit_days,'candidate':metrics(evaluated),
-            'v03_same_games':metrics(comparison),
+            'v04_same_games':metrics(comparison),
+            'baseline_model':'CBB_SCORE_RIDGE_V0_4_D1_PRIOR30_A1_5',
             'historical_boxscores_acquired_retrospectively':True,
             'warning':'No inference of validated picks, profitable wagering or verified historical data availability.'}
 
