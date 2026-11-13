@@ -1,0 +1,422 @@
+{
+  "active_model": "CBB_SCORE_RIDGE_V0_4_D1_PRIOR30_A1_5",
+  "active_model_changed": false,
+  "candidate_selected_on_prior_window": "lighter_carryover",
+  "current_season": {
+    "authentic_v04_pre_tip_games": 40,
+    "comparison": {
+      "less_shrinkage": {
+        "brier": 0.1976,
+        "margin_bias": 1.339,
+        "margin_mae": 10.417,
+        "n": 40,
+        "su_accuracy": 0.675,
+        "total_mae": 13.096
+      },
+      "lighter_carryover": {
+        "brier": 0.1978,
+        "margin_bias": 0.359,
+        "margin_mae": 10.433,
+        "n": 40,
+        "su_accuracy": 0.675,
+        "total_mae": 12.543
+      },
+      "roster_fade": {
+        "brier": 0.1962,
+        "margin_bias": 0.614,
+        "margin_mae": 10.432,
+        "n": 40,
+        "su_accuracy": 0.675,
+        "total_mae": 12.786
+      },
+      "v04": {
+        "brier": 0.1958,
+        "margin_bias": 0.694,
+        "margin_mae": 10.436,
+        "n": 40,
+        "su_accuracy": 0.675,
+        "total_mae": 12.848
+      }
+    },
+    "early_under5": {
+      "less_shrinkage": {
+        "brier": 0.1976,
+        "margin_bias": 1.339,
+        "margin_mae": 10.417,
+        "n": 40,
+        "su_accuracy": 0.675,
+        "total_mae": 13.096
+      },
+      "lighter_carryover": {
+        "brier": 0.1978,
+        "margin_bias": 0.359,
+        "margin_mae": 10.433,
+        "n": 40,
+        "su_accuracy": 0.675,
+        "total_mae": 12.543
+      },
+      "roster_fade": {
+        "brier": 0.1962,
+        "margin_bias": 0.614,
+        "margin_mae": 10.432,
+        "n": 40,
+        "su_accuracy": 0.675,
+        "total_mae": 12.786
+      },
+      "v04": {
+        "brier": 0.1958,
+        "margin_bias": 0.694,
+        "margin_mae": 10.436,
+        "n": 40,
+        "su_accuracy": 0.675,
+        "total_mae": 12.848
+      }
+    },
+    "paired_games": 40,
+    "skipped": 0,
+    "status": "AS_OF_COUNTERFACTUAL_NOT_FROZEN",
+    "v05_truly_frozen_pre_tip_games": 0,
+    "warning": "v0.4 was truly frozen pre-tip. v0.5 variants are counterfactual recomputations at those capture times, not separately archived pre-tip predictions."
+  },
+  "experiment": "CBB_SEASON_TRANSITION_CHALLENGER_V0_5_RESEARCH",
+  "historical": {
+    "heldout_sufficient": true,
+    "results": {
+      "december_january_selection": {
+        "comparison": {
+          "less_shrinkage": {
+            "brier": 0.1889,
+            "margin_bias": 0.712,
+            "margin_mae": 9.16,
+            "n": 2473,
+            "su_accuracy": 0.7153,
+            "total_mae": 13.956
+          },
+          "lighter_carryover": {
+            "brier": 0.1864,
+            "margin_bias": 0.582,
+            "margin_mae": 9.07,
+            "n": 2473,
+            "su_accuracy": 0.7178,
+            "total_mae": 13.792
+          },
+          "roster_fade": {
+            "brier": 0.1869,
+            "margin_bias": 0.587,
+            "margin_mae": 9.085,
+            "n": 2473,
+            "su_accuracy": 0.7178,
+            "total_mae": 13.824
+          },
+          "v04": {
+            "brier": 0.1882,
+            "margin_bias": 0.587,
+            "margin_mae": 9.15,
+            "n": 2473,
+            "su_accuracy": 0.7178,
+            "total_mae": 13.935
+          }
+        },
+        "early_sample_under5": {
+          "less_shrinkage": {
+            "brier": 0.1989,
+            "margin_bias": 0.923,
+            "margin_mae": 9.226,
+            "n": 12,
+            "su_accuracy": 0.6667,
+            "total_mae": 15.178
+          },
+          "lighter_carryover": {
+            "brier": 0.1983,
+            "margin_bias": 1.195,
+            "margin_mae": 8.993,
+            "n": 12,
+            "su_accuracy": 0.6667,
+            "total_mae": 14.669
+          },
+          "roster_fade": {
+            "brier": 0.1973,
+            "margin_bias": 1.129,
+            "margin_mae": 9.017,
+            "n": 12,
+            "su_accuracy": 0.6667,
+            "total_mae": 14.721
+          },
+          "v04": {
+            "brier": 0.196,
+            "margin_bias": 0.863,
+            "margin_mae": 9.073,
+            "n": 12,
+            "su_accuracy": 0.6667,
+            "total_mae": 14.965
+          }
+        },
+        "favorites_12plus": {
+          "less_shrinkage": {
+            "brier": 0.0663,
+            "margin_bias": -0.002,
+            "margin_mae": 9.621,
+            "n": 554,
+            "su_accuracy": 0.9296,
+            "total_mae": 14.102
+          },
+          "lighter_carryover": {
+            "brier": 0.0644,
+            "margin_bias": -0.573,
+            "margin_mae": 9.553,
+            "n": 556,
+            "su_accuracy": 0.9317,
+            "total_mae": 13.708
+          },
+          "roster_fade": {
+            "brier": 0.0658,
+            "margin_bias": -0.432,
+            "margin_mae": 9.463,
+            "n": 573,
+            "su_accuracy": 0.9302,
+            "total_mae": 13.833
+          },
+          "v04": {
+            "brier": 0.0625,
+            "margin_bias": -0.742,
+            "margin_mae": 9.67,
+            "n": 527,
+            "su_accuracy": 0.9336,
+            "total_mae": 13.918
+          }
+        }
+      },
+      "february_retro_holdout": {
+        "comparison": {
+          "less_shrinkage": {
+            "brier": 0.2056,
+            "margin_bias": 0.686,
+            "margin_mae": 8.925,
+            "n": 1361,
+            "su_accuracy": 0.6774,
+            "total_mae": 13.421
+          },
+          "lighter_carryover": {
+            "brier": 0.2057,
+            "margin_bias": 0.676,
+            "margin_mae": 8.84,
+            "n": 1361,
+            "su_accuracy": 0.6841,
+            "total_mae": 13.46
+          },
+          "roster_fade": {
+            "brier": 0.2062,
+            "margin_bias": 0.67,
+            "margin_mae": 8.829,
+            "n": 1361,
+            "su_accuracy": 0.6782,
+            "total_mae": 13.558
+          },
+          "v04": {
+            "brier": 0.2051,
+            "margin_bias": 0.684,
+            "margin_mae": 8.919,
+            "n": 1361,
+            "su_accuracy": 0.6811,
+            "total_mae": 13.407
+          }
+        },
+        "early_sample_under5": {
+          "less_shrinkage": {
+            "brier": null,
+            "margin_bias": null,
+            "margin_mae": null,
+            "n": 0,
+            "su_accuracy": null,
+            "total_mae": null
+          },
+          "lighter_carryover": {
+            "brier": null,
+            "margin_bias": null,
+            "margin_mae": null,
+            "n": 0,
+            "su_accuracy": null,
+            "total_mae": null
+          },
+          "roster_fade": {
+            "brier": null,
+            "margin_bias": null,
+            "margin_mae": null,
+            "n": 0,
+            "su_accuracy": null,
+            "total_mae": null
+          },
+          "v04": {
+            "brier": null,
+            "margin_bias": null,
+            "margin_mae": null,
+            "n": 0,
+            "su_accuracy": null,
+            "total_mae": null
+          }
+        },
+        "favorites_12plus": {
+          "less_shrinkage": {
+            "brier": 0.0726,
+            "margin_bias": 0.736,
+            "margin_mae": 9.211,
+            "n": 167,
+            "su_accuracy": 0.9222,
+            "total_mae": 12.943
+          },
+          "lighter_carryover": {
+            "brier": 0.07,
+            "margin_bias": 0.619,
+            "margin_mae": 9.111,
+            "n": 175,
+            "su_accuracy": 0.9257,
+            "total_mae": 13.058
+          },
+          "roster_fade": {
+            "brier": 0.0934,
+            "margin_bias": 1.095,
+            "margin_mae": 9.208,
+            "n": 198,
+            "su_accuracy": 0.899,
+            "total_mae": 13.06
+          },
+          "v04": {
+            "brier": 0.0744,
+            "margin_bias": 0.558,
+            "margin_mae": 9.233,
+            "n": 162,
+            "su_accuracy": 0.9198,
+            "total_mae": 12.889
+          }
+        }
+      },
+      "november": {
+        "comparison": {
+          "less_shrinkage": {
+            "brier": 0.152,
+            "margin_bias": -1.072,
+            "margin_mae": 10.232,
+            "n": 1238,
+            "su_accuracy": 0.7698,
+            "total_mae": 14.926
+          },
+          "lighter_carryover": {
+            "brier": 0.1484,
+            "margin_bias": -2.192,
+            "margin_mae": 10.319,
+            "n": 1238,
+            "su_accuracy": 0.7819,
+            "total_mae": 14.527
+          },
+          "roster_fade": {
+            "brier": 0.1496,
+            "margin_bias": -1.808,
+            "margin_mae": 10.262,
+            "n": 1238,
+            "su_accuracy": 0.7779,
+            "total_mae": 14.735
+          },
+          "v04": {
+            "brier": 0.1511,
+            "margin_bias": -1.711,
+            "margin_mae": 10.313,
+            "n": 1238,
+            "su_accuracy": 0.7738,
+            "total_mae": 14.857
+          }
+        },
+        "early_sample_under5": {
+          "less_shrinkage": {
+            "brier": 0.1459,
+            "margin_bias": -1.001,
+            "margin_mae": 10.254,
+            "n": 992,
+            "su_accuracy": 0.7812,
+            "total_mae": 15.207
+          },
+          "lighter_carryover": {
+            "brier": 0.1425,
+            "margin_bias": -2.272,
+            "margin_mae": 10.402,
+            "n": 992,
+            "su_accuracy": 0.7944,
+            "total_mae": 14.78
+          },
+          "roster_fade": {
+            "brier": 0.1437,
+            "margin_bias": -1.817,
+            "margin_mae": 10.313,
+            "n": 992,
+            "su_accuracy": 0.7893,
+            "total_mae": 15.017
+          },
+          "v04": {
+            "brier": 0.1448,
+            "margin_bias": -1.724,
+            "margin_mae": 10.342,
+            "n": 992,
+            "su_accuracy": 0.7843,
+            "total_mae": 15.126
+          }
+        },
+        "favorites_12plus": {
+          "less_shrinkage": {
+            "brier": 0.0537,
+            "margin_bias": -0.807,
+            "margin_mae": 10.457,
+            "n": 474,
+            "su_accuracy": 0.943,
+            "total_mae": 14.721
+          },
+          "lighter_carryover": {
+            "brier": 0.0388,
+            "margin_bias": -3.914,
+            "margin_mae": 10.929,
+            "n": 412,
+            "su_accuracy": 0.9587,
+            "total_mae": 14.116
+          },
+          "roster_fade": {
+            "brier": 0.0418,
+            "margin_bias": -2.854,
+            "margin_mae": 10.728,
+            "n": 430,
+            "su_accuracy": 0.9558,
+            "total_mae": 14.437
+          },
+          "v04": {
+            "brier": 0.042,
+            "margin_bias": -2.465,
+            "margin_mae": 10.655,
+            "n": 430,
+            "su_accuracy": 0.9558,
+            "total_mae": 14.752
+          }
+        }
+      }
+    },
+    "selected_before_february": "lighter_carryover",
+    "skipped": 1,
+    "source_timing_authenticated": false,
+    "split_dates": {
+      "heldout": [
+        "2026-02-01",
+        "2026-02-28"
+      ],
+      "november": [
+        "2025-11-01",
+        "2025-11-30"
+      ],
+      "selection": [
+        "2025-12-01",
+        "2026-01-31"
+      ]
+    },
+    "status": "RETROSPECTIVE_RESEARCH_ONLY"
+  },
+  "historical_score_reconstruction_only": true,
+  "minimum_truly_frozen_v05_games_for_promotion": 150,
+  "notes": "No automatic version update. Test improvement independently in genuine new pre-tip v0.5 freezes before promotion. Historical ESPN game-score acquisition is retrospective.",
+  "promoted": false,
+  "promotion_gate": "BLOCKED_NOT_ENOUGH_FROZEN_V05_FORECASTS"
+}

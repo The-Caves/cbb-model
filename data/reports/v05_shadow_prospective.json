@@ -1,0 +1,66 @@
+{
+  "active_model_unchanged": true,
+  "as_of_utc": "2026-11-13T19:13:44Z",
+  "genuinely_frozen_v05": true,
+  "minimum_paired_games_each_variant": 150,
+  "paired_games_each_variant_min": 0,
+  "promotion_gate": "INSUFFICIENT_PROSPECTIVE_HOLDOUT",
+  "status": "PROSPECTIVE_RESEARCH_ONLY",
+  "variants": {
+    "less_shrinkage": {
+      "v04": {
+        "brier": null,
+        "margin_bias": null,
+        "margin_mae": null,
+        "n": 0,
+        "su_accuracy": null,
+        "total_mae": null
+      },
+      "v05": {
+        "brier": null,
+        "margin_bias": null,
+        "margin_mae": null,
+        "n": 0,
+        "su_accuracy": null,
+        "total_mae": null
+      }
+    },
+    "lighter_carryover": {
+      "v04": {
+        "brier": null,
+        "margin_bias": null,
+        "margin_mae": null,
+        "n": 0,
+        "su_accuracy": null,
+        "total_mae": null
+      },
+      "v05": {
+        "brier": null,
+        "margin_bias": null,
+        "margin_mae": null,
+        "n": 0,
+        "su_accuracy": null,
+        "total_mae": null
+      }
+    },
+    "roster_fade": {
+      "v04": {
+        "brier": null,
+        "margin_bias": null,
+        "margin_mae": null,
+        "n": 0,
+        "su_accuracy": null,
+        "total_mae": null
+      },
+      "v05": {
+        "brier": null,
+        "margin_bias": null,
+        "margin_mae": null,
+        "n": 0,
+        "su_accuracy": null,
+        "total_mae": null
+      }
+    }
+  },
+  "warning": "No automatic promotion or verified sportsbook edge. Compare across multiple independent weeks; avoid selecting a winner solely from the same prospective test period."
+}
