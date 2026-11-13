@@ -136,7 +136,8 @@ def test_same_frozen_completed_game_with_identical_quote_grades_ats_and_ou(tmp_p
                 "training_latest_tip":iso(frozen-timedelta(days=1)),
                 "champion_version":ACTIVE_LIVE_VERSION,
                 "base_prior_weight":.15,
-                "pred_home":82,"pred_away":71,"pred_margin":11,"pred_total":153}
+                "pred_home":82,"pred_away":71,"pred_margin":11,"pred_total":153,
+                "home_current_games":4,"away_current_games":4}
     champ.write_text(json.dumps(original)+"\n")
     shadow.write_text(json.dumps(challenger)+"\n")
     market.write_text(json.dumps(quote(finished,TIP-timedelta(hours=6)))+"\n")
