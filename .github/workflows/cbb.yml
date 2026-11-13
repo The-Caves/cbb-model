@@ -114,6 +114,11 @@ jobs:
         run: python matchup_v05.py --root data --historical
       - name: Freeze pre-tip matchup forecasts and compare actual as-observed sportsbook lines
         run: python matchup_v05.py --root data
+      - name: Backtest physical possession and shot-event simulator against v04 and lighter carryover
+        if: github.event_name == 'push'
+        run: python possession_simulator_v05.py --root data --historical
+      - name: Freeze true pretip physical simulation research and compare observed ATS O-U
+        run: python possession_simulator_v05.py --root data
       - name: Train dated team-profile challenger and compare locked historical periods
         if: github.event_name == 'push'
         run: python profile_trajectory_challenger.py --root data --historical
