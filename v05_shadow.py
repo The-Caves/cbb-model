@@ -142,7 +142,8 @@ def grade(games, champion_ledger, challenger_ledger, verified,
     n = min(result[name]["v05"]["n"] for name in VARIANTS)
     return {
         "status": "PROSPECTIVE_RESEARCH_ONLY", "as_of_utc": iso(now),
-        "genuinely_frozen_v05": True,
+        "genuinely_frozen_v05_games_graded": n,
+        "genuinely_frozen_v05_games_graded_available": n > 0,
         "minimum_paired_games_each_variant": MIN_PROSPECTIVE,
         "paired_games_each_variant_min": n,
         "promotion_gate": (
