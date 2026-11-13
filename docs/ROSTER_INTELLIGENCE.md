@@ -56,3 +56,17 @@ The new evidence fields are tracked in the roster-intelligence report and frozen
 ### Frozen model version separation
 
 The original roster prior-weight method emitted `CBB_ROSTER_PRIOR_V0_5_RESEARCH` forecasts. Once M4.1 changed both scoring-side weighting and the prior-season player-history coverage gate, the new candidate was assigned `CBB_ROSTER_PRIOR_V0_5_M41_RESEARCH`. Earlier immutable observations stay in the research ledger, but **cannot be aggregated into M4.1's prospective evaluation**. The live v0.4 version remains unchanged. This prevents apparently stronger scores produced by different underlying algorithms from being attributed to a single model version.
+
+## M4.2 — Prioritize paired matchup depth, not hundreds of thin school samples
+
+At the Nov 13 audited checkpoint, 96 current roster snapshots and 96 verified previous-player boxscores existed; 15 teams had at least five prior samples, but **none** had at least 20% of their verified prior-season D-I games in the player sample. Only three M4.1 future predictions had been frozen and zero paired M4.1 games graded.
+
+The archived-player request planner now starts with **upcoming D-I games where both teams already have source-observed current rosters**. It spends a bounded batch on up to four of those teams, aiming to cover **30% of each team's verified prior-season D-I schedule**, then creates minimum samples for other upcoming roster-observed teams, then falls back to the archival queue. All candidates must already have verified, non-disputed game finals and accepted team boxscore identities. This is *collection scheduling*, not a new model feature or a claim of measured accuracy improvement.
+
+A new `next72h_matchup_readiness` audit records total future verified D-I games, games with two recent rosters, games with both teams at five prior player boxscores, games meeting M4.1's 15% coverage threshold, and games with both at least 30% player-history coverage. Its blocker counts identify missing roster snapshots, insufficient prior player games, and thin history. This audit should guide further collection decisions rather than using model MAE with a denominator of zero.
+
+To make future comparison fair, roster challenger evaluation excludes completed games where the candidate and latest genuine v0.4 frozen snapshots were captured **more than two hours apart**. The report shows how many otherwise-qualified games were excluded by this capture alignment rule. This preserves identical outcome denominators while avoiding an advantage from meaningfully fresher results.
+
+The immutable identifier remains `CBB_ROSTER_PRIOR_V0_5_M41_RESEARCH`: the collection scheduler and evaluation inclusion criteria were changed, but the scoring coefficients/roster multipliers were **not** altered in M4.2. Pre-tip predictions already frozen under this ID remain intact. Use the new alignment-gated report when comparing like-for-like data.
+
+The live `CBB_SCORE_RIDGE_V0_4_D1_PRIOR30_A1_5` model and original pre-tip ledger remain unchanged. Continue evaluating the lighter-carryover and other challenger variants independently; no model is promoted automatically.
