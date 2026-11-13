@@ -134,6 +134,11 @@ def examples(games,accepted,verified,year=2026):
         cutoff=dt(day+"T00:00:00Z")
         try:
             fitted,profiles=asof_profiles(games,accepted,verified,cutoff,year,True)
+            champion=fit(games,cutoff,test_season=year,
+                         verified_ids=verified,retrospective=True,
+                         alpha=ALPHA,prior_weight=0.30)
+            if dt(champion["training_latest_tip"])>=cutoff:
+                raise AssertionError("v04 comparator uses later results")
         except ValueError:
             skipped["missing_dated_score_fit"]+=len(groups[day])
             continue
@@ -142,10 +147,11 @@ def examples(games,accepted,verified,year=2026):
             continue
         for g in groups[day]:
             p=predict(fitted,g)
+            v04=predict(champion,g)
             home=profiles["teams"].get(str(g["home_id"]))
             away=profiles["teams"].get(str(g["away_id"]))
             feat=matchup_features(home,away) if home and away else None
-            if p is None or feat is None:
+            if p is None or v04 is None or feat is None:
                 skipped["missing_pretip_matchup_features"]+=1
                 continue
             actual_margin=float(g["home_score"])-float(g["away_score"])
@@ -156,6 +162,8 @@ def examples(games,accepted,verified,year=2026):
                 "actual_total":actual_total,
                 "base_margin":float(p["pred_margin"]),
                 "base_total":float(p["pred_total"]),
+                "v04_margin":float(v04["pred_margin"]),
+                "v04_total":float(v04["pred_total"]),
                 "margin_residual":actual_margin-float(p["pred_margin"]),
                 "total_residual":actual_total-float(p["pred_total"]),
                 "base_margin_sd":float(fitted["margin_sd"]),
@@ -212,6 +220,10 @@ def adjusted(row,trained):
 
 def plain(row):
     return {"margin":row["base_margin"],"total":row["base_total"]}
+
+
+def v04(row):
+    return {"margin":row["v04_margin"],"total":row["v04_total"]}
 
 
 def scores(rows,predictor):
@@ -271,8 +283,9 @@ def retrospective(games,accepted,verified,year=2026):
         return report
     trained={name:train(train_rows,name) for name in VARIANTS}
     report["frozen_historical_coefficients"]=trained
-    for name in ("lighter",*VARIANTS):
-        fn=plain if name=="lighter" else lambda r,m=name:adjusted(r,trained[m])
+    for name in ("v04","lighter",*VARIANTS):
+        fn=(v04 if name=="v04" else plain if name=="lighter"
+            else lambda r,m=name:adjusted(r,trained[m]))
         report["validation"][name]=scores(validation,fn)
     report["january_lighter"]=report["validation"]["lighter"]
     if len(validation)<MIN_VALIDATION:
@@ -294,8 +307,9 @@ def retrospective(games,accepted,verified,year=2026):
     if len(holdout)<MIN_HOLDOUT:
         report["status"]="INSUFFICIENT_FEBRUARY"
         return report
-    for name in ("lighter",*VARIANTS):
-        fn=plain if name=="lighter" else lambda r,m=name:adjusted(r,trained[m])
+    for name in ("v04","lighter",*VARIANTS):
+        fn=(v04 if name=="v04" else plain if name=="lighter"
+            else lambda r,m=name:adjusted(r,trained[m]))
         report["february"][name]=scores(holdout,fn)
     strata={
         "champion_large_favorite_12plus":[r for r in holdout if abs(r["base_margin"])>=12],
@@ -305,9 +319,9 @@ def retrospective(games,accepted,verified,year=2026):
         "conference_season_february":[r for r in holdout],
     }
     report["february_strata"]={
-        label:{name:scores(rs,plain if name=="lighter"
+        label:{name:scores(rs,v04 if name=="v04" else plain if name=="lighter"
                            else lambda r,m=name:adjusted(r,trained[m]))
-               for name in ("lighter",*VARIANTS)}
+               for name in ("v04","lighter",*VARIANTS)}
         for label,rs in strata.items()}
     report["status"]="HISTORICAL_RESEARCH_COMPLETE"
     if chosen:
