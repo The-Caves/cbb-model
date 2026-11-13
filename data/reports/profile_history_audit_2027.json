@@ -1,6 +1,6 @@
 {
   "earliest_archived_utc": "2026-11-13T18:19:09Z",
-  "new_profile_as_of_utc": "2026-11-13T22:22:45Z",
+  "new_profile_as_of_utc": "2026-11-13T22:39:18Z",
   "raw_saved_profile_history": {
     "all_team_changes": [
       {
@@ -3188,6 +3188,6 @@
     "teams_old": 350,
     "teams_with_old2_new3plus": 174
   },
-  "revisions_found": 14,
+  "revisions_found": 15,
   "status": "INSUFFICIENT_SAVED_PROFILE_HISTORY"
 }
