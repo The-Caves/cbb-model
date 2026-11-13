@@ -470,9 +470,13 @@ def run(root="data", now=None, collect=True, max_teams=12,
     player_games = read_jsonl(player_path,
                               unique_key=lambda r: str(r["game_id"]))
     rosters = read_jsonl(roster_path)
-    year = now.year + int(now.month >= 7)
-    prof = continuity(player_games, rosters, now, year, directory)
-    report = {"status": "RESEARCH_ONLY", "as_of_utc": iso(now),
+    # The network collector preserves real source capture times; the run
+    # started BEFORE those observations existed. Evaluate after collection,
+    # never at the earlier start time (which would hide newly captured rosters).
+    as_of = max(now, utcnow()) if collect or player_backfill else now
+    year = as_of.year + int(as_of.month >= 7)
+    prof = continuity(player_games, rosters, as_of, year, directory)
+    report = {"status": "RESEARCH_ONLY", "as_of_utc": iso(as_of),
               "live_model_unchanged": True,
               "source": "ESPN current team roster and game-summary player statistics",
               "player_games_total": len(player_games),
