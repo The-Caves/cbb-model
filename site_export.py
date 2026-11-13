@@ -66,6 +66,42 @@ def matchup_research_forecasts(ledger, games, now):
     return records
 
 
+# Explicit user-directed interim website rollout. This changes the displayed
+# preferred forecast only; never changes original v0.4 training or frozen ledger.
+# Games that began before rollout retain the originally featured v0.4 record.
+FEATURED_ROLLOUT_UTC = "2026-11-13T22:39:21Z"
+
+
+def featured_possession_forecasts(ledger, by_id, now):
+    """Return latest genuinely frozen v0.5 20%-blend for validated games.
+
+    The archived challenger remains tagged research-only: it is featured by
+    user request, not newly validated as a profitable spread/totals model.
+    """
+    from possession_simulator_v05 import VERSION, valid_forecast
+    latest = {}
+    path = Path(ledger)
+    if not path.exists():
+        return latest
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        raw = json.loads(line)
+        gid = str(raw.get("game_id"))
+        game = by_id.get(gid)
+        if (game is None or raw.get("model") != VERSION["blend20"] or
+                raw.get("variant") != "blend20" or
+                dt(game["tip_utc"]) < dt(FEATURED_ROLLOUT_UTC) or
+                str(game.get("score_conflict", "0")) in ("1","true","True") or
+                str(game.get("identity_conflict", "0")) in ("1","true","True") or
+                not valid_forecast(raw, game, now)):
+            continue
+        previous = latest.get(gid)
+        if previous is None or dt(previous["captured_utc"]) < dt(raw["captured_utc"]):
+            latest[gid] = raw
+    return latest
+
+
 def load_json(path):
     path = Path(path)
     if not path.exists():
@@ -134,7 +170,7 @@ def _intscore(v):
     return int(round(float(v)))
 
 
-def export_payload(rows, ledger, now=None, historical=None, directory=None, historical_v02=None, shadow_ledger=None, market_ledger=None, matchup_ledger=None):
+def export_payload(rows, ledger, now=None, historical=None, directory=None, historical_v02=None, shadow_ledger=None, market_ledger=None, matchup_ledger=None, possession_ledger=None, possession_report=None):
     now = now or utcnow()
     season_year = now.year + int(now.month >= 7)
     by_id = {str(g['game_id']):g for g in rows}
@@ -142,6 +178,7 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
     shadows = shadow_forecasts(shadow_ledger,by_id) if shadow_ledger is not None else {}
     market_quotes = last_pretip_quotes(market_ledger,by_id, now) if market_ledger is not None else {}
     matchup_research = matchup_research_forecasts(matchup_ledger,by_id,now) if matchup_ledger is not None else {}
+    featured_v05 = featured_possession_forecasts(possession_ledger,by_id,now) if possession_ledger is not None else {}
     directory = directory or {}
     def display(team_id, raw_name):
         return directory.get(str(team_id)) or clean_label(raw_name)
@@ -167,6 +204,12 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
         # Keep original pre-tip ledger immutable; do not publish non-D-I
         # forecasts as qualified Division-I model predictions.
         pred = original_forecast if qualified_d1 and not disputed else None
+        featured = featured_v05.get(str(g['game_id'])) if pred is not None else None
+        # This is a *display* release, not a rewrite of original predictions.
+        # A game originally starting before the rollout stays on its v0.4 pick.
+        # Research-only model provenance and independent release date remain
+        # visible in the payload and UI, including when the game has finished.
+        is_featured = featured is not None and now >= dt(FEATURED_ROLLOUT_UTC)
         shadow = shadows.get(str(g['game_id'])) if pred is not None and qualified_d1 and not disputed else None
         market = market_quotes.get(str(g['game_id'])) if pred is not None and qualified_d1 and not disputed else None
         rec = {'id':str(g['game_id']), 'tip_utc':g['tip_utc'],
@@ -184,20 +227,25 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
             'verified_d1_matchup':qualified_d1 and not disputed,
             'hidden_unqualified_projection':bool(original_forecast and (not qualified_d1 or disputed)),
             'projection':None, 'shadow_projection':None,
-            'matchup_research':[],
+            'matchup_research':[], 'original_v04_projection':None,
+            'featured_release': 'v05_possession_blend20' if is_featured else 'v04_fallback',
+            'featured_experimental':bool(is_featured),
             'market_spread':None,'market_total':None,
             'market_provider':None,'market_captured_utc':None,
             'market_spread_edge':None,'market_total_edge':None}
-        if market:
+        if market and (not is_featured or
+                dt(market['captured_utc']) <= dt(featured['captured_utc'])):
             rec['market_spread']=market['home_spread']
             rec['market_total']=market['total']
             rec['market_provider']=market['provider']
             rec['market_captured_utc']=market['captured_utc']
             if rec['market_spread'] is not None:
-                rec['market_spread_edge']=round(float(pred['pred_margin'])+
+                rec['market_spread_edge']=round(float(
+                    featured['pred_margin'] if is_featured else pred['pred_margin'])+
                     float(rec['market_spread']),2)
             if rec['market_total'] is not None:
-                rec['market_total_edge']=round(float(pred['pred_total'])-
+                rec['market_total_edge']=round(float(
+                    featured['pred_total'] if is_featured else pred['pred_total'])-
                     float(rec['market_total']),2)
         if pred and qualified_d1 and not disputed:
             for variant, evidence in sorted(matchup_research.get(str(g['game_id']), {}).items()):
@@ -220,8 +268,10 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
                 'winner_disagrees':(shadow_margin>0)!=(champion_margin>0)
             }
         if pred:
-            # Literal model output, not invented; pretip provenance preserved.
-            rec['projection'] = {
+            # The underlying immutable champion is separately available for
+            # audit; do not imply the user-directed featured v0.5 choice won
+            # a prospective accuracy / sportsbook edge test.
+            baseline = {
                 'model':pred['model'], 'captured_utc':pred['captured_utc'],
                 'home':float(pred['pred_home']), 'away':float(pred['pred_away']),
                 'margin':float(pred['pred_margin']), 'total':float(pred['pred_total']),
@@ -229,6 +279,25 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
                 'away_games':int(pred['away_current_games']),
                 'training_games':int(pred['training_games']),
                 'home_win_probability_uncalibrated':float(pred['home_win_probability_uncalibrated'])}
+            rec['original_v04_projection'] = dict(baseline)
+            if is_featured:
+                rec['projection'] = {
+                    'model':featured['model'], 'captured_utc':featured['captured_utc'],
+                    'home':float(featured['pred_home']),
+                    'away':float(featured['pred_away']),
+                    'margin':float(featured['pred_margin']),
+                    'total':float(featured['pred_total']),
+                    'status':'RESEARCH_ONLY',
+                    'home_games':int(featured['home_current_games']),
+                    'away_games':int(featured['away_current_games']),
+                    'training_games':int(pred['training_games']),
+                    'home_win_probability_uncalibrated':None,
+                    'interim_featured_model':True,
+                    'research_only':True,
+                    'not_prospectively_validated':True,
+                    'release_utc':FEATURED_ROLLOUT_UTC}
+            else:
+                rec['projection']=baseline
         games.append(rec)
         if completed and hs is not None and ats is not None:
             team_rows[g['home_id']].append((hs,ats,tip,g['home']))
@@ -307,10 +376,14 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
             'status': 'PASS_LOW_CURRENT_SAMPLE' if sample < 5 else 'PASS_NO_VERIFIED_MARKET',
             'current_season_min_games': sample,
             'margin_mae_points': d1_graded_reference['margin_mae']
-                if d1_graded_reference['n'] >= 30 else None,
+                if d1_graded_reference['n'] >= 30 and not
+                frozen_projection.get('interim_featured_model') else None,
             'total_mae_points': d1_graded_reference['total_mae']
-                if d1_graded_reference['n'] >= 30 else None,
-            'historical_comparison_games': d1_graded_reference['n'],
+                if d1_graded_reference['n'] >= 30 and not
+                frozen_projection.get('interim_featured_model') else None,
+            'historical_comparison_games': 0 if
+                frozen_projection.get('interim_featured_model')
+                else d1_graded_reference['n'],
             'reference_as_of_utc': iso(now),
             'market_spread_verified': presented['market_spread'] is not None,
             'ats_edge_validated': False,
@@ -332,7 +405,15 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
     }
     return {
         'schema':1,'generated_at':iso(now), 'season':f'{season_year-1}–{str(season_year)[-2:]}',
-        'model':ACTIVE_LIVE_VERSION, 'validation':'PASS_UNVALIDATED',
+        'model': 'CBB_V05_POSSESSION_EVENTS_20261113_BLEND20',
+        'original_champion_model':ACTIVE_LIVE_VERSION,
+        'featured_from_utc':FEATURED_ROLLOUT_UTC,
+        'featured_release_status':'INTERIM_USER_SELECTED_NOT_ATS_OU_VALIDATED',
+        'games_with_featured_v05':sum(g['featured_experimental'] for g in games),
+        'games_using_v04_fallback':sum(
+            g['projection'] is not None and not g['featured_experimental']
+            for g in games),
+        'validation':'PASS_UNVALIDATED',
         'directory':{'verified_d1_teams':len(directory),
             'source':'ESPN team directory' if directory else 'UNAVAILABLE',
             'unverified_opponents_on_board':sum(g['home_division'] != 'D1' for g in games)+sum(g['away_division'] != 'D1' for g in games)},
@@ -344,13 +425,15 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
             'frozen_games_in_window':sum(g['projection'] is not None for g in games),
             'historical_odds_available':False,
             'pretip_market_observations_available':bool(market_quotes),
-            'market_as_observed':market_performance},
+            'market_as_observed':market_performance,
+            'featured_v05_prospective':possession_report},
         'notes':[
             'Only genuine pre-tip model captures appear as projected scores.',
             'ATS/O-U recommendations unavailable without calibrated edge performance; any source-observed lines are research-only, not closing or guaranteed FanDuel quotes.',
             'Low-sample games are PASS, not validated betting recommendations.',
             'Model win probabilities are not calibrated.',
-            'Active v0.4 applies only to new pre-tip snapshots; earlier results remain assigned to their original model versions.',
+            'The user-selected interim website feature is the genuinely pre-tip v0.5 20% simulation blend when available. Otherwise v0.4 remains the visible fallback.',
+            'Original v0.4 and historical ledgers remain immutable; no retrospective prediction has been changed or assigned to v0.5.',
             'Non-Division-I and unverified opponents remain available in an optional board filter; their forecasts are not presented as verified D-I projections.',
             'No sportsbook market listing can be inferred from an ESPN schedule entry.'
         ]}
@@ -365,7 +448,10 @@ def export_site(root='data', site='site', now=None):
     payload=export_payload(rows,root/'forecast_ledger.jsonl',now=now,historical=historic,
         directory=directory,historical_v02=legacy,shadow_ledger=root/'shadow_ledger.jsonl',
         market_ledger=root/'market'/'pretip_quotes.jsonl',
-        matchup_ledger=root/'matchup_v05_shadow_ledger.jsonl')
+        matchup_ledger=root/'matchup_v05_shadow_ledger.jsonl',
+        possession_ledger=root/'possession_v05_shadow_ledger.jsonl',
+        possession_report=load_json(
+            root/'reports'/'possession_simulator_v05_prospective_2027.json'))
     destination=site/'data.json'
     tmp=destination.with_suffix('.json.tmp')
     tmp.write_text(json.dumps(payload,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
