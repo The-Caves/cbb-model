@@ -248,16 +248,16 @@
   },
   "119": {
     "team_id": "119",
-    "games": 3,
+    "games": 4,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 68.19,
-    "off_rtg": 94.3,
-    "efg_pct": 0.4655,
-    "tov_pct": 0.2089,
-    "orb_pct": 0.3727,
-    "ft_rate": 0.4198,
-    "three_rate": 0.3167
+    "pace_est": 68.5625,
+    "off_rtg": 103.0175,
+    "efg_pct": 0.5053,
+    "tov_pct": 0.1924,
+    "orb_pct": 0.3811,
+    "ft_rate": 0.3891,
+    "three_rate": 0.3
   },
   "2608": {
     "team_id": "2608",
@@ -820,16 +820,16 @@
   },
   "2154": {
     "team_id": "2154",
-    "games": 2,
+    "games": 3,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 68.82,
-    "off_rtg": 76.38,
-    "efg_pct": 0.4051,
-    "tov_pct": 0.2984,
-    "orb_pct": 0.2964,
-    "ft_rate": 0.3797,
-    "three_rate": 0.275
+    "pace_est": 66.23,
+    "off_rtg": 80.4033,
+    "efg_pct": 0.4034,
+    "tov_pct": 0.2758,
+    "orb_pct": 0.3273,
+    "ft_rate": 0.3259,
+    "three_rate": 0.2863
   },
   "59": {
     "team_id": "59",
@@ -859,16 +859,16 @@
   },
   "227": {
     "team_id": "227",
-    "games": 2,
+    "games": 3,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 72.035,
-    "off_rtg": 129.755,
-    "efg_pct": 0.6017,
-    "tov_pct": 0.1046,
-    "orb_pct": 0.3229,
-    "ft_rate": 0.3024,
-    "three_rate": 0.439
+    "pace_est": 67.82,
+    "off_rtg": 124.11,
+    "efg_pct": 0.5473,
+    "tov_pct": 0.1097,
+    "orb_pct": 0.3504,
+    "ft_rate": 0.3186,
+    "three_rate": 0.4564
   },
   "107": {
     "team_id": "107",
@@ -1288,16 +1288,16 @@
   },
   "2710": {
     "team_id": "2710",
-    "games": 2,
+    "games": 3,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 71.255,
-    "off_rtg": 87.605,
-    "efg_pct": 0.4657,
-    "tov_pct": 0.222,
-    "orb_pct": 0.2297,
-    "ft_rate": 0.4519,
-    "three_rate": 0.241
+    "pace_est": 71.91,
+    "off_rtg": 96.1867,
+    "efg_pct": 0.4855,
+    "tov_pct": 0.201,
+    "orb_pct": 0.2451,
+    "ft_rate": 0.4346,
+    "three_rate": 0.2996
   },
   "326": {
     "team_id": "326",
@@ -1652,16 +1652,16 @@
   },
   "2379": {
     "team_id": "2379",
-    "games": 2,
+    "games": 3,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 69.335,
-    "off_rtg": 79.89,
-    "efg_pct": 0.3854,
-    "tov_pct": 0.2386,
-    "orb_pct": 0.2939,
-    "ft_rate": 0.2887,
-    "three_rate": 0.3897
+    "pace_est": 66.02,
+    "off_rtg": 79.64,
+    "efg_pct": 0.3781,
+    "tov_pct": 0.2088,
+    "orb_pct": 0.27,
+    "ft_rate": 0.247,
+    "three_rate": 0.3447
   },
   "305": {
     "team_id": "305",
@@ -1704,16 +1704,16 @@
   },
   "140": {
     "team_id": "140",
-    "games": 2,
+    "games": 3,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 69.255,
-    "off_rtg": 88.14,
-    "efg_pct": 0.4549,
-    "tov_pct": 0.2207,
-    "orb_pct": 0.207,
-    "ft_rate": 0.4609,
-    "three_rate": 0.4562
+    "pace_est": 68.4,
+    "off_rtg": 92.75,
+    "efg_pct": 0.4833,
+    "tov_pct": 0.2167,
+    "orb_pct": 0.1856,
+    "ft_rate": 0.4073,
+    "three_rate": 0.4308
   },
   "201": {
     "team_id": "201",
@@ -1938,29 +1938,29 @@
   },
   "213": {
     "team_id": "213",
-    "games": 2,
+    "games": 3,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 72.655,
-    "off_rtg": 118.91,
-    "efg_pct": 0.5273,
-    "tov_pct": 0.1794,
-    "orb_pct": 0.4188,
-    "ft_rate": 0.5831,
-    "three_rate": 0.2962
+    "pace_est": 69.9367,
+    "off_rtg": 116.4833,
+    "efg_pct": 0.542,
+    "tov_pct": 0.1673,
+    "orb_pct": 0.3625,
+    "ft_rate": 0.5724,
+    "three_rate": 0.2723
   },
   "2099": {
     "team_id": "2099",
-    "games": 2,
+    "games": 3,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 69.845,
-    "off_rtg": 75.79,
-    "efg_pct": 0.391,
-    "tov_pct": 0.2155,
-    "orb_pct": 0.2383,
-    "ft_rate": 0.3045,
-    "three_rate": 0.3822
+    "pace_est": 70.3967,
+    "off_rtg": 90.62,
+    "efg_pct": 0.4983,
+    "tov_pct": 0.2295,
+    "orb_pct": 0.2522,
+    "ft_rate": 0.3803,
+    "three_rate": 0.4109
   },
   "45": {
     "team_id": "45",
@@ -2055,16 +2055,16 @@
   },
   "2385": {
     "team_id": "2385",
-    "games": 2,
+    "games": 3,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 63.745,
-    "off_rtg": 77.76,
-    "efg_pct": 0.3844,
-    "tov_pct": 0.2165,
-    "orb_pct": 0.2354,
-    "ft_rate": 0.1976,
-    "three_rate": 0.4681
+    "pace_est": 63.9967,
+    "off_rtg": 81.2967,
+    "efg_pct": 0.384,
+    "tov_pct": 0.1897,
+    "orb_pct": 0.2319,
+    "ft_rate": 0.204,
+    "three_rate": 0.4731
   },
   "344": {
     "team_id": "344",
@@ -2081,16 +2081,16 @@
   },
   "2635": {
     "team_id": "2635",
-    "games": 2,
+    "games": 3,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 81.15,
-    "off_rtg": 113.95,
-    "efg_pct": 0.5826,
-    "tov_pct": 0.1791,
-    "orb_pct": 0.2866,
-    "ft_rate": 0.4877,
-    "three_rate": 0.5528
+    "pace_est": 79.3833,
+    "off_rtg": 104.97,
+    "efg_pct": 0.5241,
+    "tov_pct": 0.1847,
+    "orb_pct": 0.3046,
+    "ft_rate": 0.4013,
+    "three_rate": 0.5161
   },
   "61": {
     "team_id": "61",
@@ -2107,16 +2107,16 @@
   },
   "2428": {
     "team_id": "2428",
-    "games": 2,
+    "games": 3,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 73.765,
-    "off_rtg": 92.835,
-    "efg_pct": 0.4516,
-    "tov_pct": 0.1978,
-    "orb_pct": 0.2848,
-    "ft_rate": 0.2694,
-    "three_rate": 0.2792
+    "pace_est": 71.56,
+    "off_rtg": 87.2067,
+    "efg_pct": 0.435,
+    "tov_pct": 0.1968,
+    "orb_pct": 0.2547,
+    "ft_rate": 0.2392,
+    "three_rate": 0.2754
   },
   "282": {
     "team_id": "282",
@@ -2211,16 +2211,16 @@
   },
   "315": {
     "team_id": "315",
-    "games": 2,
+    "games": 3,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 74.11,
-    "off_rtg": 75.86,
-    "efg_pct": 0.4726,
-    "tov_pct": 0.2689,
-    "orb_pct": 0.1029,
-    "ft_rate": 0.3274,
-    "three_rate": 0.4958
+    "pace_est": 73.36,
+    "off_rtg": 85.8267,
+    "efg_pct": 0.487,
+    "tov_pct": 0.2347,
+    "orb_pct": 0.1476,
+    "ft_rate": 0.2871,
+    "three_rate": 0.484
   },
   "2116": {
     "team_id": "2116",
@@ -2549,16 +2549,16 @@
   },
   "84": {
     "team_id": "84",
-    "games": 2,
+    "games": 3,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 70.59,
-    "off_rtg": 123.23,
-    "efg_pct": 0.5348,
-    "tov_pct": 0.1543,
-    "orb_pct": 0.3912,
-    "ft_rate": 0.4855,
-    "three_rate": 0.4085
+    "pace_est": 72.3433,
+    "off_rtg": 121.7067,
+    "efg_pct": 0.554,
+    "tov_pct": 0.165,
+    "orb_pct": 0.3757,
+    "ft_rate": 0.5459,
+    "three_rate": 0.3958
   },
   "2197": {
     "team_id": "2197",
@@ -2653,16 +2653,16 @@
   },
   "225": {
     "team_id": "225",
-    "games": 2,
+    "games": 3,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 65.86,
-    "off_rtg": 91.015,
-    "efg_pct": 0.49,
-    "tov_pct": 0.2119,
-    "orb_pct": 0.2667,
-    "ft_rate": 0.2756,
-    "three_rate": 0.351
+    "pace_est": 67.74,
+    "off_rtg": 98.44,
+    "efg_pct": 0.5322,
+    "tov_pct": 0.2142,
+    "orb_pct": 0.282,
+    "ft_rate": 0.2671,
+    "three_rate": 0.334
   },
   "160": {
     "team_id": "160",
@@ -3108,16 +3108,16 @@
   },
   "2352": {
     "team_id": "2352",
-    "games": 2,
+    "games": 3,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 68.125,
-    "off_rtg": 84.415,
-    "efg_pct": 0.4146,
-    "tov_pct": 0.1791,
-    "orb_pct": 0.2833,
-    "ft_rate": 0.1798,
-    "three_rate": 0.4763
+    "pace_est": 68.6433,
+    "off_rtg": 84.98,
+    "efg_pct": 0.4264,
+    "tov_pct": 0.1964,
+    "orb_pct": 0.279,
+    "ft_rate": 0.1588,
+    "three_rate": 0.5009
   },
   "2599": {
     "team_id": "2599",
@@ -3238,16 +3238,16 @@
   },
   "189": {
     "team_id": "189",
-    "games": 2,
+    "games": 3,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 67.055,
-    "off_rtg": 128.805,
-    "efg_pct": 0.6454,
-    "tov_pct": 0.1572,
-    "orb_pct": 0.3458,
-    "ft_rate": 0.3909,
-    "three_rate": 0.4455
+    "pace_est": 68.6567,
+    "off_rtg": 126.69,
+    "efg_pct": 0.6277,
+    "tov_pct": 0.1746,
+    "orb_pct": 0.3837,
+    "ft_rate": 0.3529,
+    "three_rate": 0.4508
   },
   "57": {
     "team_id": "57",
@@ -3303,29 +3303,29 @@
   },
   "2244": {
     "team_id": "2244",
-    "games": 2,
+    "games": 3,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 68.575,
-    "off_rtg": 109.13,
-    "efg_pct": 0.4791,
-    "tov_pct": 0.1687,
-    "orb_pct": 0.369,
-    "ft_rate": 0.4069,
-    "three_rate": 0.348
+    "pace_est": 67.9467,
+    "off_rtg": 110.74,
+    "efg_pct": 0.5069,
+    "tov_pct": 0.1728,
+    "orb_pct": 0.3413,
+    "ft_rate": 0.4796,
+    "three_rate": 0.3362
   },
   "2378": {
     "team_id": "2378",
-    "games": 2,
+    "games": 3,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 75.44,
-    "off_rtg": 88.2,
-    "efg_pct": 0.4412,
-    "tov_pct": 0.2036,
-    "orb_pct": 0.2335,
-    "ft_rate": 0.3329,
-    "three_rate": 0.3231
+    "pace_est": 75.8567,
+    "off_rtg": 95.7467,
+    "efg_pct": 0.4876,
+    "tov_pct": 0.1974,
+    "orb_pct": 0.2341,
+    "ft_rate": 0.308,
+    "three_rate": 0.3875
   },
   "23": {
     "team_id": "23",
@@ -3459,16 +3459,16 @@
   },
   "2272": {
     "team_id": "2272",
-    "games": 3,
+    "games": 4,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 65.6667,
-    "off_rtg": 111.12,
-    "efg_pct": 0.5689,
-    "tov_pct": 0.207,
-    "orb_pct": 0.2887,
-    "ft_rate": 0.5025,
-    "three_rate": 0.432
+    "pace_est": 68.0525,
+    "off_rtg": 112.59,
+    "efg_pct": 0.5534,
+    "tov_pct": 0.2011,
+    "orb_pct": 0.3478,
+    "ft_rate": 0.4602,
+    "three_rate": 0.4108
   },
   "2335": {
     "team_id": "2335",
@@ -3732,16 +3732,16 @@
   },
   "2678": {
     "team_id": "2678",
-    "games": 2,
+    "games": 3,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 76.675,
-    "off_rtg": 90.66,
-    "efg_pct": 0.3859,
-    "tov_pct": 0.242,
-    "orb_pct": 0.394,
-    "ft_rate": 0.494,
-    "three_rate": 0.381
+    "pace_est": 73.5,
+    "off_rtg": 92.7067,
+    "efg_pct": 0.4124,
+    "tov_pct": 0.2304,
+    "orb_pct": 0.3738,
+    "ft_rate": 0.4328,
+    "three_rate": 0.4091
   },
   "294": {
     "team_id": "294",
@@ -4226,16 +4226,16 @@
   },
   "71": {
     "team_id": "71",
-    "games": 2,
+    "games": 3,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 65.625,
-    "off_rtg": 74.18,
-    "efg_pct": 0.3543,
-    "tov_pct": 0.2497,
-    "orb_pct": 0.3,
-    "ft_rate": 0.2011,
-    "three_rate": 0.4395
+    "pace_est": 64.1,
+    "off_rtg": 80.03,
+    "efg_pct": 0.3806,
+    "tov_pct": 0.2696,
+    "orb_pct": 0.3458,
+    "ft_rate": 0.3119,
+    "three_rate": 0.4485
   },
   "279": {
     "team_id": "279",
@@ -4278,16 +4278,16 @@
   },
   "2415": {
     "team_id": "2415",
-    "games": 1,
+    "games": 2,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 76.54,
-    "off_rtg": 95.38,
-    "efg_pct": 0.3968,
-    "tov_pct": 0.2184,
-    "orb_pct": 0.4054,
-    "ft_rate": 0.4286,
-    "three_rate": 0.3333
+    "pace_est": 76.615,
+    "off_rtg": 93.33,
+    "efg_pct": 0.4113,
+    "tov_pct": 0.2378,
+    "orb_pct": 0.3456,
+    "ft_rate": 0.4828,
+    "three_rate": 0.3426
   },
   "292": {
     "team_id": "292",
@@ -4421,16 +4421,16 @@
   },
   "2934": {
     "team_id": "2934",
-    "games": 1,
+    "games": 2,
     "min_games_required_for_analysis": 5,
     "status": "INSUFFICIENT",
-    "pace_est": 69.89,
-    "off_rtg": 130.21,
-    "efg_pct": 0.6667,
-    "tov_pct": 0.1448,
-    "orb_pct": 0.24,
-    "ft_rate": 0.2982,
-    "three_rate": 0.4035
+    "pace_est": 71.555,
+    "off_rtg": 127.24,
+    "efg_pct": 0.6383,
+    "tov_pct": 0.1287,
+    "orb_pct": 0.2336,
+    "ft_rate": 0.5291,
+    "three_rate": 0.2618
   },
   "2181": {
     "team_id": "2181",
@@ -4626,5 +4626,18 @@
     "orb_pct": 0.2692,
     "ft_rate": 0.5833,
     "three_rate": 0.4792
+  },
+  "253": {
+    "team_id": "253",
+    "games": 1,
+    "min_games_required_for_analysis": 5,
+    "status": "INSUFFICIENT",
+    "pace_est": 75.21,
+    "off_rtg": 78.44,
+    "efg_pct": 0.4386,
+    "tov_pct": 0.3377,
+    "orb_pct": 0.4048,
+    "ft_rate": 0.3333,
+    "three_rate": 0.4035
   }
 }
