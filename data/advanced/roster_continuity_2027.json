@@ -1,0 +1,35 @@
+{
+  "as_of_utc": "2026-11-13T19:41:38Z",
+  "collector": {
+    "accepted": 24,
+    "attempted": 24,
+    "rejected": [],
+    "source_historical_availability_verified": false,
+    "status": "CURRENT_ROSTER_RESEARCH_ONLY"
+  },
+  "historical_backfill": {
+    "accepted": 24,
+    "attempted": 24,
+    "point_in_time_historical_availability_verified": false,
+    "rejections": [],
+    "status": "RETROSPECTIVE_PLAYER_RESEARCH_ONLY"
+  },
+  "historical_source_capture_retroactive": true,
+  "live_model_unchanged": true,
+  "player_games_total": 24,
+  "roster_snapshots_total": 24,
+  "roster_teams_recent": 1,
+  "source": "ESPN current team roster and game-summary player statistics",
+  "status": "RESEARCH_ONLY",
+  "teams": {
+    "103": {
+      "prior_games_verified": 0,
+      "retained_minutes_share": null,
+      "roster_player_count": 14,
+      "status": "UNKNOWN_INSUFFICIENT_PRIOR_PLAYER_GAMES",
+      "team_id": "103"
+    }
+  },
+  "teams_with_sample_backed_continuity": 0,
+  "warning": "No last-season player data may be treated as available at a past tip before actual acquisition. Roster membership is a captured snapshot, not a verified starting lineup."
+}

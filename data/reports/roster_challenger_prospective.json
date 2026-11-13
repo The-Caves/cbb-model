@@ -1,0 +1,41 @@
+{
+  "as_of_utc": "2026-11-13T19:42:40Z",
+  "collector_player_game_records": 24,
+  "collector_roster_snapshots": 24,
+  "freeze": {
+    "captured": 0,
+    "coverage": {
+      "candidate_games_eligible": 0,
+      "roster_snapshot_teams": 24,
+      "source_backed_multiplier_teams": 0,
+      "source_backed_team_multipliers": {}
+    },
+    "status": "PASS_INSUFFICIENT_ROSTER_COVERAGE"
+  },
+  "grade": {
+    "active_model_unchanged": true,
+    "minimum_for_review": 150,
+    "paired_games": 0,
+    "promotion_gate": "INSUFFICIENT_PAIRED_GAMES",
+    "roster_candidate": {
+      "brier": null,
+      "margin_bias": null,
+      "margin_mae": null,
+      "n": 0,
+      "su_accuracy": null,
+      "total_mae": null
+    },
+    "status": "GENUINE_PRETIP_RESEARCH_ONLY",
+    "v04": {
+      "brier": null,
+      "margin_bias": null,
+      "margin_mae": null,
+      "n": 0,
+      "su_accuracy": null,
+      "total_mae": null
+    },
+    "warning": "Source-backed partial prior player minutes, not full-season returning production. No roster forecasts or verified betting edge."
+  },
+  "live_model_unchanged": true,
+  "model": "CBB_ROSTER_PRIOR_V0_5_RESEARCH"
+}
