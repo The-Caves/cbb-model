@@ -60,6 +60,12 @@ function gameCard(g){
       ${g.market_total_edge!=null?`<p>Model vs total: ${num(Math.abs(g.market_total_edge),1)}-point difference toward ${g.market_total_edge>0?'Over':'Under'}.</p>`:''}
       Observed ${esc(new Date(g.market_captured_utc).toLocaleString())} before tipoff. Not a verified closing line, FanDuel quote, or calibrated betting recommendation.
     </div>`:'';
+  const matchupResearch=Array.isArray(g.matchup_research)?g.matchup_research:[];
+  const matchupDetails=matchupResearch.length?`<div class="data-note" style="margin:10px 0;padding:10px;border:1px solid var(--border);border-radius:8px">
+    <strong>Experimental v0.5 matchup projections · NOT LIVE PICKS</strong>
+    ${matchupResearch.map(m=>`<p><strong>${esc(m.variant)}:</strong> ${esc(g.home)} ${num(m.home,1)} – ${esc(g.away)} ${num(m.away,1)} · total ${num(m.total,1)} · captured ${esc(new Date(m.captured_utc).toLocaleString())} before tipoff.</p>`).join('')}
+    <small>Built on lighter previous-season carryover plus observed opponent-adjusted shooting, pace, turnovers, rebounding and foul-pressure interactions. No validated spread or total betting edge. The official model remains the separate v0.4 projection above.</small>
+  </div>`:'';
   const shadow=g.shadow_projection;
   const shadowDetails=shadow?`<p><strong>Experimental D-I-only second opinion:</strong> ${esc(shadow.margin>0?g.home:g.away)} by ${num(Math.abs(shadow.margin),1)}; projected total ${num(shadow.total,1)}. ${shadow.winner_disagrees?'<strong>MODELS DISAGREE — PASS.</strong>':''} This unvalidated challenger uses a lighter previous-season weight and is not a sportsbook recommendation. Captured ${esc(new Date(shadow.captured_utc).toLocaleString())} before tipoff.</p>`:'';
   const awayShown=real?num(g.away_score):live?num(g.away_live_score):p?num(p.away,1):'—';
@@ -76,6 +82,7 @@ function gameCard(g){
     <details><summary>Matchup details</summary><div class="details-body">
       ${p?`<p><strong>Projected score:</strong> ${esc(g.away)} ${num(p.away,1)} – ${esc(g.home)} ${num(p.home,1)}</p><p><strong>Season sample:</strong> ${num(p.away_games)} away games / ${num(p.home_games)} home games. Model trained on ${num(p.training_games)} historical/current games.</p><p><strong>Forecast recorded:</strong> ${esc(new Date(p.captured_utc).toLocaleString())}, strictly before tipoff. Win probabilities are not yet calibrated.</p>`:'<p>No pre-tip model capture is stored. A game without one is deliberately not given a projected winner.</p>'}
       ${shadowDetails}
+      ${matchupDetails}
       <p><strong>Market:</strong> ${sourceMarket?'This quote was observed before tipoff from the identified provider; the displayed difference is uncalibrated, not a betting edge.':'No verified pre-tip market quote for this matchup. No odds or bet recommendation invented.'}</p>
     </div></details>
    </article>`;
