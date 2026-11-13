@@ -68,21 +68,22 @@ def fit_shots(records,year):
     attempts=defaultdict(lambda:defaultdict(float))
     games=defaultdict(set)
     for rec in records:
-        h,a=str(rec["home_id"]),str(rec["away_id"])
-        prior=int(rec["season"])!=year
-        weight=LAST_SEASON_SHOTS if prior else 1.0
         try:
-            for own,opp,side in ((h,a,"home"),(a,h,"away")):
-                parts=observation_shots(rec,side)
-                for kind,(made,count) in parts.items():
-                    if count<=0:continue
-                    data[kind].append((own,opp,made,count,weight))
-                    if not prior:
-                        attempts[own][kind]+=count
-                if not prior:games[own].add(str(rec["game_id"]))
+            # Validate *both* teams before admitting either. A malformed
+            # second side must not contaminate the opponent's sample.
+            parts={side:observation_shots(rec,side) for side in ("home","away")}
+            h,a=str(rec["home_id"]),str(rec["away_id"])
+            prior=int(rec["season"])!=year
+            weight=LAST_SEASON_SHOTS if prior else 1.0
         except (KeyError,ValueError,TypeError,OverflowError):
-            # Fail closed: never partly admit a malformed boxscore.
             continue
+        for own,opp,side in ((h,a,"home"),(a,h,"away")):
+            for kind,(made,count) in parts[side].items():
+                if count<=0:continue
+                data[kind].append((own,opp,made,count,weight))
+                if not prior:
+                    attempts[own][kind]+=count
+            if not prior:games[own].add(str(rec["game_id"]))
     fit={}
     for kind in ("two","three","free"):
         rows=data[kind]
