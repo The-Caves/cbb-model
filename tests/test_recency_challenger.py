@@ -129,6 +129,7 @@ def test_grade_requires_same_game_frozen_v04_with_capture_within_two_hours(tmp_p
         "game_id":"g","tip_utc":iso(tip),"home_id":"1","away_id":"2",
         "pred_home":78,"pred_away":72,"pred_margin":6,
         "pred_total":150,"captured_utc":iso(tip-timedelta(hours=3)),
+        "home_current_games":4,"away_current_games":4,
     }
     challenger={**champion,
         "model":version("recency_45"),
