@@ -4,7 +4,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from cbb import VERSION
-from site_export import export_payload, forecasts, valid_frozen, export_site
+from site_export import export_payload, forecasts, valid_frozen, export_site, matchup_research_forecasts
 
 UTC=timezone.utc
 TIP=datetime(2026,11,15,23,tzinfo=UTC)
@@ -251,3 +251,41 @@ def test_unverified_market_not_displayed_for_unverified_school(tmp_path):
     assert out['games'][0]['projection'] is None
     assert out['games'][0]['market_spread'] is None
     assert out['performance']['market_as_observed']['matched_games']==0
+
+
+def test_separate_matchup_research_is_pretip_and_never_replaces_champion(tmp_path):
+    from cbb import ACTIVE_LIVE_VERSION
+    from matchup_v05 import VERSION_BY_VARIANT
+    g=game(completed=False)
+    ledger=tmp_path/"champion.jsonl"
+    research=tmp_path/"matchup.jsonl"
+    champion={**prediction(),"model":ACTIVE_LIVE_VERSION}
+    ledger.write_text(json.dumps(champion)+"\n")
+    rec={"game_id":"100","tip_utc":g["tip_utc"],"home_id":"1","away_id":"2",
+         "captured_utc":NOW.isoformat().replace("+00:00","Z"),
+         "training_latest_tip":(NOW-timedelta(days=1)).isoformat().replace("+00:00","Z"),
+         "model":VERSION_BY_VARIANT["interaction"],"variant":"interaction",
+         "champion_version":ACTIVE_LIVE_VERSION,"base_prior_weight":.15,
+         "pred_home":78.,"pred_away":72.,"pred_margin":6.,"pred_total":150.}
+    research.write_text(json.dumps(rec)+"\n")
+    output=export_payload([g],ledger,NOW,directory={'1':'Home','2':'Away'},
+                          matchup_ledger=research)
+    row=output["games"][0]
+    assert row["projection"]["margin"]==10
+    assert row["projection"]["model"]==ACTIVE_LIVE_VERSION
+    assert len(row["matchup_research"])==1
+    assert row["matchup_research"][0]["model"]!=ACTIVE_LIVE_VERSION
+    assert row["matchup_research"][0]["research_only"] is True
+    assert row["matchup_research"][0]["betting_edge_validated"] is False
+    # A hindsight record must not turn into a research projection.
+    rec["captured_utc"]=(TIP+timedelta(seconds=2)).isoformat().replace("+00:00","Z")
+    research.write_text(json.dumps(rec)+"\n")
+    bad=export_payload([g],ledger,NOW,directory={'1':'Home','2':'Away'},
+                       matchup_ledger=research)["games"][0]
+    assert bad["matchup_research"]==[]
+    # Research is not rendered as an official pick if original was unavailable.
+    absent=export_payload([g],tmp_path/"does-not-exist.jsonl",NOW,
+                          directory={'1':'Home','2':'Away'},
+                          matchup_ledger=research)["games"][0]
+    assert absent["projection"] is None
+    assert absent["matchup_research"]==[]

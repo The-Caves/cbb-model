@@ -42,6 +42,30 @@ def shadow_forecasts(ledger, by_id):
 
 
 
+def matchup_research_forecasts(ledger, games, now):
+    """Separate real pre-tip research freezes from champion website picks."""
+    from matchup_v05 import VERSION_BY_VARIANT, validate_frozen
+    records=defaultdict(dict)
+    path=Path(ledger)
+    if not path.exists():
+        return records
+    for line in path.read_text(encoding='utf-8').splitlines():
+        if not line.strip():continue
+        rec=json.loads(line)
+        g=games.get(str(rec.get('game_id')))
+        if (g is None or not validate_frozen(rec,g,now) or
+                str(g.get('score_conflict','0')) in ('1','true','True') or
+                str(g.get('identity_conflict','0')) in ('1','true','True')):
+            continue
+        variant=rec["variant"]
+        if rec.get("model")!=VERSION_BY_VARIANT.get(variant):
+            continue
+        old=records[str(g["game_id"])].get(variant)
+        if old is None or dt(old["captured_utc"])<dt(rec["captured_utc"]):
+            records[str(g["game_id"])][variant]=rec
+    return records
+
+
 def load_json(path):
     path = Path(path)
     if not path.exists():
@@ -110,13 +134,14 @@ def _intscore(v):
     return int(round(float(v)))
 
 
-def export_payload(rows, ledger, now=None, historical=None, directory=None, historical_v02=None, shadow_ledger=None, market_ledger=None):
+def export_payload(rows, ledger, now=None, historical=None, directory=None, historical_v02=None, shadow_ledger=None, market_ledger=None, matchup_ledger=None):
     now = now or utcnow()
     season_year = now.year + int(now.month >= 7)
     by_id = {str(g['game_id']):g for g in rows}
     frozen = forecasts(ledger, by_id)
     shadows = shadow_forecasts(shadow_ledger,by_id) if shadow_ledger is not None else {}
     market_quotes = last_pretip_quotes(market_ledger,by_id, now) if market_ledger is not None else {}
+    matchup_research = matchup_research_forecasts(matchup_ledger,by_id,now) if matchup_ledger is not None else {}
     directory = directory or {}
     def display(team_id, raw_name):
         return directory.get(str(team_id)) or clean_label(raw_name)
@@ -159,6 +184,7 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
             'verified_d1_matchup':qualified_d1 and not disputed,
             'hidden_unqualified_projection':bool(original_forecast and (not qualified_d1 or disputed)),
             'projection':None, 'shadow_projection':None,
+            'matchup_research':[],
             'market_spread':None,'market_total':None,
             'market_provider':None,'market_captured_utc':None,
             'market_spread_edge':None,'market_total_edge':None}
@@ -173,6 +199,17 @@ def export_payload(rows, ledger, now=None, historical=None, directory=None, hist
             if rec['market_total'] is not None:
                 rec['market_total_edge']=round(float(pred['pred_total'])-
                     float(rec['market_total']),2)
+        if pred and qualified_d1 and not disputed:
+            for variant, evidence in sorted(matchup_research.get(str(g['game_id']), {}).items()):
+                rec['matchup_research'].append({
+                    'variant':variant, 'model':evidence['model'],
+                    'captured_utc':evidence['captured_utc'],
+                    'home':float(evidence['pred_home']),
+                    'away':float(evidence['pred_away']),
+                    'margin':float(evidence['pred_margin']),
+                    'total':float(evidence['pred_total']),
+                    'research_only':True,'betting_edge_validated':False,
+                })
         if shadow:
             shadow_margin=float(shadow['pred_margin'])
             champion_margin=float(pred['pred_margin'])
@@ -327,7 +364,8 @@ def export_site(root='data', site='site', now=None):
     legacy=load_json(root/'reports/backtest_2026_v02.json')
     payload=export_payload(rows,root/'forecast_ledger.jsonl',now=now,historical=historic,
         directory=directory,historical_v02=legacy,shadow_ledger=root/'shadow_ledger.jsonl',
-        market_ledger=root/'market'/'pretip_quotes.jsonl')
+        market_ledger=root/'market'/'pretip_quotes.jsonl',
+        matchup_ledger=root/'matchup_v05_shadow_ledger.jsonl')
     destination=site/'data.json'
     tmp=destination.with_suffix('.json.tmp')
     tmp.write_text(json.dumps(payload,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')

@@ -109,6 +109,11 @@ jobs:
         run: python recency_challenger.py --root data --historical
       - name: Freeze opponent-adjusted recency research predictions before tipoff
         run: python recency_challenger.py --root data
+      - name: Train opponent-conditioned Four Factors matchup challenger
+        if: github.event_name == 'push'
+        run: python matchup_v05.py --root data --historical
+      - name: Freeze pre-tip matchup forecasts and compare actual as-observed sportsbook lines
+        run: python matchup_v05.py --root data
       - name: Train dated team-profile challenger and compare locked historical periods
         if: github.event_name == 'push'
         run: python profile_trajectory_challenger.py --root data --historical
