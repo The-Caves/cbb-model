@@ -69,6 +69,8 @@ jobs:
         run: python margin_shrinkage_ablation.py --root data
       - name: Refresh source, freeze actual pre-tip picks, grade results
         run: python cbb.py daily
+      - name: Freeze independent v0.5 challengers before tip and grade matched games
+        run: python v05_shadow.py --root data
       - name: Freeze experimental D-I second opinions strictly before tipoff
         run: python shadow_predictions.py --root data
       - name: Report independently observed scoreboard identity changes
@@ -90,6 +92,9 @@ jobs:
       - name: Train and compare residual factor challenger against v0.4 (research only)
         if: github.event_name == 'push'
         run: python factor_challenger.py --root data --season 2026
+      - name: Replay v0.5 carryover and regularization candidates against v0.4
+        if: github.event_name == 'push'
+        run: python v05_transition_challenger.py --root data --season 2026
       - name: Generate as-of team schedule and Four Factors research profiles
         run: python team_intelligence.py --root data
       - name: Generate real website data (no invented odds)
