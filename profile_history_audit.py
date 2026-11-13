@@ -132,15 +132,119 @@ def build_audit(root="data", year=2027, repo=".", oldest_min_hours=18):
     return report
 
 
+def raw_profile_revisions(repo, year=2027, max_revisions=60):
+    """Actual Git-stored raw boxscore profiles with commit timestamps.
+
+    Raw team profile JSON has no embedded as-of time. Commit timestamps are
+    evidence of when files were archived, NOT evidence of when ESPN first
+    published every individual source statistic.
+    """
+    path=f"data/advanced/team_profiles_{year}.json"
+    try:
+        result=subprocess.check_output(
+            ["git","-C",str(repo),"log",f"-n{max_revisions}",
+             "--format=%H|%cI","--",path],
+            text=True,stderr=subprocess.DEVNULL)
+    except (OSError,subprocess.CalledProcessError):
+        return []
+    rows=[]
+    for line in result.splitlines():
+        if "|" not in line:
+            continue
+        sha, committed=line.strip().split("|",1)
+        try:
+            content=subprocess.check_output(
+                ["git","-C",str(repo),"show",f"{sha}:{path}"],
+                text=True,stderr=subprocess.DEVNULL)
+            teams=json.loads(content)
+            if not isinstance(teams,dict) or not teams:
+                continue
+            rows.append((dt(committed),sha,teams))
+        except (OSError,ValueError,subprocess.CalledProcessError):
+            continue
+    return sorted(rows,key=lambda x:x[0])
+
+
+def raw_saved_profile_comparison(repo=".", year=2027, min_gap_hours=36):
+    """Compare raw team metrics at two genuinely saved commits, >=36h apart."""
+    revisions=raw_profile_revisions(repo,year)
+    if not revisions:
+        return {"status":"NO_SAVED_RAW_PROFILE_HISTORY"}
+    latest_time,latest_sha,latest=revisions[-1]
+    candidates=[x for x in revisions[:-1]
+                if (latest_time-x[0]).total_seconds()>=min_gap_hours*3600]
+    if not candidates:
+        return {"status":"INSUFFICIENT_SAVED_RAW_PROFILE_HISTORY",
+                "newest_git_commit":latest_sha,
+                "revisions_seen":len(revisions)}
+    old_time,old_sha,old=max(candidates,key=lambda x:x[0])
+    common=set(old)&set(latest)
+    names=("off_rtg","pace_est","efg_pct","tov_pct","orb_pct","ft_rate","three_rate")
+    compared=[]
+    for tid in common:
+        before,after=old[tid],latest[tid]
+        try:
+            ng,og=int(after["games"]),int(before["games"])
+            if ng<3 or og<2:
+                continue
+            deltas={}
+            for field in names:
+                v1,v2=before.get(field),after.get(field)
+                if v1 is None or v2 is None:
+                    continue
+                delta=float(v2)-float(v1)
+                if math.isfinite(delta):
+                    deltas[field]=round(delta,5)
+            if "off_rtg" not in deltas:
+                continue
+            compared.append({
+                "team_id":str(tid),
+                "old_observed_games":og,"latest_observed_games":ng,
+                "old_raw_off_rtg":before["off_rtg"],
+                "latest_raw_off_rtg":after["off_rtg"],
+                "raw_stat_deltas":deltas,
+            })
+        except (KeyError,TypeError,ValueError,OverflowError):
+            continue
+    increases=sorted(compared,key=lambda x:(-x["raw_stat_deltas"]["off_rtg"],x["team_id"]))
+    decreases=sorted(compared,key=lambda x:(x["raw_stat_deltas"]["off_rtg"],x["team_id"]))
+    n=len(compared)
+    return {
+        "status":"AUTHENTIC_GIT_SAVED_RAW_PROFILE_DRIFT",
+        "old_commit":old_sha,"new_commit":latest_sha,
+        "old_git_committed_utc":iso(old_time),
+        "new_git_committed_utc":iso(latest_time),
+        "teams_old":len(old),"teams_new":len(latest),
+        "teams_in_both":len(common),
+        "teams_with_old2_new3plus":n,
+        "average_abs_raw_off_rtg_change":(
+            round(sum(abs(x["raw_stat_deltas"]["off_rtg"])
+                      for x in compared)/n,4) if n else None),
+        "biggest_increases":increases[:12],
+        "biggest_decreases":decreases[:12],
+        "all_team_changes":sorted(compared,key=lambda x:x["team_id"]),
+        "caveat":("These are raw team boxscore aggregates. They are NOT "
+                  "opponent-adjusted ratings, and profile movement is NOT "
+                  "predictive error improvement. Git timestamps mark saved "
+                  "commits; individual upstream ESPN publication times "
+                  "are not guaranteed by this comparison.")
+    }
+
+
 def run(root="data", repo=".", year=2027):
     report = build_audit(root=root, repo=repo, year=year)
+    report["raw_saved_profile_history"] = raw_saved_profile_comparison(
+        repo=repo,year=year,min_gap_hours=36)
     target = Path(root)/"reports"/f"profile_history_audit_{year}.json"
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(report, indent=2, sort_keys=True)+"\n",
                       encoding="utf-8")
     return {"status": report["status"], "compared_teams": report.get("team_ids_compared", 0),
             "old_as_of": report.get("old_profile_as_of_utc"),
-            "latest_as_of": report.get("latest_profile_as_of_utc")}
+            "latest_as_of": report.get("latest_profile_as_of_utc"),
+            "raw_history_status":report["raw_saved_profile_history"]["status"],
+            "raw_teams_compared":report["raw_saved_profile_history"].get(
+                "teams_with_old2_new3plus",0)}
 
 
 if __name__ == "__main__":
