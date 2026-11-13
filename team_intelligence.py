@@ -17,8 +17,8 @@ from cbb import dt, eligible, fit as score_fit, iso, read_csv, season as season_
 from boxscore_features import load_accepted
 from team_directory import load_directory
 
-FACTORS = ("off_rtg", "efg_pct", "tov_pct", "orb_pct", "ft_rate", "three_rate")
-RANGES = {"off_rtg": (55.0, 180.0), "efg_pct": (0.0, 1.0),
+FACTORS = ("off_rtg", "pace_est", "efg_pct", "tov_pct", "orb_pct", "ft_rate", "three_rate")
+RANGES = {"off_rtg": (55.0, 180.0), "pace_est": (35.0, 145.0), "efg_pct": (0.0, 1.0),
           "tov_pct": (0.0, 1.0), "orb_pct": (0.0, 1.0),
           "ft_rate": (0.0, 2.0), "three_rate": (0.0, 1.0)}
 
