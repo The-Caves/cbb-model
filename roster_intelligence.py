@@ -271,6 +271,75 @@ def _get(url, opener=None):
         time.sleep(2.0 ** attempt)
 
 
+def upcoming_teams(games, now, verified):
+    """Nearest valid future D-I matchups first; never use a completed score."""
+    valid = {str(x) for x in verified}
+    matched = []
+    for g in games:
+        try:
+            if (str(g["home_id"]) not in valid or
+                    str(g["away_id"]) not in valid or
+                    str(g.get("score_conflict", "0")) in ("1", "true", "True") or
+                    str(g.get("identity_conflict", "0")) in ("1", "true", "True")):
+                continue
+            tip = dt(g["tip_utc"])
+            if now < tip <= now + timedelta(hours=72):
+                matched.append(g)
+        except (ValueError, TypeError, KeyError):
+            continue
+    ordered = []
+    seen = set()
+    for g in sorted(matched, key=lambda x: (x["tip_utc"], x["game_id"])):
+        for key in ("home_id", "away_id"):
+            team = str(g[key])
+            if team not in seen:
+                ordered.append(team)
+                seen.add(team)
+    return ordered
+
+
+def plan_player_backfill(candidates, existing_players, focus, year, limit):
+    """Prioritize recent prior-season games for teams on the upcoming slate.
+
+    Only pre-verified source candidates are passed in. Concentrate each
+    bounded batch on reaching five player game samples for actual matchups.
+    Unused capacity falls back to the chronological archive backlog.
+    """
+    by_id = {str(x["game_id"]): x for x in candidates}
+    counts = defaultdict(set)
+    for rec in existing_players:
+        try:
+            if int(rec["season"]) != year - 1:
+                continue
+            for key in ("home_id", "away_id"):
+                counts[str(rec[key])].add(str(rec["game_id"]))
+        except (TypeError, KeyError, ValueError):
+            continue
+    prior = sorted((g for g in candidates if int(g["season"]) == year - 1),
+                   key=lambda g: g["tip_utc"], reverse=True)
+    selected = []
+    seen = set()
+    def add(g):
+        gid = str(g["game_id"])
+        if len(selected) >= limit or gid in seen:
+            return False
+        seen.add(gid)
+        selected.append(g)
+        if int(g["season"]) == year - 1:
+            for key in ("home_id", "away_id"):
+                counts[str(g[key])].add(gid)
+        return True
+    for team in focus:
+        for g in prior:
+            if len(selected) >= limit or len(counts[str(team)]) >= MIN_PRIOR_GAMES:
+                break
+            if str(g["home_id"]) == str(team) or str(g["away_id"]) == str(team):
+                add(g)
+    for g in candidates:
+        add(g)
+    return selected
+
+
 def collect_current_rosters(root="data", max_teams=12, delay=1.2,
                             opener=None, now=None):
     """Quota-limited current membership intake, never fetch historical names."""
@@ -288,7 +357,12 @@ def collect_current_rosters(root="data", max_teams=12, delay=1.2,
         if row.get("season") == season:
             tid = str(row.get("team_id"))
             latest[tid] = max(latest.get(tid, ""), row["source_captured_utc"])
-    teams = sorted(directory, key=lambda tid: (latest.get(str(tid), ""), str(tid)))[:max_teams]
+    focus = upcoming_teams(read_csv(root / "games.csv"), now, directory)
+    order = {str(team): i for i, team in enumerate(focus)}
+    teams = sorted(directory, key=lambda tid: (
+        0 if str(tid) in order else 1,
+        latest.get(str(tid), ""), order.get(str(tid), 999999),
+        str(tid)))[:max_teams]
     accepted, rejected = [], []
     for i, tid in enumerate(teams):
         if i and delay:
@@ -347,7 +421,11 @@ def collect_player_history(root="data", max_games=48, delay=1.2,
     priority = {year-1: 0, year: 1, year-2: 2}
     candidates.sort(key=lambda g: (
         priority[int(g["season"])], -dt(g["tip_utc"]).timestamp(), g["game_id"]))
-    selected = candidates[:max_games]
+    focus = upcoming_teams(read_csv(root / "games.csv"), now, verified)
+    player_history = read_jsonl(target,
+                       unique_key=lambda row: str(row["game_id"]))
+    selected = plan_player_backfill(candidates, player_history,
+                                    focus, year, max_games)
     good, errors = 0, []
     for i, g in enumerate(selected):
         if i and delay:
@@ -392,9 +470,13 @@ def run(root="data", now=None, collect=True, max_teams=12,
     player_games = read_jsonl(player_path,
                               unique_key=lambda r: str(r["game_id"]))
     rosters = read_jsonl(roster_path)
-    year = now.year + int(now.month >= 7)
-    prof = continuity(player_games, rosters, now, year, directory)
-    report = {"status": "RESEARCH_ONLY", "as_of_utc": iso(now),
+    # The network collector preserves real source capture times; the run
+    # started BEFORE those observations existed. Evaluate after collection,
+    # never at the earlier start time (which would hide newly captured rosters).
+    as_of = max(now, utcnow()) if collect or player_backfill else now
+    year = as_of.year + int(as_of.month >= 7)
+    prof = continuity(player_games, rosters, as_of, year, directory)
+    report = {"status": "RESEARCH_ONLY", "as_of_utc": iso(as_of),
               "live_model_unchanged": True,
               "source": "ESPN current team roster and game-summary player statistics",
               "player_games_total": len(player_games),
