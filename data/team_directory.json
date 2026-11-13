@@ -1,5 +1,5 @@
 {
-  "observed_utc": "2026-11-13T22:39:02Z",
+  "observed_utc": "2026-11-13T23:28:25Z",
   "sha256": "66578a939c004f36b39057c1bcf90d5a6445f2632f28f7013ec6fba442510591",
   "source": "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams?limit=500",
   "team_count": 365,

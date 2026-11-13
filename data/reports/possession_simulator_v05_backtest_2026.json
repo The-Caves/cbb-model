@@ -52,6 +52,15 @@
       "total_bias": 0.109,
       "total_mae": 13.967
     },
+    "split_total20": {
+      "brier": 0.2057,
+      "margin_bias": 0.676,
+      "margin_mae": 8.84,
+      "n": 1361,
+      "su_accuracy": 0.6841,
+      "total_bias": 0.594,
+      "total_mae": 13.424
+    },
     "trained_blend": {
       "brier": 0.2075,
       "margin_bias": 1.408,
@@ -115,6 +124,15 @@
         "total_bias": 1.082,
         "total_mae": 13.798
       },
+      "split_total20": {
+        "brier": 0.07,
+        "margin_bias": 0.619,
+        "margin_mae": 9.111,
+        "n": 175,
+        "su_accuracy": 0.9257,
+        "total_bias": 1.457,
+        "total_mae": 13.001
+      },
       "trained_blend": {
         "brier": 0.0705,
         "margin_bias": 1.352,
@@ -163,6 +181,15 @@
         "total_mae": null
       },
       "pure": {
+        "brier": null,
+        "margin_bias": null,
+        "margin_mae": null,
+        "n": 0,
+        "su_accuracy": null,
+        "total_bias": null,
+        "total_mae": null
+      },
+      "split_total20": {
         "brier": null,
         "margin_bias": null,
         "margin_mae": null,
@@ -226,6 +253,15 @@
         "su_accuracy": 0.5433,
         "total_bias": 0.068,
         "total_mae": 13.976
+      },
+      "split_total20": {
+        "brier": 0.2468,
+        "margin_bias": 0.007,
+        "margin_mae": 8.925,
+        "n": 727,
+        "su_accuracy": 0.5791,
+        "total_bias": 0.647,
+        "total_mae": 13.557
       },
       "trained_blend": {
         "brier": 0.2476,
@@ -297,6 +333,15 @@
       "total_bias": -0.881,
       "total_mae": 14.442
     },
+    "split_total20": {
+      "brier": 0.2049,
+      "margin_bias": 1.209,
+      "margin_mae": 8.895,
+      "n": 1517,
+      "su_accuracy": 0.6974,
+      "total_bias": -0.151,
+      "total_mae": 13.822
+    },
     "trained_blend": {
       "brier": 0.2068,
       "margin_bias": 1.941,
@@ -327,6 +372,7 @@
     "blend20": "CBB_V05_POSSESSION_EVENTS_20261113_BLEND20",
     "blend40": "CBB_V05_POSSESSION_EVENTS_20261113_BLEND40",
     "pure": "CBB_V05_POSSESSION_EVENTS_20261113_PURE",
+    "split_total20": "CBB_V05_POSSESSION_EVENTS_20261113_SPLIT_TOTAL20",
     "trained_blend": "CBB_V05_POSSESSION_EVENTS_20261113_TRAINED_BLEND"
   },
   "warning": "Retrospective ESPN boxscore acquisition; historical scores are filtered to pre-cutoff tip times but capture availability in 2025 not independently established. Already inspected February 2026 is not an untouched holdout. Simulator is aggregate-event approximation, not full play-by-play."
