@@ -171,7 +171,8 @@ def read_jsonl(path, unique_key=None):
     return rows
 
 
-def continuity(player_games, snapshots, cutoff, season, verified):
+def continuity(player_games, snapshots, cutoff, season, verified,
+               prior_d1_games=None):
     """Use verified prior production and roster observed *by* cutoff.
 
     A point-in-time roster is evidence of present membership only. This
@@ -180,6 +181,8 @@ def continuity(player_games, snapshots, cutoff, season, verified):
     """
     verified = {str(x) for x in verified}
     prior_year = season - 1
+    prior_d1_games = (None if prior_d1_games is None else
+                      {str(k): int(v) for k, v in prior_d1_games.items()})
     latest = {}
     for row in snapshots:
         team = str(row.get("team_id"))
@@ -216,12 +219,19 @@ def continuity(player_games, snapshots, cutoff, season, verified):
     profiles = {}
     for team, roster in latest.items():
         games = len(team_games[team])
+        expected_games = (None if prior_d1_games is None else
+                          prior_d1_games.get(team, 0))
+        sample_fraction = (min(1.0, games / expected_games)
+                           if expected_games and expected_games > 0 else None)
         total_min = sum(v["minutes"] for v in usage[team].values())
         total_pts = sum(v["points"] for v in usage[team].values())
         ids = set(roster["player_ids"])
         if games < MIN_PRIOR_GAMES or total_min < 190 * MIN_PRIOR_GAMES:
             profiles[team] = {"team_id": team, "status": "UNKNOWN_INSUFFICIENT_PRIOR_PLAYER_GAMES",
                               "prior_games_verified": games,
+                              "prior_d1_games_known": expected_games,
+                              "prior_player_game_coverage": (
+                                  round(sample_fraction, 5) if sample_fraction is not None else None),
                               "roster_player_count": len(ids), "retained_minutes_share": None}
             continue
         returners = ids & set(usage[team])
@@ -238,6 +248,9 @@ def continuity(player_games, snapshots, cutoff, season, verified):
             "roster_source_captured_utc": roster["source_captured_utc"],
             "roster_player_count": len(ids),
             "prior_games_verified": games,
+            "prior_d1_games_known": expected_games,
+            "prior_player_game_coverage": (
+                round(sample_fraction, 5) if sample_fraction is not None else None),
             "prior_sample_player_minutes": round(total_min, 2),
             "returning_player_count": len(returners),
             "transfers_with_prior_verified_minutes": len(transfers),
@@ -251,6 +264,27 @@ def continuity(player_games, snapshots, cutoff, season, verified):
                        "transfer usage does not imply minutes at the new school."),
         }
     return profiles
+
+
+def prior_d1_game_counts(games, cutoff, prior_year, verified):
+    """Count authentic observed D-I finals for a prior-season team denominator.
+
+    A team with five archived player boxes from 30 verified D-I games must not
+    be treated like one with five out of five. No later final or disputed game
+    contributes to the observed denominator.
+    """
+    from cbb import eligible
+    valid = {str(x) for x in verified}
+    counts = defaultdict(int)
+    for g in games:
+        if (int(g["season"]) != prior_year or
+                str(g["home_id"]) not in valid or
+                str(g["away_id"]) not in valid or
+                not eligible(g, cutoff, retrospective=False)):
+            continue
+        counts[str(g["home_id"])] += 1
+        counts[str(g["away_id"])] += 1
+    return dict(counts)
 
 
 def _get(url, opener=None):
@@ -422,6 +456,19 @@ def collect_player_history(root="data", max_games=48, delay=1.2,
     candidates.sort(key=lambda g: (
         priority[int(g["season"])], -dt(g["tip_utc"]).timestamp(), g["game_id"]))
     focus = upcoming_teams(read_csv(root / "games.csv"), now, verified)
+    # A source-backed roster is a prerequisite for comparing last season's
+    # players to today's team. Spend the limited re-fetch quota first on
+    # teams we have actually observed on the upcoming slate.
+    snapshots = read_jsonl(root/"advanced"/"roster_snapshots.jsonl")
+    as_of = max(now, utcnow())
+    observed_rosters = {
+        str(row["team_id"]) for row in snapshots
+        if int(row.get("season", -1)) == year
+        and dt(row["source_captured_utc"]) <= as_of
+        and as_of - dt(row["source_captured_utc"]) <= timedelta(days=ROSTER_MAX_AGE_DAYS)}
+    focus_order = {team:i for i,team in enumerate(focus)}
+    focus.sort(key=lambda team: (0 if team in observed_rosters else 1,
+                                 focus_order[team]))
     player_history = read_jsonl(target,
                        unique_key=lambda row: str(row["game_id"]))
     selected = plan_player_backfill(candidates, player_history,
@@ -450,6 +497,9 @@ def collect_player_history(root="data", max_games=48, delay=1.2,
             errors.append({"game_id": str(g["game_id"]),
                            "reason": type(err).__name__ + ": " + str(err)[:80]})
     return {"status": "RETROSPECTIVE_PLAYER_RESEARCH_ONLY",
+            "upcoming_focus_teams": len(focus),
+            "upcoming_teams_with_recent_rosters": sum(
+                t in observed_rosters for t in focus),
             "attempted": len(selected), "accepted": good,
             "rejections": errors[:20],
             "point_in_time_historical_availability_verified": False}
@@ -475,13 +525,23 @@ def run(root="data", now=None, collect=True, max_teams=12,
     # never at the earlier start time (which would hide newly captured rosters).
     as_of = max(now, utcnow()) if collect or player_backfill else now
     year = as_of.year + int(as_of.month >= 7)
-    prof = continuity(player_games, rosters, as_of, year, directory)
+    prior_counts = prior_d1_game_counts(read_csv(root/"games.csv"),
+                                       as_of, year-1, directory)
+    prof = continuity(player_games, rosters, as_of, year, directory,
+                      prior_d1_games=prior_counts)
     report = {"status": "RESEARCH_ONLY", "as_of_utc": iso(as_of),
               "live_model_unchanged": True,
               "source": "ESPN current team roster and game-summary player statistics",
               "player_games_total": len(player_games),
               "roster_snapshots_total": len(rosters),
               "roster_teams_recent": len(prof),
+              "teams_with_full_denominator": sum(
+                  p.get("prior_player_game_coverage") is not None
+                  for p in prof.values()),
+              "teams_with_20pct_player_game_coverage": sum(
+                  p.get("prior_player_game_coverage") is not None
+                  and p["prior_player_game_coverage"] >= 0.20
+                  for p in prof.values()),
               "teams_with_sample_backed_continuity": sum(
                   v["status"] == "RESEARCH_SAMPLE_NOT_FULL_SEASON"
                   for v in prof.values()),

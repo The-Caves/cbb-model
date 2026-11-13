@@ -12,7 +12,7 @@ from pathlib import Path
 from cbb import (ACTIVE_LIVE_VERSION, dt, eligible, fit, iso, predict,
                  read_csv, utcnow)
 from team_directory import load_directory
-from roster_intelligence import continuity, read_jsonl
+from roster_intelligence import continuity, read_jsonl, prior_d1_game_counts
 from v05_transition_challenger import frozen_v04, metrics, model_observation
 
 VERSION = "CBB_ROSTER_PRIOR_V0_5_RESEARCH"
@@ -33,9 +33,15 @@ def adjusted_prior_multipliers(profiles):
             continue
         n = int(p["prior_games_verified"])
         share = float(p["retained_minutes_share"])
-        if n < MIN_PRIOR_PLAYER_GAMES or not math.isfinite(share) or not 0 <= share <= 1:
+        coverage = p.get("prior_player_game_coverage")
+        if (n < MIN_PRIOR_PLAYER_GAMES or coverage is None or
+                not math.isfinite(float(coverage)) or
+                not 0.15 <= float(coverage) <= 1.0 or
+                not math.isfinite(share) or not 0 <= share <= 1):
             continue
-        confidence = min(1.0, n / 20.0)
+        # A selected five-game sample is not the same as full-season roster
+        # evidence. Shrink its effect by verified prior-season game coverage.
+        confidence = min(1.0, n / 20.0) * min(1.0, float(coverage) / 0.60)
         weights[str(tid)] = round(1.0 - 0.60 * (1.0 - share) * confidence, 5)
     return weights
 
@@ -66,7 +72,9 @@ def valid(candidate, game, now):
 def freeze(games, verified, player_rows, rosters, ledger, now=None, year=None):
     now = now or utcnow()
     year = year or now.year + int(now.month >= 7)
-    profiles = continuity(player_rows, rosters, now, year, verified)
+    prior_counts = prior_d1_game_counts(games, now, year-1, verified)
+    profiles = continuity(player_rows, rosters, now, year, verified,
+                          prior_d1_games=prior_counts)
     multipliers = adjusted_prior_multipliers(profiles)
     eligible_games = [g for g in games
                       if int(g["season"]) == year
@@ -76,6 +84,10 @@ def freeze(games, verified, player_rows, rosters, ledger, now=None, year=None):
                       and str(g.get("identity_conflict", "0")) not in ("1", "True", "true")
                       and now < dt(g["tip_utc"]) <= now + timedelta(hours=72)]
     coverage = {"roster_snapshot_teams": len(profiles),
+                "teams_with_prior_sample": sum(
+                    p.get("prior_games_verified", 0) >= MIN_PRIOR_PLAYER_GAMES
+                    for p in profiles.values()),
+                "teams_with_adequate_player_coverage": len(multipliers),
                 "source_backed_multiplier_teams": len(multipliers),
                 "candidate_games_eligible": len(eligible_games),
                 "source_backed_team_multipliers": multipliers}
@@ -116,6 +128,9 @@ def freeze(games, verified, player_rows, rosters, ledger, now=None, year=None):
             "roster_multiplier": {
                 str(g["home_id"]): multipliers[str(g["home_id"])],
                 str(g["away_id"]): multipliers[str(g["away_id"])]},
+            "prior_player_game_coverage": {
+                str(g["home_id"]): profiles[str(g["home_id"])]["prior_player_game_coverage"],
+                str(g["away_id"]): profiles[str(g["away_id"])]["prior_player_game_coverage"]},
         })
         if (p["game_id"], p["captured_utc"]) not in old_keys and valid(p,g,now):
             frozen.append(p)

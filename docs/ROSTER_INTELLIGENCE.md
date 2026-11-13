@@ -38,3 +38,17 @@ python -m pytest -q
 python roster_intelligence.py --root data --max-teams 24 --player-backfill 24
 python roster_challenger.py --root data
 ```
+
+## M4.1 — Verified prior-season sample depth and team-specific weighting
+
+The original roster-aware challenger used the same average roster-retention multiplier for *both teams' scoring observations* in each historical game. This could downweight an otherwise intact opponent simply because the other roster changed.
+
+The revised, still research-only candidate applies each verified team multiplier to that **team's prior-season scoring observations**. Active v0.4 calls remain unchanged, and unverified teams retain full original observation weight.
+
+A second limitation is partial player-history coverage: collecting five prior-season game boxscores does not mean the team's complete prior season is known. We now count the prior-season **verified, source-observed D-I completed games** for each team and report `prior_player_game_coverage` as observed player-game samples divided by its verified prior D-I schedule. This excludes future, disputed and non-D-I games. A coverage fraction below 15%, or absent denominator, prevents roster weight changes entirely. For eligible teams, strength of the roster adjustment scales with both sampled-game count and coverage (reaching full confidence only at 20 sampled games and at least 60% prior-game coverage). This is a conservative predeclared rule, **not a trained optimal weight**.
+
+Limited HTTP requests now prioritize teams with current **source-verified recent roster snapshots** that appear in the next 72 hours of D-I games, so archive collection is targeted at games where a meaningful pre-tip comparison may be possible.
+
+The new evidence fields are tracked in the roster-intelligence report and frozen challenger records. Tests cover sample fractions, future-score exclusions, a thin-data no-promotion gate, and the difference between team-specific and formerly shared game weights.
+
+**Validation status:** A data-coverage and modeling correctness improvement is not yet a predictive accuracy improvement. The prospective promotion gate remains at least 150 independently frozen same-game challenger/v0.4 predictions, plus stability across separate periods. Existing historical replay lacks authentic past roster snapshots, so it cannot be used to claim successful historical roster-model training.
