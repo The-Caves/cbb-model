@@ -5,7 +5,7 @@ import pytest
 
 from cbb import fit, predict
 from roster_challenger import (
-    adjusted_prior_multipliers, freeze, grade, valid, VERSION
+    adjusted_prior_multipliers, freeze, grade, valid, VERSION, PREVIOUS_VERSION
 )
 
 UTC=timezone.utc
@@ -76,6 +76,8 @@ def test_frozen_candidate_must_have_pretip_roster_and_training_evidence():
        "verified_roster_teams":["1","2"],
        "training_latest_tip":iso(now-timedelta(days=1))}
     assert valid(p,g,now)
+    assert VERSION != PREVIOUS_VERSION
+    assert not valid({**p,"model":PREVIOUS_VERSION},g,now)
     assert not valid({**p,"captured_utc":iso(tip+timedelta(minutes=2))},g,now)
     assert not valid({**p,"verified_roster_teams":["1"]},g,now)
     assert not valid({**p,"pred_margin":22},g,now)
