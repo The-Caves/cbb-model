@@ -26,7 +26,7 @@ jobs:
       - name: Install public dependencies
         run: python -m pip install -r requirements.txt pytest
       - name: Check Python syntax
-        run: python -m compileall -q cbb.py team_directory.py cbb_data_quality.py site_export.py team_intelligence.py efficiency_challenger.py
+        run: python -m compileall -q cbb.py team_directory.py cbb_data_quality.py site_export.py team_intelligence.py efficiency_challenger.py factor_challenger.py
       - name: Verify model, source data, frozen forecasts and website
         run: |
           python -m pytest -q
