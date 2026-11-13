@@ -185,7 +185,10 @@ def collect_examples(games, accepted, verified_ids, year=2026, limit_days=None):
     skipped = {"baseline_unavailable": 0, "features_unavailable": 0}
     if not d1:
         return output, {"status": "BLOCKED_D1_DIRECTORY", "days": 0, **skipped}
-    ordered_days = sorted(groups)
+    # Only compute dates used by the predeclared train / validation / holdout
+    # experiment. Later-season games cannot influence this locked comparison.
+    ordered_days = [d for d in sorted(groups)
+                    if f"{year-1}-11-01" <= d < f"{year}-03-01"]
     if limit_days is not None:
         ordered_days = ordered_days[:limit_days]
     for day in ordered_days:
