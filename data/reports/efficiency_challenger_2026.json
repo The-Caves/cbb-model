@@ -1,4 +1,5 @@
 {
+  "baseline_model": "CBB_SCORE_RIDGE_V0_4_D1_PRIOR30_A1_5",
   "candidate": {
     "margin_bias": -3.121,
     "margin_mae": 11.21,
@@ -14,12 +15,12 @@
   "model": "CBB_PACE_EFF_CHALLENGER_V0_1",
   "required_games": 100,
   "status": "RETROSPECTIVE_RESEARCH_ONLY",
-  "v03_same_games": {
-    "margin_bias": -1.627,
-    "margin_mae": 10.582,
+  "v04_same_games": {
+    "margin_bias": -0.747,
+    "margin_mae": 10.092,
     "n": 1062,
-    "su_accuracy": 0.7354,
-    "total_mae": 14.435
+    "su_accuracy": 0.7467,
+    "total_mae": 14.134
   },
   "warning": "No inference of validated picks, profitable wagering or verified historical data availability."
 }
