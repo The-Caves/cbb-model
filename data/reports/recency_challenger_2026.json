@@ -1,0 +1,710 @@
+{
+  "active_model": "CBB_SCORE_RIDGE_V0_4_D1_PRIOR30_A1_5",
+  "active_model_changed": false,
+  "asof_rule": "Daily midnight UTC; exclude contemporaneous and future finals",
+  "caveat": "February 2026 has been examined by earlier project experiments. This is a repeated retrospective diagnostic, not an independently untouched test or a proven betting edge. Only new genuinely frozen pre-tip 2026-27 predictions can supply independent prospective support.",
+  "diagnostic_november": [
+    "2025-11-01",
+    "2025-11-30"
+  ],
+  "experiment": "CBB_V05_OPP_ADJ_RECENCY_RESEARCH_20261113",
+  "fixed_configs": {
+    "lighter_carryover": {
+      "alpha": 1.5,
+      "prior_weight": 0.15
+    },
+    "recency_21": {
+      "alpha": 1.5,
+      "prior_weight": 0.3,
+      "recency_floor": 0.6,
+      "recency_half_life_days": 21
+    },
+    "recency_45": {
+      "alpha": 1.5,
+      "prior_weight": 0.3,
+      "recency_floor": 0.6,
+      "recency_half_life_days": 45
+    },
+    "recency_45_prior15": {
+      "alpha": 1.5,
+      "prior_weight": 0.15,
+      "recency_floor": 0.6,
+      "recency_half_life_days": 45
+    },
+    "v04": {
+      "alpha": 1.5,
+      "prior_weight": 0.3
+    }
+  },
+  "historical_heldout_window": [
+    "2026-02-01",
+    "2026-02-28"
+  ],
+  "historical_source_time_authenticated": false,
+  "historical_test_sufficient": true,
+  "minimum_test_games": 150,
+  "minimum_validation_games": 150,
+  "promoted": false,
+  "results": {
+    "december_january_validation": {
+      "comparison": {
+        "lighter_carryover": {
+          "brier": 0.1864,
+          "margin_bias": 0.582,
+          "margin_mae": 9.07,
+          "n": 2473,
+          "su_accuracy": 0.7178,
+          "total_mae": 13.792
+        },
+        "recency_21": {
+          "brier": 0.19,
+          "margin_bias": 0.529,
+          "margin_mae": 9.212,
+          "n": 2473,
+          "su_accuracy": 0.7133,
+          "total_mae": 14.036
+        },
+        "recency_45": {
+          "brier": 0.1893,
+          "margin_bias": 0.554,
+          "margin_mae": 9.182,
+          "n": 2473,
+          "su_accuracy": 0.7137,
+          "total_mae": 13.986
+        },
+        "recency_45_prior15": {
+          "brier": 0.1863,
+          "margin_bias": 0.541,
+          "margin_mae": 9.076,
+          "n": 2473,
+          "su_accuracy": 0.7178,
+          "total_mae": 13.788
+        },
+        "v04": {
+          "brier": 0.1882,
+          "margin_bias": 0.587,
+          "margin_mae": 9.15,
+          "n": 2473,
+          "su_accuracy": 0.7178,
+          "total_mae": 13.935
+        }
+      },
+      "strata": {
+        "early_min_under5": {
+          "lighter_carryover": {
+            "brier": 0.1983,
+            "margin_bias": 1.195,
+            "margin_mae": 8.993,
+            "n": 12,
+            "su_accuracy": 0.6667,
+            "total_mae": 14.669
+          },
+          "recency_21": {
+            "brier": 0.1947,
+            "margin_bias": 0.789,
+            "margin_mae": 9.044,
+            "n": 12,
+            "su_accuracy": 0.6667,
+            "total_mae": 15.014
+          },
+          "recency_45": {
+            "brier": 0.1953,
+            "margin_bias": 0.822,
+            "margin_mae": 9.059,
+            "n": 12,
+            "su_accuracy": 0.6667,
+            "total_mae": 14.991
+          },
+          "recency_45_prior15": {
+            "brier": 0.1969,
+            "margin_bias": 1.148,
+            "margin_mae": 8.98,
+            "n": 12,
+            "su_accuracy": 0.6667,
+            "total_mae": 14.674
+          },
+          "v04": {
+            "brier": 0.196,
+            "margin_bias": 0.863,
+            "margin_mae": 9.073,
+            "n": 12,
+            "su_accuracy": 0.6667,
+            "total_mae": 14.965
+          }
+        },
+        "opponent_stepup_8plus": {
+          "lighter_carryover": {
+            "brier": 0.131,
+            "margin_bias": 0.455,
+            "margin_mae": 9.512,
+            "n": 717,
+            "su_accuracy": 0.8075,
+            "total_mae": 13.499
+          },
+          "recency_21": {
+            "brier": 0.1352,
+            "margin_bias": 0.314,
+            "margin_mae": 9.606,
+            "n": 717,
+            "su_accuracy": 0.8061,
+            "total_mae": 13.815
+          },
+          "recency_45": {
+            "brier": 0.1344,
+            "margin_bias": 0.378,
+            "margin_mae": 9.586,
+            "n": 717,
+            "su_accuracy": 0.8089,
+            "total_mae": 13.757
+          },
+          "recency_45_prior15": {
+            "brier": 0.1313,
+            "margin_bias": 0.352,
+            "margin_mae": 9.507,
+            "n": 717,
+            "su_accuracy": 0.8075,
+            "total_mae": 13.492
+          },
+          "v04": {
+            "brier": 0.1335,
+            "margin_bias": 0.462,
+            "margin_mae": 9.565,
+            "n": 717,
+            "su_accuracy": 0.8103,
+            "total_mae": 13.709
+          }
+        },
+        "schedule_gap_6plus": {
+          "lighter_carryover": {
+            "brier": 0.1188,
+            "margin_bias": -1.363,
+            "margin_mae": 9.532,
+            "n": 233,
+            "su_accuracy": 0.824,
+            "total_mae": 13.124
+          },
+          "recency_21": {
+            "brier": 0.1247,
+            "margin_bias": -1.43,
+            "margin_mae": 9.755,
+            "n": 233,
+            "su_accuracy": 0.824,
+            "total_mae": 13.555
+          },
+          "recency_45": {
+            "brier": 0.1236,
+            "margin_bias": -1.364,
+            "margin_mae": 9.721,
+            "n": 233,
+            "su_accuracy": 0.8283,
+            "total_mae": 13.49
+          },
+          "recency_45_prior15": {
+            "brier": 0.1191,
+            "margin_bias": -1.484,
+            "margin_mae": 9.558,
+            "n": 233,
+            "su_accuracy": 0.824,
+            "total_mae": 13.147
+          },
+          "v04": {
+            "brier": 0.1223,
+            "margin_bias": -1.274,
+            "margin_mae": 9.68,
+            "n": 233,
+            "su_accuracy": 0.8326,
+            "total_mae": 13.411
+          }
+        },
+        "v04_favorite_12plus": {
+          "lighter_carryover": {
+            "brier": 0.0625,
+            "margin_bias": -0.724,
+            "margin_mae": 9.612,
+            "n": 527,
+            "su_accuracy": 0.9336,
+            "total_mae": 13.573
+          },
+          "recency_21": {
+            "brier": 0.0624,
+            "margin_bias": -1.106,
+            "margin_mae": 9.721,
+            "n": 527,
+            "su_accuracy": 0.9336,
+            "total_mae": 14.077
+          },
+          "recency_45": {
+            "brier": 0.0625,
+            "margin_bias": -0.955,
+            "margin_mae": 9.693,
+            "n": 527,
+            "su_accuracy": 0.9336,
+            "total_mae": 14.004
+          },
+          "recency_45_prior15": {
+            "brier": 0.0623,
+            "margin_bias": -0.977,
+            "margin_mae": 9.617,
+            "n": 527,
+            "su_accuracy": 0.9336,
+            "total_mae": 13.605
+          },
+          "v04": {
+            "brier": 0.0625,
+            "margin_bias": -0.742,
+            "margin_mae": 9.67,
+            "n": 527,
+            "su_accuracy": 0.9336,
+            "total_mae": 13.918
+          }
+        }
+      }
+    },
+    "february_test": {
+      "comparison": {
+        "lighter_carryover": {
+          "brier": 0.2057,
+          "margin_bias": 0.676,
+          "margin_mae": 8.84,
+          "n": 1361,
+          "su_accuracy": 0.6841,
+          "total_mae": 13.46
+        },
+        "recency_21": {
+          "brier": 0.208,
+          "margin_bias": 0.697,
+          "margin_mae": 8.982,
+          "n": 1361,
+          "su_accuracy": 0.6708,
+          "total_mae": 13.4
+        },
+        "recency_45": {
+          "brier": 0.2073,
+          "margin_bias": 0.693,
+          "margin_mae": 8.953,
+          "n": 1361,
+          "su_accuracy": 0.6738,
+          "total_mae": 13.391
+        },
+        "recency_45_prior15": {
+          "brier": 0.2051,
+          "margin_bias": 0.685,
+          "margin_mae": 8.842,
+          "n": 1361,
+          "su_accuracy": 0.6833,
+          "total_mae": 13.404
+        },
+        "v04": {
+          "brier": 0.2051,
+          "margin_bias": 0.684,
+          "margin_mae": 8.919,
+          "n": 1361,
+          "su_accuracy": 0.6811,
+          "total_mae": 13.407
+        }
+      },
+      "strata": {
+        "early_min_under5": {
+          "lighter_carryover": {
+            "brier": null,
+            "margin_bias": null,
+            "margin_mae": null,
+            "n": 0,
+            "su_accuracy": null,
+            "total_mae": null
+          },
+          "recency_21": {
+            "brier": null,
+            "margin_bias": null,
+            "margin_mae": null,
+            "n": 0,
+            "su_accuracy": null,
+            "total_mae": null
+          },
+          "recency_45": {
+            "brier": null,
+            "margin_bias": null,
+            "margin_mae": null,
+            "n": 0,
+            "su_accuracy": null,
+            "total_mae": null
+          },
+          "recency_45_prior15": {
+            "brier": null,
+            "margin_bias": null,
+            "margin_mae": null,
+            "n": 0,
+            "su_accuracy": null,
+            "total_mae": null
+          },
+          "v04": {
+            "brier": null,
+            "margin_bias": null,
+            "margin_mae": null,
+            "n": 0,
+            "su_accuracy": null,
+            "total_mae": null
+          }
+        },
+        "opponent_stepup_8plus": {
+          "lighter_carryover": {
+            "brier": 0.1545,
+            "margin_bias": 0.061,
+            "margin_mae": 9.244,
+            "n": 255,
+            "su_accuracy": 0.7686,
+            "total_mae": 12.664
+          },
+          "recency_21": {
+            "brier": 0.1553,
+            "margin_bias": 0.128,
+            "margin_mae": 9.414,
+            "n": 255,
+            "su_accuracy": 0.7725,
+            "total_mae": 12.481
+          },
+          "recency_45": {
+            "brier": 0.1548,
+            "margin_bias": 0.115,
+            "margin_mae": 9.371,
+            "n": 255,
+            "su_accuracy": 0.7725,
+            "total_mae": 12.482
+          },
+          "recency_45_prior15": {
+            "brier": 0.1547,
+            "margin_bias": 0.085,
+            "margin_mae": 9.281,
+            "n": 255,
+            "su_accuracy": 0.7686,
+            "total_mae": 12.577
+          },
+          "v04": {
+            "brier": 0.1532,
+            "margin_bias": 0.09,
+            "margin_mae": 9.308,
+            "n": 255,
+            "su_accuracy": 0.7804,
+            "total_mae": 12.495
+          }
+        },
+        "schedule_gap_6plus": {
+          "lighter_carryover": {
+            "brier": 0.0566,
+            "margin_bias": 7.973,
+            "margin_mae": 7.973,
+            "n": 3,
+            "su_accuracy": 1.0,
+            "total_mae": 10.6
+          },
+          "recency_21": {
+            "brier": 0.052,
+            "margin_bias": 8.017,
+            "margin_mae": 8.017,
+            "n": 3,
+            "su_accuracy": 1.0,
+            "total_mae": 10.517
+          },
+          "recency_45": {
+            "brier": 0.0525,
+            "margin_bias": 8.033,
+            "margin_mae": 8.033,
+            "n": 3,
+            "su_accuracy": 1.0,
+            "total_mae": 10.5
+          },
+          "recency_45_prior15": {
+            "brier": 0.0602,
+            "margin_bias": 7.807,
+            "margin_mae": 7.807,
+            "n": 3,
+            "su_accuracy": 1.0,
+            "total_mae": 10.75
+          },
+          "v04": {
+            "brier": 0.0553,
+            "margin_bias": 8.16,
+            "margin_mae": 8.16,
+            "n": 3,
+            "su_accuracy": 1.0,
+            "total_mae": 10.427
+          }
+        },
+        "v04_favorite_12plus": {
+          "lighter_carryover": {
+            "brier": 0.0752,
+            "margin_bias": 0.666,
+            "margin_mae": 9.139,
+            "n": 162,
+            "su_accuracy": 0.9198,
+            "total_mae": 12.856
+          },
+          "recency_21": {
+            "brier": 0.075,
+            "margin_bias": 0.356,
+            "margin_mae": 9.349,
+            "n": 162,
+            "su_accuracy": 0.9198,
+            "total_mae": 12.928
+          },
+          "recency_45": {
+            "brier": 0.0751,
+            "margin_bias": 0.421,
+            "margin_mae": 9.302,
+            "n": 162,
+            "su_accuracy": 0.9198,
+            "total_mae": 12.896
+          },
+          "recency_45_prior15": {
+            "brier": 0.0751,
+            "margin_bias": 0.526,
+            "margin_mae": 9.166,
+            "n": 162,
+            "su_accuracy": 0.9198,
+            "total_mae": 12.811
+          },
+          "v04": {
+            "brier": 0.0744,
+            "margin_bias": 0.558,
+            "margin_mae": 9.233,
+            "n": 162,
+            "su_accuracy": 0.9198,
+            "total_mae": 12.889
+          }
+        }
+      }
+    },
+    "november": {
+      "comparison": {
+        "lighter_carryover": {
+          "brier": 0.1484,
+          "margin_bias": -2.192,
+          "margin_mae": 10.319,
+          "n": 1238,
+          "su_accuracy": 0.7819,
+          "total_mae": 14.527
+        },
+        "recency_21": {
+          "brier": 0.1515,
+          "margin_bias": -1.753,
+          "margin_mae": 10.341,
+          "n": 1238,
+          "su_accuracy": 0.7714,
+          "total_mae": 14.905
+        },
+        "recency_45": {
+          "brier": 0.1513,
+          "margin_bias": -1.732,
+          "margin_mae": 10.327,
+          "n": 1238,
+          "su_accuracy": 0.773,
+          "total_mae": 14.88
+        },
+        "recency_45_prior15": {
+          "brier": 0.1484,
+          "margin_bias": -2.223,
+          "margin_mae": 10.331,
+          "n": 1238,
+          "su_accuracy": 0.7803,
+          "total_mae": 14.536
+        },
+        "v04": {
+          "brier": 0.1511,
+          "margin_bias": -1.711,
+          "margin_mae": 10.313,
+          "n": 1238,
+          "su_accuracy": 0.7738,
+          "total_mae": 14.857
+        }
+      },
+      "strata": {
+        "early_min_under5": {
+          "lighter_carryover": {
+            "brier": 0.1425,
+            "margin_bias": -2.272,
+            "margin_mae": 10.402,
+            "n": 992,
+            "su_accuracy": 0.7944,
+            "total_mae": 14.78
+          },
+          "recency_21": {
+            "brier": 0.1452,
+            "margin_bias": -1.763,
+            "margin_mae": 10.365,
+            "n": 992,
+            "su_accuracy": 0.7833,
+            "total_mae": 15.165
+          },
+          "recency_45": {
+            "brier": 0.145,
+            "margin_bias": -1.743,
+            "margin_mae": 10.353,
+            "n": 992,
+            "su_accuracy": 0.7853,
+            "total_mae": 15.145
+          },
+          "recency_45_prior15": {
+            "brier": 0.1426,
+            "margin_bias": -2.301,
+            "margin_mae": 10.412,
+            "n": 992,
+            "su_accuracy": 0.7923,
+            "total_mae": 14.789
+          },
+          "v04": {
+            "brier": 0.1448,
+            "margin_bias": -1.724,
+            "margin_mae": 10.342,
+            "n": 992,
+            "su_accuracy": 0.7843,
+            "total_mae": 15.126
+          }
+        },
+        "opponent_stepup_8plus": {
+          "lighter_carryover": {
+            "brier": 0.1349,
+            "margin_bias": -2.162,
+            "margin_mae": 10.304,
+            "n": 305,
+            "su_accuracy": 0.7836,
+            "total_mae": 13.998
+          },
+          "recency_21": {
+            "brier": 0.1383,
+            "margin_bias": -1.795,
+            "margin_mae": 10.416,
+            "n": 305,
+            "su_accuracy": 0.7967,
+            "total_mae": 14.385
+          },
+          "recency_45": {
+            "brier": 0.138,
+            "margin_bias": -1.759,
+            "margin_mae": 10.398,
+            "n": 305,
+            "su_accuracy": 0.7934,
+            "total_mae": 14.352
+          },
+          "recency_45_prior15": {
+            "brier": 0.1349,
+            "margin_bias": -2.218,
+            "margin_mae": 10.318,
+            "n": 305,
+            "su_accuracy": 0.7869,
+            "total_mae": 14.009
+          },
+          "v04": {
+            "brier": 0.1378,
+            "margin_bias": -1.722,
+            "margin_mae": 10.379,
+            "n": 305,
+            "su_accuracy": 0.7902,
+            "total_mae": 14.323
+          }
+        },
+        "schedule_gap_6plus": {
+          "lighter_carryover": {
+            "brier": 0.1552,
+            "margin_bias": -1.882,
+            "margin_mae": 9.77,
+            "n": 262,
+            "su_accuracy": 0.7748,
+            "total_mae": 14.92
+          },
+          "recency_21": {
+            "brier": 0.159,
+            "margin_bias": -1.782,
+            "margin_mae": 9.981,
+            "n": 262,
+            "su_accuracy": 0.771,
+            "total_mae": 15.175
+          },
+          "recency_45": {
+            "brier": 0.1587,
+            "margin_bias": -1.745,
+            "margin_mae": 9.957,
+            "n": 262,
+            "su_accuracy": 0.771,
+            "total_mae": 15.148
+          },
+          "recency_45_prior15": {
+            "brier": 0.1552,
+            "margin_bias": -1.938,
+            "margin_mae": 9.79,
+            "n": 262,
+            "su_accuracy": 0.7748,
+            "total_mae": 14.931
+          },
+          "v04": {
+            "brier": 0.1584,
+            "margin_bias": -1.706,
+            "margin_mae": 9.931,
+            "n": 262,
+            "su_accuracy": 0.7672,
+            "total_mae": 15.121
+          }
+        },
+        "v04_favorite_12plus": {
+          "lighter_carryover": {
+            "brier": 0.0414,
+            "margin_bias": -3.741,
+            "margin_mae": 10.877,
+            "n": 430,
+            "su_accuracy": 0.9558,
+            "total_mae": 14.374
+          },
+          "recency_21": {
+            "brier": 0.0421,
+            "margin_bias": -2.574,
+            "margin_mae": 10.693,
+            "n": 430,
+            "su_accuracy": 0.9558,
+            "total_mae": 14.8
+          },
+          "recency_45": {
+            "brier": 0.0421,
+            "margin_bias": -2.52,
+            "margin_mae": 10.674,
+            "n": 430,
+            "su_accuracy": 0.9558,
+            "total_mae": 14.776
+          },
+          "recency_45_prior15": {
+            "brier": 0.0414,
+            "margin_bias": -3.821,
+            "margin_mae": 10.895,
+            "n": 430,
+            "su_accuracy": 0.9558,
+            "total_mae": 14.392
+          },
+          "v04": {
+            "brier": 0.042,
+            "margin_bias": -2.465,
+            "margin_mae": 10.655,
+            "n": 430,
+            "su_accuracy": 0.9558,
+            "total_mae": 14.752
+          }
+        }
+      }
+    }
+  },
+  "selected_february_delta": {
+    "brier_improvement": 0.0,
+    "margin_mae_improvement_points": 0.077,
+    "su_accuracy_change_percentage_points": 0.22,
+    "total_mae_improvement_points": 0.003
+  },
+  "selected_on_validation_before_test": "recency_45_prior15",
+  "selection_guard": "Margin MAE must improve vs v04, SU drop <= 0.5 percentage points, Brier increase <= 0.002",
+  "selection_objective": "margin MAE + 0.5 * total MAE",
+  "selection_window": [
+    "2025-12-01",
+    "2026-01-31"
+  ],
+  "skipped": {
+    "missing_same_game_prediction": 1
+  },
+  "source": "Retrospectively archived ESPN final scores; cutoff-safe replay",
+  "status": "RETROSPECTIVE_SCORE_REPLAY_ONLY"
+}

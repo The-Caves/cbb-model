@@ -1,0 +1,73 @@
+{
+  "active_v04_unchanged": true,
+  "as_of_utc": "2026-11-13T21:36:09Z",
+  "experiment": "CBB_V05_OPP_ADJ_RECENCY_RESEARCH_20261113",
+  "freeze": {
+    "captured": 441,
+    "games": 147,
+    "status": "GENUINE_PRETIP_RESEARCH_FREEZE"
+  },
+  "grade": {
+    "active_v04_unchanged": true,
+    "graded_by_variant": {
+      "recency_21": {
+        "challenger": {
+          "brier": null,
+          "margin_bias": null,
+          "margin_mae": null,
+          "n": 0,
+          "su_accuracy": null,
+          "total_mae": null
+        },
+        "v04": {
+          "brier": null,
+          "margin_bias": null,
+          "margin_mae": null,
+          "n": 0,
+          "su_accuracy": null,
+          "total_mae": null
+        }
+      },
+      "recency_45": {
+        "challenger": {
+          "brier": null,
+          "margin_bias": null,
+          "margin_mae": null,
+          "n": 0,
+          "su_accuracy": null,
+          "total_mae": null
+        },
+        "v04": {
+          "brier": null,
+          "margin_bias": null,
+          "margin_mae": null,
+          "n": 0,
+          "su_accuracy": null,
+          "total_mae": null
+        }
+      },
+      "recency_45_prior15": {
+        "challenger": {
+          "brier": null,
+          "margin_bias": null,
+          "margin_mae": null,
+          "n": 0,
+          "su_accuracy": null,
+          "total_mae": null
+        },
+        "v04": {
+          "brier": null,
+          "margin_bias": null,
+          "margin_mae": null,
+          "n": 0,
+          "su_accuracy": null,
+          "total_mae": null
+        }
+      }
+    },
+    "minimum_completed_pairs_for_review": 150,
+    "promotion_gate": "NOT_AUTO_PROMOTED",
+    "status": "GENUINE_PRETIP_MATCHED_RESEARCH",
+    "warning": "All candidates use distinct immutable versions, and only exactly matched verified games with captures within two hours are compared. At least 150 frozen pairs across independent periods are required for review."
+  }
+}
