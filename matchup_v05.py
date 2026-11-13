@@ -467,6 +467,27 @@ def _market_metrics(events):
             "sportsbook_roi_not_available":True}
 
 
+def _market_row(game,forecast,quote):
+    actual_margin=float(game["home_score"])-float(game["away_score"])
+    actual_total=float(game["home_score"])+float(game["away_score"])
+    row={"game_id":str(game["game_id"]),"provider":quote["provider"]}
+    if quote.get("home_spread") is not None:
+        spread=float(quote["home_spread"])
+        edge=float(forecast["pred_margin"])+spread
+        row["model_margin_error"]=abs(float(forecast["pred_margin"])-actual_margin)
+        row["market_margin_error"]=abs(-spread-actual_margin)
+        if abs(edge)>=3:
+            row["ats"]=_winloss(edge,actual_margin+spread)
+    if quote.get("total") is not None:
+        line=float(quote["total"])
+        edge=float(forecast["pred_total"])-line
+        row["model_total_error"]=abs(float(forecast["pred_total"])-actual_total)
+        row["market_total_error"]=abs(line-actual_total)
+        if abs(edge)>=4:
+            row["ou"]=_winloss(edge,actual_total-line)
+    return row
+
+
 def grade(games,verified,now,base_path,shadow_path,market_path,year=None):
     year=year or now.year+int(now.month>=7)
     d1={str(x) for x in verified}
@@ -503,6 +524,7 @@ def grade(games,verified,now,base_path,shadow_path,market_path,year=None):
     for variant in VARIANTS:
         observations,reference=[],[]
         market_obs=[]
+        market_v04=[]
         for (gid,variant_name),p in candidate_latest.items():
             if variant_name!=variant:
                 continue
@@ -512,29 +534,16 @@ def grade(games,verified,now,base_path,shadow_path,market_path,year=None):
             qt=_quote_asof(by_quote[gid],game,min(
                 utc(p["captured_utc"]),utc(original["captured_utc"])))
             if qt is not None:
-                m=float(game["home_score"])-float(game["away_score"])
-                total=float(game["home_score"])+float(game["away_score"])
-                row={"game_id":gid,"provider":qt["provider"]}
-                if qt.get("home_spread") is not None:
-                    spread=float(qt["home_spread"])
-                    edge=float(p["pred_margin"])+spread
-                    row["model_margin_error"]=abs(float(p["pred_margin"])-m)
-                    row["market_margin_error"]=abs(-spread-m)
-                    if abs(edge)>=3:
-                        row["ats"]=_winloss(edge,m+spread)
-                if qt.get("total") is not None:
-                    line_total=float(qt["total"])
-                    edge=float(p["pred_total"])-line_total
-                    row["model_total_error"]=abs(float(p["pred_total"])-total)
-                    row["market_total_error"]=abs(line_total-total)
-                    if abs(edge)>=4:
-                        row["ou"]=_winloss(edge,total-line_total)
-                market_obs.append(row)
+                # Identical game, actual final and original pre-tip quote;
+                # different *predeclared* 3-/4-point pass decisions are normal.
+                market_obs.append(_market_row(game,p,qt))
+                market_v04.append(_market_row(game,original,qt))
         results[variant]={
             "frozen_pairs":len(observations),
             "v04":metrics(reference),
             "challenger":metrics(observations),
-            "source_observed_market":_market_metrics(market_obs)}
+            "source_observed_market":_market_metrics(market_obs),
+            "v04_source_observed_market":_market_metrics(market_v04)}
         if results[variant]["v04"]["n"]!=results[variant]["challenger"]["n"]:
             raise AssertionError("Unmatched v04 and challenger games")
     return {
