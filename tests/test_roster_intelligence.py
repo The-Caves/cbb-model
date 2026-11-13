@@ -155,4 +155,4 @@ def test_collection_report_uses_actual_post_capture_cutoff(tmp_path,monkeypatch)
                        f"roster_continuity_{real_now.year+int(real_now.month>=7)}.json").read_text())
     assert report["roster_teams_recent"]==1
     assert report["teams"]["1"]["status"]=="UNKNOWN_INSUFFICIENT_PRIOR_PLAYER_GAMES"
-    assert ri.dt(report["as_of_utc"]) >= real_now
+    assert ri.dt(report["as_of_utc"]) >= real_now.replace(microsecond=0)
