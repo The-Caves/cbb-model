@@ -1,28 +1,34 @@
 {
-  "as_of_utc": "2026-11-13T20:03:45Z",
-  "collector_player_game_records": 72,
-  "collector_roster_snapshots": 72,
+  "as_of_utc": "2026-11-13T20:07:53Z",
+  "collector_player_game_records": 96,
+  "collector_roster_snapshots": 96,
   "freeze": {
-    "captured": 1,
+    "captured": 3,
     "coverage": {
-      "candidate_games_eligible": 1,
-      "roster_snapshot_teams": 72,
-      "source_backed_multiplier_teams": 6,
+      "candidate_games_eligible": 3,
+      "roster_snapshot_teams": 96,
+      "source_backed_multiplier_teams": 10,
       "source_backed_team_multipliers": {
+        "153": 0.96856,
         "2086": 0.96529,
+        "221": 0.96246,
+        "228": 0.96415,
         "2453": 0.95817,
         "2803": 0.96966,
         "325": 0.95833,
         "357": 0.9628,
-        "52": 0.96727
+        "52": 0.96727,
+        "61": 0.97772
       },
-      "teams_with_adequate_player_coverage": 6,
-      "teams_with_prior_sample": 10
+      "teams_with_adequate_player_coverage": 10,
+      "teams_with_prior_sample": 15
     },
     "status": "FROZEN_AS_OF_ROSTER_RESEARCH_ONLY"
   },
   "grade": {
     "active_model_unchanged": true,
+    "candidate_version": "CBB_ROSTER_PRIOR_V0_5_M41_RESEARCH",
+    "legacy_roster_candidate_excluded": "CBB_ROSTER_PRIOR_V0_5_RESEARCH",
     "minimum_for_review": 150,
     "paired_games": 0,
     "promotion_gate": "INSUFFICIENT_PAIRED_GAMES",
@@ -46,5 +52,5 @@
     "warning": "Source-backed partial prior player minutes, not full-season returning production. No roster forecasts or verified betting edge."
   },
   "live_model_unchanged": true,
-  "model": "CBB_ROSTER_PRIOR_V0_5_RESEARCH"
+  "model": "CBB_ROSTER_PRIOR_V0_5_M41_RESEARCH"
 }
