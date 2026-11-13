@@ -297,7 +297,7 @@ def eligible(g, cutoff, retrospective):
     return retrospective or bool(g['first_final_observed_utc'] and dt(g['first_final_observed_utc']) <= cutoff)
 
 
-def fit(rows, cutoff, test_season=None, retrospective=False, alpha=3.0, prior_weight=0.60, home_court_points=HOME_COURT_POINTS, verified_ids=None, prior_team_multipliers=None):
+def fit(rows, cutoff, test_season=None, retrospective=False, alpha=3.0, prior_weight=0.60, home_court_points=HOME_COURT_POINTS, verified_ids=None, prior_team_multipliers=None, recency_half_life_days=None, recency_floor=0.60):
     target = test_season or season(cutoff)
     used = []
     counts = Counter()
@@ -309,6 +309,12 @@ def fit(rows, cutoff, test_season=None, retrospective=False, alpha=3.0, prior_we
             not math.isfinite(value) or not 0.35 <= value <= 1.0
             for value in prior_team_multipliers.values()):
         raise ValueError("invalid roster prior multipliers")
+    if recency_half_life_days is not None and (
+            not math.isfinite(recency_half_life_days) or
+            not 7 <= recency_half_life_days <= 365):
+        raise ValueError("recency half-life must be within 7..365 days")
+    if not math.isfinite(recency_floor) or not 0.4 <= recency_floor <= 1.0:
+        raise ValueError("recency floor must be within 0.4..1.0")
     for g in rows:
         if int(g['season']) not in (target, target-1) or not eligible(g, cutoff, retrospective):
             continue
@@ -324,6 +330,14 @@ def fit(rows, cutoff, test_season=None, retrospective=False, alpha=3.0, prior_we
             # to each prior scoring observation below, rather than averaging
             # both teams' retention and changing the opponent's score weight.
             weight = 1.0 if int(g['season']) == target else prior_weight
+            if recency_half_life_days is not None and int(g['season']) == target:
+                # Opponent adjustment occurs through the joint offense/defense
+                # regression. Recency reweights that *same* regression; it
+                # never substitutes raw win streaks or schedule-unaware form.
+                # Applied only to actual prior-to-cutoff current-season games.
+                age_days = max(0.0, (cutoff - dt(g['tip_utc'])).total_seconds() / 86400)
+                weight *= recency_floor + (1.0 - recency_floor) * (
+                    0.5 ** (age_days / recency_half_life_days))
             used.append((g, hs, ats, weight))
             if int(g['season']) == target:
                 counts[g['home_id']] += 1
@@ -366,7 +380,9 @@ def fit(rows, cutoff, test_season=None, retrospective=False, alpha=3.0, prior_we
             'home_court_points': float(home_court_points),
             'previous_season_weight': prior_weight, 'ridge_alpha': alpha,
             'verified_d1_training_only':verified is not None,
-            'roster_adjusted_prior':prior_team_multipliers is not None}
+            'roster_adjusted_prior':prior_team_multipliers is not None,
+            'recency_half_life_days':recency_half_life_days,
+            'recency_floor':recency_floor}
 
 
 def predict(model, g, min_current=5):
