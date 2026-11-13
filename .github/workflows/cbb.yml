@@ -87,6 +87,9 @@ jobs:
       - name: Score-only versus possession challenger (no model promotion)
         # Deliberate PASS on thin historical data, never invent metrics.
         run: python efficiency_challenger.py --root data --season 2026
+      - name: Train and compare residual factor challenger against v0.4 (research only)
+        if: github.event_name == 'push'
+        run: python factor_challenger.py --root data --season 2026
       - name: Generate as-of team schedule and Four Factors research profiles
         run: python team_intelligence.py --root data
       - name: Generate real website data (no invented odds)

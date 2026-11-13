@@ -17,8 +17,8 @@ from cbb import dt, eligible, fit as score_fit, iso, read_csv, season as season_
 from boxscore_features import load_accepted
 from team_directory import load_directory
 
-FACTORS = ("off_rtg", "efg_pct", "tov_pct", "orb_pct", "ft_rate", "three_rate")
-RANGES = {"off_rtg": (55.0, 180.0), "efg_pct": (0.0, 1.0),
+FACTORS = ("off_rtg", "pace_est", "efg_pct", "tov_pct", "orb_pct", "ft_rate", "three_rate")
+RANGES = {"off_rtg": (55.0, 180.0), "pace_est": (35.0, 145.0), "efg_pct": (0.0, 1.0),
           "tov_pct": (0.0, 1.0), "orb_pct": (0.0, 1.0),
           "ft_rate": (0.0, 2.0), "three_rate": (0.0, 1.0)}
 
@@ -119,7 +119,8 @@ def adjusted_factors(records, year, previous_game_weight=0.10,
     return output
 
 
-def build(games, accepted, verified_ids, cutoff, year=None, retrospective=False):
+def build(games, accepted, verified_ids, cutoff, year=None, retrospective=False,
+          score_model=None):
     cutoff = dt(cutoff) if isinstance(cutoff, str) else cutoff
     year = year or season_of(cutoff)
     d1 = {str(v) for v in verified_ids}
@@ -127,11 +128,13 @@ def build(games, accepted, verified_ids, cutoff, year=None, retrospective=False)
         return {"status": "BLOCKED_NO_VERIFIED_D1_DIRECTORY", "teams": {}}
     current = eligible_d1(games, cutoff, year, d1, retrospective)
     try:
-        model = score_fit(games, cutoff, test_season=year,
-                          retrospective=retrospective, alpha=1.5,
-                          prior_weight=0.30, verified_ids=d1)
+        model = score_model if score_model is not None else score_fit(
+            games, cutoff, test_season=year, retrospective=retrospective,
+            alpha=1.5, prior_weight=0.30, verified_ids=d1)
     except ValueError:
         return {"status": "BLOCKED_NO_ELIGIBLE_TRAINING", "teams": {}}
+    if model["season"] != year or model["cutoff"] != iso(cutoff) or not model["verified_d1_training_only"]:
+        raise ValueError("incompatible as-of D-I score model supplied")
     idx, beta = model["idx"], model["beta"]
     n = len(idx)
     # From score fit: a team's neutral margin contribution is its
