@@ -456,6 +456,19 @@ def collect_player_history(root="data", max_games=48, delay=1.2,
     candidates.sort(key=lambda g: (
         priority[int(g["season"])], -dt(g["tip_utc"]).timestamp(), g["game_id"]))
     focus = upcoming_teams(read_csv(root / "games.csv"), now, verified)
+    # A source-backed roster is a prerequisite for comparing last season's
+    # players to today's team. Spend the limited re-fetch quota first on
+    # teams we have actually observed on the upcoming slate.
+    snapshots = read_jsonl(root/"advanced"/"roster_snapshots.jsonl")
+    as_of = max(now, utcnow())
+    observed_rosters = {
+        str(row["team_id"]) for row in snapshots
+        if int(row.get("season", -1)) == year
+        and dt(row["source_captured_utc"]) <= as_of
+        and as_of - dt(row["source_captured_utc"]) <= timedelta(days=ROSTER_MAX_AGE_DAYS)}
+    focus_order = {team:i for i,team in enumerate(focus)}
+    focus.sort(key=lambda team: (0 if team in observed_rosters else 1,
+                                 focus_order[team]))
     player_history = read_jsonl(target,
                        unique_key=lambda row: str(row["game_id"]))
     selected = plan_player_backfill(candidates, player_history,
@@ -484,6 +497,9 @@ def collect_player_history(root="data", max_games=48, delay=1.2,
             errors.append({"game_id": str(g["game_id"]),
                            "reason": type(err).__name__ + ": " + str(err)[:80]})
     return {"status": "RETROSPECTIVE_PLAYER_RESEARCH_ONLY",
+            "upcoming_focus_teams": len(focus),
+            "upcoming_teams_with_recent_rosters": sum(
+                t in observed_rosters for t in focus),
             "attempted": len(selected), "accepted": good,
             "rejections": errors[:20],
             "point_in_time_historical_availability_verified": False}
