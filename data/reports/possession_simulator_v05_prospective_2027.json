@@ -1,0 +1,286 @@
+{
+  "active_champion": "CBB_SCORE_RIDGE_V0_4_D1_PRIOR30_A1_5",
+  "as_of_utc": "2026-11-13T22:22:28Z",
+  "frozen": {
+    "captured": 184,
+    "status": "PRETIP_POSSESSION_SIMULATION_RESEARCH",
+    "unique_games": 46
+  },
+  "historical_selection": "blend20",
+  "performance": {
+    "minimum_pairs_for_review": 150,
+    "note": "Each same-game simulator and v04 forecast was frozen before tip within 2h, using the same real market quote observed before both. No reconstructed historical sportsbook lines, ROI inference or automatic model promotion.",
+    "promotion_gate": "INSUFFICIENT_INDEPENDENT_PRETIP_ATS_OU",
+    "results": {
+      "blend20": {
+        "frozen_pairs": 0,
+        "same_quote_simulator": {
+          "ats_with_min3pt_model_edge": {
+            "losses": 0,
+            "n": 0,
+            "pushes": 0,
+            "win_pct_ex_push": null,
+            "wins": 0
+          },
+          "market_margin_mae": null,
+          "market_total_mae": null,
+          "matched_market_games": 0,
+          "model_margin_mae": null,
+          "model_total_mae": null,
+          "ou_with_min4pt_model_edge": {
+            "losses": 0,
+            "n": 0,
+            "pushes": 0,
+            "win_pct_ex_push": null,
+            "wins": 0
+          },
+          "quotes_are_not_verified_closing_lines": true,
+          "sportsbook_roi_not_available": true
+        },
+        "same_quote_v04": {
+          "ats_with_min3pt_model_edge": {
+            "losses": 0,
+            "n": 0,
+            "pushes": 0,
+            "win_pct_ex_push": null,
+            "wins": 0
+          },
+          "market_margin_mae": null,
+          "market_total_mae": null,
+          "matched_market_games": 0,
+          "model_margin_mae": null,
+          "model_total_mae": null,
+          "ou_with_min4pt_model_edge": {
+            "losses": 0,
+            "n": 0,
+            "pushes": 0,
+            "win_pct_ex_push": null,
+            "wins": 0
+          },
+          "quotes_are_not_verified_closing_lines": true,
+          "sportsbook_roi_not_available": true
+        },
+        "simulator": {
+          "brier": null,
+          "margin_bias": null,
+          "margin_mae": null,
+          "n": 0,
+          "su_accuracy": null,
+          "total_mae": null
+        },
+        "v04": {
+          "brier": null,
+          "margin_bias": null,
+          "margin_mae": null,
+          "n": 0,
+          "su_accuracy": null,
+          "total_mae": null
+        }
+      },
+      "blend40": {
+        "frozen_pairs": 0,
+        "same_quote_simulator": {
+          "ats_with_min3pt_model_edge": {
+            "losses": 0,
+            "n": 0,
+            "pushes": 0,
+            "win_pct_ex_push": null,
+            "wins": 0
+          },
+          "market_margin_mae": null,
+          "market_total_mae": null,
+          "matched_market_games": 0,
+          "model_margin_mae": null,
+          "model_total_mae": null,
+          "ou_with_min4pt_model_edge": {
+            "losses": 0,
+            "n": 0,
+            "pushes": 0,
+            "win_pct_ex_push": null,
+            "wins": 0
+          },
+          "quotes_are_not_verified_closing_lines": true,
+          "sportsbook_roi_not_available": true
+        },
+        "same_quote_v04": {
+          "ats_with_min3pt_model_edge": {
+            "losses": 0,
+            "n": 0,
+            "pushes": 0,
+            "win_pct_ex_push": null,
+            "wins": 0
+          },
+          "market_margin_mae": null,
+          "market_total_mae": null,
+          "matched_market_games": 0,
+          "model_margin_mae": null,
+          "model_total_mae": null,
+          "ou_with_min4pt_model_edge": {
+            "losses": 0,
+            "n": 0,
+            "pushes": 0,
+            "win_pct_ex_push": null,
+            "wins": 0
+          },
+          "quotes_are_not_verified_closing_lines": true,
+          "sportsbook_roi_not_available": true
+        },
+        "simulator": {
+          "brier": null,
+          "margin_bias": null,
+          "margin_mae": null,
+          "n": 0,
+          "su_accuracy": null,
+          "total_mae": null
+        },
+        "v04": {
+          "brier": null,
+          "margin_bias": null,
+          "margin_mae": null,
+          "n": 0,
+          "su_accuracy": null,
+          "total_mae": null
+        }
+      },
+      "pure": {
+        "frozen_pairs": 0,
+        "same_quote_simulator": {
+          "ats_with_min3pt_model_edge": {
+            "losses": 0,
+            "n": 0,
+            "pushes": 0,
+            "win_pct_ex_push": null,
+            "wins": 0
+          },
+          "market_margin_mae": null,
+          "market_total_mae": null,
+          "matched_market_games": 0,
+          "model_margin_mae": null,
+          "model_total_mae": null,
+          "ou_with_min4pt_model_edge": {
+            "losses": 0,
+            "n": 0,
+            "pushes": 0,
+            "win_pct_ex_push": null,
+            "wins": 0
+          },
+          "quotes_are_not_verified_closing_lines": true,
+          "sportsbook_roi_not_available": true
+        },
+        "same_quote_v04": {
+          "ats_with_min3pt_model_edge": {
+            "losses": 0,
+            "n": 0,
+            "pushes": 0,
+            "win_pct_ex_push": null,
+            "wins": 0
+          },
+          "market_margin_mae": null,
+          "market_total_mae": null,
+          "matched_market_games": 0,
+          "model_margin_mae": null,
+          "model_total_mae": null,
+          "ou_with_min4pt_model_edge": {
+            "losses": 0,
+            "n": 0,
+            "pushes": 0,
+            "win_pct_ex_push": null,
+            "wins": 0
+          },
+          "quotes_are_not_verified_closing_lines": true,
+          "sportsbook_roi_not_available": true
+        },
+        "simulator": {
+          "brier": null,
+          "margin_bias": null,
+          "margin_mae": null,
+          "n": 0,
+          "su_accuracy": null,
+          "total_mae": null
+        },
+        "v04": {
+          "brier": null,
+          "margin_bias": null,
+          "margin_mae": null,
+          "n": 0,
+          "su_accuracy": null,
+          "total_mae": null
+        }
+      },
+      "trained_blend": {
+        "frozen_pairs": 0,
+        "same_quote_simulator": {
+          "ats_with_min3pt_model_edge": {
+            "losses": 0,
+            "n": 0,
+            "pushes": 0,
+            "win_pct_ex_push": null,
+            "wins": 0
+          },
+          "market_margin_mae": null,
+          "market_total_mae": null,
+          "matched_market_games": 0,
+          "model_margin_mae": null,
+          "model_total_mae": null,
+          "ou_with_min4pt_model_edge": {
+            "losses": 0,
+            "n": 0,
+            "pushes": 0,
+            "win_pct_ex_push": null,
+            "wins": 0
+          },
+          "quotes_are_not_verified_closing_lines": true,
+          "sportsbook_roi_not_available": true
+        },
+        "same_quote_v04": {
+          "ats_with_min3pt_model_edge": {
+            "losses": 0,
+            "n": 0,
+            "pushes": 0,
+            "win_pct_ex_push": null,
+            "wins": 0
+          },
+          "market_margin_mae": null,
+          "market_total_mae": null,
+          "matched_market_games": 0,
+          "model_margin_mae": null,
+          "model_total_mae": null,
+          "ou_with_min4pt_model_edge": {
+            "losses": 0,
+            "n": 0,
+            "pushes": 0,
+            "win_pct_ex_push": null,
+            "wins": 0
+          },
+          "quotes_are_not_verified_closing_lines": true,
+          "sportsbook_roi_not_available": true
+        },
+        "simulator": {
+          "brier": null,
+          "margin_bias": null,
+          "margin_mae": null,
+          "n": 0,
+          "su_accuracy": null,
+          "total_mae": null
+        },
+        "v04": {
+          "brier": null,
+          "margin_bias": null,
+          "margin_mae": null,
+          "n": 0,
+          "su_accuracy": null,
+          "total_mae": null
+        }
+      }
+    },
+    "status": "SOURCE_FROZEN_MATCHED_SIMULATOR_RESEARCH",
+    "versions": {
+      "blend20": "CBB_V05_POSSESSION_EVENTS_20261113_BLEND20",
+      "blend40": "CBB_V05_POSSESSION_EVENTS_20261113_BLEND40",
+      "pure": "CBB_V05_POSSESSION_EVENTS_20261113_PURE",
+      "trained_blend": "CBB_V05_POSSESSION_EVENTS_20261113_TRAINED_BLEND"
+    },
+    "website_model_unchanged": true
+  },
+  "promoted": false
+}

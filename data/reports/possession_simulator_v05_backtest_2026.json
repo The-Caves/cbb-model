@@ -1,0 +1,333 @@
+{
+  "active_model_unchanged": true,
+  "counts": {
+    "historical_heldout": 1361,
+    "training": 1577,
+    "validation": 1517
+  },
+  "coverage": {
+    "days_considered": 114,
+    "eligible_d1_finals": 5073,
+    "excluded": {
+      "insufficient_game_matchup": 618
+    },
+    "matched_games": 4455,
+    "retrospective_source_timing_authenticated": false
+  },
+  "draws_per_game": 512,
+  "february": {
+    "blend20": {
+      "brier": 0.2041,
+      "margin_bias": 0.67,
+      "margin_mae": 8.868,
+      "n": 1361,
+      "su_accuracy": 0.6804,
+      "total_bias": 0.594,
+      "total_mae": 13.424
+    },
+    "blend40": {
+      "brier": 0.2041,
+      "margin_bias": 0.664,
+      "margin_mae": 8.959,
+      "n": 1361,
+      "su_accuracy": 0.6885,
+      "total_bias": 0.468,
+      "total_mae": 13.461
+    },
+    "lighter": {
+      "brier": 0.2057,
+      "margin_bias": 0.676,
+      "margin_mae": 8.84,
+      "n": 1361,
+      "su_accuracy": 0.6841,
+      "total_bias": 0.721,
+      "total_mae": 13.46
+    },
+    "pure": {
+      "brier": 0.2173,
+      "margin_bias": 0.649,
+      "margin_mae": 9.542,
+      "n": 1361,
+      "su_accuracy": 0.6481,
+      "total_bias": 0.109,
+      "total_mae": 13.967
+    },
+    "trained_blend": {
+      "brier": 0.2075,
+      "margin_bias": 1.408,
+      "margin_mae": 8.886,
+      "n": 1361,
+      "su_accuracy": 0.6833,
+      "total_bias": 1.736,
+      "total_mae": 13.552
+    },
+    "v04": {
+      "brier": 0.2069,
+      "margin_bias": 0.684,
+      "margin_mae": 8.919,
+      "n": 1361,
+      "su_accuracy": 0.6811,
+      "total_bias": 0.215,
+      "total_mae": 13.407
+    }
+  },
+  "february_previously_examined_by_project": true,
+  "february_selected_delta_vs_lighter": {
+    "margin_mae_improvement": -0.028,
+    "su_pp_change": -0.37,
+    "total_mae_improvement": 0.036
+  },
+  "february_strata": {
+    "big_favorite_12plus": {
+      "blend20": {
+        "brier": 0.0687,
+        "margin_bias": -0.248,
+        "margin_mae": 9.184,
+        "n": 175,
+        "su_accuracy": 0.9257,
+        "total_bias": 1.457,
+        "total_mae": 13.001
+      },
+      "blend40": {
+        "brier": 0.0678,
+        "margin_bias": -1.115,
+        "margin_mae": 9.47,
+        "n": 175,
+        "su_accuracy": 0.9257,
+        "total_bias": 1.349,
+        "total_mae": 13.059
+      },
+      "lighter": {
+        "brier": 0.07,
+        "margin_bias": 0.619,
+        "margin_mae": 9.111,
+        "n": 175,
+        "su_accuracy": 0.9257,
+        "total_bias": 1.565,
+        "total_mae": 13.058
+      },
+      "pure": {
+        "brier": 0.0799,
+        "margin_bias": -3.697,
+        "margin_mae": 11.255,
+        "n": 175,
+        "su_accuracy": 0.9257,
+        "total_bias": 1.082,
+        "total_mae": 13.798
+      },
+      "trained_blend": {
+        "brier": 0.0705,
+        "margin_bias": 1.352,
+        "margin_mae": 9.194,
+        "n": 175,
+        "su_accuracy": 0.9257,
+        "total_bias": 2.604,
+        "total_mae": 13.131
+      },
+      "v04": {
+        "brier": 0.0703,
+        "margin_bias": 0.363,
+        "margin_mae": 9.266,
+        "n": 175,
+        "su_accuracy": 0.9257,
+        "total_bias": 1.082,
+        "total_mae": 13.056
+      }
+    },
+    "low_shot_sample_under5": {
+      "blend20": {
+        "brier": null,
+        "margin_bias": null,
+        "margin_mae": null,
+        "n": 0,
+        "su_accuracy": null,
+        "total_bias": null,
+        "total_mae": null
+      },
+      "blend40": {
+        "brier": null,
+        "margin_bias": null,
+        "margin_mae": null,
+        "n": 0,
+        "su_accuracy": null,
+        "total_bias": null,
+        "total_mae": null
+      },
+      "lighter": {
+        "brier": null,
+        "margin_bias": null,
+        "margin_mae": null,
+        "n": 0,
+        "su_accuracy": null,
+        "total_bias": null,
+        "total_mae": null
+      },
+      "pure": {
+        "brier": null,
+        "margin_bias": null,
+        "margin_mae": null,
+        "n": 0,
+        "su_accuracy": null,
+        "total_bias": null,
+        "total_mae": null
+      },
+      "trained_blend": {
+        "brier": null,
+        "margin_bias": null,
+        "margin_mae": null,
+        "n": 0,
+        "su_accuracy": null,
+        "total_bias": null,
+        "total_mae": null
+      },
+      "v04": {
+        "brier": null,
+        "margin_bias": null,
+        "margin_mae": null,
+        "n": 0,
+        "su_accuracy": null,
+        "total_bias": null,
+        "total_mae": null
+      }
+    },
+    "near_pickem_under6": {
+      "blend20": {
+        "brier": 0.2456,
+        "margin_bias": 0.303,
+        "margin_mae": 8.924,
+        "n": 727,
+        "su_accuracy": 0.5722,
+        "total_bias": 0.647,
+        "total_mae": 13.557
+      },
+      "blend40": {
+        "brier": 0.246,
+        "margin_bias": 0.598,
+        "margin_mae": 8.952,
+        "n": 727,
+        "su_accuracy": 0.5873,
+        "total_bias": 0.497,
+        "total_mae": 13.546
+      },
+      "lighter": {
+        "brier": 0.2468,
+        "margin_bias": 0.007,
+        "margin_mae": 8.925,
+        "n": 727,
+        "su_accuracy": 0.5791,
+        "total_bias": 0.796,
+        "total_mae": 13.64
+      },
+      "pure": {
+        "brier": 0.257,
+        "margin_bias": 1.486,
+        "margin_mae": 9.152,
+        "n": 727,
+        "su_accuracy": 0.5433,
+        "total_bias": 0.068,
+        "total_mae": 13.976
+      },
+      "trained_blend": {
+        "brier": 0.2476,
+        "margin_bias": 0.74,
+        "margin_mae": 8.924,
+        "n": 727,
+        "su_accuracy": 0.5777,
+        "total_bias": 1.783,
+        "total_mae": 13.696
+      },
+      "v04": {
+        "brier": 0.2496,
+        "margin_bias": 0.125,
+        "margin_mae": 9.002,
+        "n": 727,
+        "su_accuracy": 0.5736,
+        "total_bias": 0.285,
+        "total_mae": 13.539
+      }
+    }
+  },
+  "frozen_training_calibration": {
+    "margin": {
+      "intercept": 0.7328471781864299,
+      "slope": 0.0
+    },
+    "n_training": 1577,
+    "total": {
+      "intercept": 1.174646896196869,
+      "slope": 0.2518663777207171
+    },
+    "training_window": "2025-11_to_2025-12"
+  },
+  "historical_book_lines_available": false,
+  "january": {
+    "blend20": {
+      "brier": 0.2031,
+      "margin_bias": 1.196,
+      "margin_mae": 8.832,
+      "n": 1517,
+      "su_accuracy": 0.6935,
+      "total_bias": -0.151,
+      "total_mae": 13.822
+    },
+    "blend40": {
+      "brier": 0.2026,
+      "margin_bias": 1.184,
+      "margin_mae": 8.843,
+      "n": 1517,
+      "su_accuracy": 0.6895,
+      "total_bias": -0.341,
+      "total_mae": 13.873
+    },
+    "lighter": {
+      "brier": 0.2049,
+      "margin_bias": 1.209,
+      "margin_mae": 8.895,
+      "n": 1517,
+      "su_accuracy": 0.6974,
+      "total_bias": 0.038,
+      "total_mae": 13.848
+    },
+    "pure": {
+      "brier": 0.2123,
+      "margin_bias": 1.145,
+      "margin_mae": 9.214,
+      "n": 1517,
+      "su_accuracy": 0.6711,
+      "total_bias": -0.881,
+      "total_mae": 14.442
+    },
+    "trained_blend": {
+      "brier": 0.2068,
+      "margin_bias": 1.941,
+      "margin_mae": 8.974,
+      "n": 1517,
+      "su_accuracy": 0.6961,
+      "total_bias": 0.974,
+      "total_mae": 13.891
+    },
+    "v04": {
+      "brier": 0.2066,
+      "margin_bias": 1.206,
+      "margin_mae": 8.938,
+      "n": 1517,
+      "su_accuracy": 0.6955,
+      "total_bias": -0.704,
+      "total_mae": 13.861
+    }
+  },
+  "lighter_carryover_prior": 0.15,
+  "mechanism": "As-of opponent-adjusted shooting rates; pace and turnovers set FGA opportunities, miss*ORB increases possessions' shot volume, then 2PA/3PA and FTA lead to stochastic points.",
+  "model_family": "CBB_V05_POSSESSION_EVENTS_20261113",
+  "promotion_gate": "NEEDS_NEW_PROSPECTIVE_ATS_OU_EVIDENCE",
+  "selected_in_january": "blend20",
+  "source_timestamps_in_historical_archive_authenticated": false,
+  "status": "HISTORICAL_SCORE_REPLAY_COMPLETE",
+  "variants": {
+    "blend20": "CBB_V05_POSSESSION_EVENTS_20261113_BLEND20",
+    "blend40": "CBB_V05_POSSESSION_EVENTS_20261113_BLEND40",
+    "pure": "CBB_V05_POSSESSION_EVENTS_20261113_PURE",
+    "trained_blend": "CBB_V05_POSSESSION_EVENTS_20261113_TRAINED_BLEND"
+  },
+  "warning": "Retrospective ESPN boxscore acquisition; historical scores are filtered to pre-cutoff tip times but capture availability in 2025 not independently established. Already inspected February 2026 is not an untouched holdout. Simulator is aggregate-event approximation, not full play-by-play."
+}
