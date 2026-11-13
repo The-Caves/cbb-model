@@ -62,6 +62,7 @@ def player_boxscore(payload, game, captured, raw_sha):
     if not isinstance(blocks, list) or len(blocks) != 2:
         raise PlayerEvidenceGap("two-sided player boxscore unavailable")
     by_team = {}
+    all_player_ids = set()
     for team in blocks:
         tid = str((team.get("team") or {}).get("id", ""))
         if tid not in wanted or tid in by_team:
@@ -86,8 +87,8 @@ def player_boxscore(payload, game, captured, raw_sha):
                 vals = row.get("stats")
                 if not player_id or not isinstance(vals, list):
                     continue
-                if player_id in seen:
-                    raise PlayerEvidenceGap("duplicate stable player ID")
+                if player_id in seen or player_id in all_player_ids:
+                    raise PlayerEvidenceGap("duplicate or cross-team player ID")
                 try:
                     minute = _minutes(vals[columns["MIN"]])
                     pts = _number(vals[columns["PTS"]], "points", 100)
@@ -96,6 +97,7 @@ def player_boxscore(payload, game, captured, raw_sha):
                 except (IndexError, PlayerEvidenceGap):
                     continue  # DNP or absent row is not a zero stat line.
                 seen.add(player_id)
+                all_player_ids.add(player_id)
                 athletes.append({"player_id": player_id, "team_id": tid,
                                  "minutes": round(minute, 3),
                                  "points": pts, "rebounds": reb, "assists": ast})
