@@ -7,8 +7,8 @@
 | Stage | Scope and build order | Exit gate | State |
 |---|---|---|---|
 | M1 | Verified D-I team IDs; past two seasons + current season boxscore sampling; possession/Four Factors; coverage, quarantine and source capture auditing; repeatable free daily backfill | Multi-season source coverage reported with truthful numerators/denominators; corruption and leakage tests pass; ingestion succeeds in GitHub | **Implemented collector/audit; full historical coverage remains in progress** |
-| M2 | Opponent-adjusted offensive and defensive points/100 possessions + pace and Four Factors, with early-season priors and non-D-I exclusions | Walk-forward 2025–26 score/margin/total evaluation vs frozen v0.3 baseline, separate current-season prospective holdout | Not started |
-| M3 | Opponent-specific interactions: rebounding matchup, shot selection vs defense, FTA/turnover pressure, 3-point variance, tempo conflicts and venues | Ablations show reliable improvement beyond M2 on unseen games | Not started |
+| M2 | Opponent-adjusted offensive and defensive points/100 possessions + pace and Four Factors, with early-season priors and non-D-I exclusions | Walk-forward score/margin/total evaluation vs current v0.4 baseline, separate current-season prospective holdout | **Experimental challenger built; research comparison, not promoted** |
+| M3 | Opponent-specific interactions: rebounding matchup, shot selection vs defense, FTA/turnover pressure, 3-point variance, tempo conflicts and venues | Ablations show reliable improvement beyond M2 on unseen games | **As-of team factor/SOS feature scaffold; no trained matchup adjustment** |
 | M4 | Player intelligence: lineup minutes and rotations, prior-season carryovers and transfers, verified availability and usage effects | Coverage provenance + valid pre-tip source time; unknowns stay UNKNOWN | Not started |
 | M5 | Simulate possessions and game-score distributions; calibrate winner probabilities, margin/totals uncertainty | Calibration, log-loss/Brier and interval coverage beat challenger baselines out-of-sample | Not started |
 | M6 | Automated model competition, locked temporal splits, retrospective vs prospective reports, immutable frozen forecasts | Two-independent-period evidence; automatic rollback on regressions | Not started |
@@ -113,3 +113,30 @@ Before activating v0.4, a predeclared retrospective sensitivity sweep compared f
 **Automatic site reporting:** Per-game observed market spread and total with model-minus-market differences; daily and season-to-date ATS/O-U records by original model version; separate market-versus-model margin and total MAE on exactly matched games. No-edge abstentions are never counted as pushes; actual landed-on-the-line ties are pushes. No real pretip book record means no ATS/O-U grade. New market snapshots began November 12 and will only produce prospective grades after completed games are independently observed. GitHub Actions stays free with four scheduled daily updates; no odds endpoint/API subscription added.
 
 **Next experiments, contingent on actual lines and samples:** Compare model error with a market baseline, stratify by underdog/favorite, gap size, conference matchup, team continuity and current-season game counts. Freeze pretip positions; calibrate directional ATS/O-U thresholds *only* on independent prospective data and compare against PASS-all/no-edge. Reject retrospective one-day retunes. Build verified lineups/transfer continuity in subsequent milestones.
+
+## November 13, 2026 — actual implementation audit and schedule-quality research branch
+
+**Strict repository:** `The-Caves/cbb-model`. No changes to CFB or other repositories.
+
+**Active predictions:** v0.4 is a D-I-only score regression, fitted on eligible earlier final scores with fixed home-court treatment and per-game prior-season weight 0.30. Its team offense/defense effects already adjust margins indirectly for opponent strength. However, its published `predict()` never reads boxscore possession/Four Factors, schedule-strength summaries, roster continuity, transfer usage or opponent-specific matchups. It does **not** know every boxscore metric just because a file collected it. Frozen ledger and website stay untouched until an independently assessed candidate earns promotion.
+
+**Verified archive status** (from `data/advanced/coverage_audit.json`, observed 2026-11-13 13:08 UTC, not an estimate of future completion):
+
+- 2024–25: 804 / 5,733 completed D-I vs D-I games (14.02%).
+- 2025–26: 1,683 / 5,723 (29.41%).
+- 2026–27: 399 / 475 (84.00%) and only **one** D-I team at five or more verified boxscores; 28 scoreboard identity/score disputes are separately quarantined.
+- Historically fetched boxscores are real observations but **not** independently authenticated as having been available before historical prediction times.
+
+**New research layer:** `team_intelligence.py` (non-promoted) computes, from eligible verified D-I games only:
+1. As-of, opponent-adjusted neutral team rating in score-margin points (using the exact D-I-only v0.4 training hyperparameters). This already adjusts for opponent strength rather than raw win totals.
+2. Current-season **strength of schedule** as average opponent-adjusted rating of teams faced; `None` when no games.
+3. Explicit **strength-of-record proxy** as wins minus the number an average D-I team would have expected against those opponents and venues, using a normal-CDF approximation of the score model's residual margin variance. This is a documented proxy, not an official external SOR ranking.
+4. Last-five-game opponent- and venue-adjusted margin as a trajectory feature. It is descriptive and not yet a fit coefficient.
+5. Source-matched offense and opponent-allowed adjusted offensive rating, eFG%, turnover rate, offensive rebounding rate, free throw attempt rate and three-point attempt rate. The two-sided additive effects are regularized toward a D-I sample mean and previously observed team seasons are strongly downweighted. Missing factors are not filled in with zero.
+6. Explicit current sample counts, prior-source sample counts, effective weights, coverage flags, dated observation rules and `LOW_CURRENT_SAMPLE` status.
+
+A hard source gate rejects conflicting or future games, non-D-I opponents and later-captured boxscores for genuine as-of studies. Retrospective historical source replays are distinguishable and never silently labeled as actual pre-tip evidence. This new layer writes `data/advanced/team_intelligence_2027.json` (current season name determined by run date) from the normal free workflow after daily source refresh. Existing frozen predictions are **not** re-scored.
+
+**Benchmark correction:** `efficiency_challenger.py` previously reported a matched-game comparison with old v0.3, even after v0.4 went live. This branch updates its score comparison to D-I-only v0.4 hyperparameters, renaming the baseline output key to `v04_same_games`; historical summary must be **recomputed** before citing new comparison metrics. Its earlier 1,062-game sample had candidate 11.210 margin MAE / 14.275 total MAE versus v0.3 10.582 / 14.435; these values are not a v0.4 comparison and were not prospective.
+
+**Next actual model training gate:** Use source-authenticated features to form a separate M2–M3 candidate; add matchup terms for opponent-relative ORB vs DRB, turnover pressure, shot profile/eFG suppression, tempo conflicts, venue and injury/roster data **only when verified**. Avoid adding overlapping SOS/rating signals to the baseline as if independent; use each in ablation and evaluate leakage-safe chronological periods and pre-tip freezes. Compare margin MAE, total MAE, SU calibration, early-season underdog gaps and D-I conference mismatch strata on the **same** games as v0.4. No auto-promotion, ATS/total grading without authentic market lines, or unsupported claim of edge.
