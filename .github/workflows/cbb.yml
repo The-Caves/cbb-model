@@ -104,6 +104,11 @@ jobs:
       - name: Replay v0.5 carryover and regularization candidates against v0.4
         if: github.event_name == 'push'
         run: python v05_transition_challenger.py --root data --season 2026
+      - name: Compare opponent-adjusted recency challengers on matched historical games
+        if: github.event_name == 'push'
+        run: python recency_challenger.py --root data --historical
+      - name: Freeze opponent-adjusted recency research predictions before tipoff
+        run: python recency_challenger.py --root data
       - name: Train dated team-profile challenger and compare locked historical periods
         if: github.event_name == 'push'
         run: python profile_trajectory_challenger.py --root data --historical
