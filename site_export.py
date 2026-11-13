@@ -69,7 +69,7 @@ def matchup_research_forecasts(ledger, games, now):
 # Explicit user-directed interim website rollout. This changes the displayed
 # preferred forecast only; never changes original v0.4 training or frozen ledger.
 # Games that began before rollout retain the originally featured v0.4 record.
-FEATURED_ROLLOUT_UTC = "2026-11-13T22:39:21Z"
+FEATURED_ROLLOUT_UTC = "2026-11-13T23:30:00Z"
 
 
 def featured_possession_forecasts(ledger, by_id, now):
