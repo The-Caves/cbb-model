@@ -4,7 +4,7 @@ import subprocess
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from profile_history_audit import compare, dated_snapshots, build_audit
+from profile_history_audit import compare, dated_snapshots, build_audit, raw_saved_profile_comparison
 
 
 def profile(asof, strength):
@@ -70,3 +70,41 @@ def test_history_audit_uses_real_git_commit_not_fabricated_replay(tmp_path):
     assert report["team_ids_compared"]==2
     assert report["old_profile_as_of_utc"]=="2026-11-12T19:00:00Z"
     assert report["teams_rising_most"][0]["strength_change_points"]==5
+
+
+def test_real_git_stored_raw_profiles_with_commit_dates(tmp_path):
+    repo=tmp_path/"repo"
+    repo.mkdir()
+    subprocess.run(["git","init"],cwd=repo,check=True,capture_output=True)
+    subprocess.run(["git","config","user.name","Test User"],cwd=repo,check=True)
+    subprocess.run(["git","config","user.email","test@example.com"],cwd=repo,check=True)
+    raw=repo/"data"/"advanced"/"team_profiles_2027.json"
+    raw.parent.mkdir(parents=True)
+    def snapshot(first,second,n):
+        return {
+            "1":{"team_id":"1","games":n,"off_rtg":first,
+                 "pace_est":68,"efg_pct":.52},
+            "2":{"team_id":"2","games":n,"off_rtg":second,
+                 "pace_est":70,"efg_pct":.46},
+        }
+    raw.write_text(json.dumps(snapshot(90,120,2)))
+    subprocess.run(["git","add","."],cwd=repo,check=True)
+    subprocess.run(["git","commit","-m","original"],cwd=repo,check=True,
+                   capture_output=True,env={
+                       **__import__("os").environ,
+                       "GIT_AUTHOR_DATE":"2026-11-11T12:00:00+00:00",
+                       "GIT_COMMITTER_DATE":"2026-11-11T12:00:00+00:00"})
+    raw.write_text(json.dumps(snapshot(105,110,4)))
+    subprocess.run(["git","add","."],cwd=repo,check=True)
+    subprocess.run(["git","commit","-m","updated"],cwd=repo,check=True,
+                   capture_output=True,env={
+                       **__import__("os").environ,
+                       "GIT_AUTHOR_DATE":"2026-11-13T13:00:00+00:00",
+                       "GIT_COMMITTER_DATE":"2026-11-13T13:00:00+00:00"})
+    report=raw_saved_profile_comparison(repo=repo,year=2027,min_gap_hours=36)
+    assert report["status"]=="AUTHENTIC_GIT_SAVED_RAW_PROFILE_DRIFT"
+    assert report["teams_with_old2_new3plus"]==2
+    assert report["average_abs_raw_off_rtg_change"]==12.5
+    assert report["biggest_increases"][0]["raw_stat_deltas"]["off_rtg"]==15
+    assert report["biggest_decreases"][0]["raw_stat_deltas"]["off_rtg"]==-10
+    assert report["old_git_committed_utc"].startswith("2026-11-11")
