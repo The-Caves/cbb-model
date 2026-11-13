@@ -100,3 +100,14 @@ def test_metrics_not_falsely_su_or_roi_when_empty():
     assert len(VARIANTS) == 3
     assert not final_game(game("g", datetime(2025, 12, 3, tzinfo=UTC),
                                h="1", a="999"), 2026, {"1", "2"})
+
+
+def test_v04_favorite_subsets_use_same_matchups_for_every_variant():
+    first = datetime(2025, 11, 1, 20, tzinfo=UTC)
+    games = [game(str(i), first + timedelta(days=i), hs=104, ats=55)
+             for i in range(22)]
+    report = retrospective(games, {"1", "2"}, 2026,
+                           start="2025-11-01", end="2025-11-25")
+    sub = report["results"]["november"]["v04_favorites_12plus"]
+    assert sub[V04]["n"] > 0
+    assert {sub[key]["n"] for key in (V04, *VARIANTS)} == {sub[V04]["n"]}
