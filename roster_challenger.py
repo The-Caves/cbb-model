@@ -15,7 +15,10 @@ from team_directory import load_directory
 from roster_intelligence import continuity, read_jsonl, prior_d1_game_counts
 from v05_transition_challenger import frozen_v04, metrics, model_observation
 
-VERSION = "CBB_ROSTER_PRIOR_V0_5_RESEARCH"
+# A roster-weighting change changes predictions; frozen older candidates must
+# never be pooled with this distinct algorithm version in prospective grading.
+PREVIOUS_VERSION = "CBB_ROSTER_PRIOR_V0_5_RESEARCH"
+VERSION = "CBB_ROSTER_PRIOR_V0_5_M41_RESEARCH"
 MIN_PRIOR_PLAYER_GAMES = 5
 MIN_COMPARISONS_FOR_REVIEW = 150
 
@@ -180,6 +183,8 @@ def grade(games, verified, champion_ledger, candidate_ledger, now=None,
                                if len(baseline) >= MIN_COMPARISONS_FOR_REVIEW
                                else "INSUFFICIENT_PAIRED_GAMES"),
             "active_model_unchanged": True,
+            "candidate_version": VERSION,
+            "legacy_roster_candidate_excluded": PREVIOUS_VERSION,
             "warning": ("Source-backed partial prior player minutes, not full-season "
                         "returning production. No roster forecasts or verified betting edge.")}
 

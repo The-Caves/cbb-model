@@ -52,3 +52,7 @@ Limited HTTP requests now prioritize teams with current **source-verified recent
 The new evidence fields are tracked in the roster-intelligence report and frozen challenger records. Tests cover sample fractions, future-score exclusions, a thin-data no-promotion gate, and the difference between team-specific and formerly shared game weights.
 
 **Validation status:** A data-coverage and modeling correctness improvement is not yet a predictive accuracy improvement. The prospective promotion gate remains at least 150 independently frozen same-game challenger/v0.4 predictions, plus stability across separate periods. Existing historical replay lacks authentic past roster snapshots, so it cannot be used to claim successful historical roster-model training.
+
+### Frozen model version separation
+
+The original roster prior-weight method emitted `CBB_ROSTER_PRIOR_V0_5_RESEARCH` forecasts. Once M4.1 changed both scoring-side weighting and the prior-season player-history coverage gate, the new candidate was assigned `CBB_ROSTER_PRIOR_V0_5_M41_RESEARCH`. Earlier immutable observations stay in the research ledger, but **cannot be aggregated into M4.1's prospective evaluation**. The live v0.4 version remains unchanged. This prevents apparently stronger scores produced by different underlying algorithms from being attributed to a single model version.
