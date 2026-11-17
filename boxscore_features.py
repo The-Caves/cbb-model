@@ -12,7 +12,7 @@ import re
 import time
 import urllib.error
 import urllib.request
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import timedelta
 from pathlib import Path
 
@@ -153,13 +153,19 @@ def load_accepted(path):
 
 
 def choose_games(games, seen, now, max_games=80, previous_share=None,
-                 d1_ids=None, prior_share=None):
-    """Backward-compatible public entrypoint to quota-based source selection."""
+                 d1_ids=None, prior_share=None, current_focus=False):
+    """Quota-based verified D-I selection, with a bounded current-season focus.
+
+    Original historical backfill percentages are preserved by default for
+    existing research callers. When current verified-source coverage is thin,
+    80% of requests are reserved for the active season, and only remaining
+    quotas go to past seasons. Unused slots are automatically reallocated.
+    """
     from cbb_data_quality import select_games
     if previous_share is None:
-        previous_share = int(round(max_games * 0.55))
+        previous_share = int(round(max_games * (0.15 if current_focus else 0.55)))
     if prior_share is None:
-        prior_share = int(round(max_games * 0.30))
+        prior_share = int(round(max_games * (0.05 if current_focus else 0.30)))
     return select_games(games, seen, now, max_games=max_games,
                         d1_ids=d1_ids, previous_quota=previous_share,
                         prior_quota=prior_share)
@@ -234,8 +240,24 @@ def run(root="data", max_games=80, delay=1.2, opener=None, now=None):
         d1=load_directory(root/"team_directory.json")
     except (ValueError,OSError):
         d1={}
+    # Restore incomplete active-season shooting / possession evidence before
+    # spending most free ESPN requests on 2024-26 historical experiments.
+    # Only verified, completed and undisputed D-I matches count toward the
+    # coverage gap; disputed outcomes remain quarantined by the audit.
+    from cbb_data_quality import audit
+    coverage_before=audit(games,accepted,now,d1.keys())
+    current_year=str(now.year+int(now.month>=7))
+    current_report=coverage_before["by_season"][current_year]
+    current_missing=current_report["missing_boxscores"]
+    focus_current=(current_missing>=25 and
+                   (current_report["coverage_fraction"] is None or
+                    current_report["coverage_fraction"]<0.95))
     candidates=choose_games(games,accepted,now,max_games,
-                            d1_ids=d1.keys())
+                            d1_ids=d1.keys(),current_focus=focus_current)
+    selected_seasons={}
+    for game in candidates:
+        year_key=str(game["season"])
+        selected_seasons[year_key]=selected_seasons.get(year_key,0)+1
     good, failures=[],[]
     for i,g in enumerate(candidates):
         if i and delay:
@@ -275,7 +297,6 @@ def run(root="data", max_games=80, delay=1.2, opener=None, now=None):
         accepted[gid]=record
     year=now.year+int(now.month>=7)
     prof=profiles(accepted,year,d1.keys())
-    from cbb_data_quality import audit
     source_audit=audit(games,accepted,now,d1.keys())
     (advanced/"coverage_audit.json").write_text(
         json.dumps(source_audit,indent=2,sort_keys=True)+"\n",encoding="utf-8")
@@ -285,6 +306,10 @@ def run(root="data", max_games=80, delay=1.2, opener=None, now=None):
         "audit_status":source_audit["status"],"audit_by_season":source_audit["by_season"],
         "quarantined_archive_rows":source_audit["quarantined_rows"],
         "as_of_utc":iso(now),"attempted":len(candidates),
+        "current_season_priority_active":focus_current,
+        "current_season_missing_at_start":current_missing,
+        "requests_by_season":selected_seasons,
+        "accepted_by_season":dict(Counter(str(x["season"]) for x in good)),
         "accepted_this_run":len(good),"rejected_this_run":len(failures),
         "accepted_total":len(accepted),"player_games_captured_this_run":player_accepted,
         "player_rows_rejected":player_rejections[:15],
