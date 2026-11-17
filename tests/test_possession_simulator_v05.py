@@ -70,8 +70,10 @@ def test_simulation_is_seed_reproducible_shooting_sensitive_and_nonsynthetic_on_
 
 def test_learned_calibration_is_conservative_and_sparse_data_pass():
     p={"pred_margin":50.,"pred_total":200.}
+    from possession_simulator_v05 import maturity_confidence
     sample={"physical":p,"base_margin":3.,"base_total":140.,
-            "actual_margin":7.,"actual_total":151.}
+            "actual_margin":7.,"actual_total":151.,
+            "confidence":maturity_confidence(profile(),profile())}
     assert train([sample]) is None
     rows=[{**sample,"base_margin":float((i%8)-4)}
           for i in range(MIN_TRAIN+10)]
@@ -124,6 +126,17 @@ def test_real_pretip_quote_must_precede_both_forecasts(tmp_path):
     assert good["v04"]["n"]==good["simulator"]["n"]==1
     assert good["same_quote_simulator"]["ats_with_min3pt_model_edge"]["wins"]==1
     assert good["same_quote_simulator"]["ou_with_min4pt_model_edge"]["losses"]==1
+    audit=good["market_relative_context"]
+    assert audit["matched_market_games"]==1
+    assert audit["completed_frozen_pairs"]==1
+    assert audit["market_quote_coverage_pct"]==100.0
+    assert audit["summary"]["matched_source_quotes"]==1
+    assert audit["summary"]["challenger"]["matched_market_games"]==1
+    assert audit["by_market_spread"]["mid_spread_6_to_under15"]["matched_source_quotes"]==1
+    assert audit["by_source_provider"]["DraftKings"]["matched_source_quotes"]==1
+    # Legacy pre-tip shadow records did not contain shot-game counts.
+    # We label them unknown instead of inventing mature data coverage.
+    assert audit["by_model_boxscore_sample"]["boxscore_coverage_unavailable"]["matched_source_quotes"]==1
     # Older simulator shadow rows also lack optional season sample metadata.
     # They must not cause the entire scheduled pipeline to fail.
     legacy={k:v for k,v in cand.items() if k not in (
@@ -134,7 +147,9 @@ def test_real_pretip_quote_must_precede_both_forecasts(tmp_path):
     assert historic["v04"]["n"]==historic["simulator"]["n"]==1
     assert historic["same_quote_simulator"]["matched_market_games"]==1
     books.write_text(json.dumps({**q,"captured_utc":iso(TIP-timedelta(hours=2))})+"\n")
-    assert grade([g],{"1","2"},now,base,shadow,books)["results"]["blend20"]["same_quote_simulator"]["matched_market_games"]==0
+    no_quote=grade([g],{"1","2"},now,base,shadow,books)["results"]["blend20"]
+    assert no_quote["same_quote_simulator"]["matched_market_games"]==0
+    assert no_quote["market_relative_context"]["market_quote_coverage_pct"]==0.0
     after={**cand,"captured_utc":iso(TIP+timedelta(seconds=1))}
     shadow.write_text(json.dumps(after)+"\n")
     assert not valid_forecast(after,g,now)
@@ -153,3 +168,157 @@ def test_split_total20_uses_lighter_margin_and_only_simulated_total():
     assert v["total"]==blend["total"]
     assert VERSION["split_total20"] != VERSION["blend20"]
     assert VERSION["blend20"]=="CBB_V05_POSSESSION_EVENTS_20261113_BLEND20"
+
+
+def test_maturity_weight_uses_dated_boxscore_and_opponent_strength():
+    from possession_simulator_v05 import maturity_confidence, maturity_weight
+    h={**profile(n=3,boxes=2),
+       "opponent_adjusted_strength_points":8,
+       "schedule_strength_avg_opponent_points":-2}
+    a={**profile(n=3,boxes=2),
+       "opponent_adjusted_strength_points":-1,
+       "schedule_strength_avg_opponent_points":-4}
+    early=maturity_confidence(h,a)
+    assert early["opponent_quality_available"]
+    assert early["opponent_stepup_points"]==12
+    early_weight=maturity_weight(early)
+    assert 0.10<=early_weight<0.2
+    mature=maturity_confidence({**h,"current_d1_games":12,
+           "boxscore_games_current":10},
+           {**a,"current_d1_games":12,"boxscore_games_current":10})
+    later=maturity_weight(mature)
+    assert later>early_weight
+    assert 0.10<=later<=0.40
+    harder=maturity_confidence({**h,"current_d1_games":12,
+           "boxscore_games_current":10,"opponent_adjusted_strength_points":29},
+           {**a,"current_d1_games":12,"boxscore_games_current":10})
+    assert maturity_weight(harder)<later
+    unknown=maturity_confidence(profile(n=12,boxes=10),
+                                profile(n=12,boxes=10))
+    assert unknown["opponent_stepup_points"] is None
+    assert unknown["opponent_quality_available"] is False
+    assert maturity_weight(unknown)<maturity_weight({
+        **unknown,"opponent_quality_available":True,
+        "opponent_stepup_points":0})
+
+
+def test_adaptive_model_preserves_featured_blend_and_requires_real_evidence():
+    from possession_simulator_v05 import maturity_confidence, maturity_weight, VERSION
+    evidence=maturity_confidence(profile(n=8,boxes=6),
+                                 profile(n=9,boxes=7))
+    row={"physical":{"pred_margin":18.,"pred_total":180.},
+         "base_margin":7.,"base_total":148.,"confidence":evidence}
+    result=apply(row,"adaptive_maturity")
+    weight=maturity_weight(evidence)
+    assert abs(result["margin"]-(7.+weight*11.))<1e-6
+    assert abs(result["total"]-(148.+weight*32.))<1e-6
+    assert VERSION["adaptive_maturity"] != VERSION["blend20"]
+    assert VERSION["blend20"]=="CBB_V05_POSSESSION_EVENTS_20261113_BLEND20"
+    rec={
+        "model":VERSION["adaptive_maturity"],"variant":"adaptive_maturity",
+        "game_id":"F","home_id":"1","away_id":"2","tip_utc":iso(TIP),
+        "captured_utc":iso(TIP-timedelta(hours=4)),
+        "training_latest_tip":iso(TIP-timedelta(days=1)),
+        "champion_version":ACTIVE_LIVE_VERSION,
+        "previous_season_weight":.15,"n_simulations":DRAWS,
+        "research_only":True,"pred_home":82,"pred_away":72,
+        "pred_margin":10,"pred_total":154,
+        "source_maturity_confidence":evidence,"adaptive_weight":weight,
+    }
+    assert valid_forecast(rec,game(),TIP-timedelta(hours=3))
+    assert not valid_forecast({**rec,"adaptive_weight":weight+.03},
+                              game(),TIP-timedelta(hours=3))
+    assert not valid_forecast({k:v for k,v in rec.items()
+                              if k!="source_maturity_confidence"},
+                              game(),TIP-timedelta(hours=3))
+
+
+
+def test_context_market_groups_are_same_game_and_never_invent_lines():
+    from possession_simulator_v05 import market_relative_slices
+    from matchup_v05 import _market_metrics
+    def pack(gid,spread,provider,hbox,abox):
+        quote={"provider":provider,"home_spread":spread,"total":148.5}
+        model={"game_id":gid,"provider":provider,
+               "model_margin_error":6.5,"market_margin_error":7.0,
+               "model_total_error":7.0,"market_total_error":8.0,
+               "ats":"W","ou":"L"}
+        base={**model,"model_margin_error":7.4,"model_total_error":7.5}
+        return {"quote":quote,"game":{"tip_utc":"2026-11-17T20:00:00Z"},
+                "snapshot":{"home_shot_games":hbox,"away_shot_games":abox},
+                "v04":base,"research":model}
+    rows=[pack("a",-3.5,"ESPN BET",2,8),
+          pack("b",-11.5,"DraftKings",8,8),
+          pack("c",-22.5,"DraftKings",9,9),
+          pack("d",None,"ESPN BET",None,None)]
+    result=market_relative_slices(rows,6)
+    assert result["matched_market_games"]==4
+    assert result["market_quote_coverage_pct"]==66.67
+    assert result["summary"]["margin_mae_delta_vs_v04"]==-0.9
+    assert result["summary"]["total_mae_delta_vs_market"]==-1.0
+    for name in ("close_spread_under6","mid_spread_6_to_under15",
+                 "large_spread_15plus","spread_unavailable"):
+        assert result["by_market_spread"][name]["matched_source_quotes"]==1
+    assert result["by_source_provider"]["ESPN BET"]["matched_source_quotes"]==2
+    assert result["by_model_boxscore_sample"]["limited_boxscore_sample_under5"]["matched_source_quotes"]==1
+    assert result["by_model_boxscore_sample"]["boxscore_coverage_unavailable"]["matched_source_quotes"]==1
+    assert result["by_game_date_utc"]["2026-11-17"]["matched_source_quotes"]==4
+
+
+
+def test_new_adaptive_challenger_compares_to_featured_blend20_on_same_game_only(tmp_path):
+    from possession_simulator_v05 import maturity_confidence, maturity_weight, VERSION
+    from market_capture import SOURCE
+    g=game("P",final=True)
+    now=TIP+timedelta(hours=9)
+    original=tmp_path/"v04.jsonl"
+    sim=tmp_path/"sim.jsonl"
+    quotes=tmp_path/"quotes.jsonl"
+    baseline={"model":ACTIVE_LIVE_VERSION,"game_id":"P",
+              "home_id":"1","away_id":"2","tip_utc":iso(TIP),
+              "captured_utc":iso(TIP-timedelta(hours=3)),
+              "pred_home":79,"pred_away":71,"pred_margin":8,
+              "pred_total":150,"home_current_games":7,
+              "away_current_games":7}
+    common={"game_id":"P","home_id":"1","away_id":"2",
+            "tip_utc":iso(TIP),
+            "captured_utc":iso(TIP-timedelta(hours=3,minutes=10)),
+            "training_latest_tip":iso(TIP-timedelta(days=1)),
+            "champion_version":ACTIVE_LIVE_VERSION,
+            "previous_season_weight":.15,"n_simulations":DRAWS,
+            "research_only":True,"home_current_games":7,
+            "away_current_games":7}
+    featured={**common,"model":VERSION["blend20"],"variant":"blend20",
+              "pred_home":80.,"pred_away":70.,"pred_margin":10.,
+              "pred_total":150.}
+    confidence=maturity_confidence(profile(n=8,boxes=6),
+                                   profile(n=8,boxes=6))
+    adaptive={**common,"model":VERSION["adaptive_maturity"],
+              "variant":"adaptive_maturity",
+              "pred_home":81.,"pred_away":71.,"pred_margin":10.,
+              "pred_total":152.,
+              "source_maturity_confidence":confidence,
+              "adaptive_weight":maturity_weight(confidence)}
+    quote={"source":SOURCE,"provider":"DraftKings","game_id":"P",
+           "home_id":"1","away_id":"2","tip_utc":iso(TIP),
+           "captured_utc":iso(TIP-timedelta(hours=6)),
+           "home_spread":-7.5,"total":148.5,
+           "spread_derived_from_explicit_favorite_flags":True}
+    original.write_text(json.dumps(baseline)+"\n")
+    sim.write_text(json.dumps(featured)+"\n"+json.dumps(adaptive)+"\n")
+    quotes.write_text(json.dumps(quote)+"\n")
+    out=grade([g],{"1","2"},now,original,sim,quotes)
+    compare=out["paired_comparisons_against_featured_blend20"]["adaptive_maturity"]
+    assert compare["paired_games"]==1
+    assert compare["challenger"]["n"]==compare["featured_blend20"]["n"]==1
+    assert compare["same_quote_challenger"]["matched_market_games"]==1
+    assert compare["same_quote_blend20"]["matched_market_games"]==1
+    # The matched base is the featured Blend20, not original v0.4.
+    assert compare["featured_blend20"]["margin_mae"]==4.
+    assert compare["challenger"]["margin_mae"]==4.
+    # A later snapshot outside two hours must be rejected, not reused.
+    adaptive["captured_utc"]=iso(TIP-timedelta(minutes=10))
+    sim.write_text(json.dumps(featured)+"\n"+json.dumps(adaptive)+"\n")
+    assert grade([g],{"1","2"},now,original,sim,quotes)[
+        "paired_comparisons_against_featured_blend20"]["adaptive_maturity"][
+            "paired_games"]==0
