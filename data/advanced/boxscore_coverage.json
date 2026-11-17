@@ -6,19 +6,19 @@
   "audit_by_season": {
     "2025": {
       "eligible_d1_final_games": 5733,
-      "verified_boxscores": 876,
-      "missing_boxscores": 4857,
-      "coverage_fraction": 0.1528,
+      "verified_boxscores": 898,
+      "missing_boxscores": 4835,
+      "coverage_fraction": 0.1566,
       "other_or_unverified_final_games": 559,
       "disputed_source_score_games": 0,
-      "d1_teams_with_5plus_games": 226,
+      "d1_teams_with_5plus_games": 242,
       "teams_with_any_verified_games": 363
     },
     "2026": {
       "eligible_d1_final_games": 5723,
-      "verified_boxscores": 1851,
-      "missing_boxscores": 3872,
-      "coverage_fraction": 0.3234,
+      "verified_boxscores": 1902,
+      "missing_boxscores": 3821,
+      "coverage_fraction": 0.3323,
       "other_or_unverified_final_games": 577,
       "disputed_source_score_games": 0,
       "d1_teams_with_5plus_games": 364,
@@ -26,33 +26,33 @@
     },
     "2027": {
       "eligible_d1_final_games": 632,
-      "verified_boxscores": 627,
-      "missing_boxscores": 5,
-      "coverage_fraction": 0.9921,
+      "verified_boxscores": 632,
+      "missing_boxscores": 0,
+      "coverage_fraction": 1.0,
       "other_or_unverified_final_games": 223,
-      "disputed_source_score_games": 39,
+      "disputed_source_score_games": 40,
       "d1_teams_with_5plus_games": 33,
       "teams_with_any_verified_games": 364
     }
   },
   "quarantined_archive_rows": 0,
-  "as_of_utc": "2026-11-17T07:01:20Z",
+  "as_of_utc": "2026-11-17T19:56:27Z",
   "attempted": 80,
-  "current_season_priority_active": true,
-  "current_season_missing_at_start": 69,
+  "current_season_priority_active": false,
+  "current_season_missing_at_start": 5,
   "requests_by_season": {
-    "2027": 64,
-    "2026": 12,
-    "2025": 4
+    "2027": 5,
+    "2026": 51,
+    "2025": 24
   },
   "accepted_by_season": {
-    "2027": 64,
-    "2026": 12,
-    "2025": 2
+    "2027": 5,
+    "2026": 51,
+    "2025": 22
   },
   "accepted_this_run": 78,
   "rejected_this_run": 2,
-  "accepted_total": 3364,
+  "accepted_total": 3442,
   "player_games_captured_this_run": 78,
   "player_rows_rejected": [],
   "profile_teams": 364,
