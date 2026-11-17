@@ -1,23 +1,15 @@
 {
-  "as_of_utc": "2026-11-17T07:04:03Z",
+  "as_of_utc": "2026-11-17T14:26:34Z",
   "collector": {
     "status": "NO_NETWORK_COLLECTION"
   },
   "historical_backfill": {
-    "accepted": 48,
-    "attempted": 48,
-    "depth_target_player_game_fraction": 0.3,
-    "point_in_time_historical_availability_verified": false,
-    "rejections": [],
-    "status": "RETROSPECTIVE_PLAYER_RESEARCH_ONLY",
-    "upcoming_focus_teams": 265,
-    "upcoming_games_with_two_observed_rosters": 136,
-    "upcoming_teams_with_recent_rosters": 265
+    "status": "NO_HISTORICAL_BACKFILL"
   },
   "historical_source_capture_retroactive": true,
   "live_model_unchanged": true,
   "next72h_matchup_readiness": {
-    "as_of_utc": "2026-11-17T07:04:03Z",
+    "as_of_utc": "2026-11-17T14:26:34Z",
     "blocker_counts_by_game": {
       "insufficient_prior_player_games": 110,
       "prior_player_sample_below_15pct": 6
