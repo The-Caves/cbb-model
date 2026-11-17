@@ -161,3 +161,34 @@ def test_commit_checkpoint_does_not_duplicate_across_runs(tmp_path):
     assert len(calls)==2 and set(calls)=={"44","45"}
     assert first["accepted_this_run"]==second["accepted_this_run"]==1
     assert len(load_accepted(root/"advanced/boxscore_team_games.jsonl"))==2
+
+
+
+def test_current_season_recovery_uses_80_percent_of_free_requests():
+    from cbb_data_quality import select_games
+    now=datetime(2026,11,17,18,tzinfo=UTC)
+    current=datetime(2026,11,3,18,tzinfo=UTC)
+    fixtures=[]
+    for year in (2025,2026,2027):
+        for i in range(110):
+            tip=(current-timedelta(minutes=i*7) if year==2027 else
+                 datetime(year-1,11,3,18,tzinfo=UTC)+timedelta(minutes=i*7))
+            fixtures.append({
+                "game_id":str(year*1000+i),"season":year,
+                "tip_utc":tip.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "home_id":"1","away_id":"2","completed":"1",
+                "home_score":"78","away_score":"69",
+                "score_conflict":"0","identity_conflict":"0",
+            })
+    fixtures[-1]["score_conflict"]="1"
+    picked=choose_games(fixtures,{},now,max_games=80,
+                        d1_ids={"1","2"},current_focus=True)
+    histogram={year:sum(g["season"]==year for g in picked)
+               for year in (2025,2026,2027)}
+    assert histogram=={2025:4,2026:12,2027:64}
+    assert len(picked)==len({g["game_id"] for g in picked})==80
+    assert all(g["score_conflict"]=="0" for g in picked)
+    # When no current backlog remains, the original historical quota is used.
+    old=choose_games(fixtures,{},now,max_games=80,d1_ids={"1","2"})
+    assert {yr:sum(g["season"]==yr for g in old)
+            for yr in (2025,2026,2027)}=={2025:24,2026:44,2027:12}
