@@ -1,4 +1,26 @@
 {
+  "401909525": {
+    "evidence": [
+      {
+        "game_id": "401909525",
+        "new_identity": [
+          "142",
+          "269",
+          "2026-11-15T19:30:00Z"
+        ],
+        "observed_utc": "2026-11-17T06:13:25Z",
+        "original_identity": [
+          "269",
+          "142",
+          "2026-11-15T19:30:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "d13d22f53f4bce002596cfcf32a93017d9bccee0fe8f759390fa73789ba7e3ed"
+      }
+    ],
+    "first_observed_utc": "2026-11-17T06:13:25Z",
+    "last_seen_utc": "2026-11-17T06:13:25Z"
+  },
   "401909786": {
     "evidence": [
       {
@@ -19,7 +41,7 @@
       }
     ],
     "first_observed_utc": "2026-11-11T02:48:04Z",
-    "last_seen_utc": "2026-11-13T23:28:17Z"
+    "last_seen_utc": "2026-11-17T06:13:20Z"
   },
   "401911391": {
     "evidence": [
@@ -57,7 +79,29 @@
       }
     ],
     "first_observed_utc": "2026-11-08T21:12:06Z",
-    "last_seen_utc": "2026-11-13T23:28:18Z"
+    "last_seen_utc": "2026-11-17T06:13:21Z"
+  },
+  "401917528": {
+    "evidence": [
+      {
+        "game_id": "401917528",
+        "new_identity": [
+          "2547",
+          "304",
+          "2026-11-15T21:00:00Z"
+        ],
+        "observed_utc": "2026-11-17T06:13:25Z",
+        "original_identity": [
+          "2547",
+          "304",
+          "2026-11-15T03:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "d13d22f53f4bce002596cfcf32a93017d9bccee0fe8f759390fa73789ba7e3ed"
+      }
+    ],
+    "first_observed_utc": "2026-11-17T06:13:25Z",
+    "last_seen_utc": "2026-11-17T06:13:25Z"
   },
   "401917963": {
     "evidence": [
@@ -79,7 +123,7 @@
       }
     ],
     "first_observed_utc": "2026-11-11T12:44:22Z",
-    "last_seen_utc": "2026-11-13T23:28:18Z"
+    "last_seen_utc": "2026-11-17T06:13:21Z"
   },
   "401918053": {
     "evidence": [
@@ -123,7 +167,7 @@
       }
     ],
     "first_observed_utc": "2026-11-11T23:28:29Z",
-    "last_seen_utc": "2026-11-13T23:28:18Z"
+    "last_seen_utc": "2026-11-17T06:13:21Z"
   },
   "401919029": {
     "evidence": [
@@ -191,6 +235,50 @@
     "first_observed_utc": "2026-11-08T17:07:41Z",
     "last_seen_utc": "2026-11-13T23:28:16Z"
   },
+  "401919847": {
+    "evidence": [
+      {
+        "game_id": "401919847",
+        "new_identity": [
+          "2641",
+          "284",
+          "2026-11-14T19:00:00Z"
+        ],
+        "observed_utc": "2026-11-17T06:13:24Z",
+        "original_identity": [
+          "2641",
+          "284",
+          "2026-11-14T18:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "f83d9edb3bfad5d032f111f77e7e6834e62a845112ff6846a0775abcf2385475"
+      }
+    ],
+    "first_observed_utc": "2026-11-17T06:13:24Z",
+    "last_seen_utc": "2026-11-17T06:13:24Z"
+  },
+  "401920074": {
+    "evidence": [
+      {
+        "game_id": "401920074",
+        "new_identity": [
+          "71",
+          "2244",
+          "2026-11-14T18:00:00Z"
+        ],
+        "observed_utc": "2026-11-17T06:13:24Z",
+        "original_identity": [
+          "2244",
+          "71",
+          "2026-11-14T18:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "f83d9edb3bfad5d032f111f77e7e6834e62a845112ff6846a0775abcf2385475"
+      }
+    ],
+    "first_observed_utc": "2026-11-17T06:13:24Z",
+    "last_seen_utc": "2026-11-17T06:13:24Z"
+  },
   "401920123": {
     "evidence": [
       {
@@ -255,7 +343,7 @@
       }
     ],
     "first_observed_utc": "2026-11-13T13:08:20Z",
-    "last_seen_utc": "2026-11-13T23:28:22Z"
+    "last_seen_utc": "2026-11-17T06:13:24Z"
   },
   "401920568": {
     "evidence": [
@@ -277,7 +365,29 @@
       }
     ],
     "first_observed_utc": "2026-11-13T13:08:20Z",
-    "last_seen_utc": "2026-11-13T23:28:22Z"
+    "last_seen_utc": "2026-11-17T06:13:24Z"
+  },
+  "401920750": {
+    "evidence": [
+      {
+        "game_id": "401920750",
+        "new_identity": [
+          "2754",
+          "276",
+          "2026-11-14T18:00:00Z"
+        ],
+        "observed_utc": "2026-11-17T06:13:24Z",
+        "original_identity": [
+          "2754",
+          "276",
+          "2026-11-14T23:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "f83d9edb3bfad5d032f111f77e7e6834e62a845112ff6846a0775abcf2385475"
+      }
+    ],
+    "first_observed_utc": "2026-11-17T06:13:24Z",
+    "last_seen_utc": "2026-11-17T06:13:24Z"
   },
   "401920887": {
     "evidence": [
@@ -343,7 +453,29 @@
       }
     ],
     "first_observed_utc": "2026-11-11T23:28:29Z",
-    "last_seen_utc": "2026-11-13T23:28:18Z"
+    "last_seen_utc": "2026-11-17T06:13:21Z"
+  },
+  "401922031": {
+    "evidence": [
+      {
+        "game_id": "401922031",
+        "new_identity": [
+          "155",
+          "149",
+          "2026-11-15T02:00:00Z"
+        ],
+        "observed_utc": "2026-11-17T06:13:24Z",
+        "original_identity": [
+          "155",
+          "149",
+          "2026-11-14T18:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "f83d9edb3bfad5d032f111f77e7e6834e62a845112ff6846a0775abcf2385475"
+      }
+    ],
+    "first_observed_utc": "2026-11-17T06:13:24Z",
+    "last_seen_utc": "2026-11-17T06:13:24Z"
   },
   "401922239": {
     "evidence": [
@@ -365,7 +497,7 @@
       }
     ],
     "first_observed_utc": "2026-11-10T13:29:23Z",
-    "last_seen_utc": "2026-11-13T23:28:20Z"
+    "last_seen_utc": "2026-11-17T06:13:22Z"
   },
   "401922249": {
     "evidence": [
@@ -389,6 +521,28 @@
     "first_observed_utc": "2026-11-07T02:49:54Z",
     "last_seen_utc": "2026-11-13T23:28:16Z"
   },
+  "401924858": {
+    "evidence": [
+      {
+        "game_id": "401924858",
+        "new_identity": [
+          "2115",
+          "2514",
+          "2026-11-15T17:00:00Z"
+        ],
+        "observed_utc": "2026-11-17T06:13:25Z",
+        "original_identity": [
+          "2115",
+          "2514",
+          "2026-11-15T18:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "d13d22f53f4bce002596cfcf32a93017d9bccee0fe8f759390fa73789ba7e3ed"
+      }
+    ],
+    "first_observed_utc": "2026-11-17T06:13:25Z",
+    "last_seen_utc": "2026-11-17T06:13:25Z"
+  },
   "401924921": {
     "evidence": [
       {
@@ -409,7 +563,7 @@
       }
     ],
     "first_observed_utc": "2026-11-11T12:44:24Z",
-    "last_seen_utc": "2026-11-13T23:28:22Z"
+    "last_seen_utc": "2026-11-17T06:13:24Z"
   },
   "401925662": {
     "evidence": [
@@ -453,7 +607,51 @@
       }
     ],
     "first_observed_utc": "2026-11-11T12:44:22Z",
-    "last_seen_utc": "2026-11-13T23:28:18Z"
+    "last_seen_utc": "2026-11-17T06:13:21Z"
+  },
+  "401925718": {
+    "evidence": [
+      {
+        "game_id": "401925718",
+        "new_identity": [
+          "2065",
+          "2948",
+          "2026-11-16T01:00:00Z"
+        ],
+        "observed_utc": "2026-11-17T06:13:25Z",
+        "original_identity": [
+          "2065",
+          "2488",
+          "2026-11-16T01:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "d13d22f53f4bce002596cfcf32a93017d9bccee0fe8f759390fa73789ba7e3ed"
+      }
+    ],
+    "first_observed_utc": "2026-11-17T06:13:25Z",
+    "last_seen_utc": "2026-11-17T06:13:25Z"
+  },
+  "401926143": {
+    "evidence": [
+      {
+        "game_id": "401926143",
+        "new_identity": [
+          "155",
+          "2565",
+          "2026-11-18T01:00:00Z"
+        ],
+        "observed_utc": "2026-11-17T06:13:26Z",
+        "original_identity": [
+          "155",
+          "2565",
+          "2026-11-17T01:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "bcd8eb0209deca9dc3b237b61c0c181a8517823d4b9da7c367a77660d609e5e0"
+      }
+    ],
+    "first_observed_utc": "2026-11-17T06:13:26Z",
+    "last_seen_utc": "2026-11-17T06:13:26Z"
   },
   "401926203": {
     "evidence": [
@@ -475,7 +673,7 @@
       }
     ],
     "first_observed_utc": "2026-11-12T18:58:59Z",
-    "last_seen_utc": "2026-11-13T23:28:21Z"
+    "last_seen_utc": "2026-11-17T06:13:23Z"
   },
   "401926733": {
     "evidence": [
@@ -497,7 +695,7 @@
       }
     ],
     "first_observed_utc": "2026-11-13T20:35:58Z",
-    "last_seen_utc": "2026-11-13T23:28:23Z"
+    "last_seen_utc": "2026-11-17T06:13:25Z"
   },
   "401929002": {
     "evidence": [
@@ -587,6 +785,28 @@
     "first_observed_utc": "2026-11-09T13:55:36Z",
     "last_seen_utc": "2026-11-13T23:28:16Z"
   },
+  "401929419": {
+    "evidence": [
+      {
+        "game_id": "401929419",
+        "new_identity": [
+          "2638",
+          "50",
+          "2026-11-16T19:00:00Z"
+        ],
+        "observed_utc": "2026-11-17T06:13:26Z",
+        "original_identity": [
+          "2638",
+          "50",
+          "2026-11-16T01:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "b4a92dae73835da8cc4d2e4ce405e427509837b3afc0c0739362a22524f4d2b3"
+      }
+    ],
+    "first_observed_utc": "2026-11-17T06:13:26Z",
+    "last_seen_utc": "2026-11-17T06:13:26Z"
+  },
   "401929438": {
     "evidence": [
       {
@@ -629,6 +849,6 @@
       }
     ],
     "first_observed_utc": "2026-11-09T02:40:32Z",
-    "last_seen_utc": "2026-11-13T23:28:18Z"
+    "last_seen_utc": "2026-11-17T06:13:21Z"
   }
 }

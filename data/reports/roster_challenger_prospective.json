@@ -1,13 +1,13 @@
 {
-  "as_of_utc": "2026-11-13T23:29:40Z",
-  "collector_player_game_records": 259,
-  "collector_roster_snapshots": 264,
+  "as_of_utc": "2026-11-17T06:14:35Z",
+  "collector_player_game_records": 283,
+  "collector_roster_snapshots": 288,
   "freeze": {
-    "captured": 11,
+    "captured": 4,
     "coverage": {
-      "candidate_games_eligible": 11,
-      "roster_snapshot_teams": 264,
-      "source_backed_multiplier_teams": 38,
+      "candidate_games_eligible": 4,
+      "roster_snapshot_teams": 288,
+      "source_backed_multiplier_teams": 40,
       "source_backed_team_multipliers": {
         "108": 0.99259,
         "111": 0.9702,
@@ -16,19 +16,20 @@
         "153": 0.96856,
         "164": 0.90521,
         "171": 0.97885,
-        "2083": 0.97606,
+        "2083": 0.96441,
         "2086": 0.86845,
         "221": 0.85091,
         "2210": 0.96921,
         "2229": 0.9569,
         "2230": 0.97724,
-        "2275": 0.96572,
+        "2275": 0.86333,
         "228": 0.88502,
-        "2329": 0.99271,
+        "2329": 0.98956,
         "236": 0.9631,
         "2390": 0.91279,
         "2453": 0.8931,
         "2464": 0.96819,
+        "248": 0.87536,
         "2504": 0.96223,
         "2534": 0.96851,
         "259": 0.96832,
@@ -37,7 +38,7 @@
         "2653": 0.96359,
         "2771": 0.88644,
         "2803": 0.8979,
-        "314": 0.96965,
+        "314": 0.95584,
         "325": 0.95833,
         "357": 0.94724,
         "41": 0.97559,
@@ -46,10 +47,11 @@
         "52": 0.86955,
         "526": 0.96875,
         "57": 0.96757,
-        "61": 0.97772
+        "61": 0.97772,
+        "93": 0.8897
       },
-      "teams_with_adequate_player_coverage": 38,
-      "teams_with_prior_sample": 43
+      "teams_with_adequate_player_coverage": 40,
+      "teams_with_prior_sample": 45
     },
     "status": "FROZEN_AS_OF_ROSTER_RESEARCH_ONLY"
   },
@@ -59,25 +61,25 @@
     "capture_alignment_max_hours": 2,
     "legacy_roster_candidate_excluded": "CBB_ROSTER_PRIOR_V0_5_RESEARCH",
     "minimum_for_review": 150,
-    "paired_games": 0,
+    "paired_games": 15,
     "promotion_gate": "INSUFFICIENT_PAIRED_GAMES",
     "roster_candidate": {
-      "brier": null,
-      "margin_bias": null,
-      "margin_mae": null,
-      "n": 0,
-      "su_accuracy": null,
-      "total_mae": null
+      "brier": 0.2014,
+      "margin_bias": 3.572,
+      "margin_mae": 11.54,
+      "n": 15,
+      "su_accuracy": 0.6,
+      "total_mae": 9.641
     },
     "skipped_capture_alignment": 0,
     "status": "GENUINE_PRETIP_RESEARCH_ONLY",
     "v04": {
-      "brier": null,
-      "margin_bias": null,
-      "margin_mae": null,
-      "n": 0,
-      "su_accuracy": null,
-      "total_mae": null
+      "brier": 0.2021,
+      "margin_bias": 3.597,
+      "margin_mae": 11.543,
+      "n": 15,
+      "su_accuracy": 0.6,
+      "total_mae": 9.635
     },
     "warning": "Source-backed partial prior player minutes, not full-season returning production. No roster forecasts or verified betting edge."
   },
