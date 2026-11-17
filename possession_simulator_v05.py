@@ -609,6 +609,78 @@ def freeze(games,accepted,verified,now,historical,ledger):
             "unique_games":len({r["game_id"] for r in captured})}
 
 
+def market_relative_slices(observations, frozen_pairs):
+    """Paired sportsbook benchmark by game context, never fabricated odds.
+
+    Each row contains one original source-observed quote captured before BOTH
+    competing models. Counts/selection decisions can differ: models with
+    different projections legitimately have different ATS/O-U PASS thresholds.
+    The exact game IDs and book quotes never differ within a comparison.
+    """
+    def summary(rows):
+        base=[x["v04"] for x in rows]
+        test=[x["research"] for x in rows]
+        b,t=_market_metrics(base),_market_metrics(test)
+        if b["matched_market_games"]!=t["matched_market_games"]:
+            raise AssertionError("Different source quote denominator")
+        def delta(field):
+            l,r=t.get(field),b.get(field)
+            return round(l-r,3) if l is not None and r is not None else None
+        return {
+            "matched_source_quotes":len(rows),
+            "v04":b,"challenger":t,
+            "margin_mae_delta_vs_v04":delta("model_margin_mae"),
+            "total_mae_delta_vs_v04":delta("model_total_mae"),
+            "margin_mae_delta_vs_market":round(
+                t["model_margin_mae"]-t["market_margin_mae"],3)
+                if t["model_margin_mae"] is not None and
+                   t["market_margin_mae"] is not None else None,
+            "total_mae_delta_vs_market":round(
+                t["model_total_mae"]-t["market_total_mae"],3)
+                if t["model_total_mae"] is not None and
+                   t["market_total_mae"] is not None else None,
+        }
+    def band(q):
+        v=q.get("home_spread")
+        if v is None:return "spread_unavailable"
+        width=abs(float(v))
+        if width<6:return "close_spread_under6"
+        if width<15:return "mid_spread_6_to_under15"
+        return "large_spread_15plus"
+    by_spread=defaultdict(list);by_provider=defaultdict(list)
+    by_boxscore=defaultdict(list);by_utc_date=defaultdict(list)
+    for row in observations:
+        by_spread[band(row["quote"])].append(row)
+        by_provider[str(row["quote"]["provider"])].append(row)
+        by_utc_date[row["game"]["tip_utc"][:10]].append(row)
+        rec=row["snapshot"]
+        h=rec.get("home_shot_games")
+        a=rec.get("away_shot_games")
+        if h is None or a is None:
+            group="boxscore_coverage_unavailable"
+        elif min(int(h),int(a))<5:
+            group="limited_boxscore_sample_under5"
+        else:
+            group="mature_boxscore_sample_5plus"
+        by_boxscore[group].append(row)
+    return {
+        "matched_market_games":len(observations),
+        "completed_frozen_pairs":frozen_pairs,
+        "market_quote_coverage_pct":(
+            round(100*len(observations)/frozen_pairs,2) if frozen_pairs else None),
+        "summary":summary(observations),
+        "by_market_spread":{k:summary(v) for k,v in sorted(by_spread.items())},
+        "by_model_boxscore_sample":{k:summary(v)
+                                     for k,v in sorted(by_boxscore.items())},
+        "by_source_provider":{k:summary(v) for k,v in sorted(by_provider.items())},
+        "by_game_date_utc":{k:summary(v) for k,v in sorted(by_utc_date.items())},
+        "notes":("Observed and source-hashed pretip bookmaker quotes only, "
+                 "not verified closings, no odds/ROI, do not infer significance "
+                 "from small edge-qualified ATS/O-U selections. Same source "
+                 "quote is used for v0.4 and each challenger."),
+    }
+
+
 def grade(games,verified,now,champion_path,sim_path,market_path):
     from market_capture import utc
     year=now.year+int(now.month>=7)
@@ -642,7 +714,7 @@ def grade(games,verified,now,champion_path,sim_path,market_path):
                 quotes[str(row.get("game_id"))].append(row)
     results={}
     for variant in VARIANTS:
-        champ_data=[];sim_data=[];book_champ=[];book_sim=[]
+        champ_data=[];sim_data=[];book_champ=[];book_sim=[];joined_market=[]
         for (gid,name),rec in saved.items():
             if name!=variant:continue
             g=by_id[gid];reference=champion[gid]
@@ -651,13 +723,20 @@ def grade(games,verified,now,champion_path,sim_path,market_path):
             quote=_quote_asof(quotes[gid],g,min(
                 utc(rec["captured_utc"]),utc(reference["captured_utc"])))
             if quote:
-                book_champ.append(_market_row(g,reference,quote))
-                book_sim.append(_market_row(g,rec,quote))
+                base_market=_market_row(g,reference,quote)
+                candidate_market=_market_row(g,rec,quote)
+                book_champ.append(base_market)
+                book_sim.append(candidate_market)
+                joined_market.append({"quote":quote, "game":g,
+                                      "snapshot":rec,"v04":base_market,
+                                      "research":candidate_market})
         results[variant]={
             "frozen_pairs":len(sim_data),
             "v04":metrics(champ_data),"simulator":metrics(sim_data),
             "same_quote_v04":_market_metrics(book_champ),
-            "same_quote_simulator":_market_metrics(book_sim)}
+            "same_quote_simulator":_market_metrics(book_sim),
+            "market_relative_context":market_relative_slices(
+                joined_market,len(sim_data))}
         if results[variant]["v04"]["n"]!=results[variant]["simulator"]["n"]:
             raise AssertionError("Different graded outcome denominators")
     return {
