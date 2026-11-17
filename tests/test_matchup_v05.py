@@ -151,3 +151,45 @@ def test_same_frozen_completed_game_with_identical_quote_grades_ats_and_ou(tmp_p
     # The base forecast has smaller spread edge and does not qualify.
     market.write_text(json.dumps(quote(finished,TIP-timedelta(hours=1)))+"\n")
     assert grade([finished],{"1","2"},now,champ,shadow,market)["models"]["core"]["source_observed_market"]["matched_market_games"]==0
+
+
+def test_legacy_matchup_shadow_without_sample_sizes_is_still_graded(tmp_path):
+    """Regression: scheduled workflow used to die on archived research rows."""
+    from v05_transition_challenger import model_observation
+    finished=game("legacy",final=True)
+    now=TIP+timedelta(hours=8)
+    champ=tmp_path/"v04.jsonl"
+    shadow=tmp_path/"matchup.jsonl"
+    books=tmp_path/"books.jsonl"
+    v04={
+        "model":ACTIVE_LIVE_VERSION,"game_id":"legacy",
+        "home_id":"1","away_id":"2","tip_utc":iso(TIP),
+        "captured_utc":iso(TIP-timedelta(hours=3)),
+        "pred_home":77,"pred_away":72,"pred_margin":5,"pred_total":149,
+        "home_current_games":4,"away_current_games":4}
+    # The actual historic matchup schema had no home_current_games nor
+    # away_current_games. Both are unknowable from the frozen score alone.
+    legacy={
+        "model":VERSION_BY_VARIANT["core"],"variant":"core",
+        "game_id":"legacy","home_id":"1","away_id":"2",
+        "tip_utc":iso(TIP),
+        "captured_utc":iso(TIP-timedelta(hours=3,minutes=10)),
+        "training_latest_tip":iso(TIP-timedelta(days=1)),
+        "champion_version":ACTIVE_LIVE_VERSION,
+        "base_prior_weight":.15,
+        "pred_home":82,"pred_away":71,"pred_margin":11,"pred_total":153}
+    assert validate_frozen(legacy,finished,now)
+    observed=model_observation(finished,legacy,12)
+    assert observed["current_games_min"] is None
+    assert observed["correct"]==1
+    assert model_observation(finished,{**legacy,"home_current_games":4,
+        "away_current_games":6},12)["current_games_min"]==4
+    champ.write_text(json.dumps(v04)+"\n")
+    shadow.write_text(json.dumps(legacy)+"\n")
+    books.write_text(json.dumps(quote(finished,TIP-timedelta(hours=6)))+"\n")
+    result=grade([finished],{"1","2"},now,champ,shadow,books)["models"]["core"]
+    assert result["frozen_pairs"]==1
+    assert result["v04"]["n"]==result["challenger"]["n"]==1
+    assert result["source_observed_market"]["matched_market_games"]==1
+    assert result["source_observed_market"]["ats_with_min3pt_model_edge"]["wins"]==1
+    assert json.loads(shadow.read_text())==legacy
