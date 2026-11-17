@@ -153,3 +153,66 @@ def test_split_total20_uses_lighter_margin_and_only_simulated_total():
     assert v["total"]==blend["total"]
     assert VERSION["split_total20"] != VERSION["blend20"]
     assert VERSION["blend20"]=="CBB_V05_POSSESSION_EVENTS_20261113_BLEND20"
+
+
+def test_maturity_weight_uses_dated_boxscore_and_opponent_strength():
+    from possession_simulator_v05 import maturity_confidence, maturity_weight
+    h={**profile(n=3,boxes=2),
+       "opponent_adjusted_strength_points":8,
+       "schedule_strength_avg_opponent_points":-2}
+    a={**profile(n=3,boxes=2),
+       "opponent_adjusted_strength_points":-1,
+       "schedule_strength_avg_opponent_points":-4}
+    early=maturity_confidence(h,a)
+    assert early["opponent_quality_available"]
+    assert early["opponent_stepup_points"]==12
+    early_weight=maturity_weight(early)
+    assert 0.10<=early_weight<0.2
+    mature=maturity_confidence({**h,"current_d1_games":12,
+           "boxscore_games_current":10},
+           {**a,"current_d1_games":12,"boxscore_games_current":10})
+    later=maturity_weight(mature)
+    assert later>early_weight
+    assert 0.10<=later<=0.40
+    harder=maturity_confidence({**h,"current_d1_games":12,
+           "boxscore_games_current":10,"opponent_adjusted_strength_points":29},
+           {**a,"current_d1_games":12,"boxscore_games_current":10})
+    assert maturity_weight(harder)<later
+    unknown=maturity_confidence(profile(n=12,boxes=10),
+                                profile(n=12,boxes=10))
+    assert unknown["opponent_stepup_points"] is None
+    assert unknown["opponent_quality_available"] is False
+    assert maturity_weight(unknown)<maturity_weight({
+        **unknown,"opponent_quality_available":True,
+        "opponent_stepup_points":0})
+
+
+def test_adaptive_model_preserves_featured_blend_and_requires_real_evidence():
+    from possession_simulator_v05 import maturity_confidence, maturity_weight, VERSION
+    evidence=maturity_confidence(profile(n=8,boxes=6),
+                                 profile(n=9,boxes=7))
+    row={"physical":{"pred_margin":18.,"pred_total":180.},
+         "base_margin":7.,"base_total":148.,"confidence":evidence}
+    result=apply(row,"adaptive_maturity")
+    weight=maturity_weight(evidence)
+    assert abs(result["margin"]-(7.+weight*11.))<1e-6
+    assert abs(result["total"]-(148.+weight*32.))<1e-6
+    assert VERSION["adaptive_maturity"] != VERSION["blend20"]
+    assert VERSION["blend20"]=="CBB_V05_POSSESSION_EVENTS_20261113_BLEND20"
+    rec={
+        "model":VERSION["adaptive_maturity"],"variant":"adaptive_maturity",
+        "game_id":"F","home_id":"1","away_id":"2","tip_utc":iso(TIP),
+        "captured_utc":iso(TIP-timedelta(hours=4)),
+        "training_latest_tip":iso(TIP-timedelta(days=1)),
+        "champion_version":ACTIVE_LIVE_VERSION,
+        "previous_season_weight":.15,"n_simulations":DRAWS,
+        "research_only":True,"pred_home":82,"pred_away":72,
+        "pred_margin":10,"pred_total":154,
+        "source_maturity_confidence":evidence,"adaptive_weight":weight,
+    }
+    assert valid_forecast(rec,game(),TIP-timedelta(hours=3))
+    assert not valid_forecast({**rec,"adaptive_weight":weight+.03},
+                              game(),TIP-timedelta(hours=3))
+    assert not valid_forecast({k:v for k,v in rec.items()
+                              if k!="source_maturity_confidence"},
+                              game(),TIP-timedelta(hours=3))
