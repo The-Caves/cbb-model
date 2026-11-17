@@ -263,3 +263,62 @@ def test_context_market_groups_are_same_game_and_never_invent_lines():
     assert result["by_model_boxscore_sample"]["limited_boxscore_sample_under5"]["matched_source_quotes"]==1
     assert result["by_model_boxscore_sample"]["boxscore_coverage_unavailable"]["matched_source_quotes"]==1
     assert result["by_game_date_utc"]["2026-11-17"]["matched_source_quotes"]==4
+
+
+
+def test_new_adaptive_challenger_compares_to_featured_blend20_on_same_game_only(tmp_path):
+    from possession_simulator_v05 import maturity_confidence, maturity_weight, VERSION
+    from market_capture import SOURCE
+    g=game("P",final=True)
+    now=TIP+timedelta(hours=9)
+    original=tmp_path/"v04.jsonl"
+    sim=tmp_path/"sim.jsonl"
+    quotes=tmp_path/"quotes.jsonl"
+    baseline={"model":ACTIVE_LIVE_VERSION,"game_id":"P",
+              "home_id":"1","away_id":"2","tip_utc":iso(TIP),
+              "captured_utc":iso(TIP-timedelta(hours=3)),
+              "pred_home":79,"pred_away":71,"pred_margin":8,
+              "pred_total":150,"home_current_games":7,
+              "away_current_games":7}
+    common={"game_id":"P","home_id":"1","away_id":"2",
+            "tip_utc":iso(TIP),
+            "captured_utc":iso(TIP-timedelta(hours=3,minutes=10)),
+            "training_latest_tip":iso(TIP-timedelta(days=1)),
+            "champion_version":ACTIVE_LIVE_VERSION,
+            "previous_season_weight":.15,"n_simulations":DRAWS,
+            "research_only":True,"home_current_games":7,
+            "away_current_games":7}
+    featured={**common,"model":VERSION["blend20"],"variant":"blend20",
+              "pred_home":80.,"pred_away":70.,"pred_margin":10.,
+              "pred_total":150.}
+    confidence=maturity_confidence(profile(n=8,boxes=6),
+                                   profile(n=8,boxes=6))
+    adaptive={**common,"model":VERSION["adaptive_maturity"],
+              "variant":"adaptive_maturity",
+              "pred_home":81.,"pred_away":71.,"pred_margin":10.,
+              "pred_total":152.,
+              "source_maturity_confidence":confidence,
+              "adaptive_weight":maturity_weight(confidence)}
+    quote={"source":SOURCE,"provider":"DraftKings","game_id":"P",
+           "home_id":"1","away_id":"2","tip_utc":iso(TIP),
+           "captured_utc":iso(TIP-timedelta(hours=6)),
+           "home_spread":-7.5,"total":148.5,
+           "spread_derived_from_explicit_favorite_flags":True}
+    original.write_text(json.dumps(baseline)+"\n")
+    sim.write_text(json.dumps(featured)+"\n"+json.dumps(adaptive)+"\n")
+    quotes.write_text(json.dumps(quote)+"\n")
+    out=grade([g],{"1","2"},now,original,sim,quotes)
+    compare=out["paired_comparisons_against_featured_blend20"]["adaptive_maturity"]
+    assert compare["paired_games"]==1
+    assert compare["challenger"]["n"]==compare["featured_blend20"]["n"]==1
+    assert compare["same_quote_challenger"]["matched_market_games"]==1
+    assert compare["same_quote_blend20"]["matched_market_games"]==1
+    # The matched base is the featured Blend20, not original v0.4.
+    assert compare["featured_blend20"]["margin_mae"]==4.
+    assert compare["challenger"]["margin_mae"]==4.
+    # A later snapshot outside two hours must be rejected, not reused.
+    adaptive["captured_utc"]=iso(TIP-timedelta(minutes=10))
+    sim.write_text(json.dumps(featured)+"\n"+json.dumps(adaptive)+"\n")
+    assert grade([g],{"1","2"},now,original,sim,quotes)[
+        "paired_comparisons_against_featured_blend20"]["adaptive_maturity"][
+            "paired_games"]==0
