@@ -16,6 +16,15 @@
   },
   "draws_per_game": 512,
   "february": {
+    "adaptive_maturity": {
+      "brier": 0.2039,
+      "margin_bias": 0.669,
+      "margin_mae": 8.883,
+      "n": 1361,
+      "su_accuracy": 0.6841,
+      "total_bias": 0.566,
+      "total_mae": 13.424
+    },
     "blend20": {
       "brier": 0.2041,
       "margin_bias": 0.67,
@@ -88,6 +97,15 @@
   },
   "february_strata": {
     "big_favorite_12plus": {
+      "adaptive_maturity": {
+        "brier": 0.0684,
+        "margin_bias": -0.417,
+        "margin_mae": 9.231,
+        "n": 175,
+        "su_accuracy": 0.9257,
+        "total_bias": 1.436,
+        "total_mae": 12.998
+      },
       "blend20": {
         "brier": 0.0687,
         "margin_bias": -0.248,
@@ -153,6 +171,15 @@
       }
     },
     "low_shot_sample_under5": {
+      "adaptive_maturity": {
+        "brier": null,
+        "margin_bias": null,
+        "margin_mae": null,
+        "n": 0,
+        "su_accuracy": null,
+        "total_bias": null,
+        "total_mae": null
+      },
       "blend20": {
         "brier": null,
         "margin_bias": null,
@@ -218,6 +245,15 @@
       }
     },
     "near_pickem_under6": {
+      "adaptive_maturity": {
+        "brier": 0.2455,
+        "margin_bias": 0.368,
+        "margin_mae": 8.93,
+        "n": 727,
+        "su_accuracy": 0.5791,
+        "total_bias": 0.61,
+        "total_mae": 13.547
+      },
       "blend20": {
         "brier": 0.2456,
         "margin_bias": 0.303,
@@ -297,6 +333,15 @@
   },
   "historical_book_lines_available": false,
   "january": {
+    "adaptive_maturity": {
+      "brier": 0.2023,
+      "margin_bias": 1.191,
+      "margin_mae": 8.821,
+      "n": 1517,
+      "su_accuracy": 0.6955,
+      "total_bias": -0.249,
+      "total_mae": 13.845
+    },
     "blend20": {
       "brier": 0.2031,
       "margin_bias": 1.196,
@@ -369,6 +414,7 @@
   "source_timestamps_in_historical_archive_authenticated": false,
   "status": "HISTORICAL_SCORE_REPLAY_COMPLETE",
   "variants": {
+    "adaptive_maturity": "CBB_V05_POSSESSION_EVENTS_20261113_ADAPTIVE_MATURITY",
     "blend20": "CBB_V05_POSSESSION_EVENTS_20261113_BLEND20",
     "blend40": "CBB_V05_POSSESSION_EVENTS_20261113_BLEND40",
     "pure": "CBB_V05_POSSESSION_EVENTS_20261113_PURE",

@@ -1,13 +1,13 @@
 {
-  "as_of_utc": "2026-11-17T06:38:51Z",
-  "collector_player_game_records": 307,
-  "collector_roster_snapshots": 312,
+  "as_of_utc": "2026-11-17T06:47:10Z",
+  "collector_player_game_records": 331,
+  "collector_roster_snapshots": 336,
   "freeze": {
-    "captured": 7,
+    "captured": 11,
     "coverage": {
-      "candidate_games_eligible": 7,
-      "roster_snapshot_teams": 312,
-      "source_backed_multiplier_teams": 46,
+      "candidate_games_eligible": 11,
+      "roster_snapshot_teams": 336,
+      "source_backed_multiplier_teams": 52,
       "source_backed_team_multipliers": {
         "108": 0.99259,
         "111": 0.9702,
@@ -34,13 +34,19 @@
         "2464": 0.96819,
         "248": 0.87536,
         "2504": 0.96223,
+        "2507": 0.96561,
+        "2529": 0.96974,
         "2534": 0.96851,
         "259": 0.96832,
+        "2612": 0.96616,
         "2633": 0.93889,
         "2634": 0.96154,
         "2653": 0.96359,
+        "2717": 0.96112,
+        "2752": 0.97211,
         "2771": 0.88644,
         "2803": 0.8979,
+        "288": 0.9682,
         "314": 0.95584,
         "325": 0.95833,
         "349": 0.98081,
@@ -56,8 +62,8 @@
         "87": 0.97132,
         "93": 0.8897
       },
-      "teams_with_adequate_player_coverage": 46,
-      "teams_with_prior_sample": 51
+      "teams_with_adequate_player_coverage": 52,
+      "teams_with_prior_sample": 58
     },
     "status": "FROZEN_AS_OF_ROSTER_RESEARCH_ONLY"
   },
