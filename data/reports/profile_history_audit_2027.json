@@ -8019,9 +8019,9 @@
       "team_id": "99"
     }
   ],
-  "archived_git_revisions_checked": 21,
+  "archived_git_revisions_checked": 22,
   "caveat": "Observed profile drift does not prove improved pre-tip predictions. A profile from November 13 is forbidden when grading games from November 10.",
-  "latest_profile_as_of_utc": "2026-11-17T14:26:47Z",
+  "latest_profile_as_of_utc": "2026-11-17T19:56:03Z",
   "mean_abs_strength_change_points": 0.6573,
   "min_history_hours": 18,
   "old_profile_as_of_utc": "2026-11-13T23:34:26Z",
