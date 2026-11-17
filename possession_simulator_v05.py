@@ -31,7 +31,7 @@ from v05_transition_challenger import final_game, frozen_v04, metrics, model_obs
 VERSION_PREFIX = "CBB_V05_POSSESSION_EVENTS_20261113"
 # Existing immutable versions do not change: this new variant has its own
 # name and independent pre-tip ledger entries.
-VARIANTS = ("pure", "blend20", "blend40", "trained_blend", "split_total20")
+VARIANTS = ("pure", "blend20", "blend40", "trained_blend", "split_total20", "adaptive_maturity")
 VERSION = {variant:VERSION_PREFIX+"_"+variant.upper() for variant in VARIANTS}
 LAST_SEASON_SHOTS = 0.08
 SHOOTING_SHRINK = {"two":450.0, "three":375.0, "free":240.0}
@@ -177,9 +177,73 @@ def context(home,away,shots,home_id,away_id,venue):
                 "home_games":int(home["current_d1_games"]),
                 "away_games":int(away["current_d1_games"]),
                 "home_shot_games":shots["current_box_games"][tid_h],
-                "away_shot_games":shots["current_box_games"][tid_a]}
+                "away_shot_games":shots["current_box_games"][tid_a],
+                "confidence":maturity_confidence(home,away)}
     except (KeyError,ValueError,TypeError,OverflowError):
         return None
+
+
+def maturity_confidence(home, away):
+    """A dated, conservative weight signal from *observed prior games* only.
+
+    No conference label or post-game result is inferred. Opponent quality is
+    measured from current pre-tip score-ridge ratings compared with each
+    team's prior as-of opponent schedule. Missing SOS is labeled unknown and
+    receives a conservative discount, rather than an invented zero gap.
+    """
+    h_games = int(home["current_d1_games"])
+    a_games = int(away["current_d1_games"])
+    h_boxes = int(home["boxscore_games_current"])
+    a_boxes = int(away["boxscore_games_current"])
+    if min(h_games,a_games,h_boxes,a_boxes) < 1:
+        raise ValueError("insufficient source-backed maturity")
+    coverage = min(1.0, h_boxes/h_games, a_boxes/a_games)
+    s1, s2 = home.get("schedule_strength_avg_opponent_points"), away.get(
+        "schedule_strength_avg_opponent_points")
+    r1, r2 = home.get("opponent_adjusted_strength_points"), away.get(
+        "opponent_adjusted_strength_points")
+    quality_known = all(x is not None and math.isfinite(float(x))
+                        for x in (s1,s2,r1,r2))
+    stepup = (max(0.0, float(r2)-float(s1), float(r1)-float(s2))
+              if quality_known else None)
+    return {
+        "min_current_d1_games":min(h_games,a_games),
+        "min_verified_boxscore_games":min(h_boxes,a_boxes),
+        "min_current_boxscore_fraction":round(coverage,5),
+        "opponent_stepup_points":round(stepup,5) if stepup is not None else None,
+        "opponent_quality_available":bool(quality_known),
+        "snapshot_source":"verified_pre_tip_scores_and_boxscores",
+    }
+
+
+def maturity_weight(confidence):
+    """Predeclared, bounded simulation weight, without outcome tuning.
+
+    Increasing sample coverage raises trust in the possession model; an
+    opponent much stronger than prior opponents reduces trust. No missing
+    opponent quality is imputed as zero or league average.
+    """
+    if not isinstance(confidence,dict):
+        raise ValueError("missing dated confidence evidence")
+    games = float(confidence["min_current_d1_games"])
+    boxes = float(confidence["min_verified_boxscore_games"])
+    coverage = float(confidence["min_current_boxscore_fraction"])
+    if min(games,boxes,coverage) <= 0:
+        raise ValueError("invalid maturity sample")
+    for value in (games,boxes,coverage):
+        if not math.isfinite(value):
+            raise ValueError("non-finite maturity evidence")
+    maturity = min(1.0,games/10.0)*min(1.0,boxes/8.0)*min(1.0,coverage/0.8)
+    if confidence.get("opponent_quality_available") is True:
+        stepup = float(confidence["opponent_stepup_points"])
+        if not math.isfinite(stepup) or stepup<0:
+            raise ValueError("unverified opponent-stepup evidence")
+        discount = max(.50,1.0-max(0.0,stepup-6.0)/40.0)
+    else:
+        if confidence.get("opponent_stepup_points") is not None:
+            raise ValueError("unverified opponent strength treated as known")
+        discount = .60
+    return float(round(.10+.30*maturity*discount,6))
 
 
 def _score_events(rng,possessions,rates):
@@ -240,7 +304,15 @@ def simulate(game,asof,matchup,draws=DRAWS):
 
 def apply(row,variant,calibration=None):
     p=row["physical"]
-    if variant=="split_total20":
+    if variant=="adaptive_maturity":
+        # This prospective-only hypothesis uses pre-tip observed shot and
+        # strength-of-schedule maturity. Shared weight applies to margin and
+        # total (independent margins/totals are evaluated separately).
+        weight=maturity_weight(row.get("confidence"))
+        shift_m=weight*(p["pred_margin"]-row["base_margin"])
+        shift_t=weight*(p["pred_total"]-row["base_total"])
+        weight=None
+    elif variant=="split_total20":
         # One predeclared ablation: trust the lighter-carryover score ridge
         # entirely for margin; use only 20% physical possession evidence for
         # the total. Unlike a trained blend, no fitted coefficients change
@@ -332,7 +404,7 @@ def make_examples(games,accepted,verified,year=2026,draws=DRAWS):
                 continue
             out.append({
                 "game_id":str(g["game_id"]),"day":day,
-                "physical":physical,
+                "physical":physical,"confidence":match["confidence"],
                 "base_margin":float(p["pred_margin"]),
                 "base_total":float(p["pred_total"]),
                 "v04_margin":float(v["pred_margin"]),
@@ -444,6 +516,11 @@ def valid_forecast(rec,g,now):
                 rec["n_simulations"]!=DRAWS or
                 not rec.get("research_only",False)):
             return False
+        if variant=="adaptive_maturity":
+            if (not isinstance(rec.get("source_maturity_confidence"),dict)
+                    or abs(float(rec["adaptive_weight"])-
+                        maturity_weight(rec["source_maturity_confidence"]))>1e-6):
+                return False
         return (abs(float(rec["pred_home"])-float(rec["pred_away"])-
                     float(rec["pred_margin"]))<.035 and
                 abs(float(rec["pred_home"])+float(rec["pred_away"])-
@@ -490,7 +567,8 @@ def freeze(games,accepted,verified,now,historical,ledger):
         if match is None or pred is None:continue
         sim=simulate(g,now,match)
         if sim is None:continue
-        row={"physical":sim,"base_margin":float(pred["pred_margin"]),
+        row={"physical":sim,"confidence":match["confidence"],
+             "base_margin":float(pred["pred_margin"]),
              "base_total":float(pred["pred_total"])}
         for variant in VARIANTS:
             result=apply(row,variant,calibration)
@@ -512,6 +590,9 @@ def freeze(games,accepted,verified,now,historical,ledger):
                 "away_current_games":match["away_games"],
                 "home_shot_games":match["home_shot_games"],
                 "away_shot_games":match["away_shot_games"],
+                "source_maturity_confidence":match["confidence"],
+                "adaptive_weight":maturity_weight(match["confidence"])
+                    if variant=="adaptive_maturity" else None,
                 "pred_home":round(home_pts,2),"pred_away":round(away_pts,2),
                 "pred_margin":round(result["margin"],2),
                 "pred_total":round(result["total"],2),
