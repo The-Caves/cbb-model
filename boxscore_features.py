@@ -12,7 +12,7 @@ import re
 import time
 import urllib.error
 import urllib.request
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import timedelta
 from pathlib import Path
 
