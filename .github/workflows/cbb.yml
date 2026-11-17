@@ -166,7 +166,9 @@ jobs:
         uses: actions/deploy-pages@v4
   backfill:
     needs: build
-    if: github.event.repository.private == false && (github.event_name == 'workflow_dispatch' || github.event.schedule == '17 11 * 11,12,1,2,3,4 *')
+    # One explicit release commit can trigger an immediate *single* bounded
+    # source catch-up. Data-only commits and ordinary code pushes never retrigger it.
+    if: github.event.repository.private == false && (github.event_name == 'workflow_dispatch' || github.event.schedule == '17 11 * 11,12,1,2,3,4 *' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[cbb-source-catchup]')))
     runs-on: ubuntu-latest
     timeout-minutes: 50
     concurrency:
