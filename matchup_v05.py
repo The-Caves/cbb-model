@@ -410,6 +410,8 @@ def freeze(games,accepted,verified,now,report,ledger):
                 "pred_total":round(obj["total"],2),
                 "base_margin":float(p["pred_margin"]),
                 "base_total":float(p["pred_total"]),
+                "home_current_games":int(p["home_current_games"]),
+                "away_current_games":int(p["away_current_games"]),
                 "home_box_games":home.get("boxscore_games_current"),
                 "away_box_games":away.get("boxscore_games_current"),
             }
