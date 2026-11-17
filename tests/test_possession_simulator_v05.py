@@ -124,6 +124,15 @@ def test_real_pretip_quote_must_precede_both_forecasts(tmp_path):
     assert good["v04"]["n"]==good["simulator"]["n"]==1
     assert good["same_quote_simulator"]["ats_with_min3pt_model_edge"]["wins"]==1
     assert good["same_quote_simulator"]["ou_with_min4pt_model_edge"]["losses"]==1
+    # Older simulator shadow rows also lack optional season sample metadata.
+    # They must not cause the entire scheduled pipeline to fail.
+    legacy={k:v for k,v in cand.items() if k not in (
+        "home_current_games","away_current_games")}
+    shadow.write_text(json.dumps(legacy)+"\n")
+    historic=grade([g],{"1","2"},now,base,shadow,books)["results"]["blend20"]
+    assert historic["frozen_pairs"]==1
+    assert historic["v04"]["n"]==historic["simulator"]["n"]==1
+    assert historic["same_quote_simulator"]["matched_market_games"]==1
     books.write_text(json.dumps({**q,"captured_utc":iso(TIP-timedelta(hours=2))})+"\n")
     assert grade([g],{"1","2"},now,base,shadow,books)["results"]["blend20"]["same_quote_simulator"]["matched_market_games"]==0
     after={**cand,"captured_utc":iso(TIP+timedelta(seconds=1))}
