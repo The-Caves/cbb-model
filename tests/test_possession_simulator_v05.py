@@ -70,8 +70,10 @@ def test_simulation_is_seed_reproducible_shooting_sensitive_and_nonsynthetic_on_
 
 def test_learned_calibration_is_conservative_and_sparse_data_pass():
     p={"pred_margin":50.,"pred_total":200.}
+    from possession_simulator_v05 import maturity_confidence
     sample={"physical":p,"base_margin":3.,"base_total":140.,
-            "actual_margin":7.,"actual_total":151.}
+            "actual_margin":7.,"actual_total":151.,
+            "confidence":maturity_confidence(profile(),profile())}
     assert train([sample]) is None
     rows=[{**sample,"base_margin":float((i%8)-4)}
           for i in range(MIN_TRAIN+10)]
@@ -132,7 +134,9 @@ def test_real_pretip_quote_must_precede_both_forecasts(tmp_path):
     assert audit["summary"]["challenger"]["matched_market_games"]==1
     assert audit["by_market_spread"]["mid_spread_6_to_under15"]["matched_source_quotes"]==1
     assert audit["by_source_provider"]["DraftKings"]["matched_source_quotes"]==1
-    assert audit["by_model_boxscore_sample"]["mature_boxscore_sample_5plus"]["matched_source_quotes"]==1
+    # Legacy pre-tip shadow records did not contain shot-game counts.
+    # We label them unknown instead of inventing mature data coverage.
+    assert audit["by_model_boxscore_sample"]["boxscore_coverage_unavailable"]["matched_source_quotes"]==1
     # Older simulator shadow rows also lack optional season sample metadata.
     # They must not cause the entire scheduled pipeline to fail.
     legacy={k:v for k,v in cand.items() if k not in (
