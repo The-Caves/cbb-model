@@ -1,10 +1,10 @@
 {
   "active_champion": "CBB_SCORE_RIDGE_V0_4_D1_PRIOR30_A1_5",
-  "as_of_utc": "2026-11-17T19:56:00Z",
+  "as_of_utc": "2026-11-17T23:51:43Z",
   "frozen": {
-    "captured": 618,
+    "captured": 636,
     "status": "PRETIP_POSSESSION_SIMULATION_RESEARCH",
-    "unique_games": 103
+    "unique_games": 106
   },
   "historical_selection": "blend20",
   "performance": {
@@ -14,35 +14,35 @@
       "adaptive_maturity": {
         "cannot_interpret_small_sample": true,
         "challenger": {
-          "brier": null,
-          "margin_bias": null,
-          "margin_mae": null,
-          "n": 0,
-          "su_accuracy": null,
-          "total_mae": null
+          "brier": 0.1117,
+          "margin_bias": -10.86,
+          "margin_mae": 10.86,
+          "n": 1,
+          "su_accuracy": 1.0,
+          "total_mae": 2.99
         },
         "featured_blend20": {
-          "brier": null,
-          "margin_bias": null,
-          "margin_mae": null,
-          "n": 0,
-          "su_accuracy": null,
-          "total_mae": null
+          "brier": 0.1105,
+          "margin_bias": -10.8,
+          "margin_mae": 10.8,
+          "n": 1,
+          "su_accuracy": 1.0,
+          "total_mae": 2.64
         },
-        "paired_games": 0,
+        "paired_games": 1,
         "same_quote_blend20": {
           "ats_with_min3pt_model_edge": {
-            "losses": 0,
-            "n": 0,
+            "losses": 1,
+            "n": 1,
             "pushes": 0,
-            "win_pct_ex_push": null,
+            "win_pct_ex_push": 0.0,
             "wins": 0
           },
-          "market_margin_mae": null,
-          "market_total_mae": null,
-          "matched_market_games": 0,
-          "model_margin_mae": null,
-          "model_total_mae": null,
+          "market_margin_mae": 5.5,
+          "market_total_mae": 0.5,
+          "matched_market_games": 1,
+          "model_margin_mae": 10.8,
+          "model_total_mae": 2.64,
           "ou_with_min4pt_model_edge": {
             "losses": 0,
             "n": 0,
@@ -55,17 +55,17 @@
         },
         "same_quote_challenger": {
           "ats_with_min3pt_model_edge": {
-            "losses": 0,
-            "n": 0,
+            "losses": 1,
+            "n": 1,
             "pushes": 0,
-            "win_pct_ex_push": null,
+            "win_pct_ex_push": 0.0,
             "wins": 0
           },
-          "market_margin_mae": null,
-          "market_total_mae": null,
-          "matched_market_games": 0,
-          "model_margin_mae": null,
-          "model_total_mae": null,
+          "market_margin_mae": 5.5,
+          "market_total_mae": 0.5,
+          "matched_market_games": 1,
+          "model_margin_mae": 10.86,
+          "model_total_mae": 2.99,
           "ou_with_min4pt_model_edge": {
             "losses": 0,
             "n": 0,
@@ -80,35 +80,35 @@
       "blend40": {
         "cannot_interpret_small_sample": true,
         "challenger": {
-          "brier": 0.1851,
-          "margin_bias": 1.999,
-          "margin_mae": 10.008,
-          "n": 43,
-          "su_accuracy": 0.7442,
-          "total_mae": 13.96
+          "brier": 0.1834,
+          "margin_bias": 1.712,
+          "margin_mae": 10.022,
+          "n": 44,
+          "su_accuracy": 0.75,
+          "total_mae": 13.681
         },
         "featured_blend20": {
-          "brier": 0.1876,
-          "margin_bias": 3.071,
-          "margin_mae": 10.1,
-          "n": 43,
-          "su_accuracy": 0.7209,
-          "total_mae": 14.126
+          "brier": 0.1859,
+          "margin_bias": 2.755,
+          "margin_mae": 10.115,
+          "n": 44,
+          "su_accuracy": 0.7273,
+          "total_mae": 13.865
         },
-        "paired_games": 43,
+        "paired_games": 44,
         "same_quote_blend20": {
           "ats_with_min3pt_model_edge": {
-            "losses": 5,
-            "n": 12,
+            "losses": 6,
+            "n": 13,
             "pushes": 0,
-            "win_pct_ex_push": 0.5833,
+            "win_pct_ex_push": 0.5385,
             "wins": 7
           },
-          "market_margin_mae": 9.9,
-          "market_total_mae": 12.95,
-          "matched_market_games": 20,
-          "model_margin_mae": 10.817,
-          "model_total_mae": 13.68,
+          "market_margin_mae": 9.69,
+          "market_total_mae": 12.357,
+          "matched_market_games": 21,
+          "model_margin_mae": 10.816,
+          "model_total_mae": 13.154,
           "ou_with_min4pt_model_edge": {
             "losses": 4,
             "n": 8,
@@ -121,17 +121,17 @@
         },
         "same_quote_challenger": {
           "ats_with_min3pt_model_edge": {
-            "losses": 5,
-            "n": 13,
+            "losses": 6,
+            "n": 14,
             "pushes": 0,
-            "win_pct_ex_push": 0.6154,
+            "win_pct_ex_push": 0.5714,
             "wins": 8
           },
-          "market_margin_mae": 9.9,
-          "market_total_mae": 12.95,
-          "matched_market_games": 20,
-          "model_margin_mae": 10.885,
-          "model_total_mae": 13.458,
+          "market_margin_mae": 9.69,
+          "market_total_mae": 12.357,
+          "matched_market_games": 21,
+          "model_margin_mae": 10.874,
+          "model_total_mae": 12.897,
           "ou_with_min4pt_model_edge": {
             "losses": 4,
             "n": 10,
@@ -146,35 +146,35 @@
       "pure": {
         "cannot_interpret_small_sample": true,
         "challenger": {
-          "brier": 0.1857,
-          "margin_bias": -0.423,
+          "brier": 0.1837,
+          "margin_bias": -0.644,
           "margin_mae": 10.166,
-          "n": 43,
-          "su_accuracy": 0.6977,
-          "total_mae": 13.547
+          "n": 44,
+          "su_accuracy": 0.7045,
+          "total_mae": 13.267
         },
         "featured_blend20": {
-          "brier": 0.1876,
-          "margin_bias": 3.071,
-          "margin_mae": 10.1,
-          "n": 43,
-          "su_accuracy": 0.7209,
-          "total_mae": 14.126
+          "brier": 0.1859,
+          "margin_bias": 2.755,
+          "margin_mae": 10.115,
+          "n": 44,
+          "su_accuracy": 0.7273,
+          "total_mae": 13.865
         },
-        "paired_games": 43,
+        "paired_games": 44,
         "same_quote_blend20": {
           "ats_with_min3pt_model_edge": {
-            "losses": 5,
-            "n": 12,
+            "losses": 6,
+            "n": 13,
             "pushes": 0,
-            "win_pct_ex_push": 0.5833,
+            "win_pct_ex_push": 0.5385,
             "wins": 7
           },
-          "market_margin_mae": 9.9,
-          "market_total_mae": 12.95,
-          "matched_market_games": 20,
-          "model_margin_mae": 10.817,
-          "model_total_mae": 13.68,
+          "market_margin_mae": 9.69,
+          "market_total_mae": 12.357,
+          "matched_market_games": 21,
+          "model_margin_mae": 10.816,
+          "model_total_mae": 13.154,
           "ou_with_min4pt_model_edge": {
             "losses": 4,
             "n": 8,
@@ -187,17 +187,17 @@
         },
         "same_quote_challenger": {
           "ats_with_min3pt_model_edge": {
-            "losses": 6,
-            "n": 16,
+            "losses": 7,
+            "n": 17,
             "pushes": 0,
-            "win_pct_ex_push": 0.625,
+            "win_pct_ex_push": 0.5882,
             "wins": 10
           },
-          "market_margin_mae": 9.9,
-          "market_total_mae": 12.95,
-          "matched_market_games": 20,
-          "model_margin_mae": 11.652,
-          "model_total_mae": 12.991,
+          "market_margin_mae": 9.69,
+          "market_total_mae": 12.357,
+          "matched_market_games": 21,
+          "model_margin_mae": 11.581,
+          "model_total_mae": 12.432,
           "ou_with_min4pt_model_edge": {
             "losses": 3,
             "n": 10,
@@ -212,35 +212,35 @@
       "split_total20": {
         "cannot_interpret_small_sample": true,
         "challenger": {
-          "brier": 0.1771,
-          "margin_bias": 3.592,
-          "margin_mae": 9.935,
-          "n": 41,
-          "su_accuracy": 0.7561,
-          "total_mae": 14.102
+          "brier": 0.1756,
+          "margin_bias": 3.245,
+          "margin_mae": 9.96,
+          "n": 42,
+          "su_accuracy": 0.7619,
+          "total_mae": 13.829
         },
         "featured_blend20": {
-          "brier": 0.1745,
-          "margin_bias": 2.489,
-          "margin_mae": 9.86,
-          "n": 41,
-          "su_accuracy": 0.7561,
-          "total_mae": 14.102
+          "brier": 0.1729,
+          "margin_bias": 2.172,
+          "margin_mae": 9.883,
+          "n": 42,
+          "su_accuracy": 0.7619,
+          "total_mae": 13.829
         },
-        "paired_games": 41,
+        "paired_games": 42,
         "same_quote_blend20": {
           "ats_with_min3pt_model_edge": {
-            "losses": 5,
-            "n": 12,
+            "losses": 6,
+            "n": 13,
             "pushes": 0,
-            "win_pct_ex_push": 0.5833,
+            "win_pct_ex_push": 0.5385,
             "wins": 7
           },
-          "market_margin_mae": 9.5,
-          "market_total_mae": 12.5,
-          "matched_market_games": 18,
-          "model_margin_mae": 10.352,
-          "model_total_mae": 13.577,
+          "market_margin_mae": 9.289,
+          "market_total_mae": 11.868,
+          "matched_market_games": 19,
+          "model_margin_mae": 10.376,
+          "model_total_mae": 13.002,
           "ou_with_min4pt_model_edge": {
             "losses": 4,
             "n": 8,
@@ -253,17 +253,17 @@
         },
         "same_quote_challenger": {
           "ats_with_min3pt_model_edge": {
-            "losses": 8,
-            "n": 15,
+            "losses": 9,
+            "n": 16,
             "pushes": 0,
-            "win_pct_ex_push": 0.4667,
+            "win_pct_ex_push": 0.4375,
             "wins": 7
           },
-          "market_margin_mae": 9.5,
-          "market_total_mae": 12.5,
-          "matched_market_games": 18,
-          "model_margin_mae": 10.228,
-          "model_total_mae": 13.577,
+          "market_margin_mae": 9.289,
+          "market_total_mae": 11.868,
+          "matched_market_games": 19,
+          "model_margin_mae": 10.267,
+          "model_total_mae": 13.002,
           "ou_with_min4pt_model_edge": {
             "losses": 4,
             "n": 8,
@@ -278,35 +278,35 @@
       "trained_blend": {
         "cannot_interpret_small_sample": true,
         "challenger": {
-          "brier": 0.1942,
-          "margin_bias": 4.873,
-          "margin_mae": 10.31,
-          "n": 43,
-          "su_accuracy": 0.6977,
-          "total_mae": 14.531
+          "brier": 0.192,
+          "margin_bias": 4.53,
+          "margin_mae": 10.309,
+          "n": 44,
+          "su_accuracy": 0.7045,
+          "total_mae": 14.282
         },
         "featured_blend20": {
-          "brier": 0.1876,
-          "margin_bias": 3.071,
-          "margin_mae": 10.1,
-          "n": 43,
-          "su_accuracy": 0.7209,
-          "total_mae": 14.126
+          "brier": 0.1859,
+          "margin_bias": 2.755,
+          "margin_mae": 10.115,
+          "n": 44,
+          "su_accuracy": 0.7273,
+          "total_mae": 13.865
         },
-        "paired_games": 43,
+        "paired_games": 44,
         "same_quote_blend20": {
           "ats_with_min3pt_model_edge": {
-            "losses": 5,
-            "n": 12,
+            "losses": 6,
+            "n": 13,
             "pushes": 0,
-            "win_pct_ex_push": 0.5833,
+            "win_pct_ex_push": 0.5385,
             "wins": 7
           },
-          "market_margin_mae": 9.9,
-          "market_total_mae": 12.95,
-          "matched_market_games": 20,
-          "model_margin_mae": 10.817,
-          "model_total_mae": 13.68,
+          "market_margin_mae": 9.69,
+          "market_total_mae": 12.357,
+          "matched_market_games": 21,
+          "model_margin_mae": 10.816,
+          "model_total_mae": 13.154,
           "ou_with_min4pt_model_edge": {
             "losses": 4,
             "n": 8,
@@ -319,17 +319,17 @@
         },
         "same_quote_challenger": {
           "ats_with_min3pt_model_edge": {
-            "losses": 8,
-            "n": 15,
+            "losses": 9,
+            "n": 16,
             "pushes": 0,
-            "win_pct_ex_push": 0.4667,
+            "win_pct_ex_push": 0.4375,
             "wins": 7
           },
-          "market_margin_mae": 9.9,
-          "market_total_mae": 12.95,
-          "matched_market_games": 20,
-          "model_margin_mae": 10.676,
-          "model_total_mae": 14.174,
+          "market_margin_mae": 9.69,
+          "market_total_mae": 12.357,
+          "matched_market_games": 21,
+          "model_margin_mae": 10.655,
+          "model_total_mae": 13.668,
           "ou_with_min4pt_model_edge": {
             "losses": 5,
             "n": 9,
@@ -345,30 +345,246 @@
     "promotion_gate": "INSUFFICIENT_INDEPENDENT_PRETIP_ATS_OU",
     "results": {
       "adaptive_maturity": {
-        "frozen_pairs": 0,
+        "frozen_pairs": 1,
         "market_relative_context": {
-          "by_game_date_utc": {},
-          "by_market_spread": {},
-          "by_model_boxscore_sample": {},
-          "by_source_provider": {},
-          "completed_frozen_pairs": 0,
-          "market_quote_coverage_pct": null,
-          "matched_market_games": 0,
+          "by_game_date_utc": {
+            "2026-11-17": {
+              "challenger": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 10.86,
+                "model_total_mae": 2.99,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 0,
+                  "n": 0,
+                  "pushes": 0,
+                  "win_pct_ex_push": null,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              },
+              "margin_mae_delta_vs_market": 5.36,
+              "margin_mae_delta_vs_v04": -2.88,
+              "matched_source_quotes": 1,
+              "total_mae_delta_vs_market": 2.49,
+              "total_mae_delta_vs_v04": -3.0,
+              "v04": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 13.74,
+                "model_total_mae": 5.99,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              }
+            }
+          },
+          "by_market_spread": {
+            "mid_spread_6_to_under15": {
+              "challenger": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 10.86,
+                "model_total_mae": 2.99,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 0,
+                  "n": 0,
+                  "pushes": 0,
+                  "win_pct_ex_push": null,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              },
+              "margin_mae_delta_vs_market": 5.36,
+              "margin_mae_delta_vs_v04": -2.88,
+              "matched_source_quotes": 1,
+              "total_mae_delta_vs_market": 2.49,
+              "total_mae_delta_vs_v04": -3.0,
+              "v04": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 13.74,
+                "model_total_mae": 5.99,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              }
+            }
+          },
+          "by_model_boxscore_sample": {
+            "limited_boxscore_sample_under5": {
+              "challenger": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 10.86,
+                "model_total_mae": 2.99,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 0,
+                  "n": 0,
+                  "pushes": 0,
+                  "win_pct_ex_push": null,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              },
+              "margin_mae_delta_vs_market": 5.36,
+              "margin_mae_delta_vs_v04": -2.88,
+              "matched_source_quotes": 1,
+              "total_mae_delta_vs_market": 2.49,
+              "total_mae_delta_vs_v04": -3.0,
+              "v04": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 13.74,
+                "model_total_mae": 5.99,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              }
+            }
+          },
+          "by_source_provider": {
+            "DraftKings": {
+              "challenger": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 10.86,
+                "model_total_mae": 2.99,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 0,
+                  "n": 0,
+                  "pushes": 0,
+                  "win_pct_ex_push": null,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              },
+              "margin_mae_delta_vs_market": 5.36,
+              "margin_mae_delta_vs_v04": -2.88,
+              "matched_source_quotes": 1,
+              "total_mae_delta_vs_market": 2.49,
+              "total_mae_delta_vs_v04": -3.0,
+              "v04": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 13.74,
+                "model_total_mae": 5.99,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              }
+            }
+          },
+          "completed_frozen_pairs": 1,
+          "market_quote_coverage_pct": 100.0,
+          "matched_market_games": 1,
           "notes": "Observed and source-hashed pretip bookmaker quotes only, not verified closings, no odds/ROI, do not infer significance from small edge-qualified ATS/O-U selections. Same source quote is used for v0.4 and each challenger.",
           "summary": {
             "challenger": {
               "ats_with_min3pt_model_edge": {
-                "losses": 0,
-                "n": 0,
+                "losses": 1,
+                "n": 1,
                 "pushes": 0,
-                "win_pct_ex_push": null,
+                "win_pct_ex_push": 0.0,
                 "wins": 0
               },
-              "market_margin_mae": null,
-              "market_total_mae": null,
-              "matched_market_games": 0,
-              "model_margin_mae": null,
-              "model_total_mae": null,
+              "market_margin_mae": 5.5,
+              "market_total_mae": 0.5,
+              "matched_market_games": 1,
+              "model_margin_mae": 10.86,
+              "model_total_mae": 2.99,
               "ou_with_min4pt_model_edge": {
                 "losses": 0,
                 "n": 0,
@@ -379,29 +595,29 @@
               "quotes_are_not_verified_closing_lines": true,
               "sportsbook_roi_not_available": true
             },
-            "margin_mae_delta_vs_market": null,
-            "margin_mae_delta_vs_v04": null,
-            "matched_source_quotes": 0,
-            "total_mae_delta_vs_market": null,
-            "total_mae_delta_vs_v04": null,
+            "margin_mae_delta_vs_market": 5.36,
+            "margin_mae_delta_vs_v04": -2.88,
+            "matched_source_quotes": 1,
+            "total_mae_delta_vs_market": 2.49,
+            "total_mae_delta_vs_v04": -3.0,
             "v04": {
               "ats_with_min3pt_model_edge": {
-                "losses": 0,
-                "n": 0,
+                "losses": 1,
+                "n": 1,
                 "pushes": 0,
-                "win_pct_ex_push": null,
+                "win_pct_ex_push": 0.0,
                 "wins": 0
               },
-              "market_margin_mae": null,
-              "market_total_mae": null,
-              "matched_market_games": 0,
-              "model_margin_mae": null,
-              "model_total_mae": null,
+              "market_margin_mae": 5.5,
+              "market_total_mae": 0.5,
+              "matched_market_games": 1,
+              "model_margin_mae": 13.74,
+              "model_total_mae": 5.99,
               "ou_with_min4pt_model_edge": {
-                "losses": 0,
-                "n": 0,
+                "losses": 1,
+                "n": 1,
                 "pushes": 0,
-                "win_pct_ex_push": null,
+                "win_pct_ex_push": 0.0,
                 "wins": 0
               },
               "quotes_are_not_verified_closing_lines": true,
@@ -411,17 +627,17 @@
         },
         "same_quote_simulator": {
           "ats_with_min3pt_model_edge": {
-            "losses": 0,
-            "n": 0,
+            "losses": 1,
+            "n": 1,
             "pushes": 0,
-            "win_pct_ex_push": null,
+            "win_pct_ex_push": 0.0,
             "wins": 0
           },
-          "market_margin_mae": null,
-          "market_total_mae": null,
-          "matched_market_games": 0,
-          "model_margin_mae": null,
-          "model_total_mae": null,
+          "market_margin_mae": 5.5,
+          "market_total_mae": 0.5,
+          "matched_market_games": 1,
+          "model_margin_mae": 10.86,
+          "model_total_mae": 2.99,
           "ou_with_min4pt_model_edge": {
             "losses": 0,
             "n": 0,
@@ -434,46 +650,46 @@
         },
         "same_quote_v04": {
           "ats_with_min3pt_model_edge": {
-            "losses": 0,
-            "n": 0,
+            "losses": 1,
+            "n": 1,
             "pushes": 0,
-            "win_pct_ex_push": null,
+            "win_pct_ex_push": 0.0,
             "wins": 0
           },
-          "market_margin_mae": null,
-          "market_total_mae": null,
-          "matched_market_games": 0,
-          "model_margin_mae": null,
-          "model_total_mae": null,
+          "market_margin_mae": 5.5,
+          "market_total_mae": 0.5,
+          "matched_market_games": 1,
+          "model_margin_mae": 13.74,
+          "model_total_mae": 5.99,
           "ou_with_min4pt_model_edge": {
-            "losses": 0,
-            "n": 0,
+            "losses": 1,
+            "n": 1,
             "pushes": 0,
-            "win_pct_ex_push": null,
+            "win_pct_ex_push": 0.0,
             "wins": 0
           },
           "quotes_are_not_verified_closing_lines": true,
           "sportsbook_roi_not_available": true
         },
         "simulator": {
-          "brier": null,
-          "margin_bias": null,
-          "margin_mae": null,
-          "n": 0,
-          "su_accuracy": null,
-          "total_mae": null
+          "brier": 0.1117,
+          "margin_bias": -10.86,
+          "margin_mae": 10.86,
+          "n": 1,
+          "su_accuracy": 1.0,
+          "total_mae": 2.99
         },
         "v04": {
-          "brier": null,
-          "margin_bias": null,
-          "margin_mae": null,
-          "n": 0,
-          "su_accuracy": null,
-          "total_mae": null
+          "brier": 0.1809,
+          "margin_bias": -13.74,
+          "margin_mae": 13.74,
+          "n": 1,
+          "su_accuracy": 1.0,
+          "total_mae": 5.99
         }
       },
       "blend20": {
-        "frozen_pairs": 43,
+        "frozen_pairs": 44,
         "market_relative_context": {
           "by_game_date_utc": {
             "2026-11-13": {
@@ -634,6 +850,59 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               }
+            },
+            "2026-11-17": {
+              "challenger": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 10.8,
+                "model_total_mae": 2.64,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 0,
+                  "n": 0,
+                  "pushes": 0,
+                  "win_pct_ex_push": null,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              },
+              "margin_mae_delta_vs_market": 5.3,
+              "margin_mae_delta_vs_v04": -2.94,
+              "matched_source_quotes": 1,
+              "total_mae_delta_vs_market": 2.14,
+              "total_mae_delta_vs_v04": -3.35,
+              "v04": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 13.74,
+                "model_total_mae": 5.99,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              }
             }
           },
           "by_market_spread": {
@@ -746,17 +1015,17 @@
             "mid_spread_6_to_under15": {
               "challenger": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 3,
-                  "n": 3,
+                  "losses": 4,
+                  "n": 4,
                   "pushes": 0,
                   "win_pct_ex_push": 0.0,
                   "wins": 0
                 },
-                "market_margin_mae": 10.333,
-                "market_total_mae": 15.167,
-                "matched_market_games": 6,
-                "model_margin_mae": 13.743,
-                "model_total_mae": 16.518,
+                "market_margin_mae": 9.643,
+                "market_total_mae": 13.071,
+                "matched_market_games": 7,
+                "model_margin_mae": 13.323,
+                "model_total_mae": 14.536,
                 "ou_with_min4pt_model_edge": {
                   "losses": 2,
                   "n": 4,
@@ -767,29 +1036,29 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 3.41,
-              "margin_mae_delta_vs_v04": -0.655,
-              "matched_source_quotes": 6,
-              "total_mae_delta_vs_market": 1.351,
-              "total_mae_delta_vs_v04": -1.884,
+              "margin_mae_delta_vs_market": 3.68,
+              "margin_mae_delta_vs_v04": -0.981,
+              "matched_source_quotes": 7,
+              "total_mae_delta_vs_market": 1.465,
+              "total_mae_delta_vs_v04": -2.093,
               "v04": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 5,
-                  "n": 5,
+                  "losses": 6,
+                  "n": 6,
                   "pushes": 0,
                   "win_pct_ex_push": 0.0,
                   "wins": 0
                 },
-                "market_margin_mae": 10.333,
-                "market_total_mae": 15.167,
-                "matched_market_games": 6,
-                "model_margin_mae": 14.398,
-                "model_total_mae": 18.402,
+                "market_margin_mae": 9.643,
+                "market_total_mae": 13.071,
+                "matched_market_games": 7,
+                "model_margin_mae": 14.304,
+                "model_total_mae": 16.629,
                 "ou_with_min4pt_model_edge": {
-                  "losses": 2,
-                  "n": 5,
+                  "losses": 3,
+                  "n": 6,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.6,
+                  "win_pct_ex_push": 0.5,
                   "wins": 3
                 },
                 "quotes_are_not_verified_closing_lines": true,
@@ -801,17 +1070,17 @@
             "limited_boxscore_sample_under5": {
               "challenger": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 5,
-                  "n": 12,
+                  "losses": 6,
+                  "n": 13,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.5833,
+                  "win_pct_ex_push": 0.5385,
                   "wins": 7
                 },
-                "market_margin_mae": 9.9,
-                "market_total_mae": 12.95,
-                "matched_market_games": 20,
-                "model_margin_mae": 10.817,
-                "model_total_mae": 13.68,
+                "market_margin_mae": 9.69,
+                "market_total_mae": 12.357,
+                "matched_market_games": 21,
+                "model_margin_mae": 10.816,
+                "model_total_mae": 13.154,
                 "ou_with_min4pt_model_edge": {
                   "losses": 4,
                   "n": 8,
@@ -822,29 +1091,29 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.917,
-              "margin_mae_delta_vs_v04": -0.155,
-              "matched_source_quotes": 20,
-              "total_mae_delta_vs_market": 0.73,
-              "total_mae_delta_vs_v04": -0.543,
+              "margin_mae_delta_vs_market": 1.126,
+              "margin_mae_delta_vs_v04": -0.288,
+              "matched_source_quotes": 21,
+              "total_mae_delta_vs_market": 0.797,
+              "total_mae_delta_vs_v04": -0.677,
               "v04": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 10,
-                  "n": 17,
+                  "losses": 11,
+                  "n": 18,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.4118,
+                  "win_pct_ex_push": 0.3889,
                   "wins": 7
                 },
-                "market_margin_mae": 9.9,
-                "market_total_mae": 12.95,
-                "matched_market_games": 20,
-                "model_margin_mae": 10.972,
-                "model_total_mae": 14.223,
+                "market_margin_mae": 9.69,
+                "market_total_mae": 12.357,
+                "matched_market_games": 21,
+                "model_margin_mae": 11.104,
+                "model_total_mae": 13.831,
                 "ou_with_min4pt_model_edge": {
-                  "losses": 5,
-                  "n": 13,
+                  "losses": 6,
+                  "n": 14,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.6154,
+                  "win_pct_ex_push": 0.5714,
                   "wins": 8
                 },
                 "quotes_are_not_verified_closing_lines": true,
@@ -905,26 +1174,79 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               }
+            },
+            "DraftKings": {
+              "challenger": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 10.8,
+                "model_total_mae": 2.64,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 0,
+                  "n": 0,
+                  "pushes": 0,
+                  "win_pct_ex_push": null,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              },
+              "margin_mae_delta_vs_market": 5.3,
+              "margin_mae_delta_vs_v04": -2.94,
+              "matched_source_quotes": 1,
+              "total_mae_delta_vs_market": 2.14,
+              "total_mae_delta_vs_v04": -3.35,
+              "v04": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 13.74,
+                "model_total_mae": 5.99,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              }
             }
           },
-          "completed_frozen_pairs": 43,
-          "market_quote_coverage_pct": 46.51,
-          "matched_market_games": 20,
+          "completed_frozen_pairs": 44,
+          "market_quote_coverage_pct": 47.73,
+          "matched_market_games": 21,
           "notes": "Observed and source-hashed pretip bookmaker quotes only, not verified closings, no odds/ROI, do not infer significance from small edge-qualified ATS/O-U selections. Same source quote is used for v0.4 and each challenger.",
           "summary": {
             "challenger": {
               "ats_with_min3pt_model_edge": {
-                "losses": 5,
-                "n": 12,
+                "losses": 6,
+                "n": 13,
                 "pushes": 0,
-                "win_pct_ex_push": 0.5833,
+                "win_pct_ex_push": 0.5385,
                 "wins": 7
               },
-              "market_margin_mae": 9.9,
-              "market_total_mae": 12.95,
-              "matched_market_games": 20,
-              "model_margin_mae": 10.817,
-              "model_total_mae": 13.68,
+              "market_margin_mae": 9.69,
+              "market_total_mae": 12.357,
+              "matched_market_games": 21,
+              "model_margin_mae": 10.816,
+              "model_total_mae": 13.154,
               "ou_with_min4pt_model_edge": {
                 "losses": 4,
                 "n": 8,
@@ -935,29 +1257,29 @@
               "quotes_are_not_verified_closing_lines": true,
               "sportsbook_roi_not_available": true
             },
-            "margin_mae_delta_vs_market": 0.917,
-            "margin_mae_delta_vs_v04": -0.155,
-            "matched_source_quotes": 20,
-            "total_mae_delta_vs_market": 0.73,
-            "total_mae_delta_vs_v04": -0.543,
+            "margin_mae_delta_vs_market": 1.126,
+            "margin_mae_delta_vs_v04": -0.288,
+            "matched_source_quotes": 21,
+            "total_mae_delta_vs_market": 0.797,
+            "total_mae_delta_vs_v04": -0.677,
             "v04": {
               "ats_with_min3pt_model_edge": {
-                "losses": 10,
-                "n": 17,
+                "losses": 11,
+                "n": 18,
                 "pushes": 0,
-                "win_pct_ex_push": 0.4118,
+                "win_pct_ex_push": 0.3889,
                 "wins": 7
               },
-              "market_margin_mae": 9.9,
-              "market_total_mae": 12.95,
-              "matched_market_games": 20,
-              "model_margin_mae": 10.972,
-              "model_total_mae": 14.223,
+              "market_margin_mae": 9.69,
+              "market_total_mae": 12.357,
+              "matched_market_games": 21,
+              "model_margin_mae": 11.104,
+              "model_total_mae": 13.831,
               "ou_with_min4pt_model_edge": {
-                "losses": 5,
-                "n": 13,
+                "losses": 6,
+                "n": 14,
                 "pushes": 0,
-                "win_pct_ex_push": 0.6154,
+                "win_pct_ex_push": 0.5714,
                 "wins": 8
               },
               "quotes_are_not_verified_closing_lines": true,
@@ -967,17 +1289,17 @@
         },
         "same_quote_simulator": {
           "ats_with_min3pt_model_edge": {
-            "losses": 5,
-            "n": 12,
+            "losses": 6,
+            "n": 13,
             "pushes": 0,
-            "win_pct_ex_push": 0.5833,
+            "win_pct_ex_push": 0.5385,
             "wins": 7
           },
-          "market_margin_mae": 9.9,
-          "market_total_mae": 12.95,
-          "matched_market_games": 20,
-          "model_margin_mae": 10.817,
-          "model_total_mae": 13.68,
+          "market_margin_mae": 9.69,
+          "market_total_mae": 12.357,
+          "matched_market_games": 21,
+          "model_margin_mae": 10.816,
+          "model_total_mae": 13.154,
           "ou_with_min4pt_model_edge": {
             "losses": 4,
             "n": 8,
@@ -990,46 +1312,46 @@
         },
         "same_quote_v04": {
           "ats_with_min3pt_model_edge": {
-            "losses": 10,
-            "n": 17,
+            "losses": 11,
+            "n": 18,
             "pushes": 0,
-            "win_pct_ex_push": 0.4118,
+            "win_pct_ex_push": 0.3889,
             "wins": 7
           },
-          "market_margin_mae": 9.9,
-          "market_total_mae": 12.95,
-          "matched_market_games": 20,
-          "model_margin_mae": 10.972,
-          "model_total_mae": 14.223,
+          "market_margin_mae": 9.69,
+          "market_total_mae": 12.357,
+          "matched_market_games": 21,
+          "model_margin_mae": 11.104,
+          "model_total_mae": 13.831,
           "ou_with_min4pt_model_edge": {
-            "losses": 5,
-            "n": 13,
+            "losses": 6,
+            "n": 14,
             "pushes": 0,
-            "win_pct_ex_push": 0.6154,
+            "win_pct_ex_push": 0.5714,
             "wins": 8
           },
           "quotes_are_not_verified_closing_lines": true,
           "sportsbook_roi_not_available": true
         },
         "simulator": {
-          "brier": 0.1876,
-          "margin_bias": 3.071,
-          "margin_mae": 10.1,
-          "n": 43,
-          "su_accuracy": 0.7209,
-          "total_mae": 14.126
+          "brier": 0.1859,
+          "margin_bias": 2.755,
+          "margin_mae": 10.115,
+          "n": 44,
+          "su_accuracy": 0.7273,
+          "total_mae": 13.865
         },
         "v04": {
-          "brier": 0.1992,
-          "margin_bias": 4.554,
-          "margin_mae": 10.304,
-          "n": 43,
-          "su_accuracy": 0.6977,
-          "total_mae": 14.559
+          "brier": 0.1988,
+          "margin_bias": 4.138,
+          "margin_mae": 10.382,
+          "n": 44,
+          "su_accuracy": 0.7045,
+          "total_mae": 14.364
         }
       },
       "blend40": {
-        "frozen_pairs": 43,
+        "frozen_pairs": 44,
         "market_relative_context": {
           "by_game_date_utc": {
             "2026-11-13": {
@@ -1190,6 +1512,59 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               }
+            },
+            "2026-11-17": {
+              "challenger": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 10.64,
+                "model_total_mae": 1.67,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 0,
+                  "n": 0,
+                  "pushes": 0,
+                  "win_pct_ex_push": null,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              },
+              "margin_mae_delta_vs_market": 5.14,
+              "margin_mae_delta_vs_v04": -3.1,
+              "matched_source_quotes": 1,
+              "total_mae_delta_vs_market": 1.17,
+              "total_mae_delta_vs_v04": -4.32,
+              "v04": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 13.74,
+                "model_total_mae": 5.99,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              }
             }
           },
           "by_market_spread": {
@@ -1302,17 +1677,17 @@
             "mid_spread_6_to_under15": {
               "challenger": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 3,
-                  "n": 3,
+                  "losses": 4,
+                  "n": 4,
                   "pushes": 0,
                   "win_pct_ex_push": 0.0,
                   "wins": 0
                 },
-                "market_margin_mae": 10.333,
-                "market_total_mae": 15.167,
-                "matched_market_games": 6,
-                "model_margin_mae": 13.678,
-                "model_total_mae": 16.085,
+                "market_margin_mae": 9.643,
+                "market_total_mae": 13.071,
+                "matched_market_games": 7,
+                "model_margin_mae": 13.244,
+                "model_total_mae": 14.026,
                 "ou_with_min4pt_model_edge": {
                   "losses": 1,
                   "n": 3,
@@ -1323,29 +1698,29 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 3.345,
-              "margin_mae_delta_vs_v04": -0.72,
-              "matched_source_quotes": 6,
-              "total_mae_delta_vs_market": 0.918,
-              "total_mae_delta_vs_v04": -2.317,
+              "margin_mae_delta_vs_market": 3.601,
+              "margin_mae_delta_vs_v04": -1.06,
+              "matched_source_quotes": 7,
+              "total_mae_delta_vs_market": 0.955,
+              "total_mae_delta_vs_v04": -2.603,
               "v04": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 5,
-                  "n": 5,
+                  "losses": 6,
+                  "n": 6,
                   "pushes": 0,
                   "win_pct_ex_push": 0.0,
                   "wins": 0
                 },
-                "market_margin_mae": 10.333,
-                "market_total_mae": 15.167,
-                "matched_market_games": 6,
-                "model_margin_mae": 14.398,
-                "model_total_mae": 18.402,
+                "market_margin_mae": 9.643,
+                "market_total_mae": 13.071,
+                "matched_market_games": 7,
+                "model_margin_mae": 14.304,
+                "model_total_mae": 16.629,
                 "ou_with_min4pt_model_edge": {
-                  "losses": 2,
-                  "n": 5,
+                  "losses": 3,
+                  "n": 6,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.6,
+                  "win_pct_ex_push": 0.5,
                   "wins": 3
                 },
                 "quotes_are_not_verified_closing_lines": true,
@@ -1357,17 +1732,17 @@
             "limited_boxscore_sample_under5": {
               "challenger": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 5,
-                  "n": 13,
+                  "losses": 6,
+                  "n": 14,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.6154,
+                  "win_pct_ex_push": 0.5714,
                   "wins": 8
                 },
-                "market_margin_mae": 9.9,
-                "market_total_mae": 12.95,
-                "matched_market_games": 20,
-                "model_margin_mae": 10.885,
-                "model_total_mae": 13.458,
+                "market_margin_mae": 9.69,
+                "market_total_mae": 12.357,
+                "matched_market_games": 21,
+                "model_margin_mae": 10.874,
+                "model_total_mae": 12.897,
                 "ou_with_min4pt_model_edge": {
                   "losses": 4,
                   "n": 10,
@@ -1378,29 +1753,29 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.985,
-              "margin_mae_delta_vs_v04": -0.087,
-              "matched_source_quotes": 20,
-              "total_mae_delta_vs_market": 0.508,
-              "total_mae_delta_vs_v04": -0.765,
+              "margin_mae_delta_vs_market": 1.184,
+              "margin_mae_delta_vs_v04": -0.23,
+              "matched_source_quotes": 21,
+              "total_mae_delta_vs_market": 0.54,
+              "total_mae_delta_vs_v04": -0.934,
               "v04": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 10,
-                  "n": 17,
+                  "losses": 11,
+                  "n": 18,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.4118,
+                  "win_pct_ex_push": 0.3889,
                   "wins": 7
                 },
-                "market_margin_mae": 9.9,
-                "market_total_mae": 12.95,
-                "matched_market_games": 20,
-                "model_margin_mae": 10.972,
-                "model_total_mae": 14.223,
+                "market_margin_mae": 9.69,
+                "market_total_mae": 12.357,
+                "matched_market_games": 21,
+                "model_margin_mae": 11.104,
+                "model_total_mae": 13.831,
                 "ou_with_min4pt_model_edge": {
-                  "losses": 5,
-                  "n": 13,
+                  "losses": 6,
+                  "n": 14,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.6154,
+                  "win_pct_ex_push": 0.5714,
                   "wins": 8
                 },
                 "quotes_are_not_verified_closing_lines": true,
@@ -1461,26 +1836,79 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               }
+            },
+            "DraftKings": {
+              "challenger": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 10.64,
+                "model_total_mae": 1.67,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 0,
+                  "n": 0,
+                  "pushes": 0,
+                  "win_pct_ex_push": null,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              },
+              "margin_mae_delta_vs_market": 5.14,
+              "margin_mae_delta_vs_v04": -3.1,
+              "matched_source_quotes": 1,
+              "total_mae_delta_vs_market": 1.17,
+              "total_mae_delta_vs_v04": -4.32,
+              "v04": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 13.74,
+                "model_total_mae": 5.99,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              }
             }
           },
-          "completed_frozen_pairs": 43,
-          "market_quote_coverage_pct": 46.51,
-          "matched_market_games": 20,
+          "completed_frozen_pairs": 44,
+          "market_quote_coverage_pct": 47.73,
+          "matched_market_games": 21,
           "notes": "Observed and source-hashed pretip bookmaker quotes only, not verified closings, no odds/ROI, do not infer significance from small edge-qualified ATS/O-U selections. Same source quote is used for v0.4 and each challenger.",
           "summary": {
             "challenger": {
               "ats_with_min3pt_model_edge": {
-                "losses": 5,
-                "n": 13,
+                "losses": 6,
+                "n": 14,
                 "pushes": 0,
-                "win_pct_ex_push": 0.6154,
+                "win_pct_ex_push": 0.5714,
                 "wins": 8
               },
-              "market_margin_mae": 9.9,
-              "market_total_mae": 12.95,
-              "matched_market_games": 20,
-              "model_margin_mae": 10.885,
-              "model_total_mae": 13.458,
+              "market_margin_mae": 9.69,
+              "market_total_mae": 12.357,
+              "matched_market_games": 21,
+              "model_margin_mae": 10.874,
+              "model_total_mae": 12.897,
               "ou_with_min4pt_model_edge": {
                 "losses": 4,
                 "n": 10,
@@ -1491,29 +1919,29 @@
               "quotes_are_not_verified_closing_lines": true,
               "sportsbook_roi_not_available": true
             },
-            "margin_mae_delta_vs_market": 0.985,
-            "margin_mae_delta_vs_v04": -0.087,
-            "matched_source_quotes": 20,
-            "total_mae_delta_vs_market": 0.508,
-            "total_mae_delta_vs_v04": -0.765,
+            "margin_mae_delta_vs_market": 1.184,
+            "margin_mae_delta_vs_v04": -0.23,
+            "matched_source_quotes": 21,
+            "total_mae_delta_vs_market": 0.54,
+            "total_mae_delta_vs_v04": -0.934,
             "v04": {
               "ats_with_min3pt_model_edge": {
-                "losses": 10,
-                "n": 17,
+                "losses": 11,
+                "n": 18,
                 "pushes": 0,
-                "win_pct_ex_push": 0.4118,
+                "win_pct_ex_push": 0.3889,
                 "wins": 7
               },
-              "market_margin_mae": 9.9,
-              "market_total_mae": 12.95,
-              "matched_market_games": 20,
-              "model_margin_mae": 10.972,
-              "model_total_mae": 14.223,
+              "market_margin_mae": 9.69,
+              "market_total_mae": 12.357,
+              "matched_market_games": 21,
+              "model_margin_mae": 11.104,
+              "model_total_mae": 13.831,
               "ou_with_min4pt_model_edge": {
-                "losses": 5,
-                "n": 13,
+                "losses": 6,
+                "n": 14,
                 "pushes": 0,
-                "win_pct_ex_push": 0.6154,
+                "win_pct_ex_push": 0.5714,
                 "wins": 8
               },
               "quotes_are_not_verified_closing_lines": true,
@@ -1523,17 +1951,17 @@
         },
         "same_quote_simulator": {
           "ats_with_min3pt_model_edge": {
-            "losses": 5,
-            "n": 13,
+            "losses": 6,
+            "n": 14,
             "pushes": 0,
-            "win_pct_ex_push": 0.6154,
+            "win_pct_ex_push": 0.5714,
             "wins": 8
           },
-          "market_margin_mae": 9.9,
-          "market_total_mae": 12.95,
-          "matched_market_games": 20,
-          "model_margin_mae": 10.885,
-          "model_total_mae": 13.458,
+          "market_margin_mae": 9.69,
+          "market_total_mae": 12.357,
+          "matched_market_games": 21,
+          "model_margin_mae": 10.874,
+          "model_total_mae": 12.897,
           "ou_with_min4pt_model_edge": {
             "losses": 4,
             "n": 10,
@@ -1546,46 +1974,46 @@
         },
         "same_quote_v04": {
           "ats_with_min3pt_model_edge": {
-            "losses": 10,
-            "n": 17,
+            "losses": 11,
+            "n": 18,
             "pushes": 0,
-            "win_pct_ex_push": 0.4118,
+            "win_pct_ex_push": 0.3889,
             "wins": 7
           },
-          "market_margin_mae": 9.9,
-          "market_total_mae": 12.95,
-          "matched_market_games": 20,
-          "model_margin_mae": 10.972,
-          "model_total_mae": 14.223,
+          "market_margin_mae": 9.69,
+          "market_total_mae": 12.357,
+          "matched_market_games": 21,
+          "model_margin_mae": 11.104,
+          "model_total_mae": 13.831,
           "ou_with_min4pt_model_edge": {
-            "losses": 5,
-            "n": 13,
+            "losses": 6,
+            "n": 14,
             "pushes": 0,
-            "win_pct_ex_push": 0.6154,
+            "win_pct_ex_push": 0.5714,
             "wins": 8
           },
           "quotes_are_not_verified_closing_lines": true,
           "sportsbook_roi_not_available": true
         },
         "simulator": {
-          "brier": 0.1851,
-          "margin_bias": 1.999,
-          "margin_mae": 10.008,
-          "n": 43,
-          "su_accuracy": 0.7442,
-          "total_mae": 13.96
+          "brier": 0.1834,
+          "margin_bias": 1.712,
+          "margin_mae": 10.022,
+          "n": 44,
+          "su_accuracy": 0.75,
+          "total_mae": 13.681
         },
         "v04": {
-          "brier": 0.1992,
-          "margin_bias": 4.554,
-          "margin_mae": 10.304,
-          "n": 43,
-          "su_accuracy": 0.6977,
-          "total_mae": 14.559
+          "brier": 0.1988,
+          "margin_bias": 4.138,
+          "margin_mae": 10.382,
+          "n": 44,
+          "su_accuracy": 0.7045,
+          "total_mae": 14.364
         }
       },
       "pure": {
-        "frozen_pairs": 43,
+        "frozen_pairs": 44,
         "market_relative_context": {
           "by_game_date_utc": {
             "2026-11-13": {
@@ -1746,6 +2174,59 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               }
+            },
+            "2026-11-17": {
+              "challenger": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 10.16,
+                "model_total_mae": 1.26,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 0,
+                  "n": 0,
+                  "pushes": 0,
+                  "win_pct_ex_push": null,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              },
+              "margin_mae_delta_vs_market": 4.66,
+              "margin_mae_delta_vs_v04": -3.58,
+              "matched_source_quotes": 1,
+              "total_mae_delta_vs_market": 0.76,
+              "total_mae_delta_vs_v04": -4.73,
+              "v04": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 13.74,
+                "model_total_mae": 5.99,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              }
             }
           },
           "by_market_spread": {
@@ -1858,17 +2339,17 @@
             "mid_spread_6_to_under15": {
               "challenger": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 4,
-                  "n": 6,
+                  "losses": 5,
+                  "n": 7,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.3333,
+                  "win_pct_ex_push": 0.2857,
                   "wins": 2
                 },
-                "market_margin_mae": 10.333,
-                "market_total_mae": 15.167,
-                "matched_market_games": 6,
-                "model_margin_mae": 13.547,
-                "model_total_mae": 14.787,
+                "market_margin_mae": 9.643,
+                "market_total_mae": 13.071,
+                "matched_market_games": 7,
+                "model_margin_mae": 13.063,
+                "model_total_mae": 12.854,
                 "ou_with_min4pt_model_edge": {
                   "losses": 0,
                   "n": 2,
@@ -1879,29 +2360,29 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 3.214,
-              "margin_mae_delta_vs_v04": -0.851,
-              "matched_source_quotes": 6,
-              "total_mae_delta_vs_market": -0.38,
-              "total_mae_delta_vs_v04": -3.615,
+              "margin_mae_delta_vs_market": 3.42,
+              "margin_mae_delta_vs_v04": -1.241,
+              "matched_source_quotes": 7,
+              "total_mae_delta_vs_market": -0.217,
+              "total_mae_delta_vs_v04": -3.775,
               "v04": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 5,
-                  "n": 5,
+                  "losses": 6,
+                  "n": 6,
                   "pushes": 0,
                   "win_pct_ex_push": 0.0,
                   "wins": 0
                 },
-                "market_margin_mae": 10.333,
-                "market_total_mae": 15.167,
-                "matched_market_games": 6,
-                "model_margin_mae": 14.398,
-                "model_total_mae": 18.402,
+                "market_margin_mae": 9.643,
+                "market_total_mae": 13.071,
+                "matched_market_games": 7,
+                "model_margin_mae": 14.304,
+                "model_total_mae": 16.629,
                 "ou_with_min4pt_model_edge": {
-                  "losses": 2,
-                  "n": 5,
+                  "losses": 3,
+                  "n": 6,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.6,
+                  "win_pct_ex_push": 0.5,
                   "wins": 3
                 },
                 "quotes_are_not_verified_closing_lines": true,
@@ -1913,17 +2394,17 @@
             "limited_boxscore_sample_under5": {
               "challenger": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 6,
-                  "n": 16,
+                  "losses": 7,
+                  "n": 17,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.625,
+                  "win_pct_ex_push": 0.5882,
                   "wins": 10
                 },
-                "market_margin_mae": 9.9,
-                "market_total_mae": 12.95,
-                "matched_market_games": 20,
-                "model_margin_mae": 11.652,
-                "model_total_mae": 12.991,
+                "market_margin_mae": 9.69,
+                "market_total_mae": 12.357,
+                "matched_market_games": 21,
+                "model_margin_mae": 11.581,
+                "model_total_mae": 12.432,
                 "ou_with_min4pt_model_edge": {
                   "losses": 3,
                   "n": 10,
@@ -1934,29 +2415,29 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 1.752,
-              "margin_mae_delta_vs_v04": 0.68,
-              "matched_source_quotes": 20,
-              "total_mae_delta_vs_market": 0.041,
-              "total_mae_delta_vs_v04": -1.232,
+              "margin_mae_delta_vs_market": 1.891,
+              "margin_mae_delta_vs_v04": 0.477,
+              "matched_source_quotes": 21,
+              "total_mae_delta_vs_market": 0.075,
+              "total_mae_delta_vs_v04": -1.399,
               "v04": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 10,
-                  "n": 17,
+                  "losses": 11,
+                  "n": 18,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.4118,
+                  "win_pct_ex_push": 0.3889,
                   "wins": 7
                 },
-                "market_margin_mae": 9.9,
-                "market_total_mae": 12.95,
-                "matched_market_games": 20,
-                "model_margin_mae": 10.972,
-                "model_total_mae": 14.223,
+                "market_margin_mae": 9.69,
+                "market_total_mae": 12.357,
+                "matched_market_games": 21,
+                "model_margin_mae": 11.104,
+                "model_total_mae": 13.831,
                 "ou_with_min4pt_model_edge": {
-                  "losses": 5,
-                  "n": 13,
+                  "losses": 6,
+                  "n": 14,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.6154,
+                  "win_pct_ex_push": 0.5714,
                   "wins": 8
                 },
                 "quotes_are_not_verified_closing_lines": true,
@@ -2017,26 +2498,79 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               }
+            },
+            "DraftKings": {
+              "challenger": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 10.16,
+                "model_total_mae": 1.26,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 0,
+                  "n": 0,
+                  "pushes": 0,
+                  "win_pct_ex_push": null,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              },
+              "margin_mae_delta_vs_market": 4.66,
+              "margin_mae_delta_vs_v04": -3.58,
+              "matched_source_quotes": 1,
+              "total_mae_delta_vs_market": 0.76,
+              "total_mae_delta_vs_v04": -4.73,
+              "v04": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 13.74,
+                "model_total_mae": 5.99,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              }
             }
           },
-          "completed_frozen_pairs": 43,
-          "market_quote_coverage_pct": 46.51,
-          "matched_market_games": 20,
+          "completed_frozen_pairs": 44,
+          "market_quote_coverage_pct": 47.73,
+          "matched_market_games": 21,
           "notes": "Observed and source-hashed pretip bookmaker quotes only, not verified closings, no odds/ROI, do not infer significance from small edge-qualified ATS/O-U selections. Same source quote is used for v0.4 and each challenger.",
           "summary": {
             "challenger": {
               "ats_with_min3pt_model_edge": {
-                "losses": 6,
-                "n": 16,
+                "losses": 7,
+                "n": 17,
                 "pushes": 0,
-                "win_pct_ex_push": 0.625,
+                "win_pct_ex_push": 0.5882,
                 "wins": 10
               },
-              "market_margin_mae": 9.9,
-              "market_total_mae": 12.95,
-              "matched_market_games": 20,
-              "model_margin_mae": 11.652,
-              "model_total_mae": 12.991,
+              "market_margin_mae": 9.69,
+              "market_total_mae": 12.357,
+              "matched_market_games": 21,
+              "model_margin_mae": 11.581,
+              "model_total_mae": 12.432,
               "ou_with_min4pt_model_edge": {
                 "losses": 3,
                 "n": 10,
@@ -2047,29 +2581,29 @@
               "quotes_are_not_verified_closing_lines": true,
               "sportsbook_roi_not_available": true
             },
-            "margin_mae_delta_vs_market": 1.752,
-            "margin_mae_delta_vs_v04": 0.68,
-            "matched_source_quotes": 20,
-            "total_mae_delta_vs_market": 0.041,
-            "total_mae_delta_vs_v04": -1.232,
+            "margin_mae_delta_vs_market": 1.891,
+            "margin_mae_delta_vs_v04": 0.477,
+            "matched_source_quotes": 21,
+            "total_mae_delta_vs_market": 0.075,
+            "total_mae_delta_vs_v04": -1.399,
             "v04": {
               "ats_with_min3pt_model_edge": {
-                "losses": 10,
-                "n": 17,
+                "losses": 11,
+                "n": 18,
                 "pushes": 0,
-                "win_pct_ex_push": 0.4118,
+                "win_pct_ex_push": 0.3889,
                 "wins": 7
               },
-              "market_margin_mae": 9.9,
-              "market_total_mae": 12.95,
-              "matched_market_games": 20,
-              "model_margin_mae": 10.972,
-              "model_total_mae": 14.223,
+              "market_margin_mae": 9.69,
+              "market_total_mae": 12.357,
+              "matched_market_games": 21,
+              "model_margin_mae": 11.104,
+              "model_total_mae": 13.831,
               "ou_with_min4pt_model_edge": {
-                "losses": 5,
-                "n": 13,
+                "losses": 6,
+                "n": 14,
                 "pushes": 0,
-                "win_pct_ex_push": 0.6154,
+                "win_pct_ex_push": 0.5714,
                 "wins": 8
               },
               "quotes_are_not_verified_closing_lines": true,
@@ -2079,17 +2613,17 @@
         },
         "same_quote_simulator": {
           "ats_with_min3pt_model_edge": {
-            "losses": 6,
-            "n": 16,
+            "losses": 7,
+            "n": 17,
             "pushes": 0,
-            "win_pct_ex_push": 0.625,
+            "win_pct_ex_push": 0.5882,
             "wins": 10
           },
-          "market_margin_mae": 9.9,
-          "market_total_mae": 12.95,
-          "matched_market_games": 20,
-          "model_margin_mae": 11.652,
-          "model_total_mae": 12.991,
+          "market_margin_mae": 9.69,
+          "market_total_mae": 12.357,
+          "matched_market_games": 21,
+          "model_margin_mae": 11.581,
+          "model_total_mae": 12.432,
           "ou_with_min4pt_model_edge": {
             "losses": 3,
             "n": 10,
@@ -2102,46 +2636,46 @@
         },
         "same_quote_v04": {
           "ats_with_min3pt_model_edge": {
-            "losses": 10,
-            "n": 17,
+            "losses": 11,
+            "n": 18,
             "pushes": 0,
-            "win_pct_ex_push": 0.4118,
+            "win_pct_ex_push": 0.3889,
             "wins": 7
           },
-          "market_margin_mae": 9.9,
-          "market_total_mae": 12.95,
-          "matched_market_games": 20,
-          "model_margin_mae": 10.972,
-          "model_total_mae": 14.223,
+          "market_margin_mae": 9.69,
+          "market_total_mae": 12.357,
+          "matched_market_games": 21,
+          "model_margin_mae": 11.104,
+          "model_total_mae": 13.831,
           "ou_with_min4pt_model_edge": {
-            "losses": 5,
-            "n": 13,
+            "losses": 6,
+            "n": 14,
             "pushes": 0,
-            "win_pct_ex_push": 0.6154,
+            "win_pct_ex_push": 0.5714,
             "wins": 8
           },
           "quotes_are_not_verified_closing_lines": true,
           "sportsbook_roi_not_available": true
         },
         "simulator": {
-          "brier": 0.1857,
-          "margin_bias": -0.423,
+          "brier": 0.1837,
+          "margin_bias": -0.644,
           "margin_mae": 10.166,
-          "n": 43,
-          "su_accuracy": 0.6977,
-          "total_mae": 13.547
+          "n": 44,
+          "su_accuracy": 0.7045,
+          "total_mae": 13.267
         },
         "v04": {
-          "brier": 0.1992,
-          "margin_bias": 4.554,
-          "margin_mae": 10.304,
-          "n": 43,
-          "su_accuracy": 0.6977,
-          "total_mae": 14.559
+          "brier": 0.1988,
+          "margin_bias": 4.138,
+          "margin_mae": 10.382,
+          "n": 44,
+          "su_accuracy": 0.7045,
+          "total_mae": 14.364
         }
       },
       "split_total20": {
-        "frozen_pairs": 41,
+        "frozen_pairs": 42,
         "market_relative_context": {
           "by_game_date_utc": {
             "2026-11-14": {
@@ -2245,6 +2779,59 @@
                   "pushes": 0,
                   "win_pct_ex_push": 0.6667,
                   "wins": 2
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              }
+            },
+            "2026-11-17": {
+              "challenger": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 10.96,
+                "model_total_mae": 2.64,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 0,
+                  "n": 0,
+                  "pushes": 0,
+                  "win_pct_ex_push": null,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              },
+              "margin_mae_delta_vs_market": 5.46,
+              "margin_mae_delta_vs_v04": -2.78,
+              "matched_source_quotes": 1,
+              "total_mae_delta_vs_market": 2.14,
+              "total_mae_delta_vs_v04": -3.35,
+              "v04": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 13.74,
+                "model_total_mae": 5.99,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
                 },
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
@@ -2361,17 +2948,17 @@
             "mid_spread_6_to_under15": {
               "challenger": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 5,
-                  "n": 5,
+                  "losses": 6,
+                  "n": 6,
                   "pushes": 0,
                   "win_pct_ex_push": 0.0,
                   "wins": 0
                 },
-                "market_margin_mae": 10.333,
-                "market_total_mae": 15.167,
-                "matched_market_games": 6,
-                "model_margin_mae": 13.807,
-                "model_total_mae": 16.518,
+                "market_margin_mae": 9.643,
+                "market_total_mae": 13.071,
+                "matched_market_games": 7,
+                "model_margin_mae": 13.4,
+                "model_total_mae": 14.536,
                 "ou_with_min4pt_model_edge": {
                   "losses": 2,
                   "n": 4,
@@ -2382,29 +2969,29 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 3.474,
-              "margin_mae_delta_vs_v04": -0.591,
-              "matched_source_quotes": 6,
-              "total_mae_delta_vs_market": 1.351,
-              "total_mae_delta_vs_v04": -1.884,
+              "margin_mae_delta_vs_market": 3.757,
+              "margin_mae_delta_vs_v04": -0.904,
+              "matched_source_quotes": 7,
+              "total_mae_delta_vs_market": 1.465,
+              "total_mae_delta_vs_v04": -2.093,
               "v04": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 5,
-                  "n": 5,
+                  "losses": 6,
+                  "n": 6,
                   "pushes": 0,
                   "win_pct_ex_push": 0.0,
                   "wins": 0
                 },
-                "market_margin_mae": 10.333,
-                "market_total_mae": 15.167,
-                "matched_market_games": 6,
-                "model_margin_mae": 14.398,
-                "model_total_mae": 18.402,
+                "market_margin_mae": 9.643,
+                "market_total_mae": 13.071,
+                "matched_market_games": 7,
+                "model_margin_mae": 14.304,
+                "model_total_mae": 16.629,
                 "ou_with_min4pt_model_edge": {
-                  "losses": 2,
-                  "n": 5,
+                  "losses": 3,
+                  "n": 6,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.6,
+                  "win_pct_ex_push": 0.5,
                   "wins": 3
                 },
                 "quotes_are_not_verified_closing_lines": true,
@@ -2416,17 +3003,17 @@
             "limited_boxscore_sample_under5": {
               "challenger": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 8,
-                  "n": 15,
+                  "losses": 9,
+                  "n": 16,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.4667,
+                  "win_pct_ex_push": 0.4375,
                   "wins": 7
                 },
-                "market_margin_mae": 9.5,
-                "market_total_mae": 12.5,
-                "matched_market_games": 18,
-                "model_margin_mae": 10.228,
-                "model_total_mae": 13.577,
+                "market_margin_mae": 9.289,
+                "market_total_mae": 11.868,
+                "matched_market_games": 19,
+                "model_margin_mae": 10.267,
+                "model_total_mae": 13.002,
                 "ou_with_min4pt_model_edge": {
                   "losses": 4,
                   "n": 8,
@@ -2437,29 +3024,29 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.728,
-              "margin_mae_delta_vs_v04": -0.152,
-              "matched_source_quotes": 18,
-              "total_mae_delta_vs_market": 1.077,
-              "total_mae_delta_vs_v04": -0.482,
+              "margin_mae_delta_vs_market": 0.978,
+              "margin_mae_delta_vs_v04": -0.29,
+              "matched_source_quotes": 19,
+              "total_mae_delta_vs_market": 1.134,
+              "total_mae_delta_vs_v04": -0.633,
               "v04": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 9,
-                  "n": 16,
+                  "losses": 10,
+                  "n": 17,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.4375,
+                  "win_pct_ex_push": 0.4118,
                   "wins": 7
                 },
-                "market_margin_mae": 9.5,
-                "market_total_mae": 12.5,
-                "matched_market_games": 18,
-                "model_margin_mae": 10.38,
-                "model_total_mae": 14.059,
+                "market_margin_mae": 9.289,
+                "market_total_mae": 11.868,
+                "matched_market_games": 19,
+                "model_margin_mae": 10.557,
+                "model_total_mae": 13.635,
                 "ou_with_min4pt_model_edge": {
-                  "losses": 5,
-                  "n": 12,
+                  "losses": 6,
+                  "n": 13,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.5833,
+                  "win_pct_ex_push": 0.5385,
                   "wins": 7
                 },
                 "quotes_are_not_verified_closing_lines": true,
@@ -2520,26 +3107,79 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               }
+            },
+            "DraftKings": {
+              "challenger": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 10.96,
+                "model_total_mae": 2.64,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 0,
+                  "n": 0,
+                  "pushes": 0,
+                  "win_pct_ex_push": null,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              },
+              "margin_mae_delta_vs_market": 5.46,
+              "margin_mae_delta_vs_v04": -2.78,
+              "matched_source_quotes": 1,
+              "total_mae_delta_vs_market": 2.14,
+              "total_mae_delta_vs_v04": -3.35,
+              "v04": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 13.74,
+                "model_total_mae": 5.99,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              }
             }
           },
-          "completed_frozen_pairs": 41,
-          "market_quote_coverage_pct": 43.9,
-          "matched_market_games": 18,
+          "completed_frozen_pairs": 42,
+          "market_quote_coverage_pct": 45.24,
+          "matched_market_games": 19,
           "notes": "Observed and source-hashed pretip bookmaker quotes only, not verified closings, no odds/ROI, do not infer significance from small edge-qualified ATS/O-U selections. Same source quote is used for v0.4 and each challenger.",
           "summary": {
             "challenger": {
               "ats_with_min3pt_model_edge": {
-                "losses": 8,
-                "n": 15,
+                "losses": 9,
+                "n": 16,
                 "pushes": 0,
-                "win_pct_ex_push": 0.4667,
+                "win_pct_ex_push": 0.4375,
                 "wins": 7
               },
-              "market_margin_mae": 9.5,
-              "market_total_mae": 12.5,
-              "matched_market_games": 18,
-              "model_margin_mae": 10.228,
-              "model_total_mae": 13.577,
+              "market_margin_mae": 9.289,
+              "market_total_mae": 11.868,
+              "matched_market_games": 19,
+              "model_margin_mae": 10.267,
+              "model_total_mae": 13.002,
               "ou_with_min4pt_model_edge": {
                 "losses": 4,
                 "n": 8,
@@ -2550,29 +3190,29 @@
               "quotes_are_not_verified_closing_lines": true,
               "sportsbook_roi_not_available": true
             },
-            "margin_mae_delta_vs_market": 0.728,
-            "margin_mae_delta_vs_v04": -0.152,
-            "matched_source_quotes": 18,
-            "total_mae_delta_vs_market": 1.077,
-            "total_mae_delta_vs_v04": -0.482,
+            "margin_mae_delta_vs_market": 0.978,
+            "margin_mae_delta_vs_v04": -0.29,
+            "matched_source_quotes": 19,
+            "total_mae_delta_vs_market": 1.134,
+            "total_mae_delta_vs_v04": -0.633,
             "v04": {
               "ats_with_min3pt_model_edge": {
-                "losses": 9,
-                "n": 16,
+                "losses": 10,
+                "n": 17,
                 "pushes": 0,
-                "win_pct_ex_push": 0.4375,
+                "win_pct_ex_push": 0.4118,
                 "wins": 7
               },
-              "market_margin_mae": 9.5,
-              "market_total_mae": 12.5,
-              "matched_market_games": 18,
-              "model_margin_mae": 10.38,
-              "model_total_mae": 14.059,
+              "market_margin_mae": 9.289,
+              "market_total_mae": 11.868,
+              "matched_market_games": 19,
+              "model_margin_mae": 10.557,
+              "model_total_mae": 13.635,
               "ou_with_min4pt_model_edge": {
-                "losses": 5,
-                "n": 12,
+                "losses": 6,
+                "n": 13,
                 "pushes": 0,
-                "win_pct_ex_push": 0.5833,
+                "win_pct_ex_push": 0.5385,
                 "wins": 7
               },
               "quotes_are_not_verified_closing_lines": true,
@@ -2582,17 +3222,17 @@
         },
         "same_quote_simulator": {
           "ats_with_min3pt_model_edge": {
-            "losses": 8,
-            "n": 15,
+            "losses": 9,
+            "n": 16,
             "pushes": 0,
-            "win_pct_ex_push": 0.4667,
+            "win_pct_ex_push": 0.4375,
             "wins": 7
           },
-          "market_margin_mae": 9.5,
-          "market_total_mae": 12.5,
-          "matched_market_games": 18,
-          "model_margin_mae": 10.228,
-          "model_total_mae": 13.577,
+          "market_margin_mae": 9.289,
+          "market_total_mae": 11.868,
+          "matched_market_games": 19,
+          "model_margin_mae": 10.267,
+          "model_total_mae": 13.002,
           "ou_with_min4pt_model_edge": {
             "losses": 4,
             "n": 8,
@@ -2605,46 +3245,46 @@
         },
         "same_quote_v04": {
           "ats_with_min3pt_model_edge": {
-            "losses": 9,
-            "n": 16,
+            "losses": 10,
+            "n": 17,
             "pushes": 0,
-            "win_pct_ex_push": 0.4375,
+            "win_pct_ex_push": 0.4118,
             "wins": 7
           },
-          "market_margin_mae": 9.5,
-          "market_total_mae": 12.5,
-          "matched_market_games": 18,
-          "model_margin_mae": 10.38,
-          "model_total_mae": 14.059,
+          "market_margin_mae": 9.289,
+          "market_total_mae": 11.868,
+          "matched_market_games": 19,
+          "model_margin_mae": 10.557,
+          "model_total_mae": 13.635,
           "ou_with_min4pt_model_edge": {
-            "losses": 5,
-            "n": 12,
+            "losses": 6,
+            "n": 13,
             "pushes": 0,
-            "win_pct_ex_push": 0.5833,
+            "win_pct_ex_push": 0.5385,
             "wins": 7
           },
           "quotes_are_not_verified_closing_lines": true,
           "sportsbook_roi_not_available": true
         },
         "simulator": {
-          "brier": 0.1771,
-          "margin_bias": 3.592,
-          "margin_mae": 9.935,
-          "n": 41,
-          "su_accuracy": 0.7561,
-          "total_mae": 14.102
+          "brier": 0.1756,
+          "margin_bias": 3.245,
+          "margin_mae": 9.96,
+          "n": 42,
+          "su_accuracy": 0.7619,
+          "total_mae": 13.829
         },
         "v04": {
           "brier": 0.184,
-          "margin_bias": 3.981,
-          "margin_mae": 10.012,
-          "n": 41,
-          "su_accuracy": 0.7317,
-          "total_mae": 14.504
+          "margin_bias": 3.559,
+          "margin_mae": 10.1,
+          "n": 42,
+          "su_accuracy": 0.7381,
+          "total_mae": 14.301
         }
       },
       "trained_blend": {
-        "frozen_pairs": 43,
+        "frozen_pairs": 44,
         "market_relative_context": {
           "by_game_date_utc": {
             "2026-11-13": {
@@ -2805,6 +3445,59 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               }
+            },
+            "2026-11-17": {
+              "challenger": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 10.23,
+                "model_total_mae": 3.56,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 0,
+                  "n": 0,
+                  "pushes": 0,
+                  "win_pct_ex_push": null,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              },
+              "margin_mae_delta_vs_market": 4.73,
+              "margin_mae_delta_vs_v04": -3.51,
+              "matched_source_quotes": 1,
+              "total_mae_delta_vs_market": 3.06,
+              "total_mae_delta_vs_v04": -2.43,
+              "v04": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 13.74,
+                "model_total_mae": 5.99,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              }
             }
           },
           "by_market_spread": {
@@ -2917,17 +3610,17 @@
             "mid_spread_6_to_under15": {
               "challenger": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 5,
-                  "n": 5,
+                  "losses": 6,
+                  "n": 6,
                   "pushes": 0,
                   "win_pct_ex_push": 0.0,
                   "wins": 0
                 },
-                "market_margin_mae": 10.333,
-                "market_total_mae": 15.167,
-                "matched_market_games": 6,
-                "model_margin_mae": 13.807,
-                "model_total_mae": 16.407,
+                "market_margin_mae": 9.643,
+                "market_total_mae": 13.071,
+                "matched_market_games": 7,
+                "model_margin_mae": 13.296,
+                "model_total_mae": 14.571,
                 "ou_with_min4pt_model_edge": {
                   "losses": 1,
                   "n": 3,
@@ -2938,29 +3631,29 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 3.474,
-              "margin_mae_delta_vs_v04": -0.591,
-              "matched_source_quotes": 6,
-              "total_mae_delta_vs_market": 1.24,
-              "total_mae_delta_vs_v04": -1.995,
+              "margin_mae_delta_vs_market": 3.653,
+              "margin_mae_delta_vs_v04": -1.008,
+              "matched_source_quotes": 7,
+              "total_mae_delta_vs_market": 1.5,
+              "total_mae_delta_vs_v04": -2.058,
               "v04": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 5,
-                  "n": 5,
+                  "losses": 6,
+                  "n": 6,
                   "pushes": 0,
                   "win_pct_ex_push": 0.0,
                   "wins": 0
                 },
-                "market_margin_mae": 10.333,
-                "market_total_mae": 15.167,
-                "matched_market_games": 6,
-                "model_margin_mae": 14.398,
-                "model_total_mae": 18.402,
+                "market_margin_mae": 9.643,
+                "market_total_mae": 13.071,
+                "matched_market_games": 7,
+                "model_margin_mae": 14.304,
+                "model_total_mae": 16.629,
                 "ou_with_min4pt_model_edge": {
-                  "losses": 2,
-                  "n": 5,
+                  "losses": 3,
+                  "n": 6,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.6,
+                  "win_pct_ex_push": 0.5,
                   "wins": 3
                 },
                 "quotes_are_not_verified_closing_lines": true,
@@ -2972,17 +3665,17 @@
             "limited_boxscore_sample_under5": {
               "challenger": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 8,
-                  "n": 15,
+                  "losses": 9,
+                  "n": 16,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.4667,
+                  "win_pct_ex_push": 0.4375,
                   "wins": 7
                 },
-                "market_margin_mae": 9.9,
-                "market_total_mae": 12.95,
-                "matched_market_games": 20,
-                "model_margin_mae": 10.676,
-                "model_total_mae": 14.174,
+                "market_margin_mae": 9.69,
+                "market_total_mae": 12.357,
+                "matched_market_games": 21,
+                "model_margin_mae": 10.655,
+                "model_total_mae": 13.668,
                 "ou_with_min4pt_model_edge": {
                   "losses": 5,
                   "n": 9,
@@ -2993,29 +3686,29 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.776,
-              "margin_mae_delta_vs_v04": -0.296,
-              "matched_source_quotes": 20,
-              "total_mae_delta_vs_market": 1.224,
-              "total_mae_delta_vs_v04": -0.049,
+              "margin_mae_delta_vs_market": 0.965,
+              "margin_mae_delta_vs_v04": -0.449,
+              "matched_source_quotes": 21,
+              "total_mae_delta_vs_market": 1.311,
+              "total_mae_delta_vs_v04": -0.163,
               "v04": {
                 "ats_with_min3pt_model_edge": {
-                  "losses": 10,
-                  "n": 17,
+                  "losses": 11,
+                  "n": 18,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.4118,
+                  "win_pct_ex_push": 0.3889,
                   "wins": 7
                 },
-                "market_margin_mae": 9.9,
-                "market_total_mae": 12.95,
-                "matched_market_games": 20,
-                "model_margin_mae": 10.972,
-                "model_total_mae": 14.223,
+                "market_margin_mae": 9.69,
+                "market_total_mae": 12.357,
+                "matched_market_games": 21,
+                "model_margin_mae": 11.104,
+                "model_total_mae": 13.831,
                 "ou_with_min4pt_model_edge": {
-                  "losses": 5,
-                  "n": 13,
+                  "losses": 6,
+                  "n": 14,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.6154,
+                  "win_pct_ex_push": 0.5714,
                   "wins": 8
                 },
                 "quotes_are_not_verified_closing_lines": true,
@@ -3076,26 +3769,79 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               }
+            },
+            "DraftKings": {
+              "challenger": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 10.23,
+                "model_total_mae": 3.56,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 0,
+                  "n": 0,
+                  "pushes": 0,
+                  "win_pct_ex_push": null,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              },
+              "margin_mae_delta_vs_market": 4.73,
+              "margin_mae_delta_vs_v04": -3.51,
+              "matched_source_quotes": 1,
+              "total_mae_delta_vs_market": 3.06,
+              "total_mae_delta_vs_v04": -2.43,
+              "v04": {
+                "ats_with_min3pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "market_margin_mae": 5.5,
+                "market_total_mae": 0.5,
+                "matched_market_games": 1,
+                "model_margin_mae": 13.74,
+                "model_total_mae": 5.99,
+                "ou_with_min4pt_model_edge": {
+                  "losses": 1,
+                  "n": 1,
+                  "pushes": 0,
+                  "win_pct_ex_push": 0.0,
+                  "wins": 0
+                },
+                "quotes_are_not_verified_closing_lines": true,
+                "sportsbook_roi_not_available": true
+              }
             }
           },
-          "completed_frozen_pairs": 43,
-          "market_quote_coverage_pct": 46.51,
-          "matched_market_games": 20,
+          "completed_frozen_pairs": 44,
+          "market_quote_coverage_pct": 47.73,
+          "matched_market_games": 21,
           "notes": "Observed and source-hashed pretip bookmaker quotes only, not verified closings, no odds/ROI, do not infer significance from small edge-qualified ATS/O-U selections. Same source quote is used for v0.4 and each challenger.",
           "summary": {
             "challenger": {
               "ats_with_min3pt_model_edge": {
-                "losses": 8,
-                "n": 15,
+                "losses": 9,
+                "n": 16,
                 "pushes": 0,
-                "win_pct_ex_push": 0.4667,
+                "win_pct_ex_push": 0.4375,
                 "wins": 7
               },
-              "market_margin_mae": 9.9,
-              "market_total_mae": 12.95,
-              "matched_market_games": 20,
-              "model_margin_mae": 10.676,
-              "model_total_mae": 14.174,
+              "market_margin_mae": 9.69,
+              "market_total_mae": 12.357,
+              "matched_market_games": 21,
+              "model_margin_mae": 10.655,
+              "model_total_mae": 13.668,
               "ou_with_min4pt_model_edge": {
                 "losses": 5,
                 "n": 9,
@@ -3106,29 +3852,29 @@
               "quotes_are_not_verified_closing_lines": true,
               "sportsbook_roi_not_available": true
             },
-            "margin_mae_delta_vs_market": 0.776,
-            "margin_mae_delta_vs_v04": -0.296,
-            "matched_source_quotes": 20,
-            "total_mae_delta_vs_market": 1.224,
-            "total_mae_delta_vs_v04": -0.049,
+            "margin_mae_delta_vs_market": 0.965,
+            "margin_mae_delta_vs_v04": -0.449,
+            "matched_source_quotes": 21,
+            "total_mae_delta_vs_market": 1.311,
+            "total_mae_delta_vs_v04": -0.163,
             "v04": {
               "ats_with_min3pt_model_edge": {
-                "losses": 10,
-                "n": 17,
+                "losses": 11,
+                "n": 18,
                 "pushes": 0,
-                "win_pct_ex_push": 0.4118,
+                "win_pct_ex_push": 0.3889,
                 "wins": 7
               },
-              "market_margin_mae": 9.9,
-              "market_total_mae": 12.95,
-              "matched_market_games": 20,
-              "model_margin_mae": 10.972,
-              "model_total_mae": 14.223,
+              "market_margin_mae": 9.69,
+              "market_total_mae": 12.357,
+              "matched_market_games": 21,
+              "model_margin_mae": 11.104,
+              "model_total_mae": 13.831,
               "ou_with_min4pt_model_edge": {
-                "losses": 5,
-                "n": 13,
+                "losses": 6,
+                "n": 14,
                 "pushes": 0,
-                "win_pct_ex_push": 0.6154,
+                "win_pct_ex_push": 0.5714,
                 "wins": 8
               },
               "quotes_are_not_verified_closing_lines": true,
@@ -3138,17 +3884,17 @@
         },
         "same_quote_simulator": {
           "ats_with_min3pt_model_edge": {
-            "losses": 8,
-            "n": 15,
+            "losses": 9,
+            "n": 16,
             "pushes": 0,
-            "win_pct_ex_push": 0.4667,
+            "win_pct_ex_push": 0.4375,
             "wins": 7
           },
-          "market_margin_mae": 9.9,
-          "market_total_mae": 12.95,
-          "matched_market_games": 20,
-          "model_margin_mae": 10.676,
-          "model_total_mae": 14.174,
+          "market_margin_mae": 9.69,
+          "market_total_mae": 12.357,
+          "matched_market_games": 21,
+          "model_margin_mae": 10.655,
+          "model_total_mae": 13.668,
           "ou_with_min4pt_model_edge": {
             "losses": 5,
             "n": 9,
@@ -3161,42 +3907,42 @@
         },
         "same_quote_v04": {
           "ats_with_min3pt_model_edge": {
-            "losses": 10,
-            "n": 17,
+            "losses": 11,
+            "n": 18,
             "pushes": 0,
-            "win_pct_ex_push": 0.4118,
+            "win_pct_ex_push": 0.3889,
             "wins": 7
           },
-          "market_margin_mae": 9.9,
-          "market_total_mae": 12.95,
-          "matched_market_games": 20,
-          "model_margin_mae": 10.972,
-          "model_total_mae": 14.223,
+          "market_margin_mae": 9.69,
+          "market_total_mae": 12.357,
+          "matched_market_games": 21,
+          "model_margin_mae": 11.104,
+          "model_total_mae": 13.831,
           "ou_with_min4pt_model_edge": {
-            "losses": 5,
-            "n": 13,
+            "losses": 6,
+            "n": 14,
             "pushes": 0,
-            "win_pct_ex_push": 0.6154,
+            "win_pct_ex_push": 0.5714,
             "wins": 8
           },
           "quotes_are_not_verified_closing_lines": true,
           "sportsbook_roi_not_available": true
         },
         "simulator": {
-          "brier": 0.1942,
-          "margin_bias": 4.873,
-          "margin_mae": 10.31,
-          "n": 43,
-          "su_accuracy": 0.6977,
-          "total_mae": 14.531
+          "brier": 0.192,
+          "margin_bias": 4.53,
+          "margin_mae": 10.309,
+          "n": 44,
+          "su_accuracy": 0.7045,
+          "total_mae": 14.282
         },
         "v04": {
-          "brier": 0.1992,
-          "margin_bias": 4.554,
-          "margin_mae": 10.304,
-          "n": 43,
-          "su_accuracy": 0.6977,
-          "total_mae": 14.559
+          "brier": 0.1988,
+          "margin_bias": 4.138,
+          "margin_mae": 10.382,
+          "n": 44,
+          "su_accuracy": 0.7045,
+          "total_mae": 14.364
         }
       }
     },

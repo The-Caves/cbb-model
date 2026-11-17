@@ -1,65 +1,65 @@
 {
   "active_model_unchanged": true,
-  "as_of_utc": "2026-11-17T19:54:44Z",
-  "genuinely_frozen_v05_games_graded": 137,
+  "as_of_utc": "2026-11-17T23:51:26Z",
+  "genuinely_frozen_v05_games_graded": 139,
   "genuinely_frozen_v05_games_graded_available": true,
   "minimum_paired_games_each_variant": 150,
-  "paired_games_each_variant_min": 137,
+  "paired_games_each_variant_min": 139,
   "promotion_gate": "INSUFFICIENT_PROSPECTIVE_HOLDOUT",
   "status": "PROSPECTIVE_RESEARCH_ONLY",
   "variants": {
     "less_shrinkage": {
       "v04": {
-        "brier": 0.1714,
-        "margin_bias": 1.153,
-        "margin_mae": 10.719,
-        "n": 137,
-        "su_accuracy": 0.7445,
-        "total_mae": 14.326
+        "brier": 0.1702,
+        "margin_bias": 1.081,
+        "margin_mae": 10.707,
+        "n": 139,
+        "su_accuracy": 0.7482,
+        "total_mae": 14.301
       },
       "v05": {
-        "brier": 0.1728,
-        "margin_bias": 1.858,
-        "margin_mae": 10.838,
-        "n": 137,
-        "su_accuracy": 0.7445,
-        "total_mae": 14.437
+        "brier": 0.1716,
+        "margin_bias": 1.786,
+        "margin_mae": 10.834,
+        "n": 139,
+        "su_accuracy": 0.7482,
+        "total_mae": 14.416
       }
     },
     "lighter_carryover": {
       "v04": {
-        "brier": 0.1714,
-        "margin_bias": 1.153,
-        "margin_mae": 10.719,
-        "n": 137,
-        "su_accuracy": 0.7445,
-        "total_mae": 14.326
+        "brier": 0.1702,
+        "margin_bias": 1.081,
+        "margin_mae": 10.707,
+        "n": 139,
+        "su_accuracy": 0.7482,
+        "total_mae": 14.301
       },
       "v05": {
-        "brier": 0.169,
-        "margin_bias": 0.629,
-        "margin_mae": 10.665,
-        "n": 137,
-        "su_accuracy": 0.7518,
-        "total_mae": 14.146
+        "brier": 0.1674,
+        "margin_bias": 0.57,
+        "margin_mae": 10.619,
+        "n": 139,
+        "su_accuracy": 0.7554,
+        "total_mae": 14.092
       }
     },
     "roster_fade": {
       "v04": {
-        "brier": 0.1714,
-        "margin_bias": 1.153,
-        "margin_mae": 10.719,
-        "n": 137,
-        "su_accuracy": 0.7445,
-        "total_mae": 14.326
+        "brier": 0.1702,
+        "margin_bias": 1.081,
+        "margin_mae": 10.707,
+        "n": 139,
+        "su_accuracy": 0.7482,
+        "total_mae": 14.301
       },
       "v05": {
-        "brier": 0.1706,
-        "margin_bias": 1.005,
-        "margin_mae": 10.7,
-        "n": 137,
-        "su_accuracy": 0.7518,
-        "total_mae": 14.267
+        "brier": 0.1693,
+        "margin_bias": 0.937,
+        "margin_mae": 10.676,
+        "n": 139,
+        "su_accuracy": 0.7554,
+        "total_mae": 14.232
       }
     }
   },
