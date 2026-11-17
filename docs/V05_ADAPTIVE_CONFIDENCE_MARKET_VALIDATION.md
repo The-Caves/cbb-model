@@ -43,6 +43,7 @@ For every genuinely completed, matched frozen research candidate and original v0
 - By-market favorite size: under 6, 6–under 15, and 15+ points; unknown lines are explicitly missing
 - By verified boxscore sample size, provider identity, and UTC game date
 - W/L/push, qualifying selections, quote availability and explicit market-source data limitations
+- For every new variant, **direct same-game, within-two-hour matched comparisons against the website-featured Blend20**, using the same pre-tip bookmaker quote observed before both models and the original baseline. Incompatible captures and missing counterpart forecasts are excluded; do not compare a new 2-game challenger denominator with an older 43-game featured denominator.
 
 No unquoted historical betting lines, assumption of closing lines, fabricated FanDuel offerings, profitability or ROI predictions. Source lines should NOT train their own retrospective ATS edge without independent out-of-sample evidence and reliable price capture.
 
