@@ -66,13 +66,21 @@ def model_observation(g, prediction, margin_sd):
     actual_total = float(g["home_score"]) + float(g["away_score"])
     m, t = float(prediction["pred_margin"]), float(prediction["pred_total"])
     p = float(norm.cdf(m / max(8.0, margin_sd)))
+    # Early research ledgers saved valid pre-tip model scores without
+    # home_current_games/away_current_games. Those are optional *analysis*
+    # metadata, not prerequisites for scoring margin, total, SU or Brier.
+    # Missing metadata is unknown, never 0 or a reconstructed current sample.
+    home_n = prediction.get("home_current_games")
+    away_n = prediction.get("away_current_games")
+    current_games_min = (min(int(home_n), int(away_n))
+                         if home_n is not None and away_n is not None
+                         else None)
     return {"game_id": str(g["game_id"]), "tip_utc": g["tip_utc"],
             "pred_margin": m, "pred_total": t,
             "actual_margin": actual_margin, "actual_total": actual_total,
             "correct": int((m > 0) == (actual_margin > 0)),
             "brier": (p - int(actual_margin > 0)) ** 2,
-            "current_games_min": min(int(prediction["home_current_games"]),
-                                     int(prediction["away_current_games"])),
+            "current_games_min": current_games_min,
             "big_favorite": abs(m) >= 12}
 
 
@@ -153,7 +161,8 @@ def retrospective(games, verified, year=2026, start="2025-11-01",
             "comparison": paired_metrics(data),
             "early_sample_under5": {
                 name: metrics([x for x in data[name]
-                               if x["current_games_min"] < 5])
+                               if x["current_games_min"] is not None
+                               and x["current_games_min"] < 5])
                 for name in (V04, *VARIANTS)},
             "v04_favorites_12plus": {
                 name: metrics([x for x in data[name]
