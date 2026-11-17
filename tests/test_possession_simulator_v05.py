@@ -124,6 +124,15 @@ def test_real_pretip_quote_must_precede_both_forecasts(tmp_path):
     assert good["v04"]["n"]==good["simulator"]["n"]==1
     assert good["same_quote_simulator"]["ats_with_min3pt_model_edge"]["wins"]==1
     assert good["same_quote_simulator"]["ou_with_min4pt_model_edge"]["losses"]==1
+    audit=good["market_relative_context"]
+    assert audit["matched_market_games"]==1
+    assert audit["completed_frozen_pairs"]==1
+    assert audit["market_quote_coverage_pct"]==100.0
+    assert audit["summary"]["matched_source_quotes"]==1
+    assert audit["summary"]["challenger"]["matched_market_games"]==1
+    assert audit["by_market_spread"]["mid_spread_6_to_under15"]["matched_source_quotes"]==1
+    assert audit["by_source_provider"]["DraftKings"]["matched_source_quotes"]==1
+    assert audit["by_model_boxscore_sample"]["mature_boxscore_sample_5plus"]["matched_source_quotes"]==1
     # Older simulator shadow rows also lack optional season sample metadata.
     # They must not cause the entire scheduled pipeline to fail.
     legacy={k:v for k,v in cand.items() if k not in (
@@ -134,7 +143,9 @@ def test_real_pretip_quote_must_precede_both_forecasts(tmp_path):
     assert historic["v04"]["n"]==historic["simulator"]["n"]==1
     assert historic["same_quote_simulator"]["matched_market_games"]==1
     books.write_text(json.dumps({**q,"captured_utc":iso(TIP-timedelta(hours=2))})+"\n")
-    assert grade([g],{"1","2"},now,base,shadow,books)["results"]["blend20"]["same_quote_simulator"]["matched_market_games"]==0
+    no_quote=grade([g],{"1","2"},now,base,shadow,books)["results"]["blend20"]
+    assert no_quote["same_quote_simulator"]["matched_market_games"]==0
+    assert no_quote["market_relative_context"]["market_quote_coverage_pct"]==0.0
     after={**cand,"captured_utc":iso(TIP+timedelta(seconds=1))}
     shadow.write_text(json.dumps(after)+"\n")
     assert not valid_forecast(after,g,now)
@@ -216,3 +227,35 @@ def test_adaptive_model_preserves_featured_blend_and_requires_real_evidence():
     assert not valid_forecast({k:v for k,v in rec.items()
                               if k!="source_maturity_confidence"},
                               game(),TIP-timedelta(hours=3))
+
+
+
+def test_context_market_groups_are_same_game_and_never_invent_lines():
+    from possession_simulator_v05 import market_relative_slices
+    from matchup_v05 import _market_metrics
+    def pack(gid,spread,provider,hbox,abox):
+        quote={"provider":provider,"home_spread":spread,"total":148.5}
+        model={"game_id":gid,"provider":provider,
+               "model_margin_error":6.5,"market_margin_error":7.0,
+               "model_total_error":7.0,"market_total_error":8.0,
+               "ats":"W","ou":"L"}
+        base={**model,"model_margin_error":7.4,"model_total_error":7.5}
+        return {"quote":quote,"game":{"tip_utc":"2026-11-17T20:00:00Z"},
+                "snapshot":{"home_shot_games":hbox,"away_shot_games":abox},
+                "v04":base,"research":model}
+    rows=[pack("a",-3.5,"ESPN BET",2,8),
+          pack("b",-11.5,"DraftKings",8,8),
+          pack("c",-22.5,"DraftKings",9,9),
+          pack("d",None,"ESPN BET",None,None)]
+    result=market_relative_slices(rows,6)
+    assert result["matched_market_games"]==4
+    assert result["market_quote_coverage_pct"]==66.67
+    assert result["summary"]["margin_mae_delta_vs_v04"]==-0.9
+    assert result["summary"]["total_mae_delta_vs_market"]==-1.0
+    for name in ("close_spread_under6","mid_spread_6_to_under15",
+                 "large_spread_15plus","spread_unavailable"):
+        assert result["by_market_spread"][name]["matched_source_quotes"]==1
+    assert result["by_source_provider"]["ESPN BET"]["matched_source_quotes"]==2
+    assert result["by_model_boxscore_sample"]["limited_boxscore_sample_under5"]["matched_source_quotes"]==1
+    assert result["by_model_boxscore_sample"]["boxscore_coverage_unavailable"]["matched_source_quotes"]==1
+    assert result["by_game_date_utc"]["2026-11-17"]["matched_source_quotes"]==4
