@@ -1,43 +1,43 @@
 {
-  "accepted_rows_in_archive": 3286,
+  "accepted_rows_in_archive": 3364,
   "active_model_changed": false,
   "archived_valid_non_d1_game_boxscores": 10,
-  "as_of_utc": "2026-11-17T06:59:36Z",
+  "as_of_utc": "2026-11-17T07:01:20Z",
   "by_season": {
     "2025": {
-      "coverage_fraction": 0.1525,
-      "d1_teams_with_5plus_games": 224,
+      "coverage_fraction": 0.1528,
+      "d1_teams_with_5plus_games": 226,
       "disputed_source_score_games": 0,
       "eligible_d1_final_games": 5733,
-      "missing_boxscores": 4859,
+      "missing_boxscores": 4857,
       "other_or_unverified_final_games": 559,
       "teams_with_any_verified_games": 363,
-      "verified_boxscores": 874
+      "verified_boxscores": 876
     },
     "2026": {
-      "coverage_fraction": 0.3213,
+      "coverage_fraction": 0.3234,
       "d1_teams_with_5plus_games": 364,
       "disputed_source_score_games": 0,
       "eligible_d1_final_games": 5723,
-      "missing_boxscores": 3884,
+      "missing_boxscores": 3872,
       "other_or_unverified_final_games": 577,
       "teams_with_any_verified_games": 364,
-      "verified_boxscores": 1839
+      "verified_boxscores": 1851
     },
     "2027": {
-      "coverage_fraction": 0.8951,
-      "d1_teams_with_5plus_games": 22,
+      "coverage_fraction": 0.9921,
+      "d1_teams_with_5plus_games": 33,
       "disputed_source_score_games": 39,
-      "eligible_d1_final_games": 629,
-      "missing_boxscores": 66,
-      "other_or_unverified_final_games": 222,
-      "teams_with_any_verified_games": 363,
-      "verified_boxscores": 563
+      "eligible_d1_final_games": 632,
+      "missing_boxscores": 5,
+      "other_or_unverified_final_games": 223,
+      "teams_with_any_verified_games": 364,
+      "verified_boxscores": 627
     }
   },
   "disputed_archived_boxscores": 0,
   "disputed_source_score_games": 39,
-  "eligible_verified_d1_boxscores": 3276,
+  "eligible_verified_d1_boxscores": 3354,
   "historical_available_as_of": false,
   "quarantine_sample": [],
   "quarantined_rows": 0,
