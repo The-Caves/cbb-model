@@ -739,9 +739,46 @@ def grade(games,verified,now,champion_path,sim_path,market_path):
                 joined_market,len(sim_data))}
         if results[variant]["v04"]["n"]!=results[variant]["simulator"]["n"]:
             raise AssertionError("Different graded outcome denominators")
+    # Comparisons to the user-selected featured Blend20 MUST be paired on the
+    # identical game and two genuine pre-tip captures. Adaptive variants are
+    # not allowed to inherit Blend20's older results or claim its denominator.
+    featured_comparisons={}
+    for variant in VARIANTS:
+        if variant=="blend20":
+            continue
+        base_obs=[];candidate_obs=[];base_quote=[];candidate_quote=[]
+        for (gid,name),rec in saved.items():
+            if name!=variant:
+                continue
+            featured=saved.get((gid,"blend20"))
+            if (featured is None or
+                abs((dt(featured["captured_utc"])-
+                    dt(rec["captured_utc"])).total_seconds())>7200):
+                continue
+            game=by_id[gid]
+            baseline=champion[gid]
+            base_obs.append(model_observation(game,featured,12))
+            candidate_obs.append(model_observation(game,rec,12))
+            quote=_quote_asof(quotes[gid],game,min(
+                utc(featured["captured_utc"]),utc(rec["captured_utc"]),
+                utc(baseline["captured_utc"])))
+            if quote:
+                base_quote.append(_market_row(game,featured,quote))
+                candidate_quote.append(_market_row(game,rec,quote))
+        if len(base_obs)!=len(candidate_obs):
+            raise AssertionError("Different featured-v05 comparison denominators")
+        featured_comparisons[variant]={
+            "paired_games":len(candidate_obs),
+            "featured_blend20":metrics(base_obs),
+            "challenger":metrics(candidate_obs),
+            "same_quote_blend20":_market_metrics(base_quote),
+            "same_quote_challenger":_market_metrics(candidate_quote),
+            "cannot_interpret_small_sample":len(candidate_obs)<MIN_PROSPECTIVE,
+        }
     return {
         "status":"SOURCE_FROZEN_MATCHED_SIMULATOR_RESEARCH",
         "versions":VERSION,"results":results,
+        "paired_comparisons_against_featured_blend20":featured_comparisons,
         "minimum_pairs_for_review":MIN_PROSPECTIVE,
         "website_model_unchanged":True,
         "promotion_gate":"INSUFFICIENT_INDEPENDENT_PRETIP_ATS_OU",
