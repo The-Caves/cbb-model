@@ -1,10 +1,10 @@
 {
   "active_v04_unchanged": true,
-  "as_of_utc": "2026-11-17T23:51:40Z",
+  "as_of_utc": "2026-11-18T14:00:18Z",
   "experiment": "CBB_V05_OPP_ADJ_RECENCY_RESEARCH_20261113",
   "freeze": {
-    "captured": 432,
-    "games": 144,
+    "captured": 393,
+    "games": 131,
     "status": "GENUINE_PRETIP_RESEARCH_FREEZE"
   },
   "grade": {
@@ -12,56 +12,56 @@
     "graded_by_variant": {
       "recency_21": {
         "challenger": {
-          "brier": 0.1674,
-          "margin_bias": 1.106,
-          "margin_mae": 10.712,
-          "n": 138,
-          "su_accuracy": 0.7536,
-          "total_mae": 14.177
+          "brier": 0.172,
+          "margin_bias": 1.254,
+          "margin_mae": 10.926,
+          "n": 189,
+          "su_accuracy": 0.7302,
+          "total_mae": 13.932
         },
         "v04": {
-          "brier": 0.1672,
-          "margin_bias": 1.166,
-          "margin_mae": 10.707,
-          "n": 138,
-          "su_accuracy": 0.7536,
-          "total_mae": 14.163
+          "brier": 0.1715,
+          "margin_bias": 1.321,
+          "margin_mae": 10.918,
+          "n": 189,
+          "su_accuracy": 0.7302,
+          "total_mae": 13.918
         }
       },
       "recency_45": {
         "challenger": {
-          "brier": 0.1673,
-          "margin_bias": 1.137,
-          "margin_mae": 10.709,
-          "n": 138,
-          "su_accuracy": 0.7536,
-          "total_mae": 14.169
+          "brier": 0.1717,
+          "margin_bias": 1.288,
+          "margin_mae": 10.922,
+          "n": 189,
+          "su_accuracy": 0.7302,
+          "total_mae": 13.923
         },
         "v04": {
-          "brier": 0.1672,
-          "margin_bias": 1.166,
-          "margin_mae": 10.707,
-          "n": 138,
-          "su_accuracy": 0.7536,
-          "total_mae": 14.163
+          "brier": 0.1715,
+          "margin_bias": 1.321,
+          "margin_mae": 10.918,
+          "n": 189,
+          "su_accuracy": 0.7302,
+          "total_mae": 13.918
         }
       },
       "recency_45_prior15": {
         "challenger": {
-          "brier": 0.1643,
-          "margin_bias": 0.614,
-          "margin_mae": 10.609,
-          "n": 138,
-          "su_accuracy": 0.7609,
-          "total_mae": 13.962
+          "brier": 0.1685,
+          "margin_bias": 0.811,
+          "margin_mae": 10.802,
+          "n": 189,
+          "su_accuracy": 0.746,
+          "total_mae": 13.751
         },
         "v04": {
-          "brier": 0.1672,
-          "margin_bias": 1.166,
-          "margin_mae": 10.707,
-          "n": 138,
-          "su_accuracy": 0.7536,
-          "total_mae": 14.163
+          "brier": 0.1715,
+          "margin_bias": 1.321,
+          "margin_mae": 10.918,
+          "n": 189,
+          "su_accuracy": 0.7302,
+          "total_mae": 13.918
         }
       }
     },
