@@ -19,7 +19,7 @@
       }
     ],
     "first_observed_utc": "2026-11-17T23:51:21Z",
-    "last_seen_utc": "2026-11-18T19:26:11Z"
+    "last_seen_utc": "2026-11-18T23:24:26Z"
   },
   "401909525": {
     "evidence": [
@@ -41,7 +41,7 @@
       }
     ],
     "first_observed_utc": "2026-11-17T06:13:25Z",
-    "last_seen_utc": "2026-11-18T19:26:09Z"
+    "last_seen_utc": "2026-11-18T23:24:23Z"
   },
   "401909786": {
     "evidence": [
@@ -101,7 +101,7 @@
       }
     ],
     "first_observed_utc": "2026-11-08T21:12:06Z",
-    "last_seen_utc": "2026-11-18T19:26:04Z"
+    "last_seen_utc": "2026-11-18T23:24:13Z"
   },
   "401917528": {
     "evidence": [
@@ -123,7 +123,7 @@
       }
     ],
     "first_observed_utc": "2026-11-17T06:13:25Z",
-    "last_seen_utc": "2026-11-18T19:26:09Z"
+    "last_seen_utc": "2026-11-18T23:24:23Z"
   },
   "401917963": {
     "evidence": [
@@ -145,7 +145,7 @@
       }
     ],
     "first_observed_utc": "2026-11-11T12:44:22Z",
-    "last_seen_utc": "2026-11-18T19:26:04Z"
+    "last_seen_utc": "2026-11-18T23:24:13Z"
   },
   "401918053": {
     "evidence": [
@@ -189,7 +189,7 @@
       }
     ],
     "first_observed_utc": "2026-11-11T23:28:29Z",
-    "last_seen_utc": "2026-11-18T19:26:04Z"
+    "last_seen_utc": "2026-11-18T23:24:13Z"
   },
   "401919029": {
     "evidence": [
@@ -277,7 +277,7 @@
       }
     ],
     "first_observed_utc": "2026-11-17T06:13:24Z",
-    "last_seen_utc": "2026-11-18T19:26:08Z"
+    "last_seen_utc": "2026-11-18T23:24:22Z"
   },
   "401920074": {
     "evidence": [
@@ -299,7 +299,7 @@
       }
     ],
     "first_observed_utc": "2026-11-17T06:13:24Z",
-    "last_seen_utc": "2026-11-18T19:26:08Z"
+    "last_seen_utc": "2026-11-18T23:24:22Z"
   },
   "401920123": {
     "evidence": [
@@ -381,7 +381,7 @@
       }
     ],
     "first_observed_utc": "2026-11-17T23:51:22Z",
-    "last_seen_utc": "2026-11-18T19:26:12Z"
+    "last_seen_utc": "2026-11-18T23:24:28Z"
   },
   "401920514": {
     "evidence": [
@@ -416,10 +416,26 @@
         ],
         "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
         "source_sha256": "00167fa8dcf58e560d4e1605c808f3aecb629bac2465cad5f08ceccb3c6cd9ed"
+      },
+      {
+        "game_id": "401920514",
+        "new_identity": [
+          "57",
+          "248",
+          "2026-11-18T21:48:00Z"
+        ],
+        "observed_utc": "2026-11-18T23:24:28Z",
+        "original_identity": [
+          "-1",
+          "-2",
+          "2026-11-18T21:30:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "40419bb4a2b61a880807d39bd760f6c640182d52172f38ecde43fa508031c3a5"
       }
     ],
     "first_observed_utc": "2026-11-17T23:51:22Z",
-    "last_seen_utc": "2026-11-18T19:26:12Z"
+    "last_seen_utc": "2026-11-18T23:24:28Z"
   },
   "401920515": {
     "evidence": [
@@ -441,7 +457,7 @@
       }
     ],
     "first_observed_utc": "2026-11-18T14:00:04Z",
-    "last_seen_utc": "2026-11-18T19:26:12Z"
+    "last_seen_utc": "2026-11-18T23:24:28Z"
   },
   "401920516": {
     "evidence": [
@@ -463,7 +479,51 @@
       }
     ],
     "first_observed_utc": "2026-11-18T14:00:04Z",
-    "last_seen_utc": "2026-11-18T19:26:12Z"
+    "last_seen_utc": "2026-11-18T23:24:28Z"
+  },
+  "401920519": {
+    "evidence": [
+      {
+        "game_id": "401920519",
+        "new_identity": [
+          "-1",
+          "87",
+          "2026-11-19T22:00:00Z"
+        ],
+        "observed_utc": "2026-11-18T23:24:29Z",
+        "original_identity": [
+          "-1",
+          "-2",
+          "2026-11-19T22:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "0ee77b8dd645cd6fd6b3d9f5e19e9743d35f16dc1f1d4d62af6a120e09545574"
+      }
+    ],
+    "first_observed_utc": "2026-11-18T23:24:29Z",
+    "last_seen_utc": "2026-11-18T23:24:29Z"
+  },
+  "401920520": {
+    "evidence": [
+      {
+        "game_id": "401920520",
+        "new_identity": [
+          "-1",
+          "164",
+          "2026-11-20T01:30:00Z"
+        ],
+        "observed_utc": "2026-11-18T23:24:29Z",
+        "original_identity": [
+          "-1",
+          "-2",
+          "2026-11-20T01:30:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "0ee77b8dd645cd6fd6b3d9f5e19e9743d35f16dc1f1d4d62af6a120e09545574"
+      }
+    ],
+    "first_observed_utc": "2026-11-18T23:24:29Z",
+    "last_seen_utc": "2026-11-18T23:24:29Z"
   },
   "401920567": {
     "evidence": [
@@ -485,7 +545,7 @@
       }
     ],
     "first_observed_utc": "2026-11-13T13:08:20Z",
-    "last_seen_utc": "2026-11-18T19:26:08Z"
+    "last_seen_utc": "2026-11-18T23:24:22Z"
   },
   "401920568": {
     "evidence": [
@@ -507,7 +567,7 @@
       }
     ],
     "first_observed_utc": "2026-11-13T13:08:20Z",
-    "last_seen_utc": "2026-11-18T19:26:08Z"
+    "last_seen_utc": "2026-11-18T23:24:22Z"
   },
   "401920750": {
     "evidence": [
@@ -529,7 +589,7 @@
       }
     ],
     "first_observed_utc": "2026-11-17T06:13:24Z",
-    "last_seen_utc": "2026-11-18T19:26:08Z"
+    "last_seen_utc": "2026-11-18T23:24:22Z"
   },
   "401920887": {
     "evidence": [
@@ -595,7 +655,7 @@
       }
     ],
     "first_observed_utc": "2026-11-11T23:28:29Z",
-    "last_seen_utc": "2026-11-18T19:26:04Z"
+    "last_seen_utc": "2026-11-18T23:24:13Z"
   },
   "401921691": {
     "evidence": [
@@ -617,7 +677,7 @@
       }
     ],
     "first_observed_utc": "2026-11-18T19:26:15Z",
-    "last_seen_utc": "2026-11-18T19:26:15Z"
+    "last_seen_utc": "2026-11-18T23:24:30Z"
   },
   "401921692": {
     "evidence": [
@@ -639,7 +699,7 @@
       }
     ],
     "first_observed_utc": "2026-11-18T19:26:15Z",
-    "last_seen_utc": "2026-11-18T19:26:15Z"
+    "last_seen_utc": "2026-11-18T23:24:30Z"
   },
   "401921811": {
     "evidence": [
@@ -661,7 +721,7 @@
       }
     ],
     "first_observed_utc": "2026-11-18T19:26:16Z",
-    "last_seen_utc": "2026-11-18T19:26:16Z"
+    "last_seen_utc": "2026-11-18T23:24:32Z"
   },
   "401922031": {
     "evidence": [
@@ -683,7 +743,7 @@
       }
     ],
     "first_observed_utc": "2026-11-17T06:13:24Z",
-    "last_seen_utc": "2026-11-18T19:26:08Z"
+    "last_seen_utc": "2026-11-18T23:24:22Z"
   },
   "401922239": {
     "evidence": [
@@ -705,7 +765,7 @@
       }
     ],
     "first_observed_utc": "2026-11-10T13:29:23Z",
-    "last_seen_utc": "2026-11-18T19:26:05Z"
+    "last_seen_utc": "2026-11-18T23:24:14Z"
   },
   "401922249": {
     "evidence": [
@@ -749,7 +809,7 @@
       }
     ],
     "first_observed_utc": "2026-11-17T06:13:25Z",
-    "last_seen_utc": "2026-11-18T19:26:09Z"
+    "last_seen_utc": "2026-11-18T23:24:23Z"
   },
   "401924921": {
     "evidence": [
@@ -771,7 +831,7 @@
       }
     ],
     "first_observed_utc": "2026-11-11T12:44:24Z",
-    "last_seen_utc": "2026-11-18T19:26:08Z"
+    "last_seen_utc": "2026-11-18T23:24:22Z"
   },
   "401925662": {
     "evidence": [
@@ -815,7 +875,7 @@
       }
     ],
     "first_observed_utc": "2026-11-11T12:44:22Z",
-    "last_seen_utc": "2026-11-18T19:26:04Z"
+    "last_seen_utc": "2026-11-18T23:24:13Z"
   },
   "401925718": {
     "evidence": [
@@ -837,7 +897,7 @@
       }
     ],
     "first_observed_utc": "2026-11-17T06:13:25Z",
-    "last_seen_utc": "2026-11-18T19:26:09Z"
+    "last_seen_utc": "2026-11-18T23:24:23Z"
   },
   "401926143": {
     "evidence": [
@@ -859,7 +919,7 @@
       }
     ],
     "first_observed_utc": "2026-11-17T06:13:26Z",
-    "last_seen_utc": "2026-11-18T19:26:11Z"
+    "last_seen_utc": "2026-11-18T23:24:26Z"
   },
   "401926203": {
     "evidence": [
@@ -881,7 +941,7 @@
       }
     ],
     "first_observed_utc": "2026-11-12T18:58:59Z",
-    "last_seen_utc": "2026-11-18T19:26:06Z"
+    "last_seen_utc": "2026-11-18T23:24:18Z"
   },
   "401926733": {
     "evidence": [
@@ -903,7 +963,7 @@
       }
     ],
     "first_observed_utc": "2026-11-13T20:35:58Z",
-    "last_seen_utc": "2026-11-18T19:26:09Z"
+    "last_seen_utc": "2026-11-18T23:24:23Z"
   },
   "401929002": {
     "evidence": [
@@ -1013,7 +1073,7 @@
       }
     ],
     "first_observed_utc": "2026-11-17T06:13:26Z",
-    "last_seen_utc": "2026-11-18T19:26:10Z"
+    "last_seen_utc": "2026-11-18T23:24:25Z"
   },
   "401929438": {
     "evidence": [
@@ -1057,7 +1117,7 @@
       }
     ],
     "first_observed_utc": "2026-11-09T02:40:32Z",
-    "last_seen_utc": "2026-11-18T19:26:04Z"
+    "last_seen_utc": "2026-11-18T23:24:13Z"
   },
   "401930568": {
     "evidence": [
@@ -1079,6 +1139,6 @@
       }
     ],
     "first_observed_utc": "2026-11-17T19:54:39Z",
-    "last_seen_utc": "2026-11-18T19:26:11Z"
+    "last_seen_utc": "2026-11-18T23:24:26Z"
   }
 }
