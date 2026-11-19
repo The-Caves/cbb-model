@@ -1,10 +1,10 @@
 {
   "active_champion": "CBB_SCORE_RIDGE_V0_4_D1_PRIOR30_A1_5",
-  "as_of_utc": "2026-11-19T14:27:52Z",
+  "as_of_utc": "2026-11-19T19:33:12Z",
   "frozen": {
-    "captured": 612,
+    "captured": 696,
     "status": "PRETIP_POSSESSION_SIMULATION_RESEARCH",
-    "unique_games": 102
+    "unique_games": 116
   },
   "historical_selection": "blend20",
   "performance": {
