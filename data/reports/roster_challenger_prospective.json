@@ -1,11 +1,11 @@
 {
-  "as_of_utc": "2026-11-21T03:59:38Z",
+  "as_of_utc": "2026-11-21T13:29:35Z",
   "collector_player_game_records": 1855,
   "collector_roster_snapshots": 456,
   "freeze": {
-    "captured": 100,
+    "captured": 101,
     "coverage": {
-      "candidate_games_eligible": 100,
+      "candidate_games_eligible": 101,
       "roster_snapshot_teams": 363,
       "source_backed_multiplier_teams": 338,
       "source_backed_team_multipliers": {
@@ -359,25 +359,25 @@
     "capture_alignment_max_hours": 2,
     "legacy_roster_candidate_excluded": "CBB_ROSTER_PRIOR_V0_5_RESEARCH",
     "minimum_for_review": 150,
-    "paired_games": 95,
+    "paired_games": 124,
     "promotion_gate": "INSUFFICIENT_PAIRED_GAMES",
     "roster_candidate": {
-      "brier": 0.1805,
-      "margin_bias": -0.023,
-      "margin_mae": 10.642,
-      "n": 95,
-      "su_accuracy": 0.6842,
-      "total_mae": 12.04
+      "brier": 0.1726,
+      "margin_bias": -0.846,
+      "margin_mae": 10.538,
+      "n": 124,
+      "su_accuracy": 0.7016,
+      "total_mae": 12.092
     },
     "skipped_capture_alignment": 0,
     "status": "GENUINE_PRETIP_RESEARCH_ONLY",
     "v04": {
-      "brier": 0.181,
-      "margin_bias": -0.012,
-      "margin_mae": 10.647,
-      "n": 95,
-      "su_accuracy": 0.6842,
-      "total_mae": 12.035
+      "brier": 0.1728,
+      "margin_bias": -0.827,
+      "margin_mae": 10.535,
+      "n": 124,
+      "su_accuracy": 0.7016,
+      "total_mae": 12.119
     },
     "warning": "Source-backed partial prior player minutes, not full-season returning production. No roster forecasts or verified betting edge."
   },
