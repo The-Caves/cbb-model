@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-11-22T03:12:24Z",
+  "as_of_utc": "2026-11-22T13:22:52Z",
   "collector": {
     "status": "NO_NETWORK_COLLECTION"
   },
@@ -9,15 +9,15 @@
   "historical_source_capture_retroactive": true,
   "live_model_unchanged": true,
   "next72h_matchup_readiness": {
-    "as_of_utc": "2026-11-22T03:12:24Z",
+    "as_of_utc": "2026-11-22T13:22:52Z",
     "blocker_counts_by_game": {
       "insufficient_prior_player_games": 1
     },
-    "future_verified_d1_games": 135,
-    "games_ready_for_m41_challenger": 134,
+    "future_verified_d1_games": 137,
+    "games_ready_for_m41_challenger": 136,
     "games_with_both_30pct_player_coverage": 9,
-    "games_with_both_5plus_prior_player_games": 134,
-    "games_with_both_recent_rosters": 135,
+    "games_with_both_5plus_prior_player_games": 136,
+    "games_with_both_recent_rosters": 137,
     "note": "Readiness is data coverage, not forecast quality or verified availability of a starting lineup.",
     "within_next_hours": 72
   },
