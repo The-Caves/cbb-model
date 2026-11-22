@@ -1,28 +1,49 @@
 {
-  "as_of_utc": "2026-11-22T13:22:52Z",
+  "as_of_utc": "2026-11-22T18:35:29Z",
   "collector": {
-    "status": "NO_NETWORK_COLLECTION"
+    "accepted": 24,
+    "attempted": 24,
+    "rejected": [],
+    "source_historical_availability_verified": false,
+    "status": "CURRENT_ROSTER_RESEARCH_ONLY"
   },
   "historical_backfill": {
-    "status": "NO_HISTORICAL_BACKFILL"
+    "accepted": 22,
+    "attempted": 24,
+    "depth_target_player_game_fraction": 0.3,
+    "point_in_time_historical_availability_verified": false,
+    "rejections": [
+      {
+        "game_id": "401828154",
+        "reason": "PlayerEvidenceGap: player minutes or total points not reconciled"
+      },
+      {
+        "game_id": "401828286",
+        "reason": "PlayerEvidenceGap: player minutes or total points not reconciled"
+      }
+    ],
+    "status": "RETROSPECTIVE_PLAYER_RESEARCH_ONLY",
+    "upcoming_focus_teams": 234,
+    "upcoming_games_with_two_observed_rosters": 140,
+    "upcoming_teams_with_recent_rosters": 234
   },
   "historical_source_capture_retroactive": true,
   "live_model_unchanged": true,
   "next72h_matchup_readiness": {
-    "as_of_utc": "2026-11-22T13:22:52Z",
+    "as_of_utc": "2026-11-22T18:35:29Z",
     "blocker_counts_by_game": {
       "insufficient_prior_player_games": 1
     },
-    "future_verified_d1_games": 137,
-    "games_ready_for_m41_challenger": 136,
-    "games_with_both_30pct_player_coverage": 9,
-    "games_with_both_5plus_prior_player_games": 136,
-    "games_with_both_recent_rosters": 137,
+    "future_verified_d1_games": 140,
+    "games_ready_for_m41_challenger": 139,
+    "games_with_both_30pct_player_coverage": 11,
+    "games_with_both_5plus_prior_player_games": 139,
+    "games_with_both_recent_rosters": 140,
     "note": "Readiness is data coverage, not forecast quality or verified availability of a starting lineup.",
     "within_next_hours": 72
   },
-  "player_games_total": 2157,
-  "roster_snapshots_total": 480,
+  "player_games_total": 2179,
+  "roster_snapshots_total": 504,
   "roster_teams_recent": 363,
   "source": "ESPN current team roster and game-summary player statistics",
   "status": "RESEARCH_ONLY",
@@ -126,7 +147,7 @@
       "roster_source_captured_utc": "2026-11-17T06:52:28Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "112358",
-      "transfers_prior_sample_minutes": 385.0,
+      "transfers_prior_sample_minutes": 393.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "113": {
@@ -200,11 +221,11 @@
     "120": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 33,
-      "prior_games_verified": 7,
-      "prior_player_game_coverage": 0.21212,
-      "prior_sample_player_minutes": 1400.0,
-      "retained_minutes_share": 0.26071,
-      "retained_points_share": 0.21932,
+      "prior_games_verified": 8,
+      "prior_player_game_coverage": 0.24242,
+      "prior_sample_player_minutes": 1600.0,
+      "retained_minutes_share": 0.27187,
+      "retained_points_share": 0.24421,
       "returning_player_count": 4,
       "roster_members_without_prior_observed_games": 7,
       "roster_player_count": 16,
@@ -296,7 +317,7 @@
       "roster_source_captured_utc": "2026-11-18T19:26:51Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "139",
-      "transfers_prior_sample_minutes": 245.0,
+      "transfers_prior_sample_minutes": 269.0,
       "transfers_with_prior_verified_minutes": 2
     },
     "140": {
@@ -313,7 +334,7 @@
       "roster_source_captured_utc": "2026-11-18T19:26:53Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "140",
-      "transfers_prior_sample_minutes": 525.0,
+      "transfers_prior_sample_minutes": 552.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "142": {
@@ -347,7 +368,7 @@
       "roster_source_captured_utc": "2026-11-17T06:52:37Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "145",
-      "transfers_prior_sample_minutes": 1559.0,
+      "transfers_prior_sample_minutes": 1600.0,
       "transfers_with_prior_verified_minutes": 8
     },
     "147": {
@@ -424,7 +445,7 @@
       "roster_source_captured_utc": "2026-11-17T06:52:42Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "152",
-      "transfers_prior_sample_minutes": 1646.0,
+      "transfers_prior_sample_minutes": 1663.0,
       "transfers_with_prior_verified_minutes": 8
     },
     "153": {
@@ -472,7 +493,7 @@
       "returning_player_count": 3,
       "roster_members_without_prior_observed_games": 9,
       "roster_player_count": 14,
-      "roster_source_captured_utc": "2026-11-13T21:12:18Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:40Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "155",
       "transfers_prior_sample_minutes": 158.0,
@@ -509,17 +530,17 @@
       "roster_source_captured_utc": "2026-11-13T23:28:43Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "158",
-      "transfers_prior_sample_minutes": 919.0,
+      "transfers_prior_sample_minutes": 941.0,
       "transfers_with_prior_verified_minutes": 6
     },
     "159": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 25,
-      "prior_games_verified": 9,
-      "prior_player_game_coverage": 0.36,
-      "prior_sample_player_minutes": 1800.0,
-      "retained_minutes_share": 0.31833,
-      "retained_points_share": 0.24308,
+      "prior_games_verified": 10,
+      "prior_player_game_coverage": 0.4,
+      "prior_sample_player_minutes": 2000.0,
+      "retained_minutes_share": 0.3145,
+      "retained_points_share": 0.2274,
       "returning_player_count": 8,
       "roster_members_without_prior_observed_games": 5,
       "roster_player_count": 14,
@@ -577,19 +598,19 @@
       "roster_source_captured_utc": "2026-11-21T18:03:05Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "161",
-      "transfers_prior_sample_minutes": 246.0,
+      "transfers_prior_sample_minutes": 266.0,
       "transfers_with_prior_verified_minutes": 3
     },
     "163": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 28,
-      "prior_games_verified": 7,
-      "prior_player_game_coverage": 0.25,
-      "prior_sample_player_minutes": 1425.0,
+      "prior_games_verified": 8,
+      "prior_player_game_coverage": 0.28571,
+      "prior_sample_player_minutes": 1625.0,
       "retained_minutes_share": 1.0,
       "retained_points_share": 1.0,
-      "returning_player_count": 12,
-      "roster_members_without_prior_observed_games": 9,
+      "returning_player_count": 16,
+      "roster_members_without_prior_observed_games": 5,
       "roster_player_count": 21,
       "roster_source_captured_utc": "2026-11-13T23:28:51Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
@@ -611,7 +632,7 @@
       "roster_source_captured_utc": "2026-11-17T06:52:51Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "164",
-      "transfers_prior_sample_minutes": 899.0,
+      "transfers_prior_sample_minutes": 916.0,
       "transfers_with_prior_verified_minutes": 4
     },
     "166": {
@@ -628,7 +649,7 @@
       "roster_source_captured_utc": "2026-11-17T06:46:29Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "166",
-      "transfers_prior_sample_minutes": 1140.0,
+      "transfers_prior_sample_minutes": 1207.0,
       "transfers_with_prior_verified_minutes": 6
     },
     "167": {
@@ -662,7 +683,7 @@
       "roster_source_captured_utc": "2026-11-19T19:32:14Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "171",
-      "transfers_prior_sample_minutes": 81.0,
+      "transfers_prior_sample_minutes": 91.0,
       "transfers_with_prior_verified_minutes": 1
     },
     "172": {
@@ -693,7 +714,7 @@
       "returning_player_count": 3,
       "roster_members_without_prior_observed_games": 10,
       "roster_player_count": 16,
-      "roster_source_captured_utc": "2026-11-13T21:17:05Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:59Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "179",
       "transfers_prior_sample_minutes": 418.0,
@@ -747,7 +768,7 @@
       "roster_source_captured_utc": "2026-11-21T18:03:27Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "193",
-      "transfers_prior_sample_minutes": 450.0,
+      "transfers_prior_sample_minutes": 491.0,
       "transfers_with_prior_verified_minutes": 3
     },
     "194": {
@@ -764,7 +785,7 @@
       "roster_source_captured_utc": "2026-11-19T19:32:18Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "194",
-      "transfers_prior_sample_minutes": 526.0,
+      "transfers_prior_sample_minutes": 582.0,
       "transfers_with_prior_verified_minutes": 4
     },
     "195": {
@@ -781,7 +802,7 @@
       "roster_source_captured_utc": "2026-11-21T18:03:03Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "195",
-      "transfers_prior_sample_minutes": 577.0,
+      "transfers_prior_sample_minutes": 613.0,
       "transfers_with_prior_verified_minutes": 2
     },
     "197": {
@@ -829,7 +850,7 @@
       "returning_player_count": 4,
       "roster_members_without_prior_observed_games": 8,
       "roster_player_count": 17,
-      "roster_source_captured_utc": "2026-11-13T20:36:15Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:34Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2",
       "transfers_prior_sample_minutes": 1020.0,
@@ -866,7 +887,7 @@
       "roster_source_captured_utc": "2026-11-21T18:03:11Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2006",
-      "transfers_prior_sample_minutes": 1127.0,
+      "transfers_prior_sample_minutes": 1165.0,
       "transfers_with_prior_verified_minutes": 6
     },
     "201": {
@@ -880,7 +901,7 @@
       "returning_player_count": 4,
       "roster_members_without_prior_observed_games": 4,
       "roster_player_count": 14,
-      "roster_source_captured_utc": "2026-11-13T20:06:53Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:22Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "201",
       "transfers_prior_sample_minutes": 1302.0,
@@ -931,7 +952,7 @@
       "returning_player_count": 0,
       "roster_members_without_prior_observed_games": 10,
       "roster_player_count": 14,
-      "roster_source_captured_utc": "2026-11-13T20:07:08Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:26Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2016",
       "transfers_prior_sample_minutes": 250.0,
@@ -940,18 +961,18 @@
     "202": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 36,
-      "prior_games_verified": 6,
-      "prior_player_game_coverage": 0.16667,
-      "prior_sample_player_minutes": 1225.0,
-      "retained_minutes_share": 0.18367,
-      "retained_points_share": 0.22263,
+      "prior_games_verified": 7,
+      "prior_player_game_coverage": 0.19444,
+      "prior_sample_player_minutes": 1425.0,
+      "retained_minutes_share": 0.18737,
+      "retained_points_share": 0.21664,
       "returning_player_count": 4,
       "roster_members_without_prior_observed_games": 4,
       "roster_player_count": 15,
       "roster_source_captured_utc": "2026-11-18T19:26:40Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "202",
-      "transfers_prior_sample_minutes": 1549.0,
+      "transfers_prior_sample_minutes": 1645.0,
       "transfers_with_prior_verified_minutes": 7
     },
     "2026": {
@@ -1002,7 +1023,7 @@
       "roster_source_captured_utc": "2026-11-13T22:18:06Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2031",
-      "transfers_prior_sample_minutes": 1148.0,
+      "transfers_prior_sample_minutes": 1183.0,
       "transfers_with_prior_verified_minutes": 8
     },
     "2032": {
@@ -1019,7 +1040,7 @@
       "roster_source_captured_utc": "2026-11-17T06:38:10Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2032",
-      "transfers_prior_sample_minutes": 715.0,
+      "transfers_prior_sample_minutes": 753.0,
       "transfers_with_prior_verified_minutes": 3
     },
     "204": {
@@ -1036,7 +1057,7 @@
       "roster_source_captured_utc": "2026-11-20T19:09:19Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "204",
-      "transfers_prior_sample_minutes": 922.0,
+      "transfers_prior_sample_minutes": 956.0,
       "transfers_with_prior_verified_minutes": 9
     },
     "2046": {
@@ -1053,7 +1074,7 @@
       "roster_source_captured_utc": "2026-11-13T21:58:46Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2046",
-      "transfers_prior_sample_minutes": 150.0,
+      "transfers_prior_sample_minutes": 178.0,
       "transfers_with_prior_verified_minutes": 2
     },
     "2050": {
@@ -1070,7 +1091,7 @@
       "roster_source_captured_utc": "2026-11-13T20:36:18Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2050",
-      "transfers_prior_sample_minutes": 1200.0,
+      "transfers_prior_sample_minutes": 1232.0,
       "transfers_with_prior_verified_minutes": 9
     },
     "2057": {
@@ -1104,7 +1125,7 @@
       "roster_source_captured_utc": "2026-11-17T06:38:17Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2065",
-      "transfers_prior_sample_minutes": 1121.0,
+      "transfers_prior_sample_minutes": 1144.0,
       "transfers_with_prior_verified_minutes": 9
     },
     "2066": {
@@ -1155,7 +1176,7 @@
       "roster_source_captured_utc": "2026-11-17T06:46:15Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2084",
-      "transfers_prior_sample_minutes": 1397.0,
+      "transfers_prior_sample_minutes": 1407.0,
       "transfers_with_prior_verified_minutes": 7
     },
     "2086": {
@@ -1240,7 +1261,7 @@
       "roster_source_captured_utc": "2026-11-19T19:32:29Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2110",
-      "transfers_prior_sample_minutes": 144.0,
+      "transfers_prior_sample_minutes": 155.0,
       "transfers_with_prior_verified_minutes": 2
     },
     "2115": {
@@ -1288,7 +1309,7 @@
       "returning_player_count": 4,
       "roster_members_without_prior_observed_games": 10,
       "roster_player_count": 15,
-      "roster_source_captured_utc": "2026-11-13T21:16:58Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:53Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2117",
       "transfers_prior_sample_minutes": 214.0,
@@ -1331,11 +1352,11 @@
     "2130": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 29,
-      "prior_games_verified": 8,
-      "prior_player_game_coverage": 0.27586,
-      "prior_sample_player_minutes": 1600.0,
-      "retained_minutes_share": 0.0975,
-      "retained_points_share": 0.08498,
+      "prior_games_verified": 9,
+      "prior_player_game_coverage": 0.31034,
+      "prior_sample_player_minutes": 1800.0,
+      "retained_minutes_share": 0.09444,
+      "retained_points_share": 0.07895,
       "returning_player_count": 1,
       "roster_members_without_prior_observed_games": 9,
       "roster_player_count": 16,
@@ -1359,7 +1380,7 @@
       "roster_source_captured_utc": "2026-11-13T22:17:50Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2132",
-      "transfers_prior_sample_minutes": 2905.0,
+      "transfers_prior_sample_minutes": 2929.0,
       "transfers_with_prior_verified_minutes": 13
     },
     "2142": {
@@ -1433,11 +1454,11 @@
     "2169": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 27,
-      "prior_games_verified": 6,
-      "prior_player_game_coverage": 0.22222,
-      "prior_sample_player_minutes": 1200.0,
-      "retained_minutes_share": 0.2775,
-      "retained_points_share": 0.22823,
+      "prior_games_verified": 7,
+      "prior_player_game_coverage": 0.25926,
+      "prior_sample_player_minutes": 1425.0,
+      "retained_minutes_share": 0.26526,
+      "retained_points_share": 0.2402,
       "returning_player_count": 5,
       "roster_members_without_prior_observed_games": 8,
       "roster_player_count": 15,
@@ -1518,15 +1539,15 @@
     "2182": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 32,
-      "prior_games_verified": 7,
-      "prior_player_game_coverage": 0.21875,
-      "prior_sample_player_minutes": 1400.0,
-      "retained_minutes_share": 0.21357,
-      "retained_points_share": 0.20044,
+      "prior_games_verified": 8,
+      "prior_player_game_coverage": 0.25,
+      "prior_sample_player_minutes": 1600.0,
+      "retained_minutes_share": 0.21937,
+      "retained_points_share": 0.22394,
       "returning_player_count": 4,
       "roster_members_without_prior_observed_games": 9,
       "roster_player_count": 15,
-      "roster_source_captured_utc": "2026-11-13T21:12:20Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:42Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2182",
       "transfers_prior_sample_minutes": 300.0,
@@ -1535,18 +1556,18 @@
     "2184": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 31,
-      "prior_games_verified": 8,
-      "prior_player_game_coverage": 0.25806,
-      "prior_sample_player_minutes": 1675.0,
-      "retained_minutes_share": 0.25313,
-      "retained_points_share": 0.27027,
+      "prior_games_verified": 9,
+      "prior_player_game_coverage": 0.29032,
+      "prior_sample_player_minutes": 1875.0,
+      "retained_minutes_share": 0.25173,
+      "retained_points_share": 0.24933,
       "returning_player_count": 4,
       "roster_members_without_prior_observed_games": 6,
       "roster_player_count": 16,
       "roster_source_captured_utc": "2026-11-13T22:17:52Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2184",
-      "transfers_prior_sample_minutes": 569.0,
+      "transfers_prior_sample_minutes": 592.0,
       "transfers_with_prior_verified_minutes": 6
     },
     "219": {
@@ -1648,7 +1669,7 @@
       "roster_source_captured_utc": "2026-11-17T19:54:52Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "221",
-      "transfers_prior_sample_minutes": 1960.0,
+      "transfers_prior_sample_minutes": 1994.0,
       "transfers_with_prior_verified_minutes": 10
     },
     "2210": {
@@ -1773,11 +1794,11 @@
     "2241": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 30,
-      "prior_games_verified": 7,
-      "prior_player_game_coverage": 0.23333,
-      "prior_sample_player_minutes": 1400.0,
-      "retained_minutes_share": 0.24714,
-      "retained_points_share": 0.21462,
+      "prior_games_verified": 8,
+      "prior_player_game_coverage": 0.26667,
+      "prior_sample_player_minutes": 1600.0,
+      "retained_minutes_share": 0.2575,
+      "retained_points_share": 0.23622,
       "returning_player_count": 3,
       "roster_members_without_prior_observed_games": 8,
       "roster_player_count": 14,
@@ -1818,7 +1839,7 @@
       "roster_source_captured_utc": "2026-11-13T23:28:40Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2247",
-      "transfers_prior_sample_minutes": 1165.0,
+      "transfers_prior_sample_minutes": 1203.0,
       "transfers_with_prior_verified_minutes": 10
     },
     "225": {
@@ -1849,7 +1870,7 @@
       "returning_player_count": 2,
       "roster_members_without_prior_observed_games": 8,
       "roster_player_count": 15,
-      "roster_source_captured_utc": "2026-11-13T21:17:00Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:55Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2250",
       "transfers_prior_sample_minutes": 1473.0,
@@ -1869,7 +1890,7 @@
       "roster_source_captured_utc": "2026-11-13T22:17:58Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2253",
-      "transfers_prior_sample_minutes": 1631.0,
+      "transfers_prior_sample_minutes": 1672.0,
       "transfers_with_prior_verified_minutes": 9
     },
     "2261": {
@@ -1937,7 +1958,7 @@
       "roster_source_captured_utc": "2026-11-13T20:02:48Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2275",
-      "transfers_prior_sample_minutes": 536.0,
+      "transfers_prior_sample_minutes": 617.0,
       "transfers_with_prior_verified_minutes": 4
     },
     "2277": {
@@ -1954,7 +1975,7 @@
       "roster_source_captured_utc": "2026-11-17T06:46:26Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2277",
-      "transfers_prior_sample_minutes": 757.0,
+      "transfers_prior_sample_minutes": 773.0,
       "transfers_with_prior_verified_minutes": 6
     },
     "228": {
@@ -1988,17 +2009,17 @@
       "roster_source_captured_utc": "2026-11-21T18:03:07Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2287",
-      "transfers_prior_sample_minutes": 1143.0,
+      "transfers_prior_sample_minutes": 1178.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "2294": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 37,
-      "prior_games_verified": 6,
-      "prior_player_game_coverage": 0.16216,
-      "prior_sample_player_minutes": 1200.0,
-      "retained_minutes_share": 0.605,
-      "retained_points_share": 0.47908,
+      "prior_games_verified": 7,
+      "prior_player_game_coverage": 0.18919,
+      "prior_sample_player_minutes": 1400.0,
+      "retained_minutes_share": 0.61071,
+      "retained_points_share": 0.4902,
       "returning_player_count": 8,
       "roster_members_without_prior_observed_games": 4,
       "roster_player_count": 14,
@@ -2022,24 +2043,24 @@
       "roster_source_captured_utc": "2026-11-13T21:16:56Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2296",
-      "transfers_prior_sample_minutes": 118.0,
+      "transfers_prior_sample_minutes": 121.0,
       "transfers_with_prior_verified_minutes": 2
     },
     "23": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 32,
-      "prior_games_verified": 6,
-      "prior_player_game_coverage": 0.1875,
-      "prior_sample_player_minutes": 1225.0,
-      "retained_minutes_share": 0.10449,
-      "retained_points_share": 0.08696,
+      "prior_games_verified": 7,
+      "prior_player_game_coverage": 0.21875,
+      "prior_sample_player_minutes": 1425.0,
+      "retained_minutes_share": 0.08982,
+      "retained_points_share": 0.07266,
       "returning_player_count": 2,
       "roster_members_without_prior_observed_games": 8,
       "roster_player_count": 15,
       "roster_source_captured_utc": "2026-11-17T06:38:18Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "23",
-      "transfers_prior_sample_minutes": 664.0,
+      "transfers_prior_sample_minutes": 676.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "2305": {
@@ -2062,18 +2083,18 @@
     "2306": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 32,
-      "prior_games_verified": 7,
-      "prior_player_game_coverage": 0.21875,
-      "prior_sample_player_minutes": 1400.0,
-      "retained_minutes_share": 0.035,
-      "retained_points_share": 0.01485,
+      "prior_games_verified": 8,
+      "prior_player_game_coverage": 0.25,
+      "prior_sample_player_minutes": 1600.0,
+      "retained_minutes_share": 0.03062,
+      "retained_points_share": 0.01337,
       "returning_player_count": 1,
       "roster_members_without_prior_observed_games": 4,
       "roster_player_count": 14,
       "roster_source_captured_utc": "2026-11-18T19:26:42Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2306",
-      "transfers_prior_sample_minutes": 1664.0,
+      "transfers_prior_sample_minutes": 1691.0,
       "transfers_with_prior_verified_minutes": 9
     },
     "2309": {
@@ -2141,17 +2162,17 @@
       "roster_source_captured_utc": "2026-11-17T06:13:56Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2320",
-      "transfers_prior_sample_minutes": 798.0,
+      "transfers_prior_sample_minutes": 823.0,
       "transfers_with_prior_verified_minutes": 6
     },
     "2325": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 31,
-      "prior_games_verified": 9,
-      "prior_player_game_coverage": 0.29032,
-      "prior_sample_player_minutes": 1800.0,
-      "retained_minutes_share": 0.29056,
-      "retained_points_share": 0.29239,
+      "prior_games_verified": 10,
+      "prior_player_game_coverage": 0.32258,
+      "prior_sample_player_minutes": 2000.0,
+      "retained_minutes_share": 0.278,
+      "retained_points_share": 0.27512,
       "returning_player_count": 7,
       "roster_members_without_prior_observed_games": 6,
       "roster_player_count": 18,
@@ -2192,7 +2213,7 @@
       "roster_source_captured_utc": "2026-11-19T19:32:24Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "233",
-      "transfers_prior_sample_minutes": 486.0,
+      "transfers_prior_sample_minutes": 506.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "2330": {
@@ -2283,11 +2304,11 @@
     "235": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 32,
-      "prior_games_verified": 7,
-      "prior_player_game_coverage": 0.21875,
-      "prior_sample_player_minutes": 1425.0,
-      "retained_minutes_share": 0.09404,
-      "retained_points_share": 0.09709,
+      "prior_games_verified": 8,
+      "prior_player_game_coverage": 0.25,
+      "prior_sample_player_minutes": 1625.0,
+      "retained_minutes_share": 0.08677,
+      "retained_points_share": 0.08432,
       "returning_player_count": 2,
       "roster_members_without_prior_observed_games": 4,
       "roster_player_count": 15,
@@ -2300,18 +2321,18 @@
     "2350": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 33,
-      "prior_games_verified": 7,
-      "prior_player_game_coverage": 0.21212,
-      "prior_sample_player_minutes": 1400.0,
-      "retained_minutes_share": 0.12214,
-      "retained_points_share": 0.14542,
+      "prior_games_verified": 8,
+      "prior_player_game_coverage": 0.24242,
+      "prior_sample_player_minutes": 1600.0,
+      "retained_minutes_share": 0.10687,
+      "retained_points_share": 0.12696,
       "returning_player_count": 2,
       "roster_members_without_prior_observed_games": 6,
       "roster_player_count": 16,
       "roster_source_captured_utc": "2026-11-21T18:03:24Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2350",
-      "transfers_prior_sample_minutes": 1223.0,
+      "transfers_prior_sample_minutes": 1233.0,
       "transfers_with_prior_verified_minutes": 8
     },
     "2351": {
@@ -2362,7 +2383,7 @@
       "roster_source_captured_utc": "2026-11-17T19:55:07Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "236",
-      "transfers_prior_sample_minutes": 447.0,
+      "transfers_prior_sample_minutes": 507.0,
       "transfers_with_prior_verified_minutes": 2
     },
     "2363": {
@@ -2464,7 +2485,7 @@
       "roster_source_captured_utc": "2026-11-17T19:55:09Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "238",
-      "transfers_prior_sample_minutes": 984.0,
+      "transfers_prior_sample_minutes": 1016.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "2382": {
@@ -2481,7 +2502,7 @@
       "roster_source_captured_utc": "2026-11-17T06:38:05Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2382",
-      "transfers_prior_sample_minutes": 469.0,
+      "transfers_prior_sample_minutes": 478.0,
       "transfers_with_prior_verified_minutes": 3
     },
     "2385": {
@@ -2504,11 +2525,11 @@
     "239": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 33,
-      "prior_games_verified": 7,
-      "prior_player_game_coverage": 0.21212,
-      "prior_sample_player_minutes": 1400.0,
-      "retained_minutes_share": 0.24143,
-      "retained_points_share": 0.20225,
+      "prior_games_verified": 8,
+      "prior_player_game_coverage": 0.24242,
+      "prior_sample_player_minutes": 1600.0,
+      "retained_minutes_share": 0.24313,
+      "retained_points_share": 0.20317,
       "returning_player_count": 3,
       "roster_members_without_prior_observed_games": 8,
       "roster_player_count": 15,
@@ -2563,10 +2584,10 @@
       "returning_player_count": 4,
       "roster_members_without_prior_observed_games": 9,
       "roster_player_count": 16,
-      "roster_source_captured_utc": "2026-11-13T20:36:23Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:37Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "24",
-      "transfers_prior_sample_minutes": 750.0,
+      "transfers_prior_sample_minutes": 795.0,
       "transfers_with_prior_verified_minutes": 3
     },
     "2400": {
@@ -2600,7 +2621,7 @@
       "roster_source_captured_utc": "2026-11-17T06:13:42Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2405",
-      "transfers_prior_sample_minutes": 702.0,
+      "transfers_prior_sample_minutes": 759.0,
       "transfers_with_prior_verified_minutes": 4
     },
     "2413": {
@@ -2648,10 +2669,10 @@
       "returning_player_count": 6,
       "roster_members_without_prior_observed_games": 7,
       "roster_player_count": 16,
-      "roster_source_captured_utc": "2026-11-13T21:16:48Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:44Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "242",
-      "transfers_prior_sample_minutes": 208.0,
+      "transfers_prior_sample_minutes": 212.0,
       "transfers_with_prior_verified_minutes": 3
     },
     "2426": {
@@ -2685,7 +2706,7 @@
       "roster_source_captured_utc": "2026-11-13T21:17:12Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2427",
-      "transfers_prior_sample_minutes": 318.0,
+      "transfers_prior_sample_minutes": 347.0,
       "transfers_with_prior_verified_minutes": 4
     },
     "2428": {
@@ -2719,7 +2740,7 @@
       "roster_source_captured_utc": "2026-11-17T19:55:18Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2429",
-      "transfers_prior_sample_minutes": 1363.0,
+      "transfers_prior_sample_minutes": 1398.0,
       "transfers_with_prior_verified_minutes": 9
     },
     "2430": {
@@ -2750,7 +2771,7 @@
       "returning_player_count": 0,
       "roster_members_without_prior_observed_games": 9,
       "roster_player_count": 15,
-      "roster_source_captured_utc": "2026-11-13T20:36:21Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:35Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2433",
       "transfers_prior_sample_minutes": 288.0,
@@ -2804,7 +2825,7 @@
       "roster_source_captured_utc": "2026-11-13T22:18:12Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2440",
-      "transfers_prior_sample_minutes": 786.0,
+      "transfers_prior_sample_minutes": 848.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "2441": {
@@ -2838,24 +2859,24 @@
       "roster_source_captured_utc": "2026-11-17T06:38:07Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2443",
-      "transfers_prior_sample_minutes": 499.0,
+      "transfers_prior_sample_minutes": 504.0,
       "transfers_with_prior_verified_minutes": 3
     },
     "2447": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 32,
-      "prior_games_verified": 7,
-      "prior_player_game_coverage": 0.21875,
-      "prior_sample_player_minutes": 1400.0,
-      "retained_minutes_share": 0.135,
-      "retained_points_share": 0.12939,
+      "prior_games_verified": 8,
+      "prior_player_game_coverage": 0.25,
+      "prior_sample_player_minutes": 1600.0,
+      "retained_minutes_share": 0.13437,
+      "retained_points_share": 0.12683,
       "returning_player_count": 2,
       "roster_members_without_prior_observed_games": 7,
       "roster_player_count": 14,
       "roster_source_captured_utc": "2026-11-13T22:18:03Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2447",
-      "transfers_prior_sample_minutes": 294.0,
+      "transfers_prior_sample_minutes": 309.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "2448": {
@@ -2872,7 +2893,7 @@
       "roster_source_captured_utc": "2026-11-17T06:37:56Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2448",
-      "transfers_prior_sample_minutes": 286.0,
+      "transfers_prior_sample_minutes": 331.0,
       "transfers_with_prior_verified_minutes": 2
     },
     "2449": {
@@ -2889,7 +2910,7 @@
       "roster_source_captured_utc": "2026-11-13T20:07:12Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2449",
-      "transfers_prior_sample_minutes": 510.0,
+      "transfers_prior_sample_minutes": 564.0,
       "transfers_with_prior_verified_minutes": 4
     },
     "245": {
@@ -2906,7 +2927,7 @@
       "roster_source_captured_utc": "2026-11-17T06:46:25Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "245",
-      "transfers_prior_sample_minutes": 1191.0,
+      "transfers_prior_sample_minutes": 1223.0,
       "transfers_with_prior_verified_minutes": 7
     },
     "2450": {
@@ -2937,7 +2958,7 @@
       "returning_player_count": 2,
       "roster_members_without_prior_observed_games": 8,
       "roster_player_count": 15,
-      "roster_source_captured_utc": "2026-11-13T19:48:24Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:20Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2453",
       "transfers_prior_sample_minutes": 450.0,
@@ -2954,7 +2975,7 @@
       "returning_player_count": 4,
       "roster_members_without_prior_observed_games": 7,
       "roster_player_count": 14,
-      "roster_source_captured_utc": "2026-11-13T21:16:49Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:46Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2454",
       "transfers_prior_sample_minutes": 389.0,
@@ -3008,7 +3029,7 @@
       "roster_source_captured_utc": "2026-11-17T19:55:16Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2460",
-      "transfers_prior_sample_minutes": 705.0,
+      "transfers_prior_sample_minutes": 720.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "2463": {
@@ -3093,7 +3114,7 @@
       "roster_source_captured_utc": "2026-11-17T06:13:34Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "248",
-      "transfers_prior_sample_minutes": 986.0,
+      "transfers_prior_sample_minutes": 1022.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "2483": {
@@ -3133,35 +3154,35 @@
     "2492": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 30,
-      "prior_games_verified": 8,
-      "prior_player_game_coverage": 0.26667,
-      "prior_sample_player_minutes": 1600.0,
-      "retained_minutes_share": 0.03375,
-      "retained_points_share": 0.03238,
+      "prior_games_verified": 9,
+      "prior_player_game_coverage": 0.3,
+      "prior_sample_player_minutes": 1800.0,
+      "retained_minutes_share": 0.035,
+      "retained_points_share": 0.02926,
       "returning_player_count": 1,
       "roster_members_without_prior_observed_games": 8,
       "roster_player_count": 15,
       "roster_source_captured_utc": "2026-11-17T06:46:32Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2492",
-      "transfers_prior_sample_minutes": 1079.0,
+      "transfers_prior_sample_minutes": 1115.0,
       "transfers_with_prior_verified_minutes": 6
     },
     "25": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 33,
-      "prior_games_verified": 7,
-      "prior_player_game_coverage": 0.21212,
-      "prior_sample_player_minutes": 1400.0,
-      "retained_minutes_share": 0.26071,
-      "retained_points_share": 0.20151,
+      "prior_games_verified": 8,
+      "prior_player_game_coverage": 0.24242,
+      "prior_sample_player_minutes": 1600.0,
+      "retained_minutes_share": 0.2525,
+      "retained_points_share": 0.19398,
       "returning_player_count": 6,
       "roster_members_without_prior_observed_games": 7,
       "roster_player_count": 18,
       "roster_source_captured_utc": "2026-11-13T21:33:00Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "25",
-      "transfers_prior_sample_minutes": 811.0,
+      "transfers_prior_sample_minutes": 841.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "250": {
@@ -3195,7 +3216,7 @@
       "roster_source_captured_utc": "2026-11-20T19:09:24Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2501",
-      "transfers_prior_sample_minutes": 475.0,
+      "transfers_prior_sample_minutes": 512.0,
       "transfers_with_prior_verified_minutes": 4
     },
     "2502": {
@@ -3212,7 +3233,7 @@
       "roster_source_captured_utc": "2026-11-13T21:58:57Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2502",
-      "transfers_prior_sample_minutes": 194.0,
+      "transfers_prior_sample_minutes": 196.0,
       "transfers_with_prior_verified_minutes": 4
     },
     "2504": {
@@ -3263,7 +3284,7 @@
       "roster_source_captured_utc": "2026-11-13T21:33:04Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2507",
-      "transfers_prior_sample_minutes": 1807.0,
+      "transfers_prior_sample_minutes": 1839.0,
       "transfers_with_prior_verified_minutes": 9
     },
     "2509": {
@@ -3297,7 +3318,7 @@
       "roster_source_captured_utc": "2026-11-13T23:29:04Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "251",
-      "transfers_prior_sample_minutes": 993.0,
+      "transfers_prior_sample_minutes": 1022.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "2511": {
@@ -3311,7 +3332,7 @@
       "returning_player_count": 6,
       "roster_members_without_prior_observed_games": 11,
       "roster_player_count": 19,
-      "roster_source_captured_utc": "2026-11-13T21:16:52Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:48Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2511",
       "transfers_prior_sample_minutes": 249.0,
@@ -3331,7 +3352,7 @@
       "roster_source_captured_utc": "2026-11-13T23:28:39Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2514",
-      "transfers_prior_sample_minutes": 168.0,
+      "transfers_prior_sample_minutes": 171.0,
       "transfers_with_prior_verified_minutes": 2
     },
     "2515": {
@@ -3382,7 +3403,7 @@
       "roster_source_captured_utc": "2026-11-13T21:59:02Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2520",
-      "transfers_prior_sample_minutes": 571.0,
+      "transfers_prior_sample_minutes": 574.0,
       "transfers_with_prior_verified_minutes": 6
     },
     "2523": {
@@ -3399,7 +3420,7 @@
       "roster_source_captured_utc": "2026-11-17T06:46:22Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2523",
-      "transfers_prior_sample_minutes": 775.0,
+      "transfers_prior_sample_minutes": 797.0,
       "transfers_with_prior_verified_minutes": 4
     },
     "2529": {
@@ -3430,10 +3451,10 @@
       "returning_player_count": 4,
       "roster_members_without_prior_observed_games": 10,
       "roster_player_count": 15,
-      "roster_source_captured_utc": "2026-11-13T21:17:04Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:57Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "253",
-      "transfers_prior_sample_minutes": 115.0,
+      "transfers_prior_sample_minutes": 131.0,
       "transfers_with_prior_verified_minutes": 1
     },
     "2534": {
@@ -3501,7 +3522,7 @@
       "roster_source_captured_utc": "2026-11-13T21:58:58Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "254",
-      "transfers_prior_sample_minutes": 983.0,
+      "transfers_prior_sample_minutes": 1011.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "2540": {
@@ -3535,7 +3556,7 @@
       "roster_source_captured_utc": "2026-11-13T22:18:17Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2541",
-      "transfers_prior_sample_minutes": 359.0,
+      "transfers_prior_sample_minutes": 390.0,
       "transfers_with_prior_verified_minutes": 3
     },
     "2545": {
@@ -3569,7 +3590,7 @@
       "roster_source_captured_utc": "2026-11-19T19:32:20Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2546",
-      "transfers_prior_sample_minutes": 123.0,
+      "transfers_prior_sample_minutes": 147.0,
       "transfers_with_prior_verified_minutes": 1
     },
     "2547": {
@@ -3592,18 +3613,18 @@
     "2550": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 33,
-      "prior_games_verified": 6,
-      "prior_player_game_coverage": 0.18182,
-      "prior_sample_player_minutes": 1199.0,
-      "retained_minutes_share": 0.22769,
-      "retained_points_share": 0.19114,
+      "prior_games_verified": 7,
+      "prior_player_game_coverage": 0.21212,
+      "prior_sample_player_minutes": 1399.0,
+      "retained_minutes_share": 0.22873,
+      "retained_points_share": 0.20316,
       "returning_player_count": 2,
       "roster_members_without_prior_observed_games": 4,
       "roster_player_count": 15,
-      "roster_source_captured_utc": "2026-11-13T20:36:08Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:31Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2550",
-      "transfers_prior_sample_minutes": 1674.0,
+      "transfers_prior_sample_minutes": 1701.0,
       "transfers_with_prior_verified_minutes": 9
     },
     "256": {
@@ -3620,7 +3641,7 @@
       "roster_source_captured_utc": "2026-11-17T06:38:03Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "256",
-      "transfers_prior_sample_minutes": 914.0,
+      "transfers_prior_sample_minutes": 967.0,
       "transfers_with_prior_verified_minutes": 7
     },
     "2561": {
@@ -3711,11 +3732,11 @@
     "2571": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 29,
-      "prior_games_verified": 8,
-      "prior_player_game_coverage": 0.27586,
-      "prior_sample_player_minutes": 1625.0,
-      "retained_minutes_share": 0.42031,
-      "retained_points_share": 0.41838,
+      "prior_games_verified": 9,
+      "prior_player_game_coverage": 0.31034,
+      "prior_sample_player_minutes": 1825.0,
+      "retained_minutes_share": 0.41041,
+      "retained_points_share": 0.41011,
       "returning_player_count": 5,
       "roster_members_without_prior_observed_games": 7,
       "roster_player_count": 15,
@@ -3756,7 +3777,7 @@
       "roster_source_captured_utc": "2026-11-13T21:12:27Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2579",
-      "transfers_prior_sample_minutes": 1096.0,
+      "transfers_prior_sample_minutes": 1160.0,
       "transfers_with_prior_verified_minutes": 6
     },
     "258": {
@@ -3807,7 +3828,7 @@
       "roster_source_captured_utc": "2026-11-17T06:37:54Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2599",
-      "transfers_prior_sample_minutes": 807.0,
+      "transfers_prior_sample_minutes": 841.0,
       "transfers_with_prior_verified_minutes": 6
     },
     "26": {
@@ -3864,18 +3885,18 @@
     "261": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 32,
-      "prior_games_verified": 9,
-      "prior_player_game_coverage": 0.28125,
-      "prior_sample_player_minutes": 1825.0,
-      "retained_minutes_share": 0.26137,
-      "retained_points_share": 0.34431,
+      "prior_games_verified": 10,
+      "prior_player_game_coverage": 0.3125,
+      "prior_sample_player_minutes": 2025.0,
+      "retained_minutes_share": 0.25728,
+      "retained_points_share": 0.32742,
       "returning_player_count": 4,
       "roster_members_without_prior_observed_games": 7,
       "roster_player_count": 15,
       "roster_source_captured_utc": "2026-11-17T06:37:55Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "261",
-      "transfers_prior_sample_minutes": 449.0,
+      "transfers_prior_sample_minutes": 450.0,
       "transfers_with_prior_verified_minutes": 4
     },
     "2612": {
@@ -3909,17 +3930,17 @@
       "roster_source_captured_utc": "2026-11-13T21:16:47Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2617",
-      "transfers_prior_sample_minutes": 562.0,
+      "transfers_prior_sample_minutes": 574.0,
       "transfers_with_prior_verified_minutes": 6
     },
     "2619": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 30,
-      "prior_games_verified": 8,
-      "prior_player_game_coverage": 0.26667,
-      "prior_sample_player_minutes": 1625.0,
-      "retained_minutes_share": 0.33108,
-      "retained_points_share": 0.27273,
+      "prior_games_verified": 9,
+      "prior_player_game_coverage": 0.3,
+      "prior_sample_player_minutes": 1825.0,
+      "retained_minutes_share": 0.32438,
+      "retained_points_share": 0.25789,
       "returning_player_count": 5,
       "roster_members_without_prior_observed_games": 6,
       "roster_player_count": 15,
@@ -3932,11 +3953,11 @@
     "2623": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 31,
-      "prior_games_verified": 8,
-      "prior_player_game_coverage": 0.25806,
-      "prior_sample_player_minutes": 1600.0,
-      "retained_minutes_share": 0.20187,
-      "retained_points_share": 0.14643,
+      "prior_games_verified": 9,
+      "prior_player_game_coverage": 0.29032,
+      "prior_sample_player_minutes": 1800.0,
+      "retained_minutes_share": 0.22389,
+      "retained_points_share": 0.16404,
       "returning_player_count": 3,
       "roster_members_without_prior_observed_games": 12,
       "roster_player_count": 15,
@@ -3957,7 +3978,7 @@
       "returning_player_count": 3,
       "roster_members_without_prior_observed_games": 6,
       "roster_player_count": 16,
-      "roster_source_captured_utc": "2026-11-13T20:07:07Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:24Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2627",
       "transfers_prior_sample_minutes": 856.0,
@@ -3977,7 +3998,7 @@
       "roster_source_captured_utc": "2026-11-19T19:32:30Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2628",
-      "transfers_prior_sample_minutes": 510.0,
+      "transfers_prior_sample_minutes": 545.0,
       "transfers_with_prior_verified_minutes": 4
     },
     "2630": {
@@ -4011,7 +4032,7 @@
       "roster_source_captured_utc": "2026-11-17T19:54:56Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2633",
-      "transfers_prior_sample_minutes": 2095.0,
+      "transfers_prior_sample_minutes": 2159.0,
       "transfers_with_prior_verified_minutes": 9
     },
     "2634": {
@@ -4028,17 +4049,17 @@
       "roster_source_captured_utc": "2026-11-17T19:54:57Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2634",
-      "transfers_prior_sample_minutes": 622.0,
+      "transfers_prior_sample_minutes": 686.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "2635": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 28,
-      "prior_games_verified": 7,
-      "prior_player_game_coverage": 0.25,
-      "prior_sample_player_minutes": 1400.0,
-      "retained_minutes_share": 0.16857,
-      "retained_points_share": 0.18952,
+      "prior_games_verified": 8,
+      "prior_player_game_coverage": 0.28571,
+      "prior_sample_player_minutes": 1600.0,
+      "retained_minutes_share": 0.16562,
+      "retained_points_share": 0.1681,
       "returning_player_count": 2,
       "roster_members_without_prior_observed_games": 7,
       "roster_player_count": 15,
@@ -4062,7 +4083,7 @@
       "roster_source_captured_utc": "2026-11-17T06:38:13Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2636",
-      "transfers_prior_sample_minutes": 1311.0,
+      "transfers_prior_sample_minutes": 1323.0,
       "transfers_with_prior_verified_minutes": 8
     },
     "2638": {
@@ -4127,10 +4148,10 @@
       "returning_player_count": 2,
       "roster_members_without_prior_observed_games": 7,
       "roster_player_count": 14,
-      "roster_source_captured_utc": "2026-11-13T21:12:12Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:39Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2641",
-      "transfers_prior_sample_minutes": 1519.0,
+      "transfers_prior_sample_minutes": 1528.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "2643": {
@@ -4198,7 +4219,7 @@
       "roster_source_captured_utc": "2026-11-17T19:55:03Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2653",
-      "transfers_prior_sample_minutes": 1048.0,
+      "transfers_prior_sample_minutes": 1077.0,
       "transfers_with_prior_verified_minutes": 6
     },
     "2655": {
@@ -4332,18 +4353,18 @@
     "2698": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 30,
-      "prior_games_verified": 6,
-      "prior_player_game_coverage": 0.2,
-      "prior_sample_player_minutes": 1250.0,
-      "retained_minutes_share": 0.1944,
-      "retained_points_share": 0.17578,
+      "prior_games_verified": 7,
+      "prior_player_game_coverage": 0.23333,
+      "prior_sample_player_minutes": 1450.0,
+      "retained_minutes_share": 0.2131,
+      "retained_points_share": 0.18389,
       "returning_player_count": 3,
       "roster_members_without_prior_observed_games": 8,
       "roster_player_count": 16,
       "roster_source_captured_utc": "2026-11-13T21:58:43Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2698",
-      "transfers_prior_sample_minutes": 346.0,
+      "transfers_prior_sample_minutes": 369.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "27": {
@@ -4355,13 +4376,13 @@
       "retained_minutes_share": 0.14,
       "retained_points_share": 0.11246,
       "returning_player_count": 2,
-      "roster_members_without_prior_observed_games": 10,
+      "roster_members_without_prior_observed_games": 9,
       "roster_player_count": 15,
       "roster_source_captured_utc": "2026-11-13T21:33:16Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "27",
-      "transfers_prior_sample_minutes": 230.0,
-      "transfers_with_prior_verified_minutes": 3
+      "transfers_prior_sample_minutes": 233.0,
+      "transfers_with_prior_verified_minutes": 4
     },
     "270": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
@@ -4411,7 +4432,7 @@
       "roster_source_captured_utc": "2026-11-18T19:26:33Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2711",
-      "transfers_prior_sample_minutes": 1557.0,
+      "transfers_prior_sample_minutes": 1592.0,
       "transfers_with_prior_verified_minutes": 9
     },
     "2717": {
@@ -4462,7 +4483,7 @@
       "roster_source_captured_utc": "2026-11-13T23:28:48Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2729",
-      "transfers_prior_sample_minutes": 498.0,
+      "transfers_prior_sample_minutes": 512.0,
       "transfers_with_prior_verified_minutes": 7
     },
     "2737": {
@@ -4476,10 +4497,10 @@
       "returning_player_count": 4,
       "roster_members_without_prior_observed_games": 7,
       "roster_player_count": 16,
-      "roster_source_captured_utc": "2026-11-13T21:16:55Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:51Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2737",
-      "transfers_prior_sample_minutes": 873.0,
+      "transfers_prior_sample_minutes": 901.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "2739": {
@@ -4510,7 +4531,7 @@
       "returning_player_count": 5,
       "roster_members_without_prior_observed_games": 10,
       "roster_player_count": 16,
-      "roster_source_captured_utc": "2026-11-13T21:16:53Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:49Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2747",
       "transfers_prior_sample_minutes": 162.0,
@@ -4536,28 +4557,28 @@
     "2750": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 33,
-      "prior_games_verified": 8,
-      "prior_player_game_coverage": 0.24242,
-      "prior_sample_player_minutes": 1600.0,
-      "retained_minutes_share": 0.3025,
-      "retained_points_share": 0.24516,
+      "prior_games_verified": 9,
+      "prior_player_game_coverage": 0.27273,
+      "prior_sample_player_minutes": 1800.0,
+      "retained_minutes_share": 0.29111,
+      "retained_points_share": 0.23983,
       "returning_player_count": 3,
       "roster_members_without_prior_observed_games": 7,
       "roster_player_count": 14,
       "roster_source_captured_utc": "2026-11-20T19:09:06Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2750",
-      "transfers_prior_sample_minutes": 506.0,
+      "transfers_prior_sample_minutes": 514.0,
       "transfers_with_prior_verified_minutes": 4
     },
     "2751": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 32,
-      "prior_games_verified": 8,
-      "prior_player_game_coverage": 0.25,
-      "prior_sample_player_minutes": 1600.0,
-      "retained_minutes_share": 0.405,
-      "retained_points_share": 0.40665,
+      "prior_games_verified": 9,
+      "prior_player_game_coverage": 0.28125,
+      "prior_sample_player_minutes": 1800.0,
+      "retained_minutes_share": 0.40167,
+      "retained_points_share": 0.40276,
       "returning_player_count": 4,
       "roster_members_without_prior_observed_games": 8,
       "roster_player_count": 15,
@@ -4587,18 +4608,18 @@
     "2754": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 29,
-      "prior_games_verified": 7,
-      "prior_player_game_coverage": 0.24138,
-      "prior_sample_player_minutes": 1425.0,
-      "retained_minutes_share": 0.07368,
-      "retained_points_share": 0.05871,
+      "prior_games_verified": 9,
+      "prior_player_game_coverage": 0.31034,
+      "prior_sample_player_minutes": 1825.0,
+      "retained_minutes_share": 0.06301,
+      "retained_points_share": 0.04532,
       "returning_player_count": 1,
       "roster_members_without_prior_observed_games": 7,
       "roster_player_count": 14,
       "roster_source_captured_utc": "2026-11-13T21:33:10Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2754",
-      "transfers_prior_sample_minutes": 563.0,
+      "transfers_prior_sample_minutes": 571.0,
       "transfers_with_prior_verified_minutes": 6
     },
     "2755": {
@@ -4689,18 +4710,18 @@
     "279": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 31,
-      "prior_games_verified": 7,
-      "prior_player_game_coverage": 0.22581,
-      "prior_sample_player_minutes": 1400.0,
-      "retained_minutes_share": 0.08429,
-      "retained_points_share": 0.0497,
+      "prior_games_verified": 8,
+      "prior_player_game_coverage": 0.25806,
+      "prior_sample_player_minutes": 1600.0,
+      "retained_minutes_share": 0.0775,
+      "retained_points_share": 0.04433,
       "returning_player_count": 1,
       "roster_members_without_prior_observed_games": 7,
       "roster_player_count": 16,
       "roster_source_captured_utc": "2026-11-13T21:17:07Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "279",
-      "transfers_prior_sample_minutes": 935.0,
+      "transfers_prior_sample_minutes": 1021.0,
       "transfers_with_prior_verified_minutes": 8
     },
     "28": {
@@ -4717,7 +4738,7 @@
       "roster_source_captured_utc": "2026-11-20T19:09:26Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "28",
-      "transfers_prior_sample_minutes": 1189.0,
+      "transfers_prior_sample_minutes": 1222.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "2803": {
@@ -4748,7 +4769,7 @@
       "returning_player_count": 0,
       "roster_members_without_prior_observed_games": 10,
       "roster_player_count": 15,
-      "roster_source_captured_utc": "2026-11-13T20:36:06Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:28Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2815",
       "transfers_prior_sample_minutes": 643.0,
@@ -4825,11 +4846,11 @@
     "2870": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 29,
-      "prior_games_verified": 7,
-      "prior_player_game_coverage": 0.24138,
-      "prior_sample_player_minutes": 1400.0,
-      "retained_minutes_share": 0.27143,
-      "retained_points_share": 0.24641,
+      "prior_games_verified": 8,
+      "prior_player_game_coverage": 0.27586,
+      "prior_sample_player_minutes": 1600.0,
+      "retained_minutes_share": 0.26937,
+      "retained_points_share": 0.24735,
       "returning_player_count": 4,
       "roster_members_without_prior_observed_games": 9,
       "roster_player_count": 15,
@@ -4876,11 +4897,11 @@
     "290": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 35,
-      "prior_games_verified": 7,
-      "prior_player_game_coverage": 0.2,
-      "prior_sample_player_minutes": 1450.0,
-      "retained_minutes_share": 0.13793,
-      "retained_points_share": 0.08819,
+      "prior_games_verified": 8,
+      "prior_player_game_coverage": 0.22857,
+      "prior_sample_player_minutes": 1650.0,
+      "retained_minutes_share": 0.15273,
+      "retained_points_share": 0.1016,
       "returning_player_count": 3,
       "roster_members_without_prior_observed_games": 8,
       "roster_player_count": 14,
@@ -4921,16 +4942,16 @@
       "roster_source_captured_utc": "2026-11-13T21:32:59Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2908",
-      "transfers_prior_sample_minutes": 169.0,
+      "transfers_prior_sample_minutes": 214.0,
       "transfers_with_prior_verified_minutes": 3
     },
     "2916": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 28,
-      "prior_games_verified": 6,
-      "prior_player_game_coverage": 0.21429,
-      "prior_sample_player_minutes": 1198.0,
-      "retained_minutes_share": 0.0025,
+      "prior_games_verified": 7,
+      "prior_player_game_coverage": 0.25,
+      "prior_sample_player_minutes": 1398.0,
+      "retained_minutes_share": 0.00215,
       "retained_points_share": 0.0,
       "returning_player_count": 1,
       "roster_members_without_prior_observed_games": 8,
@@ -4938,7 +4959,7 @@
       "roster_source_captured_utc": "2026-11-17T06:38:12Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "2916",
-      "transfers_prior_sample_minutes": 671.0,
+      "transfers_prior_sample_minutes": 713.0,
       "transfers_with_prior_verified_minutes": 6
     },
     "292": {
@@ -5012,18 +5033,18 @@
     "299": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 30,
-      "prior_games_verified": 5,
-      "prior_player_game_coverage": 0.16667,
-      "prior_sample_player_minutes": 1025.0,
-      "retained_minutes_share": 0.06634,
-      "retained_points_share": 0.02151,
+      "prior_games_verified": 6,
+      "prior_player_game_coverage": 0.2,
+      "prior_sample_player_minutes": 1225.0,
+      "retained_minutes_share": 0.0702,
+      "retained_points_share": 0.02455,
       "returning_player_count": 2,
       "roster_members_without_prior_observed_games": 8,
       "roster_player_count": 15,
       "roster_source_captured_utc": "2026-11-20T19:09:01Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "299",
-      "transfers_prior_sample_minutes": 452.0,
+      "transfers_prior_sample_minutes": 483.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "30": {
@@ -5063,11 +5084,11 @@
     "301": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 31,
-      "prior_games_verified": 8,
-      "prior_player_game_coverage": 0.25806,
-      "prior_sample_player_minutes": 1600.0,
-      "retained_minutes_share": 0.09312,
-      "retained_points_share": 0.04915,
+      "prior_games_verified": 10,
+      "prior_player_game_coverage": 0.32258,
+      "prior_sample_player_minutes": 2000.0,
+      "retained_minutes_share": 0.0755,
+      "retained_points_share": 0.03967,
       "returning_player_count": 2,
       "roster_members_without_prior_observed_games": 6,
       "roster_player_count": 15,
@@ -5122,10 +5143,10 @@
       "returning_player_count": 5,
       "roster_members_without_prior_observed_games": 5,
       "roster_player_count": 16,
-      "roster_source_captured_utc": "2026-11-13T20:36:14Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:32Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "305",
-      "transfers_prior_sample_minutes": 1206.0,
+      "transfers_prior_sample_minutes": 1232.0,
       "transfers_with_prior_verified_minutes": 6
     },
     "3084": {
@@ -5148,18 +5169,18 @@
     "309": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 33,
-      "prior_games_verified": 6,
-      "prior_player_game_coverage": 0.18182,
-      "prior_sample_player_minutes": 1200.0,
-      "retained_minutes_share": 0.33583,
-      "retained_points_share": 0.28177,
+      "prior_games_verified": 7,
+      "prior_player_game_coverage": 0.21212,
+      "prior_sample_player_minutes": 1400.0,
+      "retained_minutes_share": 0.32071,
+      "retained_points_share": 0.25647,
       "returning_player_count": 3,
       "roster_members_without_prior_observed_games": 9,
       "roster_player_count": 16,
       "roster_source_captured_utc": "2026-11-13T21:59:10Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "309",
-      "transfers_prior_sample_minutes": 680.0,
+      "transfers_prior_sample_minutes": 702.0,
       "transfers_with_prior_verified_minutes": 4
     },
     "3101": {
@@ -5193,7 +5214,7 @@
       "roster_source_captured_utc": "2026-11-21T18:03:22Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "311",
-      "transfers_prior_sample_minutes": 284.0,
+      "transfers_prior_sample_minutes": 300.0,
       "transfers_with_prior_verified_minutes": 4
     },
     "314": {
@@ -5210,7 +5231,7 @@
       "roster_source_captured_utc": "2026-11-19T19:32:09Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "314",
-      "transfers_prior_sample_minutes": 759.0,
+      "transfers_prior_sample_minutes": 783.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "315": {
@@ -5227,7 +5248,7 @@
       "roster_source_captured_utc": "2026-11-13T22:18:23Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "315",
-      "transfers_prior_sample_minutes": 451.0,
+      "transfers_prior_sample_minutes": 517.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "322": {
@@ -5261,7 +5282,7 @@
       "roster_source_captured_utc": "2026-11-18T19:26:29Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "324",
-      "transfers_prior_sample_minutes": 493.0,
+      "transfers_prior_sample_minutes": 508.0,
       "transfers_with_prior_verified_minutes": 6
     },
     "325": {
@@ -5312,7 +5333,7 @@
       "roster_source_captured_utc": "2026-11-13T20:36:35Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "328",
-      "transfers_prior_sample_minutes": 1170.0,
+      "transfers_prior_sample_minutes": 1204.0,
       "transfers_with_prior_verified_minutes": 6
     },
     "331": {
@@ -5343,7 +5364,7 @@
       "returning_player_count": 5,
       "roster_members_without_prior_observed_games": 7,
       "roster_player_count": 15,
-      "roster_source_captured_utc": "2026-11-13T20:36:07Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:29Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "333",
       "transfers_prior_sample_minutes": 460.0,
@@ -5397,7 +5418,7 @@
       "roster_source_captured_utc": "2026-11-20T19:09:12Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "344",
-      "transfers_prior_sample_minutes": 1053.0,
+      "transfers_prior_sample_minutes": 1073.0,
       "transfers_with_prior_verified_minutes": 7
     },
     "349": {
@@ -5420,11 +5441,11 @@
     "350": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 32,
-      "prior_games_verified": 8,
-      "prior_player_game_coverage": 0.25,
-      "prior_sample_player_minutes": 1600.0,
-      "retained_minutes_share": 0.24938,
-      "retained_points_share": 0.29452,
+      "prior_games_verified": 9,
+      "prior_player_game_coverage": 0.28125,
+      "prior_sample_player_minutes": 1800.0,
+      "retained_minutes_share": 0.24944,
+      "retained_points_share": 0.28899,
       "returning_player_count": 4,
       "roster_members_without_prior_observed_games": 8,
       "roster_player_count": 15,
@@ -5465,17 +5486,17 @@
       "roster_source_captured_utc": "2026-11-17T06:52:47Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "357",
-      "transfers_prior_sample_minutes": 640.0,
+      "transfers_prior_sample_minutes": 665.0,
       "transfers_with_prior_verified_minutes": 4
     },
     "36": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 33,
-      "prior_games_verified": 6,
-      "prior_player_game_coverage": 0.18182,
-      "prior_sample_player_minutes": 1200.0,
-      "retained_minutes_share": 0.49167,
-      "retained_points_share": 0.4821,
+      "prior_games_verified": 7,
+      "prior_player_game_coverage": 0.21212,
+      "prior_sample_player_minutes": 1400.0,
+      "retained_minutes_share": 0.50714,
+      "retained_points_share": 0.52549,
       "returning_player_count": 6,
       "roster_members_without_prior_observed_games": 8,
       "roster_player_count": 15,
@@ -5488,11 +5509,11 @@
     "38": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 33,
-      "prior_games_verified": 6,
-      "prior_player_game_coverage": 0.18182,
-      "prior_sample_player_minutes": 1200.0,
-      "retained_minutes_share": 0.31083,
-      "retained_points_share": 0.29741,
+      "prior_games_verified": 7,
+      "prior_player_game_coverage": 0.21212,
+      "prior_sample_player_minutes": 1400.0,
+      "retained_minutes_share": 0.30357,
+      "retained_points_share": 0.27939,
       "returning_player_count": 4,
       "roster_members_without_prior_observed_games": 9,
       "roster_player_count": 16,
@@ -5516,7 +5537,7 @@
       "roster_source_captured_utc": "2026-11-13T23:28:54Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "399",
-      "transfers_prior_sample_minutes": 260.0,
+      "transfers_prior_sample_minutes": 282.0,
       "transfers_with_prior_verified_minutes": 3
     },
     "41": {
@@ -5533,7 +5554,7 @@
       "roster_source_captured_utc": "2026-11-13T20:03:10Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "41",
-      "transfers_prior_sample_minutes": 1080.0,
+      "transfers_prior_sample_minutes": 1093.0,
       "transfers_with_prior_verified_minutes": 7
     },
     "43": {
@@ -5584,7 +5605,7 @@
       "roster_source_captured_utc": "2026-11-17T19:54:59Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "45",
-      "transfers_prior_sample_minutes": 1581.0,
+      "transfers_prior_sample_minutes": 1607.0,
       "transfers_with_prior_verified_minutes": 9
     },
     "46": {
@@ -5624,11 +5645,11 @@
     "48": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 30,
-      "prior_games_verified": 8,
-      "prior_player_game_coverage": 0.26667,
-      "prior_sample_player_minutes": 1600.0,
-      "retained_minutes_share": 0.225,
-      "retained_points_share": 0.13972,
+      "prior_games_verified": 9,
+      "prior_player_game_coverage": 0.3,
+      "prior_sample_player_minutes": 1825.0,
+      "retained_minutes_share": 0.22027,
+      "retained_points_share": 0.13438,
       "returning_player_count": 5,
       "roster_members_without_prior_observed_games": 4,
       "roster_player_count": 15,
@@ -5652,7 +5673,7 @@
       "roster_source_captured_utc": "2026-11-13T21:58:48Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "5",
-      "transfers_prior_sample_minutes": 984.0,
+      "transfers_prior_sample_minutes": 1023.0,
       "transfers_with_prior_verified_minutes": 6
     },
     "50": {
@@ -5686,7 +5707,7 @@
       "roster_source_captured_utc": "2026-11-17T06:52:45Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "52",
-      "transfers_prior_sample_minutes": 1093.0,
+      "transfers_prior_sample_minutes": 1120.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "526": {
@@ -5771,7 +5792,7 @@
       "roster_source_captured_utc": "2026-11-21T18:03:30Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "58",
-      "transfers_prior_sample_minutes": 1444.0,
+      "transfers_prior_sample_minutes": 1510.0,
       "transfers_with_prior_verified_minutes": 10
     },
     "59": {
@@ -5788,7 +5809,7 @@
       "roster_source_captured_utc": "2026-11-13T21:17:11Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "59",
-      "transfers_prior_sample_minutes": 976.0,
+      "transfers_prior_sample_minutes": 1014.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "6": {
@@ -5848,7 +5869,7 @@
       "roster_source_captured_utc": "2026-11-13T22:18:21Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "66",
-      "transfers_prior_sample_minutes": 1019.0,
+      "transfers_prior_sample_minutes": 1027.0,
       "transfers_with_prior_verified_minutes": 5
     },
     "68": {
@@ -5871,11 +5892,11 @@
     "70": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 33,
-      "prior_games_verified": 5,
-      "prior_player_game_coverage": 0.15152,
-      "prior_sample_player_minutes": 1025.0,
-      "retained_minutes_share": 0.13073,
-      "retained_points_share": 0.06612,
+      "prior_games_verified": 6,
+      "prior_player_game_coverage": 0.18182,
+      "prior_sample_player_minutes": 1225.0,
+      "retained_minutes_share": 0.12408,
+      "retained_points_share": 0.06488,
       "returning_player_count": 2,
       "roster_members_without_prior_observed_games": 12,
       "roster_player_count": 16,
@@ -6092,18 +6113,18 @@
     "94": {
       "caveat": "Observed prior games are a partial historical sample; transfer usage does not imply minutes at the new school.",
       "prior_d1_games_known": 31,
-      "prior_games_verified": 8,
-      "prior_player_game_coverage": 0.25806,
-      "prior_sample_player_minutes": 1600.0,
-      "retained_minutes_share": 0.24313,
-      "retained_points_share": 0.10746,
+      "prior_games_verified": 9,
+      "prior_player_game_coverage": 0.29032,
+      "prior_sample_player_minutes": 1800.0,
+      "retained_minutes_share": 0.24056,
+      "retained_points_share": 0.10174,
       "returning_player_count": 4,
       "roster_members_without_prior_observed_games": 5,
       "roster_player_count": 13,
-      "roster_source_captured_utc": "2026-11-13T21:16:57Z",
+      "roster_source_captured_utc": "2026-11-22T18:34:52Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "94",
-      "transfers_prior_sample_minutes": 541.0,
+      "transfers_prior_sample_minutes": 572.0,
       "transfers_with_prior_verified_minutes": 4
     },
     "96": {
@@ -6137,7 +6158,7 @@
       "roster_source_captured_utc": "2026-11-13T23:28:31Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "97",
-      "transfers_prior_sample_minutes": 1523.0,
+      "transfers_prior_sample_minutes": 1565.0,
       "transfers_with_prior_verified_minutes": 8
     },
     "98": {
@@ -6171,11 +6192,11 @@
       "roster_source_captured_utc": "2026-11-13T21:17:01Z",
       "status": "RESEARCH_SAMPLE_NOT_FULL_SEASON",
       "team_id": "99",
-      "transfers_prior_sample_minutes": 1020.0,
+      "transfers_prior_sample_minutes": 1043.0,
       "transfers_with_prior_verified_minutes": 6
     }
   },
-  "teams_with_20pct_player_game_coverage": 325,
+  "teams_with_20pct_player_game_coverage": 331,
   "teams_with_full_denominator": 362,
   "teams_with_sample_backed_continuity": 360,
   "warning": "No last-season player data may be treated as available at a past tip before actual acquisition. Roster membership is a captured snapshot, not a verified starting lineup."
