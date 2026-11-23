@@ -322,3 +322,39 @@ def test_new_adaptive_challenger_compares_to_featured_blend20_on_same_game_only(
     assert grade([g],{"1","2"},now,original,sim,quotes)[
         "paired_comparisons_against_featured_blend20"]["adaptive_maturity"][
             "paired_games"]==0
+
+
+
+def test_su_accuracy_is_reported_separately_within_ats_losses_and_wins():
+    """Even when a spread pick loses, its projected outright winner can win."""
+    from possession_simulator_v05 import straight_up_vs_ats, market_relative_slices
+    def obs(gid,model_margin,actual_margin,ats,spread):
+        game={"game_id":gid,"tip_utc":"2026-11-21T19:00:00Z",
+              "home_score":75+actual_margin,"away_score":75}
+        return {"quote":{"provider":"DraftKings","home_spread":spread},
+                "game":game,"snapshot":{"pred_margin":model_margin,
+                                         "home_shot_games":3,"away_shot_games":3},
+                "v04":{"provider":"DraftKings","ats":ats},
+                "research":{"provider":"DraftKings","ats":ats}}
+    rows=[
+        obs("a",12,4,"L",-5.5),  # Correct SU home, ATS home -5.5 loses
+        obs("b",6,-2,"L",-1.5),  # Wrong SU home, ATS home -1.5 loses
+        obs("c",-8,-1,"L",2.5),  # Correct SU away, ATS away -2.5 loses
+        obs("d",10,12,"W",-6.5), # Both correct; ATS edge >=3
+        obs("e",3,2,"NO_EDGE",-2.5), # PASS is not a bet, SU correct
+        obs("f",11,6,"P",-6.0), # ATS push, correct SU
+        obs("g",5,0,"NO_EDGE",-4.5), # Tied final excluded from SU
+    ]
+    result=straight_up_vs_ats(rows)
+    assert result["quoted_games"]==7
+    assert result["su_unavailable"]==1
+    assert result["ats_losses"]=={
+        "games":3,"su_correct":2,"su_incorrect":1,"su_accuracy":.6667}
+    assert result["ats_wins"]["su_correct"]==1
+    assert result["ats_passes_below_edge"]["games"]==1
+    assert result["all_with_su_evidence"]["games"]==6
+    assert result["all_with_su_evidence"]["su_correct"]==5
+    audit=market_relative_slices(rows,7)
+    close=audit["by_market_spread"]["close_spread_under6"]
+    assert close["su_by_ats_result"]["ats_losses"]["su_correct"]==2
+    assert audit["summary"]["su_by_ats_result"]["ats_losses"]["su_incorrect"]==1
