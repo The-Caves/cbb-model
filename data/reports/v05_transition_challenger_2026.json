@@ -3,76 +3,76 @@
   "active_model_changed": false,
   "candidate_selected_on_prior_window": "lighter_carryover",
   "current_season": {
-    "authentic_v04_pre_tip_games": 177,
+    "authentic_v04_pre_tip_games": 427,
     "comparison": {
       "less_shrinkage": {
-        "brier": 0.1898,
-        "margin_bias": 1.74,
-        "margin_mae": 10.743,
-        "n": 177,
-        "su_accuracy": 0.7288,
-        "total_mae": 14.134
+        "brier": 0.1862,
+        "margin_bias": 0.676,
+        "margin_mae": 10.956,
+        "n": 427,
+        "su_accuracy": 0.7166,
+        "total_mae": 13.574
       },
       "lighter_carryover": {
-        "brier": 0.1849,
-        "margin_bias": 0.568,
-        "margin_mae": 10.612,
-        "n": 177,
-        "su_accuracy": 0.7345,
-        "total_mae": 13.783
+        "brier": 0.1812,
+        "margin_bias": -0.176,
+        "margin_mae": 10.86,
+        "n": 427,
+        "su_accuracy": 0.7283,
+        "total_mae": 13.221
       },
       "roster_fade": {
-        "brier": 0.1865,
-        "margin_bias": 0.917,
-        "margin_mae": 10.639,
-        "n": 177,
-        "su_accuracy": 0.7345,
-        "total_mae": 13.932
+        "brier": 0.1826,
+        "margin_bias": 0.016,
+        "margin_mae": 10.885,
+        "n": 427,
+        "su_accuracy": 0.719,
+        "total_mae": 13.361
       },
       "v04": {
-        "brier": 0.1872,
-        "margin_bias": 1.049,
-        "margin_mae": 10.655,
-        "n": 177,
-        "su_accuracy": 0.7288,
-        "total_mae": 13.992
+        "brier": 0.1837,
+        "margin_bias": 0.103,
+        "margin_mae": 10.898,
+        "n": 427,
+        "su_accuracy": 0.7166,
+        "total_mae": 13.461
       }
     },
     "early_under5": {
       "less_shrinkage": {
-        "brier": 0.1898,
-        "margin_bias": 1.74,
-        "margin_mae": 10.743,
-        "n": 177,
-        "su_accuracy": 0.7288,
-        "total_mae": 14.134
+        "brier": 0.1911,
+        "margin_bias": 1.075,
+        "margin_mae": 10.928,
+        "n": 411,
+        "su_accuracy": 0.7105,
+        "total_mae": 13.68
       },
       "lighter_carryover": {
-        "brier": 0.1849,
-        "margin_bias": 0.568,
-        "margin_mae": 10.612,
-        "n": 177,
-        "su_accuracy": 0.7345,
-        "total_mae": 13.783
+        "brier": 0.1858,
+        "margin_bias": 0.196,
+        "margin_mae": 10.831,
+        "n": 411,
+        "su_accuracy": 0.7226,
+        "total_mae": 13.302
       },
       "roster_fade": {
-        "brier": 0.1865,
-        "margin_bias": 0.917,
-        "margin_mae": 10.639,
-        "n": 177,
-        "su_accuracy": 0.7345,
-        "total_mae": 13.932
+        "brier": 0.1872,
+        "margin_bias": 0.405,
+        "margin_mae": 10.851,
+        "n": 411,
+        "su_accuracy": 0.7129,
+        "total_mae": 13.456
       },
       "v04": {
-        "brier": 0.1872,
-        "margin_bias": 1.049,
-        "margin_mae": 10.655,
-        "n": 177,
-        "su_accuracy": 0.7288,
-        "total_mae": 13.992
+        "brier": 0.1883,
+        "margin_bias": 0.501,
+        "margin_mae": 10.862,
+        "n": 411,
+        "su_accuracy": 0.7105,
+        "total_mae": 13.567
       }
     },
-    "paired_games": 177,
+    "paired_games": 427,
     "skipped": 0,
     "status": "AS_OF_COUNTERFACTUAL_NOT_FROZEN",
     "v05_truly_frozen_pre_tip_games": 0,

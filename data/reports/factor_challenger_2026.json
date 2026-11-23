@@ -40,14 +40,14 @@
     "three_rate_matchup_total"
   ],
   "heldout": {
-    "factors_only": {
-      "brier": 0.2058,
-      "margin_bias": 1.068,
-      "margin_mae": 8.948,
+    "form_only": {
+      "brier": 0.2062,
+      "margin_bias": 0.76,
+      "margin_mae": 8.932,
       "n": 1361,
-      "su_accuracy": 0.6738,
-      "total_bias": 1.854,
-      "total_mae": 13.591
+      "su_accuracy": 0.6819,
+      "total_bias": 1.565,
+      "total_mae": 13.593
     },
     "v04": {
       "brier": 0.2051,
@@ -60,13 +60,13 @@
     }
   },
   "heldout_improvement": {
-    "margin_mae_points": -0.029,
-    "su_percentage_points": -0.73,
-    "total_mae_points": -0.184
+    "margin_mae_points": -0.013,
+    "su_percentage_points": 0.08,
+    "total_mae_points": -0.186
   },
   "heldout_strata": {
     "early_low_sample": {
-      "factors_only": {
+      "form_only": {
         "brier": null,
         "margin_bias": null,
         "margin_mae": null,
@@ -86,14 +86,14 @@
       }
     },
     "large_baseline_gap_12plus": {
-      "factors_only": {
-        "brier": 0.0746,
-        "margin_bias": 1.214,
-        "margin_mae": 9.244,
+      "form_only": {
+        "brier": 0.0757,
+        "margin_bias": 1.862,
+        "margin_mae": 9.448,
         "n": 162,
         "su_accuracy": 0.9198,
-        "total_bias": 2.218,
-        "total_mae": 13.034
+        "total_bias": 2.781,
+        "total_mae": 13.267
       },
       "v04": {
         "brier": 0.0744,
@@ -106,14 +106,14 @@
       }
     },
     "sos_gap_6plus": {
-      "factors_only": {
-        "brier": 0.0576,
-        "margin_bias": 9.156,
-        "margin_mae": 9.156,
+      "form_only": {
+        "brier": 0.0554,
+        "margin_bias": 8.792,
+        "margin_mae": 8.792,
         "n": 3,
         "su_accuracy": 1.0,
-        "total_bias": 1.292,
-        "total_mae": 10.774
+        "total_bias": -0.894,
+        "total_mae": 12.575
       },
       "v04": {
         "brier": 0.0553,
@@ -137,7 +137,7 @@
   "model": "CBB_FACTOR_RESIDUAL_V0_1",
   "needs_independent_prospective_validation": true,
   "ridge_alpha": 100.0,
-  "selected_on_january_only": "factors_only",
+  "selected_on_january_only": "form_only",
   "status": "RETROSPECTIVE_HOLDOUT_COMPARISON_COMPLETE",
   "test_dates": [
     "2026-02-01",
@@ -149,22 +149,22 @@
   ],
   "validation": {
     "combined": {
-      "brier": 0.2083,
-      "margin_bias": 0.97,
-      "margin_mae": 9.004,
+      "brier": 0.2106,
+      "margin_bias": 0.918,
+      "margin_mae": 9.045,
       "n": 1517,
-      "su_accuracy": 0.6955,
-      "total_bias": 0.325,
-      "total_mae": 14.096
+      "su_accuracy": 0.6842,
+      "total_bias": 0.416,
+      "total_mae": 14.103
     },
     "factors_only": {
-      "brier": 0.2083,
-      "margin_bias": 1.576,
-      "margin_mae": 8.989,
+      "brier": 0.21,
+      "margin_bias": 1.532,
+      "margin_mae": 9.028,
       "n": 1517,
-      "su_accuracy": 0.6961,
-      "total_bias": 0.948,
-      "total_mae": 14.053
+      "su_accuracy": 0.6882,
+      "total_bias": 1.032,
+      "total_mae": 14.064
     },
     "form_only": {
       "brier": 0.2079,
@@ -190,8 +190,8 @@
     "2026-01-31"
   ],
   "validation_improvement": {
-    "margin_mae_points": -0.051,
-    "total_mae_points": -0.192
+    "margin_mae_points": -0.11,
+    "total_mae_points": -0.156
   },
   "warning": "Historical ESPN game boxscores were fetched retrospectively. No independent 2025-26 pre-tip source timestamps or authenticated market closing lines; results do not demonstrate wagering profitability."
 }
