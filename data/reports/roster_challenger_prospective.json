@@ -1,11 +1,11 @@
 {
-  "as_of_utc": "2026-11-23T13:58:19Z",
+  "as_of_utc": "2026-11-23T16:00:45Z",
   "collector_player_game_records": 2480,
   "collector_roster_snapshots": 528,
   "freeze": {
-    "captured": 149,
+    "captured": 147,
     "coverage": {
-      "candidate_games_eligible": 149,
+      "candidate_games_eligible": 147,
       "roster_snapshot_teams": 365,
       "source_backed_multiplier_teams": 364,
       "source_backed_team_multipliers": {
