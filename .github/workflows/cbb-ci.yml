@@ -31,3 +31,5 @@ jobs:
         run: |
           python -m pytest -q
           node --test tests/test_board.cjs
+      - name: Verify actual SU wins within ATS wins and losses from frozen ledgers
+        run: python su_ats_report.py
