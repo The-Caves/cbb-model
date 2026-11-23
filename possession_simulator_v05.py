@@ -609,6 +609,53 @@ def freeze(games,accepted,verified,now,historical,ledger):
             "unique_games":len({r["game_id"] for r in captured})}
 
 
+def straight_up_vs_ats(rows):
+    """Count actual winners within observed ATS wins, losses and passes.
+
+    Only source-observed pre-tip sportsbook comparisons reach this function.
+    For a row to count as SU correct, its *frozen* predicted margin and
+    final home/away scores must be present; no inference from the book side.
+    This intentionally compares the model's moneyline *direction* (not
+    hypothetical moneyline profitability) to its independent ATS result.
+    """
+    buckets={"W":[],"L":[],"P":[],"NO_EDGE":[]}
+    excluded=0
+    for row in rows:
+        ats=row.get("research",{}).get("ats","NO_EDGE")
+        if ats not in buckets:
+            ats="NO_EDGE"
+        try:
+            margin=float(row["snapshot"]["pred_margin"])
+            game=row["game"]
+            actual=float(game["home_score"])-float(game["away_score"])
+            if (not math.isfinite(margin) or not math.isfinite(actual)
+                    or margin==0 or actual==0):
+                excluded+=1
+                continue
+            buckets[ats].append((margin>0)==(actual>0))
+        except (KeyError,ValueError,TypeError,OverflowError):
+            # Explicitly label absent historical data, never guess the side.
+            excluded+=1
+    def stats(items):
+        count=len(items);wins=sum(items)
+        return {"games":count,"su_correct":wins,"su_incorrect":count-wins,
+                "su_accuracy":round(wins/count,4) if count else None}
+    output={
+        "quoted_games":len(rows),
+        "su_unavailable":excluded,
+        "ats_wins":stats(buckets["W"]),
+        "ats_losses":stats(buckets["L"]),
+        "ats_pushes":stats(buckets["P"]),
+        "ats_passes_below_edge":stats(buckets["NO_EDGE"]),
+        "all_with_su_evidence":stats(sum((buckets[k] for k in buckets),[])),
+        "meaning":("SU is whether the frozen margin sign predicted the real "
+                   "winner, even if the model's separate ATS side failed. "
+                   "Qualifying ATS follows the fixed 3-point model-vs-book "
+                   "edge gate; other quoted games are PASS, not bets."),
+    }
+    return output
+
+
 def market_relative_slices(observations, frozen_pairs):
     """Paired sportsbook benchmark by game context, never fabricated odds.
 
@@ -629,6 +676,7 @@ def market_relative_slices(observations, frozen_pairs):
         return {
             "matched_source_quotes":len(rows),
             "v04":b,"challenger":t,
+            "su_by_ats_result":straight_up_vs_ats(rows),
             "margin_mae_delta_vs_v04":delta("model_margin_mae"),
             "total_mae_delta_vs_v04":delta("model_total_mae"),
             "margin_mae_delta_vs_market":round(
