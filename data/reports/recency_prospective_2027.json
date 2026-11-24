@@ -1,6 +1,6 @@
 {
   "active_v04_unchanged": true,
-  "as_of_utc": "2026-11-24T15:55:09Z",
+  "as_of_utc": "2026-11-24T21:22:36Z",
   "experiment": "CBB_V05_OPP_ADJ_RECENCY_RESEARCH_20261113",
   "freeze": {
     "captured": 399,
@@ -12,56 +12,56 @@
     "graded_by_variant": {
       "recency_21": {
         "challenger": {
-          "brier": 0.1704,
-          "margin_bias": -0.237,
-          "margin_mae": 10.958,
-          "n": 409,
-          "su_accuracy": 0.7213,
-          "total_mae": 13.615
+          "brier": 0.1707,
+          "margin_bias": -0.246,
+          "margin_mae": 10.916,
+          "n": 411,
+          "su_accuracy": 0.7202,
+          "total_mae": 13.619
         },
         "v04": {
-          "brier": 0.1699,
-          "margin_bias": -0.151,
-          "margin_mae": 10.939,
-          "n": 409,
-          "su_accuracy": 0.7237,
-          "total_mae": 13.576
+          "brier": 0.1702,
+          "margin_bias": -0.164,
+          "margin_mae": 10.899,
+          "n": 411,
+          "su_accuracy": 0.7226,
+          "total_mae": 13.58
         }
       },
       "recency_45": {
         "challenger": {
-          "brier": 0.1702,
-          "margin_bias": -0.195,
-          "margin_mae": 10.947,
-          "n": 409,
-          "su_accuracy": 0.7213,
-          "total_mae": 13.594
+          "brier": 0.1704,
+          "margin_bias": -0.205,
+          "margin_mae": 10.906,
+          "n": 411,
+          "su_accuracy": 0.7202,
+          "total_mae": 13.599
         },
         "v04": {
-          "brier": 0.1699,
-          "margin_bias": -0.151,
-          "margin_mae": 10.939,
-          "n": 409,
-          "su_accuracy": 0.7237,
-          "total_mae": 13.576
+          "brier": 0.1702,
+          "margin_bias": -0.164,
+          "margin_mae": 10.899,
+          "n": 411,
+          "su_accuracy": 0.7226,
+          "total_mae": 13.58
         }
       },
       "recency_45_prior15": {
         "challenger": {
-          "brier": 0.1671,
-          "margin_bias": -0.447,
-          "margin_mae": 10.865,
-          "n": 409,
-          "su_accuracy": 0.7408,
-          "total_mae": 13.338
+          "brier": 0.1673,
+          "margin_bias": -0.465,
+          "margin_mae": 10.831,
+          "n": 411,
+          "su_accuracy": 0.7397,
+          "total_mae": 13.342
         },
         "v04": {
-          "brier": 0.1699,
-          "margin_bias": -0.151,
-          "margin_mae": 10.939,
-          "n": 409,
-          "su_accuracy": 0.7237,
-          "total_mae": 13.576
+          "brier": 0.1702,
+          "margin_bias": -0.164,
+          "margin_mae": 10.899,
+          "n": 411,
+          "su_accuracy": 0.7226,
+          "total_mae": 13.58
         }
       }
     },
