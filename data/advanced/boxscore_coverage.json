@@ -6,9 +6,9 @@
   "audit_by_season": {
     "2025": {
       "eligible_d1_final_games": 5733,
-      "verified_boxscores": 1480,
-      "missing_boxscores": 4253,
-      "coverage_fraction": 0.2582,
+      "verified_boxscores": 1502,
+      "missing_boxscores": 4231,
+      "coverage_fraction": 0.262,
       "other_or_unverified_final_games": 559,
       "disputed_source_score_games": 0,
       "d1_teams_with_5plus_games": 362,
@@ -16,9 +16,9 @@
     },
     "2026": {
       "eligible_d1_final_games": 5723,
-      "verified_boxscores": 3359,
-      "missing_boxscores": 2364,
-      "coverage_fraction": 0.5869,
+      "verified_boxscores": 3415,
+      "missing_boxscores": 2308,
+      "coverage_fraction": 0.5967,
       "other_or_unverified_final_games": 577,
       "disputed_source_score_games": 0,
       "d1_teams_with_5plus_games": 364,
@@ -36,7 +36,7 @@
     }
   },
   "quarantined_archive_rows": 0,
-  "as_of_utc": "2026-11-27T20:05:43Z",
+  "as_of_utc": "2026-11-27T20:07:31Z",
   "attempted": 80,
   "current_season_priority_active": false,
   "current_season_missing_at_start": 0,
@@ -50,7 +50,7 @@
   },
   "accepted_this_run": 78,
   "rejected_this_run": 2,
-  "accepted_total": 5857,
+  "accepted_total": 5935,
   "player_games_captured_this_run": 78,
   "player_rows_rejected": [],
   "profile_teams": 365,
