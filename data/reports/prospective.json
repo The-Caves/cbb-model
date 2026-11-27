@@ -1,10 +1,10 @@
 {
   "all_games": {
-    "margin_bias": -3.395,
-    "margin_mae": 11.977,
-    "n": 909,
-    "su_accuracy": 0.7624,
-    "total_mae": 13.921
+    "margin_bias": -3.328,
+    "margin_mae": 11.98,
+    "n": 913,
+    "su_accuracy": 0.7601,
+    "total_mae": 13.914
   },
   "ats_graded": 0,
   "by_model": {
@@ -23,19 +23,19 @@
       "total_mae": 14.17
     },
     "CBB_SCORE_RIDGE_V0_4_D1_PRIOR30_A1_5": {
-      "margin_bias": -0.283,
-      "margin_mae": 10.728,
-      "n": 545,
-      "su_accuracy": 0.7229,
-      "total_mae": 13.852
+      "margin_bias": -0.194,
+      "margin_mae": 10.743,
+      "n": 549,
+      "su_accuracy": 0.7195,
+      "total_mae": 13.842
     }
   },
   "established_teams": {
-    "margin_bias": -4.965,
-    "margin_mae": 11.044,
-    "n": 71,
-    "su_accuracy": 0.7606,
-    "total_mae": 14.559
+    "margin_bias": -4.067,
+    "margin_mae": 11.135,
+    "n": 75,
+    "su_accuracy": 0.7333,
+    "total_mae": 14.443
   },
   "over_under_graded": 0,
   "status": "PROSPECTIVE_FROZEN_RESEARCH_ONLY"

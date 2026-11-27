@@ -19,7 +19,7 @@
       }
     ],
     "first_observed_utc": "2026-11-20T19:08:51Z",
-    "last_seen_utc": "2026-11-26T20:14:27Z"
+    "last_seen_utc": "2026-11-27T01:00:53Z"
   },
   "401906762": {
     "evidence": [
@@ -41,7 +41,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T15:37:17Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401906773": {
     "evidence": [
@@ -85,7 +85,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T01:26:25Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401909525": {
     "evidence": [
@@ -129,7 +129,7 @@
       }
     ],
     "first_observed_utc": "2026-11-26T01:00:13Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
   },
   "401909743": {
     "evidence": [
@@ -151,7 +151,7 @@
       }
     ],
     "first_observed_utc": "2026-11-24T15:54:44Z",
-    "last_seen_utc": "2026-11-26T20:14:28Z"
+    "last_seen_utc": "2026-11-27T01:00:54Z"
   },
   "401909763": {
     "evidence": [
@@ -189,7 +189,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T01:26:25Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401909786": {
     "evidence": [
@@ -233,7 +233,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T15:37:17Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401911200": {
     "evidence": [
@@ -255,7 +255,7 @@
       }
     ],
     "first_observed_utc": "2026-11-22T22:28:36Z",
-    "last_seen_utc": "2026-11-26T20:14:27Z"
+    "last_seen_utc": "2026-11-27T01:00:53Z"
   },
   "401911233": {
     "evidence": [
@@ -277,7 +277,7 @@
       }
     ],
     "first_observed_utc": "2026-11-23T03:43:58Z",
-    "last_seen_utc": "2026-11-26T20:14:27Z"
+    "last_seen_utc": "2026-11-27T01:00:53Z"
   },
   "401911253": {
     "evidence": [
@@ -315,7 +315,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T01:26:25Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401911391": {
     "evidence": [
@@ -375,7 +375,7 @@
       }
     ],
     "first_observed_utc": "2026-11-23T22:43:33Z",
-    "last_seen_utc": "2026-11-26T20:14:28Z"
+    "last_seen_utc": "2026-11-27T01:00:54Z"
   },
   "401911458": {
     "evidence": [
@@ -397,7 +397,29 @@
       }
     ],
     "first_observed_utc": "2026-11-25T01:26:25Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
+  },
+  "401911523": {
+    "evidence": [
+      {
+        "game_id": "401911523",
+        "new_identity": [
+          "55",
+          "302",
+          "2026-11-27T01:00:00Z"
+        ],
+        "observed_utc": "2026-11-27T01:00:57Z",
+        "original_identity": [
+          "302",
+          "55",
+          "2026-11-27T01:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "d8c9cbf41c3b090ca1a404158d5d1cf3a66066adc5b2358fc4b1bd17ab474c8a"
+      }
+    ],
+    "first_observed_utc": "2026-11-27T01:00:57Z",
+    "last_seen_utc": "2026-11-27T01:00:57Z"
   },
   "401911535": {
     "evidence": [
@@ -435,7 +457,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T01:26:25Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401915942": {
     "evidence": [
@@ -457,7 +479,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T01:26:25Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401915943": {
     "evidence": [
@@ -479,7 +501,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T15:37:17Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401916125": {
     "evidence": [
@@ -501,7 +523,7 @@
       }
     ],
     "first_observed_utc": "2026-11-21T03:59:26Z",
-    "last_seen_utc": "2026-11-26T20:14:25Z"
+    "last_seen_utc": "2026-11-27T01:00:51Z"
   },
   "401917182": {
     "evidence": [
@@ -523,7 +545,7 @@
       }
     ],
     "first_observed_utc": "2026-11-26T01:00:13Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
   },
   "401917528": {
     "evidence": [
@@ -567,7 +589,7 @@
       }
     ],
     "first_observed_utc": "2026-11-21T22:12:05Z",
-    "last_seen_utc": "2026-11-26T20:14:26Z"
+    "last_seen_utc": "2026-11-27T01:00:52Z"
   },
   "401917539": {
     "evidence": [
@@ -589,7 +611,7 @@
       }
     ],
     "first_observed_utc": "2026-11-22T03:12:13Z",
-    "last_seen_utc": "2026-11-26T20:14:26Z"
+    "last_seen_utc": "2026-11-27T01:00:52Z"
   },
   "401917540": {
     "evidence": [
@@ -611,7 +633,7 @@
       }
     ],
     "first_observed_utc": "2026-11-22T22:28:36Z",
-    "last_seen_utc": "2026-11-26T20:14:27Z"
+    "last_seen_utc": "2026-11-27T01:00:53Z"
   },
   "401917541": {
     "evidence": [
@@ -633,7 +655,7 @@
       }
     ],
     "first_observed_utc": "2026-11-23T03:43:58Z",
-    "last_seen_utc": "2026-11-26T20:14:27Z"
+    "last_seen_utc": "2026-11-27T01:00:53Z"
   },
   "401917542": {
     "evidence": [
@@ -655,7 +677,7 @@
       }
     ],
     "first_observed_utc": "2026-11-23T03:43:58Z",
-    "last_seen_utc": "2026-11-26T20:14:27Z"
+    "last_seen_utc": "2026-11-27T01:00:53Z"
   },
   "401917543": {
     "evidence": [
@@ -677,7 +699,7 @@
       }
     ],
     "first_observed_utc": "2026-11-24T03:20:34Z",
-    "last_seen_utc": "2026-11-26T20:14:28Z"
+    "last_seen_utc": "2026-11-27T01:00:54Z"
   },
   "401917544": {
     "evidence": [
@@ -699,7 +721,29 @@
       }
     ],
     "first_observed_utc": "2026-11-26T15:18:39Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
+  },
+  "401917547": {
+    "evidence": [
+      {
+        "game_id": "401917547",
+        "new_identity": [
+          "2608",
+          "26",
+          "2026-11-26T22:00:00Z"
+        ],
+        "observed_utc": "2026-11-27T01:00:57Z",
+        "original_identity": [
+          "26",
+          "2608",
+          "2026-11-26T22:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "d8c9cbf41c3b090ca1a404158d5d1cf3a66066adc5b2358fc4b1bd17ab474c8a"
+      }
+    ],
+    "first_observed_utc": "2026-11-27T01:00:57Z",
+    "last_seen_utc": "2026-11-27T01:00:57Z"
   },
   "401917676": {
     "evidence": [
@@ -721,7 +765,7 @@
       }
     ],
     "first_observed_utc": "2026-11-24T21:21:12Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401917903": {
     "evidence": [
@@ -743,7 +787,7 @@
       }
     ],
     "first_observed_utc": "2026-11-21T03:59:26Z",
-    "last_seen_utc": "2026-11-26T20:14:25Z"
+    "last_seen_utc": "2026-11-27T01:00:51Z"
   },
   "401917963": {
     "evidence": [
@@ -831,7 +875,29 @@
       }
     ],
     "first_observed_utc": "2026-11-26T01:00:13Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
+  },
+  "401918972": {
+    "evidence": [
+      {
+        "game_id": "401918972",
+        "new_identity": [
+          "2567",
+          "99",
+          "2026-11-27T00:00:00Z"
+        ],
+        "observed_utc": "2026-11-27T01:00:57Z",
+        "original_identity": [
+          "99",
+          "2567",
+          "2026-11-27T00:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "d8c9cbf41c3b090ca1a404158d5d1cf3a66066adc5b2358fc4b1bd17ab474c8a"
+      }
+    ],
+    "first_observed_utc": "2026-11-27T01:00:57Z",
+    "last_seen_utc": "2026-11-27T01:00:57Z"
   },
   "401918992": {
     "evidence": [
@@ -875,7 +941,7 @@
       }
     ],
     "first_observed_utc": "2026-11-19T19:31:50Z",
-    "last_seen_utc": "2026-11-26T20:14:25Z"
+    "last_seen_utc": "2026-11-27T01:00:51Z"
   },
   "401919020": {
     "evidence": [
@@ -897,7 +963,7 @@
       }
     ],
     "first_observed_utc": "2026-11-23T03:43:58Z",
-    "last_seen_utc": "2026-11-26T20:14:27Z"
+    "last_seen_utc": "2026-11-27T01:00:53Z"
   },
   "401919029": {
     "evidence": [
@@ -985,7 +1051,7 @@
       }
     ],
     "first_observed_utc": "2026-11-20T23:05:54Z",
-    "last_seen_utc": "2026-11-26T20:14:25Z"
+    "last_seen_utc": "2026-11-27T01:00:51Z"
   },
   "401919828": {
     "evidence": [
@@ -1007,7 +1073,7 @@
       }
     ],
     "first_observed_utc": "2026-11-20T23:05:55Z",
-    "last_seen_utc": "2026-11-26T20:14:26Z"
+    "last_seen_utc": "2026-11-27T01:00:52Z"
   },
   "401919847": {
     "evidence": [
@@ -1133,7 +1199,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T01:26:25Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401920513": {
     "evidence": [
@@ -1475,7 +1541,7 @@
       }
     ],
     "first_observed_utc": "2026-11-24T21:21:15Z",
-    "last_seen_utc": "2026-11-26T20:14:31Z"
+    "last_seen_utc": "2026-11-27T01:00:57Z"
   },
   "401920529": {
     "evidence": [
@@ -1513,7 +1579,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T01:26:27Z",
-    "last_seen_utc": "2026-11-26T20:14:31Z"
+    "last_seen_utc": "2026-11-27T01:00:57Z"
   },
   "401920530": {
     "evidence": [
@@ -1551,7 +1617,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T15:37:19Z",
-    "last_seen_utc": "2026-11-26T20:14:31Z"
+    "last_seen_utc": "2026-11-27T01:00:57Z"
   },
   "401920531": {
     "evidence": [
@@ -1573,7 +1639,51 @@
       }
     ],
     "first_observed_utc": "2026-11-25T15:37:19Z",
-    "last_seen_utc": "2026-11-26T20:14:31Z"
+    "last_seen_utc": "2026-11-27T01:00:57Z"
+  },
+  "401920532": {
+    "evidence": [
+      {
+        "game_id": "401920532",
+        "new_identity": [
+          "120",
+          "-2",
+          "2026-11-27T20:30:00Z"
+        ],
+        "observed_utc": "2026-11-27T01:00:58Z",
+        "original_identity": [
+          "-1",
+          "-2",
+          "2026-11-27T20:30:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "112f69b313a9ee044109fb67ae21770e5966594704245f0434671f6bcf8f73d8"
+      }
+    ],
+    "first_observed_utc": "2026-11-27T01:00:58Z",
+    "last_seen_utc": "2026-11-27T01:00:58Z"
+  },
+  "401920535": {
+    "evidence": [
+      {
+        "game_id": "401920535",
+        "new_identity": [
+          "21",
+          "-2",
+          "2026-11-28T04:30:00Z"
+        ],
+        "observed_utc": "2026-11-27T01:00:58Z",
+        "original_identity": [
+          "-1",
+          "-2",
+          "2026-11-28T04:30:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "112f69b313a9ee044109fb67ae21770e5966594704245f0434671f6bcf8f73d8"
+      }
+    ],
+    "first_observed_utc": "2026-11-27T01:00:58Z",
+    "last_seen_utc": "2026-11-27T01:00:58Z"
   },
   "401920537": {
     "evidence": [
@@ -1611,7 +1721,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T01:26:27Z",
-    "last_seen_utc": "2026-11-26T20:14:31Z"
+    "last_seen_utc": "2026-11-27T01:00:57Z"
   },
   "401920538": {
     "evidence": [
@@ -1649,7 +1759,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T01:26:27Z",
-    "last_seen_utc": "2026-11-26T20:14:31Z"
+    "last_seen_utc": "2026-11-27T01:00:57Z"
   },
   "401920539": {
     "evidence": [
@@ -1687,7 +1797,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T15:37:19Z",
-    "last_seen_utc": "2026-11-26T20:14:31Z"
+    "last_seen_utc": "2026-11-27T01:00:57Z"
   },
   "401920540": {
     "evidence": [
@@ -1725,7 +1835,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T15:37:19Z",
-    "last_seen_utc": "2026-11-26T20:14:31Z"
+    "last_seen_utc": "2026-11-27T01:00:57Z"
   },
   "401920547": {
     "evidence": [
@@ -1763,7 +1873,7 @@
       }
     ],
     "first_observed_utc": "2026-11-24T21:21:14Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
   },
   "401920548": {
     "evidence": [
@@ -1801,7 +1911,7 @@
       }
     ],
     "first_observed_utc": "2026-11-24T21:21:14Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
   },
   "401920549": {
     "evidence": [
@@ -1823,7 +1933,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T15:37:18Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
   },
   "401920550": {
     "evidence": [
@@ -1861,7 +1971,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T15:37:18Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
   },
   "401920567": {
     "evidence": [
@@ -1927,7 +2037,7 @@
       }
     ],
     "first_observed_utc": "2026-11-21T03:59:27Z",
-    "last_seen_utc": "2026-11-26T20:14:26Z"
+    "last_seen_utc": "2026-11-27T01:00:52Z"
   },
   "401920570": {
     "evidence": [
@@ -1965,7 +2075,7 @@
       }
     ],
     "first_observed_utc": "2026-11-21T03:59:27Z",
-    "last_seen_utc": "2026-11-26T20:14:26Z"
+    "last_seen_utc": "2026-11-27T01:00:52Z"
   },
   "401920750": {
     "evidence": [
@@ -2009,7 +2119,7 @@
       }
     ],
     "first_observed_utc": "2026-11-26T01:00:13Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
   },
   "401920887": {
     "evidence": [
@@ -2091,7 +2201,7 @@
       }
     ],
     "first_observed_utc": "2026-11-23T16:00:37Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401921088": {
     "evidence": [
@@ -2113,7 +2223,7 @@
       }
     ],
     "first_observed_utc": "2026-11-19T19:31:52Z",
-    "last_seen_utc": "2026-11-26T20:14:27Z"
+    "last_seen_utc": "2026-11-27T01:00:53Z"
   },
   "401921181": {
     "evidence": [
@@ -2157,7 +2267,7 @@
       }
     ],
     "first_observed_utc": "2026-11-21T03:59:28Z",
-    "last_seen_utc": "2026-11-26T20:14:27Z"
+    "last_seen_utc": "2026-11-27T01:00:53Z"
   },
   "401921206": {
     "evidence": [
@@ -2195,7 +2305,7 @@
       }
     ],
     "first_observed_utc": "2026-11-21T13:29:27Z",
-    "last_seen_utc": "2026-11-26T20:14:27Z"
+    "last_seen_utc": "2026-11-27T01:00:53Z"
   },
   "401921207": {
     "evidence": [
@@ -2233,7 +2343,7 @@
       }
     ],
     "first_observed_utc": "2026-11-22T03:12:15Z",
-    "last_seen_utc": "2026-11-26T20:14:28Z"
+    "last_seen_utc": "2026-11-27T01:00:54Z"
   },
   "401921208": {
     "evidence": [
@@ -2271,7 +2381,7 @@
       }
     ],
     "first_observed_utc": "2026-11-23T03:43:59Z",
-    "last_seen_utc": "2026-11-26T20:14:28Z"
+    "last_seen_utc": "2026-11-27T01:00:54Z"
   },
   "401921209": {
     "evidence": [
@@ -2293,7 +2403,7 @@
       }
     ],
     "first_observed_utc": "2026-11-22T03:12:15Z",
-    "last_seen_utc": "2026-11-26T20:14:28Z"
+    "last_seen_utc": "2026-11-27T01:00:54Z"
   },
   "401921210": {
     "evidence": [
@@ -2347,7 +2457,7 @@
       }
     ],
     "first_observed_utc": "2026-11-23T03:43:59Z",
-    "last_seen_utc": "2026-11-26T20:14:28Z"
+    "last_seen_utc": "2026-11-27T01:00:54Z"
   },
   "401921223": {
     "evidence": [
@@ -2369,7 +2479,7 @@
       }
     ],
     "first_observed_utc": "2026-11-24T21:21:12Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401921663": {
     "evidence": [
@@ -2391,7 +2501,7 @@
       }
     ],
     "first_observed_utc": "2026-11-23T13:57:04Z",
-    "last_seen_utc": "2026-11-26T20:14:28Z"
+    "last_seen_utc": "2026-11-27T01:00:54Z"
   },
   "401921664": {
     "evidence": [
@@ -2413,7 +2523,7 @@
       }
     ],
     "first_observed_utc": "2026-11-23T13:57:04Z",
-    "last_seen_utc": "2026-11-26T20:14:28Z"
+    "last_seen_utc": "2026-11-27T01:00:54Z"
   },
   "401921666": {
     "evidence": [
@@ -2435,7 +2545,7 @@
       }
     ],
     "first_observed_utc": "2026-11-24T21:21:12Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401921669": {
     "evidence": [
@@ -2457,7 +2567,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T20:31:02Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
   },
   "401921670": {
     "evidence": [
@@ -2479,7 +2589,7 @@
       }
     ],
     "first_observed_utc": "2026-11-26T01:00:13Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
   },
   "401921671": {
     "evidence": [
@@ -2517,7 +2627,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T15:37:18Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
   },
   "401921672": {
     "evidence": [
@@ -2555,7 +2665,29 @@
       }
     ],
     "first_observed_utc": "2026-11-25T15:37:18Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
+  },
+  "401921673": {
+    "evidence": [
+      {
+        "game_id": "401921673",
+        "new_identity": [
+          "328",
+          "30",
+          "2026-11-26T21:30:00Z"
+        ],
+        "observed_utc": "2026-11-27T01:00:57Z",
+        "original_identity": [
+          "30",
+          "328",
+          "2026-11-26T21:30:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "d8c9cbf41c3b090ca1a404158d5d1cf3a66066adc5b2358fc4b1bd17ab474c8a"
+      }
+    ],
+    "first_observed_utc": "2026-11-27T01:00:57Z",
+    "last_seen_utc": "2026-11-27T01:00:57Z"
   },
   "401921674": {
     "evidence": [
@@ -2577,7 +2709,7 @@
       }
     ],
     "first_observed_utc": "2026-11-26T20:14:31Z",
-    "last_seen_utc": "2026-11-26T20:14:31Z"
+    "last_seen_utc": "2026-11-27T01:00:57Z"
   },
   "401921691": {
     "evidence": [
@@ -2615,7 +2747,7 @@
       }
     ],
     "first_observed_utc": "2026-11-18T19:26:15Z",
-    "last_seen_utc": "2026-11-26T20:14:25Z"
+    "last_seen_utc": "2026-11-27T01:00:51Z"
   },
   "401921692": {
     "evidence": [
@@ -2653,7 +2785,7 @@
       }
     ],
     "first_observed_utc": "2026-11-18T19:26:15Z",
-    "last_seen_utc": "2026-11-26T20:14:25Z"
+    "last_seen_utc": "2026-11-27T01:00:51Z"
   },
   "401921707": {
     "evidence": [
@@ -2675,7 +2807,7 @@
       }
     ],
     "first_observed_utc": "2026-11-24T21:21:12Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401921709": {
     "evidence": [
@@ -2697,7 +2829,7 @@
       }
     ],
     "first_observed_utc": "2026-11-24T03:20:35Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401921710": {
     "evidence": [
@@ -2719,7 +2851,7 @@
       }
     ],
     "first_observed_utc": "2026-11-24T15:54:45Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401921711": {
     "evidence": [
@@ -2741,7 +2873,7 @@
       }
     ],
     "first_observed_utc": "2026-11-24T03:20:35Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401921712": {
     "evidence": [
@@ -2763,7 +2895,7 @@
       }
     ],
     "first_observed_utc": "2026-11-24T15:54:45Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401921713": {
     "evidence": [
@@ -2785,7 +2917,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T15:37:18Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
   },
   "401921714": {
     "evidence": [
@@ -2807,7 +2939,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T15:37:18Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
   },
   "401921715": {
     "evidence": [
@@ -2845,7 +2977,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T01:26:26Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
   },
   "401921716": {
     "evidence": [
@@ -2867,7 +2999,51 @@
       }
     ],
     "first_observed_utc": "2026-11-25T01:26:26Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
+  },
+  "401921717": {
+    "evidence": [
+      {
+        "game_id": "401921717",
+        "new_identity": [
+          "46",
+          "-2",
+          "2026-11-27T19:30:00Z"
+        ],
+        "observed_utc": "2026-11-27T01:00:58Z",
+        "original_identity": [
+          "-1",
+          "-2",
+          "2026-11-27T19:30:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "112f69b313a9ee044109fb67ae21770e5966594704245f0434671f6bcf8f73d8"
+      }
+    ],
+    "first_observed_utc": "2026-11-27T01:00:58Z",
+    "last_seen_utc": "2026-11-27T01:00:58Z"
+  },
+  "401921718": {
+    "evidence": [
+      {
+        "game_id": "401921718",
+        "new_identity": [
+          "251",
+          "-2",
+          "2026-11-27T22:00:00Z"
+        ],
+        "observed_utc": "2026-11-27T01:00:58Z",
+        "original_identity": [
+          "-1",
+          "-2",
+          "2026-11-27T22:00:00Z"
+        ],
+        "resolution": "UNRESOLVED_EXCLUDED_FROM_MODEL_AND_GRADING",
+        "source_sha256": "112f69b313a9ee044109fb67ae21770e5966594704245f0434671f6bcf8f73d8"
+      }
+    ],
+    "first_observed_utc": "2026-11-27T01:00:58Z",
+    "last_seen_utc": "2026-11-27T01:00:58Z"
   },
   "401921811": {
     "evidence": [
@@ -2889,7 +3065,7 @@
       }
     ],
     "first_observed_utc": "2026-11-18T19:26:16Z",
-    "last_seen_utc": "2026-11-26T20:14:26Z"
+    "last_seen_utc": "2026-11-27T01:00:52Z"
   },
   "401922031": {
     "evidence": [
@@ -2999,7 +3175,7 @@
       }
     ],
     "first_observed_utc": "2026-11-24T21:21:12Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401924723": {
     "evidence": [
@@ -3021,7 +3197,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T01:26:25Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401924737": {
     "evidence": [
@@ -3043,7 +3219,7 @@
       }
     ],
     "first_observed_utc": "2026-11-24T21:21:14Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
   },
   "401924858": {
     "evidence": [
@@ -3241,7 +3417,7 @@
       }
     ],
     "first_observed_utc": "2026-11-21T03:59:26Z",
-    "last_seen_utc": "2026-11-26T20:14:25Z"
+    "last_seen_utc": "2026-11-27T01:00:51Z"
   },
   "401928388": {
     "evidence": [
@@ -3285,7 +3461,7 @@
       }
     ],
     "first_observed_utc": "2026-11-23T03:43:59Z",
-    "last_seen_utc": "2026-11-26T20:14:28Z"
+    "last_seen_utc": "2026-11-27T01:00:54Z"
   },
   "401928831": {
     "evidence": [
@@ -3307,7 +3483,7 @@
       }
     ],
     "first_observed_utc": "2026-11-25T20:31:02Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
   },
   "401928859": {
     "evidence": [
@@ -3329,7 +3505,7 @@
       }
     ],
     "first_observed_utc": "2026-11-24T21:21:12Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401928998": {
     "evidence": [
@@ -3351,7 +3527,7 @@
       }
     ],
     "first_observed_utc": "2026-11-22T03:12:13Z",
-    "last_seen_utc": "2026-11-26T20:14:26Z"
+    "last_seen_utc": "2026-11-27T01:00:52Z"
   },
   "401929002": {
     "evidence": [
@@ -3395,7 +3571,7 @@
       }
     ],
     "first_observed_utc": "2026-11-24T21:21:12Z",
-    "last_seen_utc": "2026-11-26T20:14:29Z"
+    "last_seen_utc": "2026-11-27T01:00:55Z"
   },
   "401929286": {
     "evidence": [
@@ -3417,7 +3593,7 @@
       }
     ],
     "first_observed_utc": "2026-11-23T22:43:33Z",
-    "last_seen_utc": "2026-11-26T20:14:28Z"
+    "last_seen_utc": "2026-11-27T01:00:54Z"
   },
   "401929287": {
     "evidence": [
@@ -3455,7 +3631,7 @@
       }
     ],
     "first_observed_utc": "2026-11-26T01:00:13Z",
-    "last_seen_utc": "2026-11-26T20:14:30Z"
+    "last_seen_utc": "2026-11-27T01:00:56Z"
   },
   "401929288": {
     "evidence": [
@@ -3477,7 +3653,7 @@
       }
     ],
     "first_observed_utc": "2026-11-26T15:18:41Z",
-    "last_seen_utc": "2026-11-26T20:14:32Z"
+    "last_seen_utc": "2026-11-27T01:00:58Z"
   },
   "401929289": {
     "evidence": [
@@ -3499,7 +3675,7 @@
       }
     ],
     "first_observed_utc": "2026-11-26T15:18:41Z",
-    "last_seen_utc": "2026-11-26T20:14:32Z"
+    "last_seen_utc": "2026-11-27T01:00:58Z"
   },
   "401929352": {
     "evidence": [
@@ -3543,7 +3719,7 @@
       }
     ],
     "first_observed_utc": "2026-11-20T23:05:54Z",
-    "last_seen_utc": "2026-11-26T20:14:25Z"
+    "last_seen_utc": "2026-11-27T01:00:51Z"
   },
   "401929356": {
     "evidence": [
@@ -3653,7 +3829,7 @@
       }
     ],
     "first_observed_utc": "2026-11-23T22:43:33Z",
-    "last_seen_utc": "2026-11-26T20:14:28Z"
+    "last_seen_utc": "2026-11-27T01:00:54Z"
   },
   "401930177": {
     "evidence": [
