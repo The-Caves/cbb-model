@@ -1,10 +1,10 @@
 {
   "active_champion": "CBB_SCORE_RIDGE_V0_4_D1_PRIOR30_A1_5",
-  "as_of_utc": "2026-11-27T15:07:22Z",
+  "as_of_utc": "2026-11-27T20:03:18Z",
   "frozen": {
-    "captured": 846,
+    "captured": 774,
     "status": "PRETIP_POSSESSION_SIMULATION_RESEARCH",
-    "unique_games": 141
+    "unique_games": 129
   },
   "historical_selection": "blend20",
   "performance": {
@@ -14,22 +14,22 @@
       "adaptive_maturity": {
         "cannot_interpret_small_sample": false,
         "challenger": {
-          "brier": 0.1645,
-          "margin_bias": -1.799,
-          "margin_mae": 10.65,
-          "n": 326,
-          "su_accuracy": 0.7454,
-          "total_mae": 13.186
+          "brier": 0.1642,
+          "margin_bias": -1.779,
+          "margin_mae": 10.632,
+          "n": 327,
+          "su_accuracy": 0.7462,
+          "total_mae": 13.146
         },
         "featured_blend20": {
-          "brier": 0.1642,
-          "margin_bias": -1.955,
-          "margin_mae": 10.666,
-          "n": 326,
-          "su_accuracy": 0.7485,
-          "total_mae": 13.153
+          "brier": 0.164,
+          "margin_bias": -1.935,
+          "margin_mae": 10.648,
+          "n": 327,
+          "su_accuracy": 0.7492,
+          "total_mae": 13.114
         },
-        "paired_games": 326,
+        "paired_games": 327,
         "same_quote_blend20": {
           "ats_with_min3pt_model_edge": {
             "losses": 81,
@@ -38,11 +38,11 @@
             "win_pct_ex_push": 0.4774,
             "wins": 74
           },
-          "market_margin_mae": 9.963,
-          "market_total_mae": 12.675,
-          "matched_market_games": 326,
-          "model_margin_mae": 10.666,
-          "model_total_mae": 13.153,
+          "market_margin_mae": 9.95,
+          "market_total_mae": 12.641,
+          "matched_market_games": 327,
+          "model_margin_mae": 10.648,
+          "model_total_mae": 13.114,
           "ou_with_min4pt_model_edge": {
             "losses": 60,
             "n": 127,
@@ -61,11 +61,11 @@
             "win_pct_ex_push": 0.4837,
             "wins": 74
           },
-          "market_margin_mae": 9.963,
-          "market_total_mae": 12.675,
-          "matched_market_games": 326,
-          "model_margin_mae": 10.65,
-          "model_total_mae": 13.186,
+          "market_margin_mae": 9.95,
+          "market_total_mae": 12.641,
+          "matched_market_games": 327,
+          "model_margin_mae": 10.632,
+          "model_total_mae": 13.146,
           "ou_with_min4pt_model_edge": {
             "losses": 60,
             "n": 130,
@@ -80,22 +80,22 @@
       "blend40": {
         "cannot_interpret_small_sample": false,
         "challenger": {
-          "brier": 0.1669,
-          "margin_bias": -2.101,
-          "margin_mae": 10.797,
-          "n": 369,
-          "su_accuracy": 0.7453,
-          "total_mae": 13.181
+          "brier": 0.1667,
+          "margin_bias": -2.081,
+          "margin_mae": 10.782,
+          "n": 370,
+          "su_accuracy": 0.7459,
+          "total_mae": 13.151
         },
         "featured_blend20": {
-          "brier": 0.167,
-          "margin_bias": -1.37,
-          "margin_mae": 10.6,
-          "n": 369,
-          "su_accuracy": 0.7453,
-          "total_mae": 13.266
+          "brier": 0.1667,
+          "margin_bias": -1.353,
+          "margin_mae": 10.584,
+          "n": 370,
+          "su_accuracy": 0.7459,
+          "total_mae": 13.232
         },
-        "paired_games": 369,
+        "paired_games": 370,
         "same_quote_blend20": {
           "ats_with_min3pt_model_edge": {
             "losses": 86,
@@ -104,11 +104,11 @@
             "win_pct_ex_push": 0.485,
             "wins": 81
           },
-          "market_margin_mae": 9.96,
-          "market_total_mae": 12.691,
-          "matched_market_games": 346,
-          "model_margin_mae": 10.675,
-          "model_total_mae": 13.184,
+          "market_margin_mae": 9.947,
+          "market_total_mae": 12.659,
+          "matched_market_games": 347,
+          "model_margin_mae": 10.658,
+          "model_total_mae": 13.147,
           "ou_with_min4pt_model_edge": {
             "losses": 64,
             "n": 135,
@@ -127,11 +127,11 @@
             "win_pct_ex_push": 0.4862,
             "wins": 88
           },
-          "market_margin_mae": 9.96,
-          "market_total_mae": 12.691,
-          "matched_market_games": 346,
-          "model_margin_mae": 10.9,
-          "model_total_mae": 13.101,
+          "market_margin_mae": 9.947,
+          "market_total_mae": 12.659,
+          "matched_market_games": 347,
+          "model_margin_mae": 10.884,
+          "model_total_mae": 13.068,
           "ou_with_min4pt_model_edge": {
             "losses": 64,
             "n": 138,
@@ -146,22 +146,22 @@
       "pure": {
         "cannot_interpret_small_sample": false,
         "challenger": {
-          "brier": 0.1753,
-          "margin_bias": -3.761,
-          "margin_mae": 11.624,
-          "n": 369,
-          "su_accuracy": 0.729,
-          "total_mae": 13.441
+          "brier": 0.1752,
+          "margin_bias": -3.731,
+          "margin_mae": 11.613,
+          "n": 370,
+          "su_accuracy": 0.7297,
+          "total_mae": 13.421
         },
         "featured_blend20": {
-          "brier": 0.167,
-          "margin_bias": -1.37,
-          "margin_mae": 10.6,
-          "n": 369,
-          "su_accuracy": 0.7453,
-          "total_mae": 13.266
+          "brier": 0.1667,
+          "margin_bias": -1.353,
+          "margin_mae": 10.584,
+          "n": 370,
+          "su_accuracy": 0.7459,
+          "total_mae": 13.232
         },
-        "paired_games": 369,
+        "paired_games": 370,
         "same_quote_blend20": {
           "ats_with_min3pt_model_edge": {
             "losses": 86,
@@ -170,11 +170,11 @@
             "win_pct_ex_push": 0.485,
             "wins": 81
           },
-          "market_margin_mae": 9.96,
-          "market_total_mae": 12.691,
-          "matched_market_games": 346,
-          "model_margin_mae": 10.675,
-          "model_total_mae": 13.184,
+          "market_margin_mae": 9.947,
+          "market_total_mae": 12.659,
+          "matched_market_games": 347,
+          "model_margin_mae": 10.658,
+          "model_total_mae": 13.147,
           "ou_with_min4pt_model_edge": {
             "losses": 64,
             "n": 135,
@@ -193,17 +193,17 @@
             "win_pct_ex_push": 0.5308,
             "wins": 112
           },
-          "market_margin_mae": 9.96,
-          "market_total_mae": 12.691,
-          "matched_market_games": 346,
-          "model_margin_mae": 11.807,
-          "model_total_mae": 13.401,
+          "market_margin_mae": 9.947,
+          "market_total_mae": 12.659,
+          "matched_market_games": 347,
+          "model_margin_mae": 11.795,
+          "model_total_mae": 13.38,
           "ou_with_min4pt_model_edge": {
             "losses": 77,
-            "n": 185,
+            "n": 186,
             "pushes": 0,
-            "win_pct_ex_push": 0.5838,
-            "wins": 108
+            "win_pct_ex_push": 0.586,
+            "wins": 109
           },
           "quotes_are_not_verified_closing_lines": true,
           "sportsbook_roi_not_available": true
@@ -212,22 +212,22 @@
       "split_total20": {
         "cannot_interpret_small_sample": false,
         "challenger": {
-          "brier": 0.1664,
-          "margin_bias": -0.725,
-          "margin_mae": 10.503,
-          "n": 367,
-          "su_accuracy": 0.7439,
-          "total_mae": 13.259
+          "brier": 0.1661,
+          "margin_bias": -0.712,
+          "margin_mae": 10.485,
+          "n": 368,
+          "su_accuracy": 0.7446,
+          "total_mae": 13.224
         },
         "featured_blend20": {
-          "brier": 0.1654,
-          "margin_bias": -1.459,
-          "margin_mae": 10.576,
-          "n": 367,
-          "su_accuracy": 0.7493,
-          "total_mae": 13.259
+          "brier": 0.1651,
+          "margin_bias": -1.442,
+          "margin_mae": 10.56,
+          "n": 368,
+          "su_accuracy": 0.75,
+          "total_mae": 13.224
         },
-        "paired_games": 367,
+        "paired_games": 368,
         "same_quote_blend20": {
           "ats_with_min3pt_model_edge": {
             "losses": 86,
@@ -236,11 +236,11 @@
             "win_pct_ex_push": 0.485,
             "wins": 81
           },
-          "market_margin_mae": 9.939,
-          "market_total_mae": 12.666,
-          "matched_market_games": 344,
-          "model_margin_mae": 10.65,
-          "model_total_mae": 13.175,
+          "market_margin_mae": 9.926,
+          "market_total_mae": 12.633,
+          "matched_market_games": 345,
+          "model_margin_mae": 10.633,
+          "model_total_mae": 13.138,
           "ou_with_min4pt_model_edge": {
             "losses": 64,
             "n": 135,
@@ -259,11 +259,11 @@
             "win_pct_ex_push": 0.4658,
             "wins": 75
           },
-          "market_margin_mae": 9.939,
-          "market_total_mae": 12.666,
-          "matched_market_games": 344,
-          "model_margin_mae": 10.556,
-          "model_total_mae": 13.175,
+          "market_margin_mae": 9.926,
+          "market_total_mae": 12.633,
+          "matched_market_games": 345,
+          "model_margin_mae": 10.537,
+          "model_total_mae": 13.138,
           "ou_with_min4pt_model_edge": {
             "losses": 64,
             "n": 135,
@@ -278,22 +278,22 @@
       "trained_blend": {
         "cannot_interpret_small_sample": false,
         "challenger": {
-          "brier": 0.1687,
-          "margin_bias": 0.092,
-          "margin_mae": 10.53,
-          "n": 369,
-          "su_accuracy": 0.7317,
-          "total_mae": 13.36
+          "brier": 0.1684,
+          "margin_bias": 0.105,
+          "margin_mae": 10.514,
+          "n": 370,
+          "su_accuracy": 0.7324,
+          "total_mae": 13.325
         },
         "featured_blend20": {
-          "brier": 0.167,
-          "margin_bias": -1.37,
-          "margin_mae": 10.6,
-          "n": 369,
-          "su_accuracy": 0.7453,
-          "total_mae": 13.266
+          "brier": 0.1667,
+          "margin_bias": -1.353,
+          "margin_mae": 10.584,
+          "n": 370,
+          "su_accuracy": 0.7459,
+          "total_mae": 13.232
         },
-        "paired_games": 369,
+        "paired_games": 370,
         "same_quote_blend20": {
           "ats_with_min3pt_model_edge": {
             "losses": 86,
@@ -302,11 +302,11 @@
             "win_pct_ex_push": 0.485,
             "wins": 81
           },
-          "market_margin_mae": 9.96,
-          "market_total_mae": 12.691,
-          "matched_market_games": 346,
-          "model_margin_mae": 10.675,
-          "model_total_mae": 13.184,
+          "market_margin_mae": 9.947,
+          "market_total_mae": 12.659,
+          "matched_market_games": 347,
+          "model_margin_mae": 10.658,
+          "model_total_mae": 13.147,
           "ou_with_min4pt_model_edge": {
             "losses": 64,
             "n": 135,
@@ -325,11 +325,11 @@
             "win_pct_ex_push": 0.4571,
             "wins": 64
           },
-          "market_margin_mae": 9.96,
-          "market_total_mae": 12.691,
-          "matched_market_games": 346,
-          "model_margin_mae": 10.566,
-          "model_total_mae": 13.262,
+          "market_margin_mae": 9.947,
+          "market_total_mae": 12.659,
+          "matched_market_games": 347,
+          "model_margin_mae": 10.549,
+          "model_total_mae": 13.224,
           "ou_with_min4pt_model_edge": {
             "losses": 69,
             "n": 154,
@@ -345,7 +345,7 @@
     "promotion_gate": "INSUFFICIENT_INDEPENDENT_PRETIP_ATS_OU",
     "results": {
       "adaptive_maturity": {
-        "frozen_pairs": 326,
+        "frozen_pairs": 327,
         "market_relative_context": {
           "by_game_date_utc": {
             "2026-11-17": {
@@ -1237,11 +1237,11 @@
                   "win_pct_ex_push": 1.0,
                   "wins": 1
                 },
-                "market_margin_mae": 5.0,
-                "market_total_mae": 4.5,
-                "matched_market_games": 2,
-                "model_margin_mae": 5.17,
-                "model_total_mae": 4.705,
+                "market_margin_mae": 5.167,
+                "market_total_mae": 3.5,
+                "matched_market_games": 3,
+                "model_margin_mae": 5.01,
+                "model_total_mae": 3.227,
                 "ou_with_min4pt_model_edge": {
                   "losses": 0,
                   "n": 0,
@@ -1252,14 +1252,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.17,
-              "margin_mae_delta_vs_v04": 0.19,
-              "matched_source_quotes": 2,
+              "margin_mae_delta_vs_market": -0.157,
+              "margin_mae_delta_vs_v04": 0.703,
+              "matched_source_quotes": 3,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 2,
-                  "su_accuracy": 0.5,
-                  "su_correct": 1,
+                  "games": 3,
+                  "su_accuracy": 0.6667,
+                  "su_correct": 2,
                   "su_incorrect": 1
                 },
                 "ats_losses": {
@@ -1269,9 +1269,9 @@
                   "su_incorrect": 0
                 },
                 "ats_passes_below_edge": {
-                  "games": 1,
-                  "su_accuracy": 0.0,
-                  "su_correct": 0,
+                  "games": 2,
+                  "su_accuracy": 0.5,
+                  "su_correct": 1,
                   "su_incorrect": 1
                 },
                 "ats_pushes": {
@@ -1287,11 +1287,11 @@
                   "su_incorrect": 0
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 2,
+                "quoted_games": 3,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 0.205,
-              "total_mae_delta_vs_v04": 0.86,
+              "total_mae_delta_vs_market": -0.273,
+              "total_mae_delta_vs_v04": 0.027,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 0,
@@ -1300,11 +1300,11 @@
                   "win_pct_ex_push": 1.0,
                   "wins": 1
                 },
-                "market_margin_mae": 5.0,
-                "market_total_mae": 4.5,
-                "matched_market_games": 2,
-                "model_margin_mae": 4.98,
-                "model_total_mae": 3.845,
+                "market_margin_mae": 5.167,
+                "market_total_mae": 3.5,
+                "matched_market_games": 3,
+                "model_margin_mae": 4.307,
+                "model_total_mae": 3.2,
                 "ou_with_min4pt_model_edge": {
                   "losses": 0,
                   "n": 0,
@@ -1503,11 +1503,11 @@
                   "win_pct_ex_push": 0.4242,
                   "wins": 14
                 },
-                "market_margin_mae": 9.641,
-                "market_total_mae": 13.135,
-                "matched_market_games": 85,
-                "model_margin_mae": 10.287,
-                "model_total_mae": 13.5,
+                "market_margin_mae": 9.593,
+                "market_total_mae": 13.0,
+                "matched_market_games": 86,
+                "model_margin_mae": 10.222,
+                "model_total_mae": 13.346,
                 "ou_with_min4pt_model_edge": {
                   "losses": 17,
                   "n": 35,
@@ -1518,14 +1518,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.646,
-              "margin_mae_delta_vs_v04": -0.1,
-              "matched_source_quotes": 85,
+              "margin_mae_delta_vs_market": 0.629,
+              "margin_mae_delta_vs_v04": -0.079,
+              "matched_source_quotes": 86,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 85,
-                  "su_accuracy": 0.8,
-                  "su_correct": 68,
+                  "games": 86,
+                  "su_accuracy": 0.8023,
+                  "su_correct": 69,
                   "su_incorrect": 17
                 },
                 "ats_losses": {
@@ -1535,9 +1535,9 @@
                   "su_incorrect": 2
                 },
                 "ats_passes_below_edge": {
-                  "games": 52,
-                  "su_accuracy": 0.8077,
-                  "su_correct": 42,
+                  "games": 53,
+                  "su_accuracy": 0.8113,
+                  "su_correct": 43,
                   "su_incorrect": 10
                 },
                 "ats_pushes": {
@@ -1553,11 +1553,11 @@
                   "su_incorrect": 5
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 85,
+                "quoted_games": 86,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 0.365,
-              "total_mae_delta_vs_v04": -0.774,
+              "total_mae_delta_vs_market": 0.346,
+              "total_mae_delta_vs_v04": -0.784,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 18,
@@ -1566,11 +1566,11 @@
                   "win_pct_ex_push": 0.3793,
                   "wins": 11
                 },
-                "market_margin_mae": 9.641,
-                "market_total_mae": 13.135,
-                "matched_market_games": 85,
-                "model_margin_mae": 10.387,
-                "model_total_mae": 14.274,
+                "market_margin_mae": 9.593,
+                "market_total_mae": 13.0,
+                "matched_market_games": 86,
+                "model_margin_mae": 10.301,
+                "model_total_mae": 14.13,
                 "ou_with_min4pt_model_edge": {
                   "losses": 20,
                   "n": 39,
@@ -1681,11 +1681,11 @@
                   "win_pct_ex_push": 0.4667,
                   "wins": 14
                 },
-                "market_margin_mae": 10.429,
-                "market_total_mae": 13.029,
-                "matched_market_games": 70,
-                "model_margin_mae": 11.121,
-                "model_total_mae": 14.237,
+                "market_margin_mae": 10.359,
+                "market_total_mae": 12.866,
+                "matched_market_games": 71,
+                "model_margin_mae": 11.03,
+                "model_total_mae": 14.04,
                 "ou_with_min4pt_model_edge": {
                   "losses": 19,
                   "n": 29,
@@ -1696,14 +1696,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.692,
-              "margin_mae_delta_vs_v04": -0.167,
-              "matched_source_quotes": 70,
+              "margin_mae_delta_vs_market": 0.671,
+              "margin_mae_delta_vs_v04": -0.141,
+              "matched_source_quotes": 71,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 70,
-                  "su_accuracy": 0.7286,
-                  "su_correct": 51,
+                  "games": 71,
+                  "su_accuracy": 0.7324,
+                  "su_correct": 52,
                   "su_incorrect": 19
                 },
                 "ats_losses": {
@@ -1713,9 +1713,9 @@
                   "su_incorrect": 3
                 },
                 "ats_passes_below_edge": {
-                  "games": 40,
-                  "su_accuracy": 0.625,
-                  "su_correct": 25,
+                  "games": 41,
+                  "su_accuracy": 0.6341,
+                  "su_correct": 26,
                   "su_incorrect": 15
                 },
                 "ats_pushes": {
@@ -1731,11 +1731,11 @@
                   "su_incorrect": 1
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 70,
+                "quoted_games": 71,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 1.208,
-              "total_mae_delta_vs_v04": -0.395,
+              "total_mae_delta_vs_market": 1.174,
+              "total_mae_delta_vs_v04": -0.413,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 16,
@@ -1744,11 +1744,11 @@
                   "win_pct_ex_push": 0.4286,
                   "wins": 12
                 },
-                "market_margin_mae": 10.429,
-                "market_total_mae": 13.029,
-                "matched_market_games": 70,
-                "model_margin_mae": 11.288,
-                "model_total_mae": 14.632,
+                "market_margin_mae": 10.359,
+                "market_total_mae": 12.866,
+                "matched_market_games": 71,
+                "model_margin_mae": 11.171,
+                "model_total_mae": 14.453,
                 "ou_with_min4pt_model_edge": {
                   "losses": 24,
                   "n": 36,
@@ -1859,11 +1859,11 @@
                   "win_pct_ex_push": 0.5294,
                   "wins": 18
                 },
-                "market_margin_mae": 10.42,
-                "market_total_mae": 11.523,
-                "matched_market_games": 87,
-                "model_margin_mae": 10.74,
-                "model_total_mae": 11.61,
+                "market_margin_mae": 10.364,
+                "market_total_mae": 11.409,
+                "matched_market_games": 88,
+                "model_margin_mae": 10.671,
+                "model_total_mae": 11.481,
                 "ou_with_min4pt_model_edge": {
                   "losses": 13,
                   "n": 33,
@@ -1874,14 +1874,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.32,
-              "margin_mae_delta_vs_v04": -0.329,
-              "matched_source_quotes": 87,
+              "margin_mae_delta_vs_market": 0.307,
+              "margin_mae_delta_vs_v04": -0.306,
+              "matched_source_quotes": 88,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 87,
-                  "su_accuracy": 0.7126,
-                  "su_correct": 62,
+                  "games": 88,
+                  "su_accuracy": 0.7159,
+                  "su_correct": 63,
                   "su_incorrect": 25
                 },
                 "ats_losses": {
@@ -1891,9 +1891,9 @@
                   "su_incorrect": 6
                 },
                 "ats_passes_below_edge": {
-                  "games": 53,
-                  "su_accuracy": 0.6792,
-                  "su_correct": 36,
+                  "games": 54,
+                  "su_accuracy": 0.6852,
+                  "su_correct": 37,
                   "su_incorrect": 17
                 },
                 "ats_pushes": {
@@ -1909,11 +1909,11 @@
                   "su_incorrect": 2
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 87,
+                "quoted_games": 88,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 0.087,
-              "total_mae_delta_vs_v04": -0.485,
+              "total_mae_delta_vs_market": 0.072,
+              "total_mae_delta_vs_v04": -0.499,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 21,
@@ -1922,11 +1922,11 @@
                   "win_pct_ex_push": 0.4,
                   "wins": 14
                 },
-                "market_margin_mae": 10.42,
-                "market_total_mae": 11.523,
-                "matched_market_games": 87,
-                "model_margin_mae": 11.069,
-                "model_total_mae": 12.095,
+                "market_margin_mae": 10.364,
+                "market_total_mae": 11.409,
+                "matched_market_games": 88,
+                "model_margin_mae": 10.977,
+                "model_total_mae": 11.98,
                 "ou_with_min4pt_model_edge": {
                   "losses": 19,
                   "n": 40,
@@ -1939,9 +1939,9 @@
               }
             }
           },
-          "completed_frozen_pairs": 326,
+          "completed_frozen_pairs": 327,
           "market_quote_coverage_pct": 100.0,
-          "matched_market_games": 326,
+          "matched_market_games": 327,
           "notes": "Observed and source-hashed pretip bookmaker quotes only, not verified closings, no odds/ROI, do not infer significance from small edge-qualified ATS/O-U selections. Same source quote is used for v0.4 and each challenger.",
           "summary": {
             "challenger": {
@@ -1952,11 +1952,11 @@
                 "win_pct_ex_push": 0.4837,
                 "wins": 74
               },
-              "market_margin_mae": 9.963,
-              "market_total_mae": 12.675,
-              "matched_market_games": 326,
-              "model_margin_mae": 10.65,
-              "model_total_mae": 13.186,
+              "market_margin_mae": 9.95,
+              "market_total_mae": 12.641,
+              "matched_market_games": 327,
+              "model_margin_mae": 10.632,
+              "model_total_mae": 13.146,
               "ou_with_min4pt_model_edge": {
                 "losses": 60,
                 "n": 130,
@@ -1967,14 +1967,14 @@
               "quotes_are_not_verified_closing_lines": true,
               "sportsbook_roi_not_available": true
             },
-            "margin_mae_delta_vs_market": 0.687,
-            "margin_mae_delta_vs_v04": -0.06,
-            "matched_source_quotes": 326,
+            "margin_mae_delta_vs_market": 0.682,
+            "margin_mae_delta_vs_v04": -0.054,
+            "matched_source_quotes": 327,
             "su_by_ats_result": {
               "all_with_su_evidence": {
-                "games": 326,
-                "su_accuracy": 0.7454,
-                "su_correct": 243,
+                "games": 327,
+                "su_accuracy": 0.7462,
+                "su_correct": 244,
                 "su_incorrect": 83
               },
               "ats_losses": {
@@ -1984,9 +1984,9 @@
                 "su_incorrect": 19
               },
               "ats_passes_below_edge": {
-                "games": 173,
-                "su_accuracy": 0.6763,
-                "su_correct": 117,
+                "games": 174,
+                "su_accuracy": 0.6782,
+                "su_correct": 118,
                 "su_incorrect": 56
               },
               "ats_pushes": {
@@ -2002,11 +2002,11 @@
                 "su_incorrect": 8
               },
               "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-              "quoted_games": 326,
+              "quoted_games": 327,
               "su_unavailable": 0
             },
-            "total_mae_delta_vs_market": 0.511,
-            "total_mae_delta_vs_v04": -0.412,
+            "total_mae_delta_vs_market": 0.505,
+            "total_mae_delta_vs_v04": -0.416,
             "v04": {
               "ats_with_min3pt_model_edge": {
                 "losses": 79,
@@ -2015,11 +2015,11 @@
                 "win_pct_ex_push": 0.4552,
                 "wins": 66
               },
-              "market_margin_mae": 9.963,
-              "market_total_mae": 12.675,
-              "matched_market_games": 326,
-              "model_margin_mae": 10.71,
-              "model_total_mae": 13.598,
+              "market_margin_mae": 9.95,
+              "market_total_mae": 12.641,
+              "matched_market_games": 327,
+              "model_margin_mae": 10.686,
+              "model_total_mae": 13.562,
               "ou_with_min4pt_model_edge": {
                 "losses": 75,
                 "n": 148,
@@ -2040,11 +2040,11 @@
             "win_pct_ex_push": 0.4837,
             "wins": 74
           },
-          "market_margin_mae": 9.963,
-          "market_total_mae": 12.675,
-          "matched_market_games": 326,
-          "model_margin_mae": 10.65,
-          "model_total_mae": 13.186,
+          "market_margin_mae": 9.95,
+          "market_total_mae": 12.641,
+          "matched_market_games": 327,
+          "model_margin_mae": 10.632,
+          "model_total_mae": 13.146,
           "ou_with_min4pt_model_edge": {
             "losses": 60,
             "n": 130,
@@ -2063,11 +2063,11 @@
             "win_pct_ex_push": 0.4552,
             "wins": 66
           },
-          "market_margin_mae": 9.963,
-          "market_total_mae": 12.675,
-          "matched_market_games": 326,
-          "model_margin_mae": 10.71,
-          "model_total_mae": 13.598,
+          "market_margin_mae": 9.95,
+          "market_total_mae": 12.641,
+          "matched_market_games": 327,
+          "model_margin_mae": 10.686,
+          "model_total_mae": 13.562,
           "ou_with_min4pt_model_edge": {
             "losses": 75,
             "n": 148,
@@ -2079,24 +2079,24 @@
           "sportsbook_roi_not_available": true
         },
         "simulator": {
-          "brier": 0.1645,
-          "margin_bias": -1.799,
-          "margin_mae": 10.65,
-          "n": 326,
-          "su_accuracy": 0.7454,
-          "total_mae": 13.186
+          "brier": 0.1642,
+          "margin_bias": -1.779,
+          "margin_mae": 10.632,
+          "n": 327,
+          "su_accuracy": 0.7462,
+          "total_mae": 13.146
         },
         "v04": {
-          "brier": 0.1701,
-          "margin_bias": -1.17,
-          "margin_mae": 10.71,
-          "n": 326,
-          "su_accuracy": 0.727,
-          "total_mae": 13.598
+          "brier": 0.1697,
+          "margin_bias": -1.157,
+          "margin_mae": 10.686,
+          "n": 327,
+          "su_accuracy": 0.7278,
+          "total_mae": 13.562
         }
       },
       "blend20": {
-        "frozen_pairs": 369,
+        "frozen_pairs": 370,
         "market_relative_context": {
           "by_game_date_utc": {
             "2026-11-13": {
@@ -3252,11 +3252,11 @@
                   "win_pct_ex_push": 1.0,
                   "wins": 1
                 },
-                "market_margin_mae": 5.0,
-                "market_total_mae": 4.5,
-                "matched_market_games": 2,
-                "model_margin_mae": 5.07,
-                "model_total_mae": 4.795,
+                "market_margin_mae": 5.167,
+                "market_total_mae": 3.5,
+                "matched_market_games": 3,
+                "model_margin_mae": 4.957,
+                "model_total_mae": 3.313,
                 "ou_with_min4pt_model_edge": {
                   "losses": 0,
                   "n": 0,
@@ -3267,14 +3267,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.07,
-              "margin_mae_delta_vs_v04": 0.09,
-              "matched_source_quotes": 2,
+              "margin_mae_delta_vs_market": -0.21,
+              "margin_mae_delta_vs_v04": 0.65,
+              "matched_source_quotes": 3,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 2,
-                  "su_accuracy": 0.5,
-                  "su_correct": 1,
+                  "games": 3,
+                  "su_accuracy": 0.6667,
+                  "su_correct": 2,
                   "su_incorrect": 1
                 },
                 "ats_losses": {
@@ -3284,9 +3284,9 @@
                   "su_incorrect": 0
                 },
                 "ats_passes_below_edge": {
-                  "games": 1,
-                  "su_accuracy": 0.0,
-                  "su_correct": 0,
+                  "games": 2,
+                  "su_accuracy": 0.5,
+                  "su_correct": 1,
                   "su_incorrect": 1
                 },
                 "ats_pushes": {
@@ -3302,11 +3302,11 @@
                   "su_incorrect": 0
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 2,
+                "quoted_games": 3,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 0.295,
-              "total_mae_delta_vs_v04": 0.95,
+              "total_mae_delta_vs_market": -0.187,
+              "total_mae_delta_vs_v04": 0.113,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 0,
@@ -3315,11 +3315,11 @@
                   "win_pct_ex_push": 1.0,
                   "wins": 1
                 },
-                "market_margin_mae": 5.0,
-                "market_total_mae": 4.5,
-                "matched_market_games": 2,
-                "model_margin_mae": 4.98,
-                "model_total_mae": 3.845,
+                "market_margin_mae": 5.167,
+                "market_total_mae": 3.5,
+                "matched_market_games": 3,
+                "model_margin_mae": 4.307,
+                "model_total_mae": 3.2,
                 "ou_with_min4pt_model_edge": {
                   "losses": 0,
                   "n": 0,
@@ -3518,11 +3518,11 @@
                   "win_pct_ex_push": 0.3889,
                   "wins": 14
                 },
-                "market_margin_mae": 9.687,
-                "market_total_mae": 13.269,
-                "matched_market_games": 91,
-                "model_margin_mae": 10.48,
-                "model_total_mae": 13.685,
+                "market_margin_mae": 9.641,
+                "market_total_mae": 13.141,
+                "matched_market_games": 92,
+                "model_margin_mae": 10.418,
+                "model_total_mae": 13.54,
                 "ou_with_min4pt_model_edge": {
                   "losses": 18,
                   "n": 38,
@@ -3533,14 +3533,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.793,
-              "margin_mae_delta_vs_v04": -0.172,
-              "matched_source_quotes": 91,
+              "margin_mae_delta_vs_market": 0.777,
+              "margin_mae_delta_vs_v04": -0.15,
+              "matched_source_quotes": 92,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 91,
-                  "su_accuracy": 0.8022,
-                  "su_correct": 73,
+                  "games": 92,
+                  "su_accuracy": 0.8043,
+                  "su_correct": 74,
                   "su_incorrect": 18
                 },
                 "ats_losses": {
@@ -3550,9 +3550,9 @@
                   "su_incorrect": 2
                 },
                 "ats_passes_below_edge": {
-                  "games": 55,
-                  "su_accuracy": 0.8,
-                  "su_correct": 44,
+                  "games": 56,
+                  "su_accuracy": 0.8036,
+                  "su_correct": 45,
                   "su_incorrect": 11
                 },
                 "ats_pushes": {
@@ -3568,11 +3568,11 @@
                   "su_incorrect": 5
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 91,
+                "quoted_games": 92,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 0.416,
-              "total_mae_delta_vs_v04": -0.861,
+              "total_mae_delta_vs_market": 0.399,
+              "total_mae_delta_vs_v04": -0.868,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 23,
@@ -3581,11 +3581,11 @@
                   "win_pct_ex_push": 0.3235,
                   "wins": 11
                 },
-                "market_margin_mae": 9.687,
-                "market_total_mae": 13.269,
-                "matched_market_games": 91,
-                "model_margin_mae": 10.652,
-                "model_total_mae": 14.546,
+                "market_margin_mae": 9.641,
+                "market_total_mae": 13.141,
+                "matched_market_games": 92,
+                "model_margin_mae": 10.568,
+                "model_total_mae": 14.408,
                 "ou_with_min4pt_model_edge": {
                   "losses": 22,
                   "n": 44,
@@ -3696,11 +3696,11 @@
                   "win_pct_ex_push": 0.4667,
                   "wins": 14
                 },
-                "market_margin_mae": 10.429,
-                "market_total_mae": 13.029,
-                "matched_market_games": 70,
-                "model_margin_mae": 11.153,
-                "model_total_mae": 14.245,
+                "market_margin_mae": 10.359,
+                "market_total_mae": 12.866,
+                "matched_market_games": 71,
+                "model_margin_mae": 11.063,
+                "model_total_mae": 14.05,
                 "ou_with_min4pt_model_edge": {
                   "losses": 19,
                   "n": 29,
@@ -3711,14 +3711,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.724,
-              "margin_mae_delta_vs_v04": -0.135,
-              "matched_source_quotes": 70,
+              "margin_mae_delta_vs_market": 0.704,
+              "margin_mae_delta_vs_v04": -0.108,
+              "matched_source_quotes": 71,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 70,
-                  "su_accuracy": 0.7286,
-                  "su_correct": 51,
+                  "games": 71,
+                  "su_accuracy": 0.7324,
+                  "su_correct": 52,
                   "su_incorrect": 19
                 },
                 "ats_losses": {
@@ -3728,9 +3728,9 @@
                   "su_incorrect": 3
                 },
                 "ats_passes_below_edge": {
-                  "games": 40,
-                  "su_accuracy": 0.625,
-                  "su_correct": 25,
+                  "games": 41,
+                  "su_accuracy": 0.6341,
+                  "su_correct": 26,
                   "su_incorrect": 15
                 },
                 "ats_pushes": {
@@ -3746,11 +3746,11 @@
                   "su_incorrect": 1
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 70,
+                "quoted_games": 71,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 1.216,
-              "total_mae_delta_vs_v04": -0.387,
+              "total_mae_delta_vs_market": 1.184,
+              "total_mae_delta_vs_v04": -0.403,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 16,
@@ -3759,11 +3759,11 @@
                   "win_pct_ex_push": 0.4286,
                   "wins": 12
                 },
-                "market_margin_mae": 10.429,
-                "market_total_mae": 13.029,
-                "matched_market_games": 70,
-                "model_margin_mae": 11.288,
-                "model_total_mae": 14.632,
+                "market_margin_mae": 10.359,
+                "market_total_mae": 12.866,
+                "matched_market_games": 71,
+                "model_margin_mae": 11.171,
+                "model_total_mae": 14.453,
                 "ou_with_min4pt_model_edge": {
                   "losses": 24,
                   "n": 36,
@@ -3874,11 +3874,11 @@
                   "win_pct_ex_push": 0.5152,
                   "wins": 17
                 },
-                "market_margin_mae": 10.42,
-                "market_total_mae": 11.523,
-                "matched_market_games": 87,
-                "model_margin_mae": 10.697,
-                "model_total_mae": 11.578,
+                "market_margin_mae": 10.364,
+                "market_total_mae": 11.409,
+                "matched_market_games": 88,
+                "model_margin_mae": 10.629,
+                "model_total_mae": 11.45,
                 "ou_with_min4pt_model_edge": {
                   "losses": 13,
                   "n": 33,
@@ -3889,14 +3889,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.277,
-              "margin_mae_delta_vs_v04": -0.372,
-              "matched_source_quotes": 87,
+              "margin_mae_delta_vs_market": 0.265,
+              "margin_mae_delta_vs_v04": -0.348,
+              "matched_source_quotes": 88,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 87,
-                  "su_accuracy": 0.7126,
-                  "su_correct": 62,
+                  "games": 88,
+                  "su_accuracy": 0.7159,
+                  "su_correct": 63,
                   "su_incorrect": 25
                 },
                 "ats_losses": {
@@ -3906,9 +3906,9 @@
                   "su_incorrect": 6
                 },
                 "ats_passes_below_edge": {
-                  "games": 54,
-                  "su_accuracy": 0.6852,
-                  "su_correct": 37,
+                  "games": 55,
+                  "su_accuracy": 0.6909,
+                  "su_correct": 38,
                   "su_incorrect": 17
                 },
                 "ats_pushes": {
@@ -3924,11 +3924,11 @@
                   "su_incorrect": 2
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 87,
+                "quoted_games": 88,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 0.055,
-              "total_mae_delta_vs_v04": -0.517,
+              "total_mae_delta_vs_market": 0.041,
+              "total_mae_delta_vs_v04": -0.53,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 21,
@@ -3937,11 +3937,11 @@
                   "win_pct_ex_push": 0.4,
                   "wins": 14
                 },
-                "market_margin_mae": 10.42,
-                "market_total_mae": 11.523,
-                "matched_market_games": 87,
-                "model_margin_mae": 11.069,
-                "model_total_mae": 12.095,
+                "market_margin_mae": 10.364,
+                "market_total_mae": 11.409,
+                "matched_market_games": 88,
+                "model_margin_mae": 10.977,
+                "model_total_mae": 11.98,
                 "ou_with_min4pt_model_edge": {
                   "losses": 19,
                   "n": 40,
@@ -3954,9 +3954,9 @@
               }
             }
           },
-          "completed_frozen_pairs": 369,
-          "market_quote_coverage_pct": 93.77,
-          "matched_market_games": 346,
+          "completed_frozen_pairs": 370,
+          "market_quote_coverage_pct": 93.78,
+          "matched_market_games": 347,
           "notes": "Observed and source-hashed pretip bookmaker quotes only, not verified closings, no odds/ROI, do not infer significance from small edge-qualified ATS/O-U selections. Same source quote is used for v0.4 and each challenger.",
           "summary": {
             "challenger": {
@@ -3967,11 +3967,11 @@
                 "win_pct_ex_push": 0.485,
                 "wins": 81
               },
-              "market_margin_mae": 9.96,
-              "market_total_mae": 12.691,
-              "matched_market_games": 346,
-              "model_margin_mae": 10.675,
-              "model_total_mae": 13.184,
+              "market_margin_mae": 9.947,
+              "market_total_mae": 12.659,
+              "matched_market_games": 347,
+              "model_margin_mae": 10.658,
+              "model_total_mae": 13.147,
               "ou_with_min4pt_model_edge": {
                 "losses": 64,
                 "n": 135,
@@ -3982,14 +3982,14 @@
               "quotes_are_not_verified_closing_lines": true,
               "sportsbook_roi_not_available": true
             },
-            "margin_mae_delta_vs_market": 0.715,
-            "margin_mae_delta_vs_v04": -0.05,
-            "matched_source_quotes": 346,
+            "margin_mae_delta_vs_market": 0.711,
+            "margin_mae_delta_vs_v04": -0.044,
+            "matched_source_quotes": 347,
             "su_by_ats_result": {
               "all_with_su_evidence": {
-                "games": 346,
-                "su_accuracy": 0.7457,
-                "su_correct": 258,
+                "games": 347,
+                "su_accuracy": 0.7464,
+                "su_correct": 259,
                 "su_incorrect": 88
               },
               "ats_losses": {
@@ -3999,9 +3999,9 @@
                 "su_incorrect": 20
               },
               "ats_passes_below_edge": {
-                "games": 179,
-                "su_accuracy": 0.6592,
-                "su_correct": 118,
+                "games": 180,
+                "su_accuracy": 0.6611,
+                "su_correct": 119,
                 "su_incorrect": 61
               },
               "ats_pushes": {
@@ -4017,11 +4017,11 @@
                 "su_incorrect": 7
               },
               "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-              "quoted_games": 346,
+              "quoted_games": 347,
               "su_unavailable": 0
             },
-            "total_mae_delta_vs_market": 0.493,
-            "total_mae_delta_vs_v04": -0.45,
+            "total_mae_delta_vs_market": 0.488,
+            "total_mae_delta_vs_v04": -0.454,
             "v04": {
               "ats_with_min3pt_model_edge": {
                 "losses": 89,
@@ -4030,11 +4030,11 @@
                 "win_pct_ex_push": 0.4506,
                 "wins": 73
               },
-              "market_margin_mae": 9.96,
-              "market_total_mae": 12.691,
-              "matched_market_games": 346,
-              "model_margin_mae": 10.725,
-              "model_total_mae": 13.634,
+              "market_margin_mae": 9.947,
+              "market_total_mae": 12.659,
+              "matched_market_games": 347,
+              "model_margin_mae": 10.702,
+              "model_total_mae": 13.601,
               "ou_with_min4pt_model_edge": {
                 "losses": 80,
                 "n": 161,
@@ -4055,11 +4055,11 @@
             "win_pct_ex_push": 0.485,
             "wins": 81
           },
-          "market_margin_mae": 9.96,
-          "market_total_mae": 12.691,
-          "matched_market_games": 346,
-          "model_margin_mae": 10.675,
-          "model_total_mae": 13.184,
+          "market_margin_mae": 9.947,
+          "market_total_mae": 12.659,
+          "matched_market_games": 347,
+          "model_margin_mae": 10.658,
+          "model_total_mae": 13.147,
           "ou_with_min4pt_model_edge": {
             "losses": 64,
             "n": 135,
@@ -4078,11 +4078,11 @@
             "win_pct_ex_push": 0.4506,
             "wins": 73
           },
-          "market_margin_mae": 9.96,
-          "market_total_mae": 12.691,
-          "matched_market_games": 346,
-          "model_margin_mae": 10.725,
-          "model_total_mae": 13.634,
+          "market_margin_mae": 9.947,
+          "market_total_mae": 12.659,
+          "matched_market_games": 347,
+          "model_margin_mae": 10.702,
+          "model_total_mae": 13.601,
           "ou_with_min4pt_model_edge": {
             "losses": 80,
             "n": 161,
@@ -4094,24 +4094,24 @@
           "sportsbook_roi_not_available": true
         },
         "simulator": {
-          "brier": 0.167,
-          "margin_bias": -1.37,
-          "margin_mae": 10.6,
-          "n": 369,
-          "su_accuracy": 0.7453,
-          "total_mae": 13.266
+          "brier": 0.1667,
+          "margin_bias": -1.353,
+          "margin_mae": 10.584,
+          "n": 370,
+          "su_accuracy": 0.7459,
+          "total_mae": 13.232
         },
         "v04": {
-          "brier": 0.1735,
-          "margin_bias": -0.503,
-          "margin_mae": 10.662,
-          "n": 369,
-          "su_accuracy": 0.7236,
-          "total_mae": 13.71
+          "brier": 0.1731,
+          "margin_bias": -0.494,
+          "margin_mae": 10.641,
+          "n": 370,
+          "su_accuracy": 0.7243,
+          "total_mae": 13.678
         }
       },
       "blend40": {
-        "frozen_pairs": 369,
+        "frozen_pairs": 370,
         "market_relative_context": {
           "by_game_date_utc": {
             "2026-11-13": {
@@ -5267,11 +5267,11 @@
                   "win_pct_ex_push": null,
                   "wins": 0
                 },
-                "market_margin_mae": 5.0,
-                "market_total_mae": 4.5,
-                "matched_market_games": 2,
-                "model_margin_mae": 4.81,
-                "model_total_mae": 6.255,
+                "market_margin_mae": 5.167,
+                "market_total_mae": 3.5,
+                "matched_market_games": 3,
+                "model_margin_mae": 5.017,
+                "model_total_mae": 4.773,
                 "ou_with_min4pt_model_edge": {
                   "losses": 0,
                   "n": 0,
@@ -5282,14 +5282,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": -0.19,
-              "margin_mae_delta_vs_v04": -0.17,
-              "matched_source_quotes": 2,
+              "margin_mae_delta_vs_market": -0.15,
+              "margin_mae_delta_vs_v04": 0.71,
+              "matched_source_quotes": 3,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 2,
-                  "su_accuracy": 0.5,
-                  "su_correct": 1,
+                  "games": 3,
+                  "su_accuracy": 0.6667,
+                  "su_correct": 2,
                   "su_incorrect": 1
                 },
                 "ats_losses": {
@@ -5299,9 +5299,9 @@
                   "su_incorrect": 0
                 },
                 "ats_passes_below_edge": {
-                  "games": 2,
-                  "su_accuracy": 0.5,
-                  "su_correct": 1,
+                  "games": 3,
+                  "su_accuracy": 0.6667,
+                  "su_correct": 2,
                   "su_incorrect": 1
                 },
                 "ats_pushes": {
@@ -5317,11 +5317,11 @@
                   "su_incorrect": 0
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 2,
+                "quoted_games": 3,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 1.755,
-              "total_mae_delta_vs_v04": 2.41,
+              "total_mae_delta_vs_market": 1.273,
+              "total_mae_delta_vs_v04": 1.573,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 0,
@@ -5330,11 +5330,11 @@
                   "win_pct_ex_push": 1.0,
                   "wins": 1
                 },
-                "market_margin_mae": 5.0,
-                "market_total_mae": 4.5,
-                "matched_market_games": 2,
-                "model_margin_mae": 4.98,
-                "model_total_mae": 3.845,
+                "market_margin_mae": 5.167,
+                "market_total_mae": 3.5,
+                "matched_market_games": 3,
+                "model_margin_mae": 4.307,
+                "model_total_mae": 3.2,
                 "ou_with_min4pt_model_edge": {
                   "losses": 0,
                   "n": 0,
@@ -5533,11 +5533,11 @@
                   "win_pct_ex_push": 0.4286,
                   "wins": 18
                 },
-                "market_margin_mae": 9.687,
-                "market_total_mae": 13.269,
-                "matched_market_games": 91,
-                "model_margin_mae": 10.533,
-                "model_total_mae": 13.692,
+                "market_margin_mae": 9.641,
+                "market_total_mae": 13.141,
+                "matched_market_games": 92,
+                "model_margin_mae": 10.478,
+                "model_total_mae": 13.563,
                 "ou_with_min4pt_model_edge": {
                   "losses": 18,
                   "n": 38,
@@ -5548,14 +5548,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.846,
-              "margin_mae_delta_vs_v04": -0.119,
-              "matched_source_quotes": 91,
+              "margin_mae_delta_vs_market": 0.837,
+              "margin_mae_delta_vs_v04": -0.09,
+              "matched_source_quotes": 92,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 91,
-                  "su_accuracy": 0.8022,
-                  "su_correct": 73,
+                  "games": 92,
+                  "su_accuracy": 0.8043,
+                  "su_correct": 74,
                   "su_incorrect": 18
                 },
                 "ats_losses": {
@@ -5565,9 +5565,9 @@
                   "su_incorrect": 1
                 },
                 "ats_passes_below_edge": {
-                  "games": 49,
-                  "su_accuracy": 0.7551,
-                  "su_correct": 37,
+                  "games": 50,
+                  "su_accuracy": 0.76,
+                  "su_correct": 38,
                   "su_incorrect": 12
                 },
                 "ats_pushes": {
@@ -5583,11 +5583,11 @@
                   "su_incorrect": 5
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 91,
+                "quoted_games": 92,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 0.423,
-              "total_mae_delta_vs_v04": -0.854,
+              "total_mae_delta_vs_market": 0.422,
+              "total_mae_delta_vs_v04": -0.845,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 23,
@@ -5596,11 +5596,11 @@
                   "win_pct_ex_push": 0.3235,
                   "wins": 11
                 },
-                "market_margin_mae": 9.687,
-                "market_total_mae": 13.269,
-                "matched_market_games": 91,
-                "model_margin_mae": 10.652,
-                "model_total_mae": 14.546,
+                "market_margin_mae": 9.641,
+                "market_total_mae": 13.141,
+                "matched_market_games": 92,
+                "model_margin_mae": 10.568,
+                "model_total_mae": 14.408,
                 "ou_with_min4pt_model_edge": {
                   "losses": 22,
                   "n": 44,
@@ -5711,11 +5711,11 @@
                   "win_pct_ex_push": 0.4118,
                   "wins": 14
                 },
-                "market_margin_mae": 10.429,
-                "market_total_mae": 13.029,
-                "matched_market_games": 70,
-                "model_margin_mae": 11.704,
-                "model_total_mae": 14.154,
+                "market_margin_mae": 10.359,
+                "market_total_mae": 12.866,
+                "matched_market_games": 71,
+                "model_margin_mae": 11.615,
+                "model_total_mae": 13.98,
                 "ou_with_min4pt_model_edge": {
                   "losses": 18,
                   "n": 28,
@@ -5726,14 +5726,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 1.275,
-              "margin_mae_delta_vs_v04": 0.416,
-              "matched_source_quotes": 70,
+              "margin_mae_delta_vs_market": 1.256,
+              "margin_mae_delta_vs_v04": 0.444,
+              "matched_source_quotes": 71,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 70,
-                  "su_accuracy": 0.7143,
-                  "su_correct": 50,
+                  "games": 71,
+                  "su_accuracy": 0.7183,
+                  "su_correct": 51,
                   "su_incorrect": 20
                 },
                 "ats_losses": {
@@ -5743,9 +5743,9 @@
                   "su_incorrect": 2
                 },
                 "ats_passes_below_edge": {
-                  "games": 36,
-                  "su_accuracy": 0.5278,
-                  "su_correct": 19,
+                  "games": 37,
+                  "su_accuracy": 0.5405,
+                  "su_correct": 20,
                   "su_incorrect": 17
                 },
                 "ats_pushes": {
@@ -5761,11 +5761,11 @@
                   "su_incorrect": 1
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 70,
+                "quoted_games": 71,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 1.125,
-              "total_mae_delta_vs_v04": -0.478,
+              "total_mae_delta_vs_market": 1.114,
+              "total_mae_delta_vs_v04": -0.473,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 16,
@@ -5774,11 +5774,11 @@
                   "win_pct_ex_push": 0.4286,
                   "wins": 12
                 },
-                "market_margin_mae": 10.429,
-                "market_total_mae": 13.029,
-                "matched_market_games": 70,
-                "model_margin_mae": 11.288,
-                "model_total_mae": 14.632,
+                "market_margin_mae": 10.359,
+                "market_total_mae": 12.866,
+                "matched_market_games": 71,
+                "model_margin_mae": 11.171,
+                "model_total_mae": 14.453,
                 "ou_with_min4pt_model_edge": {
                   "losses": 24,
                   "n": 36,
@@ -5889,11 +5889,11 @@
                   "win_pct_ex_push": 0.5526,
                   "wins": 21
                 },
-                "market_margin_mae": 10.42,
-                "market_total_mae": 11.523,
-                "matched_market_games": 87,
-                "model_margin_mae": 10.613,
-                "model_total_mae": 11.644,
+                "market_margin_mae": 10.364,
+                "market_total_mae": 11.409,
+                "matched_market_games": 88,
+                "model_margin_mae": 10.554,
+                "model_total_mae": 11.532,
                 "ou_with_min4pt_model_edge": {
                   "losses": 13,
                   "n": 31,
@@ -5904,14 +5904,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.193,
-              "margin_mae_delta_vs_v04": -0.456,
-              "matched_source_quotes": 87,
+              "margin_mae_delta_vs_market": 0.19,
+              "margin_mae_delta_vs_v04": -0.423,
+              "matched_source_quotes": 88,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 87,
-                  "su_accuracy": 0.7241,
-                  "su_correct": 63,
+                  "games": 88,
+                  "su_accuracy": 0.7273,
+                  "su_correct": 64,
                   "su_incorrect": 24
                 },
                 "ats_losses": {
@@ -5921,9 +5921,9 @@
                   "su_incorrect": 4
                 },
                 "ats_passes_below_edge": {
-                  "games": 49,
-                  "su_accuracy": 0.6531,
-                  "su_correct": 32,
+                  "games": 50,
+                  "su_accuracy": 0.66,
+                  "su_correct": 33,
                   "su_incorrect": 17
                 },
                 "ats_pushes": {
@@ -5939,11 +5939,11 @@
                   "su_incorrect": 3
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 87,
+                "quoted_games": 88,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 0.121,
-              "total_mae_delta_vs_v04": -0.451,
+              "total_mae_delta_vs_market": 0.123,
+              "total_mae_delta_vs_v04": -0.448,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 21,
@@ -5952,11 +5952,11 @@
                   "win_pct_ex_push": 0.4,
                   "wins": 14
                 },
-                "market_margin_mae": 10.42,
-                "market_total_mae": 11.523,
-                "matched_market_games": 87,
-                "model_margin_mae": 11.069,
-                "model_total_mae": 12.095,
+                "market_margin_mae": 10.364,
+                "market_total_mae": 11.409,
+                "matched_market_games": 88,
+                "model_margin_mae": 10.977,
+                "model_total_mae": 11.98,
                 "ou_with_min4pt_model_edge": {
                   "losses": 19,
                   "n": 40,
@@ -5969,9 +5969,9 @@
               }
             }
           },
-          "completed_frozen_pairs": 369,
-          "market_quote_coverage_pct": 93.77,
-          "matched_market_games": 346,
+          "completed_frozen_pairs": 370,
+          "market_quote_coverage_pct": 93.78,
+          "matched_market_games": 347,
           "notes": "Observed and source-hashed pretip bookmaker quotes only, not verified closings, no odds/ROI, do not infer significance from small edge-qualified ATS/O-U selections. Same source quote is used for v0.4 and each challenger.",
           "summary": {
             "challenger": {
@@ -5982,11 +5982,11 @@
                 "win_pct_ex_push": 0.4862,
                 "wins": 88
               },
-              "market_margin_mae": 9.96,
-              "market_total_mae": 12.691,
-              "matched_market_games": 346,
-              "model_margin_mae": 10.9,
-              "model_total_mae": 13.101,
+              "market_margin_mae": 9.947,
+              "market_total_mae": 12.659,
+              "matched_market_games": 347,
+              "model_margin_mae": 10.884,
+              "model_total_mae": 13.068,
               "ou_with_min4pt_model_edge": {
                 "losses": 64,
                 "n": 138,
@@ -5997,14 +5997,14 @@
               "quotes_are_not_verified_closing_lines": true,
               "sportsbook_roi_not_available": true
             },
-            "margin_mae_delta_vs_market": 0.94,
-            "margin_mae_delta_vs_v04": 0.175,
-            "matched_source_quotes": 346,
+            "margin_mae_delta_vs_market": 0.937,
+            "margin_mae_delta_vs_v04": 0.182,
+            "matched_source_quotes": 347,
             "su_by_ats_result": {
               "all_with_su_evidence": {
-                "games": 346,
-                "su_accuracy": 0.7457,
-                "su_correct": 258,
+                "games": 347,
+                "su_accuracy": 0.7464,
+                "su_correct": 259,
                 "su_incorrect": 88
               },
               "ats_losses": {
@@ -6014,9 +6014,9 @@
                 "su_incorrect": 17
               },
               "ats_passes_below_edge": {
-                "games": 165,
-                "su_accuracy": 0.6242,
-                "su_correct": 103,
+                "games": 166,
+                "su_accuracy": 0.6265,
+                "su_correct": 104,
                 "su_incorrect": 62
               },
               "ats_pushes": {
@@ -6032,10 +6032,10 @@
                 "su_incorrect": 9
               },
               "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-              "quoted_games": 346,
+              "quoted_games": 347,
               "su_unavailable": 0
             },
-            "total_mae_delta_vs_market": 0.41,
+            "total_mae_delta_vs_market": 0.409,
             "total_mae_delta_vs_v04": -0.533,
             "v04": {
               "ats_with_min3pt_model_edge": {
@@ -6045,11 +6045,11 @@
                 "win_pct_ex_push": 0.4506,
                 "wins": 73
               },
-              "market_margin_mae": 9.96,
-              "market_total_mae": 12.691,
-              "matched_market_games": 346,
-              "model_margin_mae": 10.725,
-              "model_total_mae": 13.634,
+              "market_margin_mae": 9.947,
+              "market_total_mae": 12.659,
+              "matched_market_games": 347,
+              "model_margin_mae": 10.702,
+              "model_total_mae": 13.601,
               "ou_with_min4pt_model_edge": {
                 "losses": 80,
                 "n": 161,
@@ -6070,11 +6070,11 @@
             "win_pct_ex_push": 0.4862,
             "wins": 88
           },
-          "market_margin_mae": 9.96,
-          "market_total_mae": 12.691,
-          "matched_market_games": 346,
-          "model_margin_mae": 10.9,
-          "model_total_mae": 13.101,
+          "market_margin_mae": 9.947,
+          "market_total_mae": 12.659,
+          "matched_market_games": 347,
+          "model_margin_mae": 10.884,
+          "model_total_mae": 13.068,
           "ou_with_min4pt_model_edge": {
             "losses": 64,
             "n": 138,
@@ -6093,11 +6093,11 @@
             "win_pct_ex_push": 0.4506,
             "wins": 73
           },
-          "market_margin_mae": 9.96,
-          "market_total_mae": 12.691,
-          "matched_market_games": 346,
-          "model_margin_mae": 10.725,
-          "model_total_mae": 13.634,
+          "market_margin_mae": 9.947,
+          "market_total_mae": 12.659,
+          "matched_market_games": 347,
+          "model_margin_mae": 10.702,
+          "model_total_mae": 13.601,
           "ou_with_min4pt_model_edge": {
             "losses": 80,
             "n": 161,
@@ -6109,24 +6109,24 @@
           "sportsbook_roi_not_available": true
         },
         "simulator": {
-          "brier": 0.1669,
-          "margin_bias": -2.101,
-          "margin_mae": 10.797,
-          "n": 369,
-          "su_accuracy": 0.7453,
-          "total_mae": 13.181
+          "brier": 0.1667,
+          "margin_bias": -2.081,
+          "margin_mae": 10.782,
+          "n": 370,
+          "su_accuracy": 0.7459,
+          "total_mae": 13.151
         },
         "v04": {
-          "brier": 0.1735,
-          "margin_bias": -0.503,
-          "margin_mae": 10.662,
-          "n": 369,
-          "su_accuracy": 0.7236,
-          "total_mae": 13.71
+          "brier": 0.1731,
+          "margin_bias": -0.494,
+          "margin_mae": 10.641,
+          "n": 370,
+          "su_accuracy": 0.7243,
+          "total_mae": 13.678
         }
       },
       "pure": {
-        "frozen_pairs": 369,
+        "frozen_pairs": 370,
         "market_relative_context": {
           "by_game_date_utc": {
             "2026-11-13": {
@@ -7282,29 +7282,29 @@
                   "win_pct_ex_push": null,
                   "wins": 0
                 },
-                "market_margin_mae": 5.0,
-                "market_total_mae": 4.5,
-                "matched_market_games": 2,
-                "model_margin_mae": 5.62,
-                "model_total_mae": 10.64,
+                "market_margin_mae": 5.167,
+                "market_total_mae": 3.5,
+                "matched_market_games": 3,
+                "model_margin_mae": 6.253,
+                "model_total_mae": 9.15,
                 "ou_with_min4pt_model_edge": {
                   "losses": 2,
-                  "n": 2,
+                  "n": 3,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.0,
-                  "wins": 0
+                  "win_pct_ex_push": 0.3333,
+                  "wins": 1
                 },
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.62,
-              "margin_mae_delta_vs_v04": 0.64,
-              "matched_source_quotes": 2,
+              "margin_mae_delta_vs_market": 1.086,
+              "margin_mae_delta_vs_v04": 1.946,
+              "matched_source_quotes": 3,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 2,
-                  "su_accuracy": 0.5,
-                  "su_correct": 1,
+                  "games": 3,
+                  "su_accuracy": 0.6667,
+                  "su_correct": 2,
                   "su_incorrect": 1
                 },
                 "ats_losses": {
@@ -7314,9 +7314,9 @@
                   "su_incorrect": 0
                 },
                 "ats_passes_below_edge": {
-                  "games": 2,
-                  "su_accuracy": 0.5,
-                  "su_correct": 1,
+                  "games": 3,
+                  "su_accuracy": 0.6667,
+                  "su_correct": 2,
                   "su_incorrect": 1
                 },
                 "ats_pushes": {
@@ -7332,11 +7332,11 @@
                   "su_incorrect": 0
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 2,
+                "quoted_games": 3,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 6.14,
-              "total_mae_delta_vs_v04": 6.795,
+              "total_mae_delta_vs_market": 5.65,
+              "total_mae_delta_vs_v04": 5.95,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 0,
@@ -7345,11 +7345,11 @@
                   "win_pct_ex_push": 1.0,
                   "wins": 1
                 },
-                "market_margin_mae": 5.0,
-                "market_total_mae": 4.5,
-                "matched_market_games": 2,
-                "model_margin_mae": 4.98,
-                "model_total_mae": 3.845,
+                "market_margin_mae": 5.167,
+                "market_total_mae": 3.5,
+                "matched_market_games": 3,
+                "model_margin_mae": 4.307,
+                "model_total_mae": 3.2,
                 "ou_with_min4pt_model_edge": {
                   "losses": 0,
                   "n": 0,
@@ -7548,29 +7548,29 @@
                   "win_pct_ex_push": 0.4923,
                   "wins": 32
                 },
-                "market_margin_mae": 9.687,
-                "market_total_mae": 13.269,
-                "matched_market_games": 91,
-                "model_margin_mae": 11.255,
-                "model_total_mae": 14.218,
+                "market_margin_mae": 9.641,
+                "market_total_mae": 13.141,
+                "matched_market_games": 92,
+                "model_margin_mae": 11.215,
+                "model_total_mae": 14.131,
                 "ou_with_min4pt_model_edge": {
                   "losses": 22,
-                  "n": 51,
+                  "n": 52,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.5686,
-                  "wins": 29
+                  "win_pct_ex_push": 0.5769,
+                  "wins": 30
                 },
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 1.568,
-              "margin_mae_delta_vs_v04": 0.603,
-              "matched_source_quotes": 91,
+              "margin_mae_delta_vs_market": 1.574,
+              "margin_mae_delta_vs_v04": 0.647,
+              "matched_source_quotes": 92,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 91,
-                  "su_accuracy": 0.7253,
-                  "su_correct": 66,
+                  "games": 92,
+                  "su_accuracy": 0.7283,
+                  "su_correct": 67,
                   "su_incorrect": 25
                 },
                 "ats_losses": {
@@ -7580,9 +7580,9 @@
                   "su_incorrect": 6
                 },
                 "ats_passes_below_edge": {
-                  "games": 26,
-                  "su_accuracy": 0.6923,
-                  "su_correct": 18,
+                  "games": 27,
+                  "su_accuracy": 0.7037,
+                  "su_correct": 19,
                   "su_incorrect": 8
                 },
                 "ats_pushes": {
@@ -7598,11 +7598,11 @@
                   "su_incorrect": 11
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 91,
+                "quoted_games": 92,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 0.949,
-              "total_mae_delta_vs_v04": -0.328,
+              "total_mae_delta_vs_market": 0.99,
+              "total_mae_delta_vs_v04": -0.277,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 23,
@@ -7611,11 +7611,11 @@
                   "win_pct_ex_push": 0.3235,
                   "wins": 11
                 },
-                "market_margin_mae": 9.687,
-                "market_total_mae": 13.269,
-                "matched_market_games": 91,
-                "model_margin_mae": 10.652,
-                "model_total_mae": 14.546,
+                "market_margin_mae": 9.641,
+                "market_total_mae": 13.141,
+                "matched_market_games": 92,
+                "model_margin_mae": 10.568,
+                "model_total_mae": 14.408,
                 "ou_with_min4pt_model_edge": {
                   "losses": 22,
                   "n": 44,
@@ -7726,29 +7726,29 @@
                   "win_pct_ex_push": 0.4359,
                   "wins": 17
                 },
-                "market_margin_mae": 10.429,
-                "market_total_mae": 13.029,
-                "matched_market_games": 70,
-                "model_margin_mae": 13.407,
-                "model_total_mae": 14.676,
+                "market_margin_mae": 10.359,
+                "market_total_mae": 12.866,
+                "matched_market_games": 71,
+                "model_margin_mae": 13.324,
+                "model_total_mae": 14.556,
                 "ou_with_min4pt_model_edge": {
                   "losses": 19,
-                  "n": 34,
+                  "n": 35,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.4412,
-                  "wins": 15
+                  "win_pct_ex_push": 0.4571,
+                  "wins": 16
                 },
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 2.978,
-              "margin_mae_delta_vs_v04": 2.119,
-              "matched_source_quotes": 70,
+              "margin_mae_delta_vs_market": 2.965,
+              "margin_mae_delta_vs_v04": 2.153,
+              "matched_source_quotes": 71,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 70,
-                  "su_accuracy": 0.7,
-                  "su_correct": 49,
+                  "games": 71,
+                  "su_accuracy": 0.7042,
+                  "su_correct": 50,
                   "su_incorrect": 21
                 },
                 "ats_losses": {
@@ -7758,9 +7758,9 @@
                   "su_incorrect": 2
                 },
                 "ats_passes_below_edge": {
-                  "games": 31,
-                  "su_accuracy": 0.4516,
-                  "su_correct": 14,
+                  "games": 32,
+                  "su_accuracy": 0.4688,
+                  "su_correct": 15,
                   "su_incorrect": 17
                 },
                 "ats_pushes": {
@@ -7776,11 +7776,11 @@
                   "su_incorrect": 2
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 70,
+                "quoted_games": 71,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 1.647,
-              "total_mae_delta_vs_v04": 0.044,
+              "total_mae_delta_vs_market": 1.69,
+              "total_mae_delta_vs_v04": 0.103,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 16,
@@ -7789,11 +7789,11 @@
                   "win_pct_ex_push": 0.4286,
                   "wins": 12
                 },
-                "market_margin_mae": 10.429,
-                "market_total_mae": 13.029,
-                "matched_market_games": 70,
-                "model_margin_mae": 11.288,
-                "model_total_mae": 14.632,
+                "market_margin_mae": 10.359,
+                "market_total_mae": 12.866,
+                "matched_market_games": 71,
+                "model_margin_mae": 11.171,
+                "model_total_mae": 14.453,
                 "ou_with_min4pt_model_edge": {
                   "losses": 24,
                   "n": 36,
@@ -7904,29 +7904,29 @@
                   "win_pct_ex_push": 0.5962,
                   "wins": 31
                 },
-                "market_margin_mae": 10.42,
-                "market_total_mae": 11.523,
-                "matched_market_games": 87,
-                "model_margin_mae": 10.839,
-                "model_total_mae": 12.43,
+                "market_margin_mae": 10.364,
+                "market_total_mae": 11.409,
+                "matched_market_games": 88,
+                "model_margin_mae": 10.801,
+                "model_total_mae": 12.359,
                 "ou_with_min4pt_model_edge": {
                   "losses": 20,
-                  "n": 45,
+                  "n": 46,
                   "pushes": 0,
-                  "win_pct_ex_push": 0.5556,
-                  "wins": 25
+                  "win_pct_ex_push": 0.5652,
+                  "wins": 26
                 },
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.419,
-              "margin_mae_delta_vs_v04": -0.23,
-              "matched_source_quotes": 87,
+              "margin_mae_delta_vs_market": 0.437,
+              "margin_mae_delta_vs_v04": -0.176,
+              "matched_source_quotes": 88,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 87,
-                  "su_accuracy": 0.7241,
-                  "su_correct": 63,
+                  "games": 88,
+                  "su_accuracy": 0.7273,
+                  "su_correct": 64,
                   "su_incorrect": 24
                 },
                 "ats_losses": {
@@ -7936,9 +7936,9 @@
                   "su_incorrect": 9
                 },
                 "ats_passes_below_edge": {
-                  "games": 35,
-                  "su_accuracy": 0.7429,
-                  "su_correct": 26,
+                  "games": 36,
+                  "su_accuracy": 0.75,
+                  "su_correct": 27,
                   "su_incorrect": 9
                 },
                 "ats_pushes": {
@@ -7954,11 +7954,11 @@
                   "su_incorrect": 6
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 87,
+                "quoted_games": 88,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 0.907,
-              "total_mae_delta_vs_v04": 0.335,
+              "total_mae_delta_vs_market": 0.95,
+              "total_mae_delta_vs_v04": 0.379,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 21,
@@ -7967,11 +7967,11 @@
                   "win_pct_ex_push": 0.4,
                   "wins": 14
                 },
-                "market_margin_mae": 10.42,
-                "market_total_mae": 11.523,
-                "matched_market_games": 87,
-                "model_margin_mae": 11.069,
-                "model_total_mae": 12.095,
+                "market_margin_mae": 10.364,
+                "market_total_mae": 11.409,
+                "matched_market_games": 88,
+                "model_margin_mae": 10.977,
+                "model_total_mae": 11.98,
                 "ou_with_min4pt_model_edge": {
                   "losses": 19,
                   "n": 40,
@@ -7984,9 +7984,9 @@
               }
             }
           },
-          "completed_frozen_pairs": 369,
-          "market_quote_coverage_pct": 93.77,
-          "matched_market_games": 346,
+          "completed_frozen_pairs": 370,
+          "market_quote_coverage_pct": 93.78,
+          "matched_market_games": 347,
           "notes": "Observed and source-hashed pretip bookmaker quotes only, not verified closings, no odds/ROI, do not infer significance from small edge-qualified ATS/O-U selections. Same source quote is used for v0.4 and each challenger.",
           "summary": {
             "challenger": {
@@ -7997,29 +7997,29 @@
                 "win_pct_ex_push": 0.5308,
                 "wins": 112
               },
-              "market_margin_mae": 9.96,
-              "market_total_mae": 12.691,
-              "matched_market_games": 346,
-              "model_margin_mae": 11.807,
-              "model_total_mae": 13.401,
+              "market_margin_mae": 9.947,
+              "market_total_mae": 12.659,
+              "matched_market_games": 347,
+              "model_margin_mae": 11.795,
+              "model_total_mae": 13.38,
               "ou_with_min4pt_model_edge": {
                 "losses": 77,
-                "n": 185,
+                "n": 186,
                 "pushes": 0,
-                "win_pct_ex_push": 0.5838,
-                "wins": 108
+                "win_pct_ex_push": 0.586,
+                "wins": 109
               },
               "quotes_are_not_verified_closing_lines": true,
               "sportsbook_roi_not_available": true
             },
-            "margin_mae_delta_vs_market": 1.847,
-            "margin_mae_delta_vs_v04": 1.082,
-            "matched_source_quotes": 346,
+            "margin_mae_delta_vs_market": 1.848,
+            "margin_mae_delta_vs_v04": 1.093,
+            "matched_source_quotes": 347,
             "su_by_ats_result": {
               "all_with_su_evidence": {
-                "games": 346,
-                "su_accuracy": 0.7341,
-                "su_correct": 254,
+                "games": 347,
+                "su_accuracy": 0.7349,
+                "su_correct": 255,
                 "su_incorrect": 92
               },
               "ats_losses": {
@@ -8029,9 +8029,9 @@
                 "su_incorrect": 24
               },
               "ats_passes_below_edge": {
-                "games": 135,
-                "su_accuracy": 0.6222,
-                "su_correct": 84,
+                "games": 136,
+                "su_accuracy": 0.625,
+                "su_correct": 85,
                 "su_incorrect": 51
               },
               "ats_pushes": {
@@ -8047,11 +8047,11 @@
                 "su_incorrect": 17
               },
               "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-              "quoted_games": 346,
+              "quoted_games": 347,
               "su_unavailable": 0
             },
-            "total_mae_delta_vs_market": 0.71,
-            "total_mae_delta_vs_v04": -0.233,
+            "total_mae_delta_vs_market": 0.721,
+            "total_mae_delta_vs_v04": -0.221,
             "v04": {
               "ats_with_min3pt_model_edge": {
                 "losses": 89,
@@ -8060,11 +8060,11 @@
                 "win_pct_ex_push": 0.4506,
                 "wins": 73
               },
-              "market_margin_mae": 9.96,
-              "market_total_mae": 12.691,
-              "matched_market_games": 346,
-              "model_margin_mae": 10.725,
-              "model_total_mae": 13.634,
+              "market_margin_mae": 9.947,
+              "market_total_mae": 12.659,
+              "matched_market_games": 347,
+              "model_margin_mae": 10.702,
+              "model_total_mae": 13.601,
               "ou_with_min4pt_model_edge": {
                 "losses": 80,
                 "n": 161,
@@ -8085,17 +8085,17 @@
             "win_pct_ex_push": 0.5308,
             "wins": 112
           },
-          "market_margin_mae": 9.96,
-          "market_total_mae": 12.691,
-          "matched_market_games": 346,
-          "model_margin_mae": 11.807,
-          "model_total_mae": 13.401,
+          "market_margin_mae": 9.947,
+          "market_total_mae": 12.659,
+          "matched_market_games": 347,
+          "model_margin_mae": 11.795,
+          "model_total_mae": 13.38,
           "ou_with_min4pt_model_edge": {
             "losses": 77,
-            "n": 185,
+            "n": 186,
             "pushes": 0,
-            "win_pct_ex_push": 0.5838,
-            "wins": 108
+            "win_pct_ex_push": 0.586,
+            "wins": 109
           },
           "quotes_are_not_verified_closing_lines": true,
           "sportsbook_roi_not_available": true
@@ -8108,11 +8108,11 @@
             "win_pct_ex_push": 0.4506,
             "wins": 73
           },
-          "market_margin_mae": 9.96,
-          "market_total_mae": 12.691,
-          "matched_market_games": 346,
-          "model_margin_mae": 10.725,
-          "model_total_mae": 13.634,
+          "market_margin_mae": 9.947,
+          "market_total_mae": 12.659,
+          "matched_market_games": 347,
+          "model_margin_mae": 10.702,
+          "model_total_mae": 13.601,
           "ou_with_min4pt_model_edge": {
             "losses": 80,
             "n": 161,
@@ -8124,24 +8124,24 @@
           "sportsbook_roi_not_available": true
         },
         "simulator": {
-          "brier": 0.1753,
-          "margin_bias": -3.761,
-          "margin_mae": 11.624,
-          "n": 369,
-          "su_accuracy": 0.729,
-          "total_mae": 13.441
+          "brier": 0.1752,
+          "margin_bias": -3.731,
+          "margin_mae": 11.613,
+          "n": 370,
+          "su_accuracy": 0.7297,
+          "total_mae": 13.421
         },
         "v04": {
-          "brier": 0.1735,
-          "margin_bias": -0.503,
-          "margin_mae": 10.662,
-          "n": 369,
-          "su_accuracy": 0.7236,
-          "total_mae": 13.71
+          "brier": 0.1731,
+          "margin_bias": -0.494,
+          "margin_mae": 10.641,
+          "n": 370,
+          "su_accuracy": 0.7243,
+          "total_mae": 13.678
         }
       },
       "split_total20": {
-        "frozen_pairs": 367,
+        "frozen_pairs": 368,
         "market_relative_context": {
           "by_game_date_utc": {
             "2026-11-14": {
@@ -9209,11 +9209,11 @@
                   "win_pct_ex_push": 1.0,
                   "wins": 1
                 },
-                "market_margin_mae": 5.0,
-                "market_total_mae": 4.5,
-                "matched_market_games": 2,
-                "model_margin_mae": 5.325,
-                "model_total_mae": 4.795,
+                "market_margin_mae": 5.167,
+                "market_total_mae": 3.5,
+                "matched_market_games": 3,
+                "model_margin_mae": 4.893,
+                "model_total_mae": 3.313,
                 "ou_with_min4pt_model_edge": {
                   "losses": 0,
                   "n": 0,
@@ -9224,14 +9224,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.325,
-              "margin_mae_delta_vs_v04": 0.345,
-              "matched_source_quotes": 2,
+              "margin_mae_delta_vs_market": -0.274,
+              "margin_mae_delta_vs_v04": 0.586,
+              "matched_source_quotes": 3,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 2,
-                  "su_accuracy": 0.5,
-                  "su_correct": 1,
+                  "games": 3,
+                  "su_accuracy": 0.6667,
+                  "su_correct": 2,
                   "su_incorrect": 1
                 },
                 "ats_losses": {
@@ -9241,9 +9241,9 @@
                   "su_incorrect": 0
                 },
                 "ats_passes_below_edge": {
-                  "games": 1,
-                  "su_accuracy": 0.0,
-                  "su_correct": 0,
+                  "games": 2,
+                  "su_accuracy": 0.5,
+                  "su_correct": 1,
                   "su_incorrect": 1
                 },
                 "ats_pushes": {
@@ -9259,11 +9259,11 @@
                   "su_incorrect": 0
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 2,
+                "quoted_games": 3,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 0.295,
-              "total_mae_delta_vs_v04": 0.95,
+              "total_mae_delta_vs_market": -0.187,
+              "total_mae_delta_vs_v04": 0.113,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 0,
@@ -9272,11 +9272,11 @@
                   "win_pct_ex_push": 1.0,
                   "wins": 1
                 },
-                "market_margin_mae": 5.0,
-                "market_total_mae": 4.5,
-                "matched_market_games": 2,
-                "model_margin_mae": 4.98,
-                "model_total_mae": 3.845,
+                "market_margin_mae": 5.167,
+                "market_total_mae": 3.5,
+                "matched_market_games": 3,
+                "model_margin_mae": 4.307,
+                "model_total_mae": 3.2,
                 "ou_with_min4pt_model_edge": {
                   "losses": 0,
                   "n": 0,
@@ -9475,11 +9475,11 @@
                   "win_pct_ex_push": 0.3514,
                   "wins": 13
                 },
-                "market_margin_mae": 9.687,
-                "market_total_mae": 13.269,
-                "matched_market_games": 91,
-                "model_margin_mae": 10.512,
-                "model_total_mae": 13.685,
+                "market_margin_mae": 9.641,
+                "market_total_mae": 13.141,
+                "matched_market_games": 92,
+                "model_margin_mae": 10.442,
+                "model_total_mae": 13.54,
                 "ou_with_min4pt_model_edge": {
                   "losses": 18,
                   "n": 38,
@@ -9490,14 +9490,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.825,
-              "margin_mae_delta_vs_v04": -0.14,
-              "matched_source_quotes": 91,
+              "margin_mae_delta_vs_market": 0.801,
+              "margin_mae_delta_vs_v04": -0.126,
+              "matched_source_quotes": 92,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 91,
-                  "su_accuracy": 0.8022,
-                  "su_correct": 73,
+                  "games": 92,
+                  "su_accuracy": 0.8043,
+                  "su_correct": 74,
                   "su_incorrect": 18
                 },
                 "ats_losses": {
@@ -9507,9 +9507,9 @@
                   "su_incorrect": 3
                 },
                 "ats_passes_below_edge": {
-                  "games": 54,
-                  "su_accuracy": 0.7963,
-                  "su_correct": 43,
+                  "games": 55,
+                  "su_accuracy": 0.8,
+                  "su_correct": 44,
                   "su_incorrect": 11
                 },
                 "ats_pushes": {
@@ -9525,11 +9525,11 @@
                   "su_incorrect": 4
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 91,
+                "quoted_games": 92,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 0.416,
-              "total_mae_delta_vs_v04": -0.861,
+              "total_mae_delta_vs_market": 0.399,
+              "total_mae_delta_vs_v04": -0.868,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 23,
@@ -9538,11 +9538,11 @@
                   "win_pct_ex_push": 0.3235,
                   "wins": 11
                 },
-                "market_margin_mae": 9.687,
-                "market_total_mae": 13.269,
-                "matched_market_games": 91,
-                "model_margin_mae": 10.652,
-                "model_total_mae": 14.546,
+                "market_margin_mae": 9.641,
+                "market_total_mae": 13.141,
+                "matched_market_games": 92,
+                "model_margin_mae": 10.568,
+                "model_total_mae": 14.408,
                 "ou_with_min4pt_model_edge": {
                   "losses": 22,
                   "n": 44,
@@ -9653,11 +9653,11 @@
                   "win_pct_ex_push": 0.5172,
                   "wins": 15
                 },
-                "market_margin_mae": 10.429,
-                "market_total_mae": 13.029,
-                "matched_market_games": 70,
-                "model_margin_mae": 10.815,
-                "model_total_mae": 14.245,
+                "market_margin_mae": 10.359,
+                "market_total_mae": 12.866,
+                "matched_market_games": 71,
+                "model_margin_mae": 10.72,
+                "model_total_mae": 14.05,
                 "ou_with_min4pt_model_edge": {
                   "losses": 19,
                   "n": 29,
@@ -9668,14 +9668,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.386,
-              "margin_mae_delta_vs_v04": -0.473,
-              "matched_source_quotes": 70,
+              "margin_mae_delta_vs_market": 0.361,
+              "margin_mae_delta_vs_v04": -0.451,
+              "matched_source_quotes": 71,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 70,
-                  "su_accuracy": 0.7143,
-                  "su_correct": 50,
+                  "games": 71,
+                  "su_accuracy": 0.7183,
+                  "su_correct": 51,
                   "su_incorrect": 20
                 },
                 "ats_losses": {
@@ -9685,9 +9685,9 @@
                   "su_incorrect": 3
                 },
                 "ats_passes_below_edge": {
-                  "games": 41,
-                  "su_accuracy": 0.6098,
-                  "su_correct": 25,
+                  "games": 42,
+                  "su_accuracy": 0.619,
+                  "su_correct": 26,
                   "su_incorrect": 16
                 },
                 "ats_pushes": {
@@ -9703,11 +9703,11 @@
                   "su_incorrect": 1
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 70,
+                "quoted_games": 71,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 1.216,
-              "total_mae_delta_vs_v04": -0.387,
+              "total_mae_delta_vs_market": 1.184,
+              "total_mae_delta_vs_v04": -0.403,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 16,
@@ -9716,11 +9716,11 @@
                   "win_pct_ex_push": 0.4286,
                   "wins": 12
                 },
-                "market_margin_mae": 10.429,
-                "market_total_mae": 13.029,
-                "matched_market_games": 70,
-                "model_margin_mae": 11.288,
-                "model_total_mae": 14.632,
+                "market_margin_mae": 10.359,
+                "market_total_mae": 12.866,
+                "matched_market_games": 71,
+                "model_margin_mae": 11.171,
+                "model_total_mae": 14.453,
                 "ou_with_min4pt_model_edge": {
                   "losses": 24,
                   "n": 36,
@@ -9831,11 +9831,11 @@
                   "win_pct_ex_push": 0.4706,
                   "wins": 16
                 },
-                "market_margin_mae": 10.42,
-                "market_total_mae": 11.523,
-                "matched_market_games": 87,
-                "model_margin_mae": 10.854,
-                "model_total_mae": 11.578,
+                "market_margin_mae": 10.364,
+                "market_total_mae": 11.409,
+                "matched_market_games": 88,
+                "model_margin_mae": 10.776,
+                "model_total_mae": 11.45,
                 "ou_with_min4pt_model_edge": {
                   "losses": 13,
                   "n": 33,
@@ -9846,14 +9846,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.434,
-              "margin_mae_delta_vs_v04": -0.215,
-              "matched_source_quotes": 87,
+              "margin_mae_delta_vs_market": 0.412,
+              "margin_mae_delta_vs_v04": -0.201,
+              "matched_source_quotes": 88,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 87,
-                  "su_accuracy": 0.7126,
-                  "su_correct": 62,
+                  "games": 88,
+                  "su_accuracy": 0.7159,
+                  "su_correct": 63,
                   "su_incorrect": 25
                 },
                 "ats_losses": {
@@ -9863,9 +9863,9 @@
                   "su_incorrect": 8
                 },
                 "ats_passes_below_edge": {
-                  "games": 53,
-                  "su_accuracy": 0.7358,
-                  "su_correct": 39,
+                  "games": 54,
+                  "su_accuracy": 0.7407,
+                  "su_correct": 40,
                   "su_incorrect": 14
                 },
                 "ats_pushes": {
@@ -9881,11 +9881,11 @@
                   "su_incorrect": 3
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 87,
+                "quoted_games": 88,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 0.055,
-              "total_mae_delta_vs_v04": -0.517,
+              "total_mae_delta_vs_market": 0.041,
+              "total_mae_delta_vs_v04": -0.53,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 21,
@@ -9894,11 +9894,11 @@
                   "win_pct_ex_push": 0.4,
                   "wins": 14
                 },
-                "market_margin_mae": 10.42,
-                "market_total_mae": 11.523,
-                "matched_market_games": 87,
-                "model_margin_mae": 11.069,
-                "model_total_mae": 12.095,
+                "market_margin_mae": 10.364,
+                "market_total_mae": 11.409,
+                "matched_market_games": 88,
+                "model_margin_mae": 10.977,
+                "model_total_mae": 11.98,
                 "ou_with_min4pt_model_edge": {
                   "losses": 19,
                   "n": 40,
@@ -9911,9 +9911,9 @@
               }
             }
           },
-          "completed_frozen_pairs": 367,
-          "market_quote_coverage_pct": 93.73,
-          "matched_market_games": 344,
+          "completed_frozen_pairs": 368,
+          "market_quote_coverage_pct": 93.75,
+          "matched_market_games": 345,
           "notes": "Observed and source-hashed pretip bookmaker quotes only, not verified closings, no odds/ROI, do not infer significance from small edge-qualified ATS/O-U selections. Same source quote is used for v0.4 and each challenger.",
           "summary": {
             "challenger": {
@@ -9924,11 +9924,11 @@
                 "win_pct_ex_push": 0.4658,
                 "wins": 75
               },
-              "market_margin_mae": 9.939,
-              "market_total_mae": 12.666,
-              "matched_market_games": 344,
-              "model_margin_mae": 10.556,
-              "model_total_mae": 13.175,
+              "market_margin_mae": 9.926,
+              "market_total_mae": 12.633,
+              "matched_market_games": 345,
+              "model_margin_mae": 10.537,
+              "model_total_mae": 13.138,
               "ou_with_min4pt_model_edge": {
                 "losses": 64,
                 "n": 135,
@@ -9939,14 +9939,14 @@
               "quotes_are_not_verified_closing_lines": true,
               "sportsbook_roi_not_available": true
             },
-            "margin_mae_delta_vs_market": 0.617,
-            "margin_mae_delta_vs_v04": -0.136,
-            "matched_source_quotes": 344,
+            "margin_mae_delta_vs_market": 0.611,
+            "margin_mae_delta_vs_v04": -0.133,
+            "matched_source_quotes": 345,
             "su_by_ats_result": {
               "all_with_su_evidence": {
-                "games": 344,
-                "su_accuracy": 0.7442,
-                "su_correct": 256,
+                "games": 345,
+                "su_accuracy": 0.7449,
+                "su_correct": 257,
                 "su_incorrect": 88
               },
               "ats_losses": {
@@ -9956,9 +9956,9 @@
                 "su_incorrect": 26
               },
               "ats_passes_below_edge": {
-                "games": 183,
-                "su_accuracy": 0.6995,
-                "su_correct": 128,
+                "games": 184,
+                "su_accuracy": 0.7011,
+                "su_correct": 129,
                 "su_incorrect": 55
               },
               "ats_pushes": {
@@ -9974,11 +9974,11 @@
                 "su_incorrect": 7
               },
               "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-              "quoted_games": 344,
+              "quoted_games": 345,
               "su_unavailable": 0
             },
-            "total_mae_delta_vs_market": 0.509,
-            "total_mae_delta_vs_v04": -0.447,
+            "total_mae_delta_vs_market": 0.505,
+            "total_mae_delta_vs_v04": -0.45,
             "v04": {
               "ats_with_min3pt_model_edge": {
                 "losses": 88,
@@ -9987,11 +9987,11 @@
                 "win_pct_ex_push": 0.4534,
                 "wins": 73
               },
-              "market_margin_mae": 9.939,
-              "market_total_mae": 12.666,
-              "matched_market_games": 344,
-              "model_margin_mae": 10.692,
-              "model_total_mae": 13.622,
+              "market_margin_mae": 9.926,
+              "market_total_mae": 12.633,
+              "matched_market_games": 345,
+              "model_margin_mae": 10.67,
+              "model_total_mae": 13.588,
               "ou_with_min4pt_model_edge": {
                 "losses": 80,
                 "n": 160,
@@ -10012,11 +10012,11 @@
             "win_pct_ex_push": 0.4658,
             "wins": 75
           },
-          "market_margin_mae": 9.939,
-          "market_total_mae": 12.666,
-          "matched_market_games": 344,
-          "model_margin_mae": 10.556,
-          "model_total_mae": 13.175,
+          "market_margin_mae": 9.926,
+          "market_total_mae": 12.633,
+          "matched_market_games": 345,
+          "model_margin_mae": 10.537,
+          "model_total_mae": 13.138,
           "ou_with_min4pt_model_edge": {
             "losses": 64,
             "n": 135,
@@ -10035,11 +10035,11 @@
             "win_pct_ex_push": 0.4534,
             "wins": 73
           },
-          "market_margin_mae": 9.939,
-          "market_total_mae": 12.666,
-          "matched_market_games": 344,
-          "model_margin_mae": 10.692,
-          "model_total_mae": 13.622,
+          "market_margin_mae": 9.926,
+          "market_total_mae": 12.633,
+          "matched_market_games": 345,
+          "model_margin_mae": 10.67,
+          "model_total_mae": 13.588,
           "ou_with_min4pt_model_edge": {
             "losses": 80,
             "n": 160,
@@ -10051,24 +10051,24 @@
           "sportsbook_roi_not_available": true
         },
         "simulator": {
-          "brier": 0.1664,
-          "margin_bias": -0.725,
-          "margin_mae": 10.503,
-          "n": 367,
-          "su_accuracy": 0.7439,
-          "total_mae": 13.259
+          "brier": 0.1661,
+          "margin_bias": -0.712,
+          "margin_mae": 10.485,
+          "n": 368,
+          "su_accuracy": 0.7446,
+          "total_mae": 13.224
         },
         "v04": {
-          "brier": 0.1716,
-          "margin_bias": -0.595,
-          "margin_mae": 10.632,
-          "n": 367,
-          "su_accuracy": 0.7275,
-          "total_mae": 13.699
+          "brier": 0.1713,
+          "margin_bias": -0.585,
+          "margin_mae": 10.611,
+          "n": 368,
+          "su_accuracy": 0.7283,
+          "total_mae": 13.667
         }
       },
       "trained_blend": {
-        "frozen_pairs": 369,
+        "frozen_pairs": 370,
         "market_relative_context": {
           "by_game_date_utc": {
             "2026-11-13": {
@@ -11224,11 +11224,11 @@
                   "win_pct_ex_push": 1.0,
                   "wins": 1
                 },
-                "market_margin_mae": 5.0,
-                "market_total_mae": 4.5,
-                "matched_market_games": 2,
-                "model_margin_mae": 4.595,
-                "model_total_mae": 6.47,
+                "market_margin_mae": 5.167,
+                "market_total_mae": 3.5,
+                "matched_market_games": 3,
+                "model_margin_mae": 4.65,
+                "model_total_mae": 4.443,
                 "ou_with_min4pt_model_edge": {
                   "losses": 0,
                   "n": 0,
@@ -11239,14 +11239,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": -0.405,
-              "margin_mae_delta_vs_v04": -0.385,
-              "matched_source_quotes": 2,
+              "margin_mae_delta_vs_market": -0.517,
+              "margin_mae_delta_vs_v04": 0.343,
+              "matched_source_quotes": 3,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 2,
-                  "su_accuracy": 0.5,
-                  "su_correct": 1,
+                  "games": 3,
+                  "su_accuracy": 0.6667,
+                  "su_correct": 2,
                   "su_incorrect": 1
                 },
                 "ats_losses": {
@@ -11256,9 +11256,9 @@
                   "su_incorrect": 0
                 },
                 "ats_passes_below_edge": {
-                  "games": 1,
-                  "su_accuracy": 0.0,
-                  "su_correct": 0,
+                  "games": 2,
+                  "su_accuracy": 0.5,
+                  "su_correct": 1,
                   "su_incorrect": 1
                 },
                 "ats_pushes": {
@@ -11274,11 +11274,11 @@
                   "su_incorrect": 0
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 2,
+                "quoted_games": 3,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 1.97,
-              "total_mae_delta_vs_v04": 2.625,
+              "total_mae_delta_vs_market": 0.943,
+              "total_mae_delta_vs_v04": 1.243,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 0,
@@ -11287,11 +11287,11 @@
                   "win_pct_ex_push": 1.0,
                   "wins": 1
                 },
-                "market_margin_mae": 5.0,
-                "market_total_mae": 4.5,
-                "matched_market_games": 2,
-                "model_margin_mae": 4.98,
-                "model_total_mae": 3.845,
+                "market_margin_mae": 5.167,
+                "market_total_mae": 3.5,
+                "matched_market_games": 3,
+                "model_margin_mae": 4.307,
+                "model_total_mae": 3.2,
                 "ou_with_min4pt_model_edge": {
                   "losses": 0,
                   "n": 0,
@@ -11490,11 +11490,11 @@
                   "win_pct_ex_push": 0.3333,
                   "wins": 11
                 },
-                "market_margin_mae": 9.687,
-                "market_total_mae": 13.269,
-                "matched_market_games": 91,
-                "model_margin_mae": 10.504,
-                "model_total_mae": 13.737,
+                "market_margin_mae": 9.641,
+                "market_total_mae": 13.141,
+                "matched_market_games": 92,
+                "model_margin_mae": 10.442,
+                "model_total_mae": 13.592,
                 "ou_with_min4pt_model_edge": {
                   "losses": 19,
                   "n": 44,
@@ -11505,14 +11505,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.817,
-              "margin_mae_delta_vs_v04": -0.148,
-              "matched_source_quotes": 91,
+              "margin_mae_delta_vs_market": 0.801,
+              "margin_mae_delta_vs_v04": -0.126,
+              "matched_source_quotes": 92,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 91,
-                  "su_accuracy": 0.8022,
-                  "su_correct": 73,
+                  "games": 92,
+                  "su_accuracy": 0.8043,
+                  "su_correct": 74,
                   "su_incorrect": 18
                 },
                 "ats_losses": {
@@ -11522,9 +11522,9 @@
                   "su_incorrect": 3
                 },
                 "ats_passes_below_edge": {
-                  "games": 58,
-                  "su_accuracy": 0.7759,
-                  "su_correct": 45,
+                  "games": 59,
+                  "su_accuracy": 0.7797,
+                  "su_correct": 46,
                   "su_incorrect": 13
                 },
                 "ats_pushes": {
@@ -11540,11 +11540,11 @@
                   "su_incorrect": 2
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 91,
+                "quoted_games": 92,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 0.468,
-              "total_mae_delta_vs_v04": -0.809,
+              "total_mae_delta_vs_market": 0.451,
+              "total_mae_delta_vs_v04": -0.816,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 23,
@@ -11553,11 +11553,11 @@
                   "win_pct_ex_push": 0.3235,
                   "wins": 11
                 },
-                "market_margin_mae": 9.687,
-                "market_total_mae": 13.269,
-                "matched_market_games": 91,
-                "model_margin_mae": 10.652,
-                "model_total_mae": 14.546,
+                "market_margin_mae": 9.641,
+                "market_total_mae": 13.141,
+                "matched_market_games": 92,
+                "model_margin_mae": 10.568,
+                "model_total_mae": 14.408,
                 "ou_with_min4pt_model_edge": {
                   "losses": 22,
                   "n": 44,
@@ -11668,11 +11668,11 @@
                   "win_pct_ex_push": 0.5556,
                   "wins": 15
                 },
-                "market_margin_mae": 10.429,
-                "market_total_mae": 13.029,
-                "matched_market_games": 70,
-                "model_margin_mae": 10.69,
-                "model_total_mae": 14.405,
+                "market_margin_mae": 10.359,
+                "market_total_mae": 12.866,
+                "matched_market_games": 71,
+                "model_margin_mae": 10.607,
+                "model_total_mae": 14.208,
                 "ou_with_min4pt_model_edge": {
                   "losses": 20,
                   "n": 30,
@@ -11683,14 +11683,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.261,
-              "margin_mae_delta_vs_v04": -0.598,
-              "matched_source_quotes": 70,
+              "margin_mae_delta_vs_market": 0.248,
+              "margin_mae_delta_vs_v04": -0.564,
+              "matched_source_quotes": 71,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 70,
-                  "su_accuracy": 0.7143,
-                  "su_correct": 50,
+                  "games": 71,
+                  "su_accuracy": 0.7183,
+                  "su_correct": 51,
                   "su_incorrect": 20
                 },
                 "ats_losses": {
@@ -11700,9 +11700,9 @@
                   "su_incorrect": 2
                 },
                 "ats_passes_below_edge": {
-                  "games": 43,
-                  "su_accuracy": 0.6512,
-                  "su_correct": 28,
+                  "games": 44,
+                  "su_accuracy": 0.6591,
+                  "su_correct": 29,
                   "su_incorrect": 15
                 },
                 "ats_pushes": {
@@ -11718,11 +11718,11 @@
                   "su_incorrect": 3
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 70,
+                "quoted_games": 71,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 1.376,
-              "total_mae_delta_vs_v04": -0.227,
+              "total_mae_delta_vs_market": 1.342,
+              "total_mae_delta_vs_v04": -0.245,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 16,
@@ -11731,11 +11731,11 @@
                   "win_pct_ex_push": 0.4286,
                   "wins": 12
                 },
-                "market_margin_mae": 10.429,
-                "market_total_mae": 13.029,
-                "matched_market_games": 70,
-                "model_margin_mae": 11.288,
-                "model_total_mae": 14.632,
+                "market_margin_mae": 10.359,
+                "market_total_mae": 12.866,
+                "matched_market_games": 71,
+                "model_margin_mae": 11.171,
+                "model_total_mae": 14.453,
                 "ou_with_min4pt_model_edge": {
                   "losses": 24,
                   "n": 36,
@@ -11846,11 +11846,11 @@
                   "win_pct_ex_push": 0.5172,
                   "wins": 15
                 },
-                "market_margin_mae": 10.42,
-                "market_total_mae": 11.523,
-                "matched_market_games": 87,
-                "model_margin_mae": 10.862,
-                "model_total_mae": 11.582,
+                "market_margin_mae": 10.364,
+                "market_total_mae": 11.409,
+                "matched_market_games": 88,
+                "model_margin_mae": 10.793,
+                "model_total_mae": 11.455,
                 "ou_with_min4pt_model_edge": {
                   "losses": 14,
                   "n": 35,
@@ -11861,14 +11861,14 @@
                 "quotes_are_not_verified_closing_lines": true,
                 "sportsbook_roi_not_available": true
               },
-              "margin_mae_delta_vs_market": 0.442,
-              "margin_mae_delta_vs_v04": -0.207,
-              "matched_source_quotes": 87,
+              "margin_mae_delta_vs_market": 0.429,
+              "margin_mae_delta_vs_v04": -0.184,
+              "matched_source_quotes": 88,
               "su_by_ats_result": {
                 "all_with_su_evidence": {
-                  "games": 87,
-                  "su_accuracy": 0.7126,
-                  "su_correct": 62,
+                  "games": 88,
+                  "su_accuracy": 0.7159,
+                  "su_correct": 63,
                   "su_incorrect": 25
                 },
                 "ats_losses": {
@@ -11878,9 +11878,9 @@
                   "su_incorrect": 6
                 },
                 "ats_passes_below_edge": {
-                  "games": 58,
-                  "su_accuracy": 0.6897,
-                  "su_correct": 40,
+                  "games": 59,
+                  "su_accuracy": 0.6949,
+                  "su_correct": 41,
                   "su_incorrect": 18
                 },
                 "ats_pushes": {
@@ -11896,11 +11896,11 @@
                   "su_incorrect": 1
                 },
                 "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-                "quoted_games": 87,
+                "quoted_games": 88,
                 "su_unavailable": 0
               },
-              "total_mae_delta_vs_market": 0.059,
-              "total_mae_delta_vs_v04": -0.513,
+              "total_mae_delta_vs_market": 0.046,
+              "total_mae_delta_vs_v04": -0.525,
               "v04": {
                 "ats_with_min3pt_model_edge": {
                   "losses": 21,
@@ -11909,11 +11909,11 @@
                   "win_pct_ex_push": 0.4,
                   "wins": 14
                 },
-                "market_margin_mae": 10.42,
-                "market_total_mae": 11.523,
-                "matched_market_games": 87,
-                "model_margin_mae": 11.069,
-                "model_total_mae": 12.095,
+                "market_margin_mae": 10.364,
+                "market_total_mae": 11.409,
+                "matched_market_games": 88,
+                "model_margin_mae": 10.977,
+                "model_total_mae": 11.98,
                 "ou_with_min4pt_model_edge": {
                   "losses": 19,
                   "n": 40,
@@ -11926,9 +11926,9 @@
               }
             }
           },
-          "completed_frozen_pairs": 369,
-          "market_quote_coverage_pct": 93.77,
-          "matched_market_games": 346,
+          "completed_frozen_pairs": 370,
+          "market_quote_coverage_pct": 93.78,
+          "matched_market_games": 347,
           "notes": "Observed and source-hashed pretip bookmaker quotes only, not verified closings, no odds/ROI, do not infer significance from small edge-qualified ATS/O-U selections. Same source quote is used for v0.4 and each challenger.",
           "summary": {
             "challenger": {
@@ -11939,11 +11939,11 @@
                 "win_pct_ex_push": 0.4571,
                 "wins": 64
               },
-              "market_margin_mae": 9.96,
-              "market_total_mae": 12.691,
-              "matched_market_games": 346,
-              "model_margin_mae": 10.566,
-              "model_total_mae": 13.262,
+              "market_margin_mae": 9.947,
+              "market_total_mae": 12.659,
+              "matched_market_games": 347,
+              "model_margin_mae": 10.549,
+              "model_total_mae": 13.224,
               "ou_with_min4pt_model_edge": {
                 "losses": 69,
                 "n": 154,
@@ -11954,14 +11954,14 @@
               "quotes_are_not_verified_closing_lines": true,
               "sportsbook_roi_not_available": true
             },
-            "margin_mae_delta_vs_market": 0.606,
-            "margin_mae_delta_vs_v04": -0.159,
-            "matched_source_quotes": 346,
+            "margin_mae_delta_vs_market": 0.602,
+            "margin_mae_delta_vs_v04": -0.153,
+            "matched_source_quotes": 347,
             "su_by_ats_result": {
               "all_with_su_evidence": {
-                "games": 346,
-                "su_accuracy": 0.7341,
-                "su_correct": 254,
+                "games": 347,
+                "su_accuracy": 0.7349,
+                "su_correct": 255,
                 "su_incorrect": 92
               },
               "ats_losses": {
@@ -11971,9 +11971,9 @@
                 "su_incorrect": 22
               },
               "ats_passes_below_edge": {
-                "games": 206,
-                "su_accuracy": 0.6845,
-                "su_correct": 141,
+                "games": 207,
+                "su_accuracy": 0.686,
+                "su_correct": 142,
                 "su_incorrect": 65
               },
               "ats_pushes": {
@@ -11989,11 +11989,11 @@
                 "su_incorrect": 5
               },
               "meaning": "SU is whether the frozen margin sign predicted the real winner, even if the model's separate ATS side failed. Qualifying ATS follows the fixed 3-point model-vs-book edge gate; other quoted games are PASS, not bets.",
-              "quoted_games": 346,
+              "quoted_games": 347,
               "su_unavailable": 0
             },
-            "total_mae_delta_vs_market": 0.571,
-            "total_mae_delta_vs_v04": -0.372,
+            "total_mae_delta_vs_market": 0.565,
+            "total_mae_delta_vs_v04": -0.377,
             "v04": {
               "ats_with_min3pt_model_edge": {
                 "losses": 89,
@@ -12002,11 +12002,11 @@
                 "win_pct_ex_push": 0.4506,
                 "wins": 73
               },
-              "market_margin_mae": 9.96,
-              "market_total_mae": 12.691,
-              "matched_market_games": 346,
-              "model_margin_mae": 10.725,
-              "model_total_mae": 13.634,
+              "market_margin_mae": 9.947,
+              "market_total_mae": 12.659,
+              "matched_market_games": 347,
+              "model_margin_mae": 10.702,
+              "model_total_mae": 13.601,
               "ou_with_min4pt_model_edge": {
                 "losses": 80,
                 "n": 161,
@@ -12027,11 +12027,11 @@
             "win_pct_ex_push": 0.4571,
             "wins": 64
           },
-          "market_margin_mae": 9.96,
-          "market_total_mae": 12.691,
-          "matched_market_games": 346,
-          "model_margin_mae": 10.566,
-          "model_total_mae": 13.262,
+          "market_margin_mae": 9.947,
+          "market_total_mae": 12.659,
+          "matched_market_games": 347,
+          "model_margin_mae": 10.549,
+          "model_total_mae": 13.224,
           "ou_with_min4pt_model_edge": {
             "losses": 69,
             "n": 154,
@@ -12050,11 +12050,11 @@
             "win_pct_ex_push": 0.4506,
             "wins": 73
           },
-          "market_margin_mae": 9.96,
-          "market_total_mae": 12.691,
-          "matched_market_games": 346,
-          "model_margin_mae": 10.725,
-          "model_total_mae": 13.634,
+          "market_margin_mae": 9.947,
+          "market_total_mae": 12.659,
+          "matched_market_games": 347,
+          "model_margin_mae": 10.702,
+          "model_total_mae": 13.601,
           "ou_with_min4pt_model_edge": {
             "losses": 80,
             "n": 161,
@@ -12066,20 +12066,20 @@
           "sportsbook_roi_not_available": true
         },
         "simulator": {
-          "brier": 0.1687,
-          "margin_bias": 0.092,
-          "margin_mae": 10.53,
-          "n": 369,
-          "su_accuracy": 0.7317,
-          "total_mae": 13.36
+          "brier": 0.1684,
+          "margin_bias": 0.105,
+          "margin_mae": 10.514,
+          "n": 370,
+          "su_accuracy": 0.7324,
+          "total_mae": 13.325
         },
         "v04": {
-          "brier": 0.1735,
-          "margin_bias": -0.503,
-          "margin_mae": 10.662,
-          "n": 369,
-          "su_accuracy": 0.7236,
-          "total_mae": 13.71
+          "brier": 0.1731,
+          "margin_bias": -0.494,
+          "margin_mae": 10.641,
+          "n": 370,
+          "su_accuracy": 0.7243,
+          "total_mae": 13.678
         }
       }
     },
