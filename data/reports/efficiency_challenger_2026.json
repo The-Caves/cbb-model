@@ -1,26 +1,26 @@
 {
   "baseline_model": "CBB_SCORE_RIDGE_V0_4_D1_PRIOR30_A1_5",
   "candidate": {
-    "margin_bias": -1.362,
-    "margin_mae": 10.098,
-    "n": 2634,
-    "su_accuracy": 0.7168,
-    "total_mae": 14.286
+    "margin_bias": -1.253,
+    "margin_mae": 9.999,
+    "n": 2794,
+    "su_accuracy": 0.7201,
+    "total_mae": 14.244
   },
   "challenger_promoted": false,
-  "fit_days": 84,
-  "games_evaluated": 2634,
+  "fit_days": 86,
+  "games_evaluated": 2794,
   "historical_boxscores_acquired_retrospectively": true,
   "minimum_training_games": 250,
   "model": "CBB_PACE_EFF_CHALLENGER_V0_1",
   "required_games": 100,
   "status": "RETROSPECTIVE_RESEARCH_ONLY",
   "v04_same_games": {
-    "margin_bias": 0.056,
-    "margin_mae": 9.445,
-    "n": 2634,
-    "su_accuracy": 0.7308,
-    "total_mae": 14.04
+    "margin_bias": 0.078,
+    "margin_mae": 9.367,
+    "n": 2794,
+    "su_accuracy": 0.733,
+    "total_mae": 13.99
   },
   "warning": "No inference of validated picks, profitable wagering or verified historical data availability."
 }
