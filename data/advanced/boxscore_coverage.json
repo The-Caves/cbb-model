@@ -6,9 +6,9 @@
   "audit_by_season": {
     "2025": {
       "eligible_d1_final_games": 5733,
-      "verified_boxscores": 1502,
-      "missing_boxscores": 4231,
-      "coverage_fraction": 0.262,
+      "verified_boxscores": 1524,
+      "missing_boxscores": 4209,
+      "coverage_fraction": 0.2658,
       "other_or_unverified_final_games": 559,
       "disputed_source_score_games": 0,
       "d1_teams_with_5plus_games": 362,
@@ -16,46 +16,52 @@
     },
     "2026": {
       "eligible_d1_final_games": 5723,
-      "verified_boxscores": 3415,
-      "missing_boxscores": 2308,
-      "coverage_fraction": 0.5967,
+      "verified_boxscores": 3459,
+      "missing_boxscores": 2264,
+      "coverage_fraction": 0.6044,
       "other_or_unverified_final_games": 577,
       "disputed_source_score_games": 0,
       "d1_teams_with_5plus_games": 364,
       "teams_with_any_verified_games": 364
     },
     "2027": {
-      "eligible_d1_final_games": 1008,
-      "verified_boxscores": 1008,
-      "missing_boxscores": 0,
-      "coverage_fraction": 1.0,
-      "other_or_unverified_final_games": 297,
-      "disputed_source_score_games": 162,
-      "d1_teams_with_5plus_games": 300,
+      "eligible_d1_final_games": 1038,
+      "verified_boxscores": 1019,
+      "missing_boxscores": 19,
+      "coverage_fraction": 0.9817,
+      "other_or_unverified_final_games": 303,
+      "disputed_source_score_games": 168,
+      "d1_teams_with_5plus_games": 304,
       "teams_with_any_verified_games": 365
     }
   },
   "quarantined_archive_rows": 0,
-  "as_of_utc": "2026-11-27T20:07:31Z",
+  "as_of_utc": "2026-11-28T19:02:04Z",
   "attempted": 80,
   "current_season_priority_active": false,
-  "current_season_missing_at_start": 0,
+  "current_season_missing_at_start": 30,
   "requests_by_season": {
-    "2026": 56,
+    "2027": 12,
+    "2026": 44,
     "2025": 24
   },
   "accepted_by_season": {
-    "2026": 56,
+    "2027": 11,
+    "2026": 44,
     "2025": 22
   },
-  "accepted_this_run": 78,
-  "rejected_this_run": 2,
-  "accepted_total": 5935,
-  "player_games_captured_this_run": 78,
+  "accepted_this_run": 77,
+  "rejected_this_run": 3,
+  "accepted_total": 6012,
+  "player_games_captured_this_run": 77,
   "player_rows_rejected": [],
   "profile_teams": 365,
-  "profile_teams_5plus": 300,
+  "profile_teams_5plus": 304,
   "rejections": [
+    {
+      "game_id": "401920737",
+      "error": "BoxscoreGap: missing/invalid field goals"
+    },
     {
       "game_id": "401706980",
       "error": "BoxscoreGap: missing/invalid field goals"
