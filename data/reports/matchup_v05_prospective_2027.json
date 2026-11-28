@@ -1,10 +1,10 @@
 {
   "active_model": "CBB_SCORE_RIDGE_V0_4_D1_PRIOR30_A1_5",
-  "as_of_utc": "2026-11-28T14:14:06Z",
+  "as_of_utc": "2026-11-28T19:01:17Z",
   "freeze": {
-    "captured": 226,
-    "feature_covered_upcoming_games": 113,
-    "games": 113,
+    "captured": 178,
+    "feature_covered_upcoming_games": 89,
+    "games": 89,
     "status": "GENUINE_PRETIP_RESEARCH_FORECAST"
   },
   "grade": {
